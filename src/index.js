@@ -1,28 +1,15 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import Root from './containers/Root'
-import configureStore from './store/configureStore'
+import App from './App'
 
-import ApiManager from './api/ApiManager'
-import ApiManagerOptions from './config/ApiManagerOptions'
-
-const store = configureStore()
-const history = syncHistoryWithStore(browserHistory, store)
-
-ApiManagerOptions.store = store
-
-ApiManager.configure(ApiManagerOptions)
+import { AppContainer } from 'react-hot-loader'
 
 const rootEl = document.getElementById('root');
 
-
 render(
-  <Root
-    store={store}
-    history={history}
-  />,
+  <AppContainer>
+    <App />
+  </AppContainer>,
   rootEl
 )
 
@@ -32,14 +19,13 @@ render(
 // http://joshbroton.com/add-react-hot-reloading-create-react-app/
 // https://medium.com/@sheepsteak/adding-hot-module-reloading-to-create-react-app-e053fadf569d
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
-    const NextApp = require('./containers/Root').default
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default; // eslint-disable-line global-require
     render(
-      <NextApp
-        store={store}
-        history={history}
-      />,
+      <AppContainer>
+        <NextApp />
+      </AppContainer>,
       rootEl
-    )
-  })
+    );
+  });
 }

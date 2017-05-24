@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router'
-import App from '../app/App'
+import Layout from '../layout/Layout'
 import RoutingEnum from './RoutingEnum'
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty'
@@ -29,7 +29,7 @@ const onAppInit = (store) => {
 // See https://stackoverflow.com/questions/35849970/accessing-redux-store-from-routes-set-up-via-react-router
 export const getRoutes = (store) => (
   <Route path="/"
-    component={App}
+    component={Layout}
     // onEnter={onAppInit(store)}
   >
     {map(RoutingEnum, (route) => {

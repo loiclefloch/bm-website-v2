@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
-class App extends Component {
+class Layout extends Component {
   render() {
     const { children } = this.props
 
@@ -15,7 +15,7 @@ class App extends Component {
       <MuiThemeProvider
         muiTheme={theme}
       >
-        <div className="App">
+        <div className="Layout">
           {children}
         </div>
       </MuiThemeProvider>
@@ -23,4 +23,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Layout;
