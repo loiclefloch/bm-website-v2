@@ -13,6 +13,17 @@ const BookmarkApi = {
       schema: BookmarksListSchema,
       endpoint: ApiEndpoints.BOOKMARKS,
     }
+  },
+
+  getBookmark: (bookmarkId: string) => {
+    return {
+      type: 'GET',
+      schema: BookmarkSchema,
+      endpoint: ApiEndpoints.BOOKMARK,
+      params: {
+        bookmarkId
+      }
+    }
   }
 
 }

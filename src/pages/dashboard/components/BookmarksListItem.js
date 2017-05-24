@@ -10,7 +10,7 @@ const BookmarksListItem = ({ bookmark, actions }) => {
 
   return (
     <ListItem
-      onClick={() => console.log('click') && actions.showBookmark(bookmark)}
+      onClick={() => actions.showBookmark(bookmark)}
       primaryText={
         <span>{bookmark.id} - {bookmark.title}</span>
       }

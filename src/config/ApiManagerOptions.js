@@ -29,7 +29,7 @@ export default {
       'Accept': 'application/json',
     }
 
-    console.log(this.a, this.a.store)
+    // TODO: why this.a ?
     const store = this.a.store
     if (!_.isNil(store)) {
       const authorization = getAuthorizationHeader(store.getState())

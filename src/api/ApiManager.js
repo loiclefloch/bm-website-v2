@@ -16,6 +16,28 @@ function ApiError(code, message) {
   }
 }
 
+
+function formatEndpoint(endpoint, params = null): string {
+  if (_.isNull(params)) {
+    return endpoint;
+  }
+
+  let formattedEnpoint = template(endpoint, params);
+
+  function template(template, data) {
+    return template
+    .replace(
+      /:(\w*)/g,
+      (m, key) => {
+        return data.hasOwnProperty( key ) ? data[key] : ''
+      }
+    )
+  }
+
+  return formattedEnpoint;
+}
+
+
 class ApiManager {
 
   ContentTypes = {
@@ -138,7 +160,6 @@ class ApiManager {
           apiError.localizedMessage = I18n.tr('api_error.no_internet')
           failure(apiError)
         } else {
-          console.log('get api errors')
           failure(this.createApiError(res.text))
         }
       }
@@ -192,10 +213,10 @@ class ApiManager {
   * @param failure the closure called on failure. Take an ApiError as parameter.
   */
   get(options: Object) {
-    const { url, endpoint, query, headers, success, failure }  = options
+    const { url, endpoint, params, query, headers, success, failure }  = options
 
     request
-    .get(`${this.getApiUrl(url)}${endpoint}`, null, null)
+    .get(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null, null)
     .query(query)
     .set('Accept', 'application/json')
     .set(this.getHeaders(headers))
@@ -219,9 +240,9 @@ class ApiManager {
   * @param failure the closure called on failure. Take an ApiError as parameter.
   */
   delete(options: Object) {
-    const { url, endpoint, query, headers, success, failure }  = options
+    const { url, endpoint, params, query, headers, success, failure }  = options
 
-    request.delete(`${this.getApiUrl(url)}${endpoint}`, null)
+    request.delete(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null)
     .query(query)
     .set('Accept', 'application/json')
     .set(this.getHeaders(headers))
@@ -238,9 +259,9 @@ class ApiManager {
   }
 
   post(options: Object) {
-    const { url, endpoint, data, headers, query, success, failure }  = options
+    const { url, endpoint, params, data, headers, query, success, failure }  = options
 
-    request.post(`${this.getApiUrl(url)}${endpoint}`, null, null)
+    request.post(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null, null)
     .type('json')
     .query(query)
     .send(JSON.stringify(data))
@@ -268,9 +289,9 @@ class ApiManager {
   * @param failure
   */
   postMultipart(options: Object) {
-    const { url, endpoint, data, files, headers, query, success, failure }  = options
+    const { url, endpoint, params, data, files, headers, query, success, failure }  = options
 
-    const req = request.post(`${this.getApiUrl(url)}${endpoint}`, null, null)
+    const req = request.post(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null, null)
     .query(query)
 
     for (const key in data) {
@@ -313,9 +334,9 @@ class ApiManager {
   * @param failure the closure called on failure. Take an ApiError as parameter.
   */
   put(options: Object) {
-    const { url, endpoint, data, headers, query, success, failure }  = options
+    const { url, endpoint, params, data, headers, query, success, failure }  = options
 
-    request.put(`${this.getApiUrl(url)}${endpoint}`, null, null)
+    request.put(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null, null)
     .type('json')
     .send(JSON.stringify(data))
     .query(query)
@@ -343,9 +364,9 @@ class ApiManager {
   * @param failure
   */
   putMultipart(options: Object) {
-    const { url, endpoint, data, files, headers, query, success, failure }  = options
+    const { url, endpoint, params, data, files, headers, query, success, failure }  = options
 
-    const req = request.put(`${this.getApiUrl(url)}${endpoint}`, null, null)
+    const req = request.put(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null, null)
     .query(query)
 
     for (const key in data) {

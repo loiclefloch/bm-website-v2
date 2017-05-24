@@ -9,11 +9,13 @@ import BookmarksList from '../components/BookmarksList'
 
 class DashboardPage extends Component {
   static propTypes = {
-    bookmarks: PropTypes.array
+    bookmarks: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    showBookmark: PropTypes.func.isRequired,
   }
 
   render() {
-    const { actions, bookmarks, isFetching } = this.props
+    const { isFetching, bookmarks } = this.props
 
     return (
       <div>
@@ -24,7 +26,9 @@ class DashboardPage extends Component {
 
         <BookmarksList
           bookmarks={bookmarks}
-          actions={actions}
+          actions={{
+            showBookmark: this.props.showBookmark
+          }}
         />
       </div>
     )
@@ -35,9 +39,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     // isFetching: isFetching(state),
     bookmarks: getBookmarksSortedByDate(state),
-    actions: {
-      showBookmark: showBookmark
-    }
    }
 }
 

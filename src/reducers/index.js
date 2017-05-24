@@ -3,13 +3,14 @@ import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
 import Immutable from "immutable"
 
-import { bookmarksList } from '../pages/dashboard/DashboardReducers'
+import { bookmarksList, bookmark } from '../pages/dashboard/DashboardReducers'
 import { oauth } from '../pages/login/LoginReducers'
 
 // import userReducers from '../pages/login/reducers'
 
 const entities = combineReducers({
   bookmarksList,
+  bookmark,
   oauth,
 });
 

@@ -3,6 +3,8 @@ const ApiEndpoints = {
 
   BOOKMARKS: '/bookmarks',
 
+  BOOKMARK: '/bookmarks/:bookmarkId',
+
   TAGS: '/tags',
 
   SEARCH_BOOKMARKS: '/search/bookmarks',
