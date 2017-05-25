@@ -19,6 +19,7 @@ body {
 #container {
 	max-width: 1160px;
 	margin: 0 auto;
+	padding-left: 256px;
 }
 
 /* for footer, TODO: fix / better way */
@@ -27,10 +28,6 @@ body {
 #container {
   min-height: 100%;
   height: 100%;
-}
-
-#container {
-  padding: 30px;
 }
 
 /*

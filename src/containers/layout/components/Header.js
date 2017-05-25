@@ -46,7 +46,7 @@ Logged.muiName = 'IconMenu';
 /**
  * By default, the left icon is a navigation-menu.
  */
-const Header = (isLoggedIn) => (
+const Header = ({ isLoggedIn }) => (
   <header>
     <AppBar
       title="Bookmark Manager"

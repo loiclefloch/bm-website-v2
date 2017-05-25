@@ -12,6 +12,7 @@ import { indigo500 } from 'material-ui/styles/colors';
 
 
 import Header from './components/Header'
+import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 
 import './layout.css'
@@ -38,6 +39,10 @@ class Layout extends Component {
       >
         <div id="layout">
           <Header
+            isLoggedIn={true}
+          />
+
+          <Sidebar
             isLoggedIn={true}
           />
 

@@ -10,6 +10,8 @@ class RoutingEnum {
   static DASHBOARD = new Route('DASHBOARD', '/dashboard', DashboardPage)
 
   static CIRCLES = new Route('CIRCLES', '/circles', CirclesListPage)
+
+  static SETTINGS = new Route('', '', null)
 }
 
 export default RoutingEnum
