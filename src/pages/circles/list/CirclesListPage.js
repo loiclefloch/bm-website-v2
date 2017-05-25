@@ -7,7 +7,12 @@ import {
   loadCircles,
 } from '../../../modules/circle'
 
-import { getCirclesSortedByDate, isFetchingCircles } from './selectors'
+import {
+  getCirclesSortedByDate,
+  isFetchingCircles,
+  getFollowedCircles,
+ } from './selectors'
+
 import CirclesList from './components/CirclesList'
 
 class DashboardPage extends Component {

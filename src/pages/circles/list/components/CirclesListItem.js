@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 
 import isEmpty from 'lodash/isEmpty'
 
-import { ListItem } from 'material-ui/List';
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
-import Avatar from 'material-ui/Avatar'
+import { PeopleAvatar } from '../../../../components/avatar'
 import FontAwesome from 'react-fontawesome'
+
+import CirclesListItemFollowedByMe from './CirclesListItemFollowedByMe'
 
 const style = {
   title: {
@@ -26,50 +27,56 @@ const renderIcon = circle => {
     style: style.icon,
   }
 
-  if (!isEmpty(circle.icon)) {
-    return (
-      <Avatar
-        src={circle.icon}
-        {...props}
-      />
-    )
-  }
-
   return (
-    <Avatar
+    <PeopleAvatar
+      src={circle.icon}
+      placeholder={circle.name}
       {...props}
-    >
-      {circle.name[0]}
-    </Avatar>
+    />
   )
 }
 
+
 const CirclesListItem = ({ circle, actions }) => {
+  const onShowDetail = () => actions.showCircle(circle)
+
   return (
-    <ListItem
-      onClick={() => actions.showCircle(circle)}
-    >
-      <Card>
-        <CardHeader
-          avatar={renderIcon(circle)}
-          title={
-            <CardTitle
-              title={circle.name}
-              subtitle={
+    <Card>
+      <CardHeader
+        avatar={renderIcon(circle)}
+        title={
+          <CardTitle
+            title={
+              <div
+                onClick={onShowDetail}
+                className="pointer"
+              >
+                {circle.name}
+              </div>
+            }
+            subtitle={
+              <div>
                 <span>
                   {circle.numberOfMember} people
                 </span>
-              }
-              style={style.title}
-            />
-          }
-        >
-        </CardHeader>
-        <CardText>
-          {circle.description}
-        </CardText>
-      </Card>
-    </ListItem>
+                &nbsp;
+                <CirclesListItemFollowedByMe
+                  circle={circle}
+                />
+              </div>
+            }
+            style={style.title}
+          />
+        }
+      >
+      </CardHeader>
+      <CardText
+        onClick={onShowDetail}
+        className="pointer"
+      >
+        {circle.description}
+      </CardText>
+    </Card>
   )
 }
 

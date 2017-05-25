@@ -61,8 +61,8 @@ const setBookmarkPrettyUrl = (bookmark) => {
 const setBookmarkDefaultName = (bookmark) => {
   let name = bookmark.name;
   if (isEmpty(name)) {
-    if (!isEmpty(this.title)) {
-      name = this.title
+    if (!isEmpty(bookmark.title)) {
+      name = bookmark.title
     } else {
       name = getPrettyUrl(bookmark.url)
     }

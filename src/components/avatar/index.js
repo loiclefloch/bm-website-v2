@@ -1,0 +1,1 @@
+export PeopleAvatar from './PeopleAvatar'

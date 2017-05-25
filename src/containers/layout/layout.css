@@ -22,7 +22,7 @@ body {
 }
 
 /* for footer, TODO: fix / better way */
-#root div:first-child,
+#root div:first,
 #layout,
 #container {
   min-height: 100%;
@@ -59,8 +59,16 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
 }
 
+/*
+ * Global
+*/
+
 h1, h3 { font-weight: 300; }
 
 h1 { color: #636363; font-size: 2em; }
 
 h3 { color: #4a89dc; font-size: 1.17em; }
+
+.pointer, .pointer:hover {
+  cursor: pointer!important;
+}

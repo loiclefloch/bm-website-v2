@@ -2,6 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import App from './App'
 
+// modules css
+import 'font-awesome/css/font-awesome.min.css';
+
 import { AppContainer } from 'react-hot-loader'
 
 const rootEl = document.getElementById('root');

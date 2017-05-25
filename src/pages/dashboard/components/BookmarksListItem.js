@@ -7,8 +7,8 @@ import { ListItem } from 'material-ui/List';
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
-import Avatar from 'material-ui/Avatar'
 import FontAwesome from 'react-fontawesome'
+import { PeopleAvatar } from '../../../components/avatar'
 
 const style = {
   title: {
@@ -26,21 +26,38 @@ const renderIcon = bookmark => {
     style: style.icon,
   }
 
-  if (!isEmpty(bookmark.icon)) {
-    return (
-      <Avatar
-        src={bookmark.icon}
-        {...props}
-      />
-    )
+  return (
+    <PeopleAvatar
+      src={bookmark.icon}
+      placeholder={bookmark.domain}
+    />
+  )
+}
+
+const renderAuthorAvatar = (authorName, authorAvatar) => {
+  const props = {
+    size: 30,
+    style: style.icon,
   }
 
   return (
-    <Avatar
-      {...props}
-    >
-      {bookmark.domain[0]}
-    </Avatar>
+    <PeopleAvatar
+      src={authorAvatar}
+      placeholder={authorName}
+    />
+  )
+}
+
+const renderMeta = websiteInfo => {
+  if (!websiteInfo || !websiteInfo.meta) {
+    return (null)
+  }
+  const meta = websiteInfo.meta
+  return (
+    <CardText>
+      {renderAuthorAvatar(websiteInfo.author, websiteInfo.authorAvatar)}
+      {websiteInfo.author}
+    </CardText>
   )
 }
 
@@ -75,6 +92,8 @@ const BookmarksListItem = ({ bookmark, actions }) => {
         <CardText>
           {bookmark.description}
         </CardText>
+
+        {renderMeta(bookmark.websiteInfo)}
       </Card>
     </ListItem>
   )

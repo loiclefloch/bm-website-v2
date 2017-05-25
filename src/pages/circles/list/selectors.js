@@ -1,12 +1,21 @@
 import { createSelector } from 'reselect'
 
 import isEmpty from 'lodash/isEmpty'
+import ArrayUtils from '../../../utils/ArrayUtils'
 
-import { formatCircle } from '../../../modules/circle/utils'
+import {
+  formatCircle,
+  setCircleIsFollowedByMe
+} from '../../../modules/circle/utils'
 
 //
 // Circles
 //
+
+const getMeCirclesIds = (state) => {
+  // TODO
+  return [ 2 ]
+}
 
 // input-selectors. They are created as ordinary non-memoized selector functions because they do
 // not transform the data they select
@@ -20,14 +29,16 @@ const getCircles = createSelector(
 );
 
 export const getCirclesAsList = createSelector(
-  [ getCircles ],
-  (circles) => {
+  [ getCircles, getMeCirclesIds ],
+  (circles, meCirclesIds) => {
     return circles
     // .filter(circle => {
     //   return true
     // })
     .map(circle => {
-      return formatCircle(circle.toJS())
+      circle = formatCircle(circle.toJS())
+      circle = setCircleIsFollowedByMe(circle, meCirclesIds)
+      return circle
     })
 
   }
@@ -51,4 +62,16 @@ const getCirclesIsFetching = (state) => state.entities.circlesList.get('isFetchi
 export const isFetchingCircles = createSelector(
     getCirclesIsFetching,
     (isFetching) => isFetching
+)
+
+
+//
+//
+//
+
+export const getFollowedCircles = createSelector(
+    [ getCirclesAsList, getMeCirclesIds ],
+    (circles, meCirclesIds) => circles.map(circle => {
+      return circle.isFollowedByMe
+    })
 )

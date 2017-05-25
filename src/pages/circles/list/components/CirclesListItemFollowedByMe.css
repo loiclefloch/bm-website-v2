@@ -1,0 +1,10 @@
+.CirclesListItemFollowedByMe {
+  display: inline-block!important;
+  background: transparent!important;
+  border-width: 1px!important;
+  border-style: solid!important;
+}
+
+.CirclesListItemFollowedByMe span {
+  line-height: 20px!important;
+}
