@@ -26,14 +26,15 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { userCredentials } = this.props;
+    const { userCredentials, isFetching } = this.props;
 
     return (
       <div>
-        <h1>Login</h1>
+
         <LoginForm
           userCredentials={userCredentials}
           onLogin={this.onLogin}
+          isFetching={isFetching}
         />
 
         <br />
@@ -55,7 +56,8 @@ const mapStateToProps = (state, ownProps) => {
     userCredentials: {
       username: '',
       password: '',
-    }
+    },
+    isFetching: state.entities.oauth.get('isFetching')
   }
 }
 
