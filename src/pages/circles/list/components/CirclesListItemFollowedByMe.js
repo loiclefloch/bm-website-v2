@@ -5,7 +5,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import './CirclesListItemFollowedByMe.css'
 
-const renderFollowing = ({ circle, muiTheme, onTouchTap }) => {
+const Following = ({ circle, muiTheme, onTouchTap }) => {
 
   const styles = {
     following: {
@@ -20,10 +20,10 @@ const renderFollowing = ({ circle, muiTheme, onTouchTap }) => {
 
   const props = { styles, onTouchTap }
 
-  return circle.isFollowedByMe ? renderIsFollowedByMe(props) : renderNotFollowedByMe(props)
+  return circle.isFollowedByMe ? <IsFollowedByMe {...props} /> : <NotFollowedByMe {...props} />
 }
 
-const renderIsFollowedByMe = ({ styles, onTouchTap }) => {
+const IsFollowedByMe = ({ styles, onTouchTap }) => {
   return (
     <Chip
       className="CirclesListItemFollowedByMe pointer"
@@ -41,7 +41,7 @@ const renderIsFollowedByMe = ({ styles, onTouchTap }) => {
   )
 }
 
-const renderNotFollowedByMe = ({ styles, onTouchTap }) => {
+const NotFollowedByMe = ({ styles, onTouchTap }) => {
 
   return (
     <Chip
@@ -59,4 +59,4 @@ const renderNotFollowedByMe = ({ styles, onTouchTap }) => {
   )
 }
 
-export default muiThemeable()(renderFollowing)
+export default muiThemeable()(Following)

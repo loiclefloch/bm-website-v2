@@ -20,7 +20,7 @@ const style = {
   }
 }
 
-const renderIcon = bookmark => {
+const Icon = ({ bookmark }) => {
   const props = {
     size: 30,
     style: style.icon,
@@ -34,7 +34,7 @@ const renderIcon = bookmark => {
   )
 }
 
-const renderAuthorAvatar = (authorName, authorAvatar) => {
+const AuthorAvatar = ({ authorName, authorAvatar }) => {
   const props = {
     size: 30,
     style: style.icon,
@@ -48,14 +48,17 @@ const renderAuthorAvatar = (authorName, authorAvatar) => {
   )
 }
 
-const renderMeta = websiteInfo => {
+const Meta = ({ websiteInfo })  => {
   if (!websiteInfo || !websiteInfo.meta) {
     return (null)
   }
   const meta = websiteInfo.meta
   return (
     <CardText>
-      {renderAuthorAvatar(websiteInfo.author, websiteInfo.authorAvatar)}
+      <AuthorAvatar
+        author={websiteInfo.author}
+        authorAvatar={websiteInfo.authorAvatar}
+      />
       {websiteInfo.author}
     </CardText>
   )
@@ -68,7 +71,11 @@ const BookmarksListItem = ({ bookmark, actions }) => {
     >
       <Card>
         <CardHeader
-          avatar={renderIcon(bookmark)}
+          avatar={
+            <Icon
+              bookmark={bookmark}
+            />
+          }
           title={
             <CardTitle
               title={bookmark.name}
@@ -93,7 +100,9 @@ const BookmarksListItem = ({ bookmark, actions }) => {
           {bookmark.description}
         </CardText>
 
-        {renderMeta(bookmark.websiteInfo)}
+        <Meta
+          websiteInfo={bookmark.websiteInfo}
+        />
       </Card>
     </ListItem>
   )

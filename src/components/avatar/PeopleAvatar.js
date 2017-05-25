@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import Avatar from 'material-ui/Avatar'
 
-const renderText = (props) => {
+const AvatarWithText = (props) => {
   const { placeholder, ...other } = props;
 
   return (
@@ -17,18 +17,27 @@ const renderText = (props) => {
   )
 }
 
-const renderPlaceholder = (props) => {
-  props.placeholder = props.placeholder[0];
+const AvatarPlaceholder = (props) => {
+  const { placeholder, ...otherProps } = props
 
   // TODO: if default is url
-  return renderText(props)
+  return (
+    <AvatarWithText
+      placeholder={placeholder[0]}
+      {...otherProps}
+    />
+  )
 }
 
 const AvatarWithDefault = (props) => {
   const { src, ...otherProps } = props
 
   if (isEmpty(src)) {
-    return renderPlaceholder(otherProps)
+    return (
+      <AvatarPlaceholder
+        {...otherProps}
+      />
+    )
   }
 
   return (

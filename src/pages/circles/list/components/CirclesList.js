@@ -14,7 +14,7 @@ const style = {
   }
 }
 
-const renderCircleListItem = (circle, actions) => {
+const ItemOnCol = ({ circle, actions }) => {
   return (
     <Col
       xs={6}
@@ -45,7 +45,12 @@ const CirclesList = ({ circles, isFetching, actions }) => {
       <Grid fluid>
         <Row>
           {circles.map(circle => {
-            return renderCircleListItem(circle, actions)
+            return (
+              <ItemOnCol
+                circle={circle}
+                actions={actions}
+              />
+            )
           })}
         </Row>
       </Grid>
