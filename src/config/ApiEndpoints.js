@@ -9,7 +9,11 @@ const ApiEndpoints = {
 
   SEARCH_BOOKMARKS: '/search/bookmarks',
 
-  DATA: '/data'
+  DATA: '/data',
+
+  CIRCLES: '/circles',
+
+  CIRCLE: '/circles/:circleId',
 };
 
 export default ApiEndpoints;

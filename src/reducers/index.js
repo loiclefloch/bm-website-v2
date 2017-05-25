@@ -3,20 +3,7 @@ import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
 import Immutable from "immutable"
 
-import {
-  bookmarksList,
-  bookmark
-} from '../modules/bookmark'
-
-import {
-  oauth
-} from '../modules/auth'
-
-const entities = combineReducers({
-  bookmarksList,
-  bookmark,
-  oauth,
-});
+import entities from './entities'
 
 const DEFAULT_SESSION = Immutable.fromJS({
   authRequired: true,
