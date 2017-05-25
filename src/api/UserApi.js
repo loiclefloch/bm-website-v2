@@ -1,7 +1,7 @@
 import ApiEndpoints from '../config/ApiEndpoints'
 import Config from '../config/Config'
 
-import OAuthSchema from '../schemas/OAuthSchema'
+import OAuthSchema from './schemas/OAuthSchema'
 
 const UserApi = {
 

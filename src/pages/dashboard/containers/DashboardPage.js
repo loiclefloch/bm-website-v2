@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { showBookmark } from '../DashboardActions'
-import { getBookmarksSortedByDate, isFetchingBookmarks } from '../selectors'
+import {
+  showBookmark,
+  loadBookmarks,
+} from '../../../modules/bookmark'
 
+import { getBookmarksSortedByDate, isFetchingBookmarks } from '../selectors'
 import BookmarksList from '../components/BookmarksList'
-import { loadBookmarks } from '../DashboardActions'
 
 class DashboardPage extends Component {
   static propTypes = {

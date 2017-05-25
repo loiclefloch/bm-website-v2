@@ -1,3 +1,19 @@
+
+# Resources
+
+Interesting links that helped me to architecture this app:
+- https://medium.com/@benipsen/seven-months-into-redux-two-things-my-team-learned-along-the-way-5d979c25ea61
+- https://blog.agolo.com/our-redux-migration-and-5-tips-for-adoption-in-a-mature-codebase-dc62322cb921
+- https://medium.com/lexical-labs-engineering/redux-best-practices-64d59775802e
+- https://hashnode.com/post/tips-for-a-better-redux-architecture-lessons-for-enterprise-scale-civrlqhuy0keqc6539boivk2f
+- https://github.com/erikras/ducks-modular-redux
+- https://github.com/markerikson/react-redux-links/blob/master/redux-architecture.md
+- 
+
+## Architecture
+
+# create-react-app
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

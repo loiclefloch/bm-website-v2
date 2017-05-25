@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router'
-import Layout from '../layout/Layout'
-import RoutingEnum from './RoutingEnum'
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty'
+
+import RoutingEnum from './RoutingEnum'
+import Layout from '../containers/layout/Layout'
 
 // see https://stackoverflow.com/questions/38563679/react-redux-dispatch-action-on-app-load-init
 const authenticate = (state, replace, callback) => {

@@ -1,4 +1,4 @@
-import Route from '../redux/Route';
+import Route from '../utils/Route';
 
 import UserPage from '../pages/login'
 import DashboardPage from '../pages/dashboard'
