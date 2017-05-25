@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
-import { PeopleAvatar } from '../../../../components/avatar'
+import { AvatarWithDefault } from '../../../../components/avatar'
 import FontAwesome from 'react-fontawesome'
 
 import CirclesListItemFollowedByMe from './CirclesListItemFollowedByMe'
@@ -28,7 +28,7 @@ const renderIcon = circle => {
   }
 
   return (
-    <PeopleAvatar
+    <AvatarWithDefault
       src={circle.icon}
       placeholder={circle.name}
       {...props}

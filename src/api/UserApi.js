@@ -2,6 +2,8 @@ import ApiEndpoints from '../config/ApiEndpoints'
 import Config from '../config/Config'
 
 import OAuthSchema from './schemas/OAuthSchema'
+import UserSchema from './schemas/UserSchema'
+import MeSchema from './schemas/MeSchema'
 
 const UserApi = {
 
@@ -21,6 +23,22 @@ const UserApi = {
         username,
         password,
       }
+    }
+  },
+
+  getMe: () => {
+    return {
+      type: 'GET',
+      schema: MeSchema,
+      endpoint: ApiEndpoints.ME,
+    }
+  },
+
+  getUser: (id) => {
+    return {
+      type: 'GET',
+      schema: UserSchema,
+      endpoint: ApiEndpoints.USER,
     }
   }
 

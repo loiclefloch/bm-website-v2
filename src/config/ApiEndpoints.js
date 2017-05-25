@@ -14,6 +14,12 @@ const ApiEndpoints = {
   CIRCLES: '/circles',
 
   CIRCLE: '/circles/:circleId',
+
+  ME: '/users/me',
+
+  USERS: '/users',
+
+  USER: '/users/:userId',
 };
 
 export default ApiEndpoints;

@@ -11,15 +11,22 @@ import {
 } from '../modules/circle'
 
 import {
-  oauth
+  oauth,
 } from '../modules/auth'
+
+import {
+  users,
+  me,
+} from '../modules/user'
 
 const entities = combineReducers({
   bookmarksList,
   bookmark,
-  oauth,
   circlesList,
-  circle
+  circle,
+  oauth,
+  me,
+  users,
 });
 
 export default entities

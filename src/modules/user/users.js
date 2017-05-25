@@ -2,27 +2,27 @@ import Immutable from "immutable"
 
 import { createApiCallAction } from '../../actions/creators'
 
-import BookmarkApi from '../../api/BookmarkApi'
+import UserApi from '../../api/UserApi'
 
 //
 // Actions
 //
 
-export const BOOKMARK_REQUEST = 'BOOKMARK::REQUEST'
-export const BOOKMARK_SUCCESS = 'BOOKMARK::SUCCESS'
-export const BOOKMARK_FAILURE = 'BOOKMARK::FAILURE'
+export const USER_REQUEST = 'USER::REQUEST'
+export const USER_SUCCESS = 'USER::SUCCESS'
+export const USER_FAILURE = 'USER::FAILURE'
 
 // Fetches a page of stargazers for a particular repo.
 // Relies on the custom API middleware defined in ../middleware/api.js.
-const fetchBookmark = (bookmark) => createApiCallAction(
+const fetchUser = (user) => createApiCallAction(
   [
-    BOOKMARK_REQUEST, BOOKMARK_SUCCESS, BOOKMARK_FAILURE
+    USER_REQUEST, USER_SUCCESS, USER_FAILURE
   ],
-  BookmarkApi.getBookmark(bookmark.id)
+  UserApi.getUser(user.id)
 )
 
-export const showBookmark = bookmark => (dispatch, getState) => {
-  return dispatch(fetchBookmark(bookmark))
+export const showUser = user => (dispatch, getState) => {
+  return dispatch(fetchUser(user))
 }
 
 //
@@ -31,23 +31,22 @@ export const showBookmark = bookmark => (dispatch, getState) => {
 
 const DEFAULT = Immutable.fromJS({
   data: {
-    bookmark: {},
   },
   isFetching: false,
   lastUpdated: null,
   error: null
 })
 
-export const bookmark = (state = DEFAULT, action) => {
+export const users = (state = DEFAULT, action) => {
   switch (action.type) {
-    case BOOKMARK_REQUEST:
+    case USER_REQUEST:
       return state.merge({
         isFetching: true,
         error: null,
-        data: action.bookmark,
+        data: action.user,
       })
 
-    case BOOKMARK_SUCCESS:
+    case USER_SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -55,7 +54,7 @@ export const bookmark = (state = DEFAULT, action) => {
         lastUpdated: Date.now(),
       })
 
-    case BOOKMARK_FAILURE:
+    case USER_FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

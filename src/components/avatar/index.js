@@ -1,1 +1,1 @@
-export PeopleAvatar from './PeopleAvatar'
+export AvatarWithDefault from './AvatarWithDefault'

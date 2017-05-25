@@ -8,7 +8,7 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
 import FontAwesome from 'react-fontawesome'
-import { PeopleAvatar } from '../../../components/avatar'
+import { AvatarWithDefault } from '../../../components/avatar'
 
 const style = {
   title: {
@@ -27,7 +27,7 @@ const Icon = ({ bookmark }) => {
   }
 
   return (
-    <PeopleAvatar
+    <AvatarWithDefault
       src={bookmark.icon}
       placeholder={bookmark.domain}
     />
@@ -41,7 +41,7 @@ const AuthorAvatar = ({ authorName, authorAvatar }) => {
   }
 
   return (
-    <PeopleAvatar
+    <AvatarWithDefault
       src={authorAvatar}
       placeholder={authorName}
     />

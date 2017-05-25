@@ -19,10 +19,8 @@ const ItemOnCol = ({ circle, actions }) => {
     <Col
       xs={6}
       md={6}
-      key={circle.id}
     >
       <CirclesListItem
-        key={circle.id}
         circle={circle}
         actions={actions}
       />
@@ -47,6 +45,7 @@ const CirclesList = ({ circles, isFetching, actions }) => {
           {circles.map(circle => {
             return (
               <ItemOnCol
+                key={circle.id}
                 circle={circle}
                 actions={actions}
               />

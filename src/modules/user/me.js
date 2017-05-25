@@ -2,22 +2,22 @@ import Immutable from "immutable"
 
 import { createApiCallAction } from '../../actions/creators'
 
-import BookmarkApi from '../../api/BookmarkApi'
+import UserApi from '../../api/UserApi'
 
 //
 // Actions
 //
 
-export const BOOKMARKS_REQUEST = 'BOOKMARKS::REQUEST'
-export const BOOKMARKS_SUCCESS = 'BOOKMARKS::SUCCESS'
-export const BOOKMARKS_FAILURE = 'BOOKMARKS::FAILURE'
+export const ME_REQUEST = 'ME::REQUEST'
+export const ME_SUCCESS = 'ME::SUCCESS'
+export const ME_FAILURE = 'ME::FAILURE'
 
-// Login on the api
-export const loadBookmarks = () => createApiCallAction(
+
+export const fetchMe = () => createApiCallAction(
   [
-    BOOKMARKS_REQUEST, BOOKMARKS_SUCCESS, BOOKMARKS_FAILURE
+    ME_REQUEST, ME_SUCCESS, ME_FAILURE
   ],
-  BookmarkApi.getBookmarks()
+  UserApi.getMe()
 )
 
 //
@@ -26,23 +26,22 @@ export const loadBookmarks = () => createApiCallAction(
 
 const DEFAULT = Immutable.fromJS({
   data: {
-    bookmarks: [],
-    paging: null,
   },
   isFetching: false,
   lastUpdated: null,
   error: null
 })
 
-export const bookmarksList = (state = DEFAULT, action) => {
+export const me = (state = DEFAULT, action) => {
   switch (action.type) {
-    case BOOKMARKS_REQUEST:
+    case ME_REQUEST:
       return state.merge({
         isFetching: true,
-        error: null
+        error: null,
+        data: action.me,
       })
 
-    case BOOKMARKS_SUCCESS:
+    case ME_SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -50,7 +49,7 @@ export const bookmarksList = (state = DEFAULT, action) => {
         lastUpdated: Date.now(),
       })
 
-    case BOOKMARKS_FAILURE:
+    case ME_FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

@@ -23,7 +23,7 @@ const AvatarPlaceholder = (props) => {
   // TODO: if default is url
   return (
     <AvatarWithText
-      placeholder={placeholder[0]}
+      placeholder={!isEmpty(placeholder) ? placeholder[0] : ''}
       {...otherProps}
     />
   )

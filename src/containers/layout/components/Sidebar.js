@@ -34,6 +34,14 @@ class Sidebar extends React.Component {
           </Link>
 
           <Link
+            to={Link.Route.BOOKS}
+          >
+            <MenuItem>
+              Books
+            </MenuItem>
+          </Link>
+
+          <Link
             to={Link.Route.SETTINGS}
           >
             <MenuItem>
@@ -48,6 +56,7 @@ class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
   isLoggedIn: PropType.bool.isRequired,
+  me: PropType.object
 }
 
 export default Sidebar

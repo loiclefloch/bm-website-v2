@@ -53,7 +53,7 @@ export const circlesList = (state = DEFAULT, action) => {
     case CIRCLES_FAILURE:
       return state.merge({
         isFetching: false,
-        error: action.response.result,
+        error: action.apiError,
       })
 
     default:
