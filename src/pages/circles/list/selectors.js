@@ -5,7 +5,8 @@ import ArrayUtils from '../../../utils/ArrayUtils'
 
 import {
   formatCircle,
-  setCircleIsFollowedByMe
+  setCircleIsFollowedByMe,
+  setCircleIsFAdministrateByMe,
 } from '../../../modules/circle/utils'
 
 //
@@ -13,6 +14,11 @@ import {
 //
 
 const getMeCirclesIds = (state) => {
+  // TODO
+  return [ 2 ]
+}
+
+const getMeAdministratedCirclesIds = (state) => {
   // TODO
   return [ 2 ]
 }
@@ -29,8 +35,8 @@ const getCircles = createSelector(
 );
 
 export const getCirclesAsList = createSelector(
-  [ getCircles, getMeCirclesIds ],
-  (circles, meCirclesIds) => {
+  [ getCircles, getMeCirclesIds, getMeAdministratedCirclesIds ],
+  (circles, meCirclesIds, meAdministratedCirclesIds) => {
     return circles
     // .filter(circle => {
     //   return true
@@ -38,6 +44,7 @@ export const getCirclesAsList = createSelector(
     .map(circle => {
       circle = formatCircle(circle.toJS())
       circle = setCircleIsFollowedByMe(circle, meCirclesIds)
+      circle = setCircleIsFAdministrateByMe(circle, meAdministratedCirclesIds)
       return circle
     })
 

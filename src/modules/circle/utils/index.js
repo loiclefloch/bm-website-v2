@@ -10,6 +10,11 @@ export const setCircleIsFollowedByMe = (circle, meCirclesIds) => {
   return circle
 }
 
+export const setCircleIsFAdministrateByMe = (circle, meAdministredCirclesIds) => {
+  circle.isAdministrateByMe = ArrayUtils.exists(meAdministredCirclesIds, (id) => id === circle.id)
+  return circle
+}
+
 //
 //
 //
