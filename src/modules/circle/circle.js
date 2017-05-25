@@ -29,7 +29,7 @@ export const showCircle = circle => (dispatch, getState) => {
 // Reducer
 //
 
-const DEFAULT_CIRCLE = Immutable.fromJS({
+const DEFAULT = Immutable.fromJS({
   data: {
     circle: {},
   },
@@ -38,7 +38,7 @@ const DEFAULT_CIRCLE = Immutable.fromJS({
   error: null
 })
 
-export const circle = (state = DEFAULT_CIRCLE, action) => {
+export const circle = (state = DEFAULT, action) => {
   switch (action.type) {
     case CIRCLE_REQUEST:
       return state.merge({

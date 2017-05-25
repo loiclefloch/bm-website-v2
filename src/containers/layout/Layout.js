@@ -1,36 +1,22 @@
 import React, { Component } from 'react';
 
-// must be on top, otherwise override header / footer css.
-import './reset_css.css'
+import { connect } from 'react-redux'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-
-import { indigo500 } from 'material-ui/styles/colors';
-
 
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 
-import './layout.css'
+import { getTheme } from '../../modules/theme'
 
 class Layout extends Component {
   render() {
-    const { children } = this.props
+    const { children, theme } = this.props
 
-    // const muiTheme = getMuiTheme(lightBaseTheme)
 
-    const muiTheme = getMuiTheme({
-      palette: {
-        primary1Color: indigo500,
-      },
-      appBar: {
-        height: 50,
-      },
-    });
+    const muiTheme = getMuiTheme(theme);
 
 
     return (
@@ -58,4 +44,11 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    theme: getTheme(state),
+  }
+}
+
+export default connect(mapStateToProps, {
+})(Layout)

@@ -3,11 +3,21 @@ import { render } from 'react-dom'
 import App from './App'
 
 // modules css
+
+import './reset_css.css'
+import './index.css'
 import 'font-awesome/css/font-awesome.min.css';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { AppContainer } from 'react-hot-loader'
 
 const rootEl = document.getElementById('root');
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+// http://www.material-ui.com/#/get-started/installation
+injectTapEventPlugin();
 
 render(
   <AppContainer>

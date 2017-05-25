@@ -24,7 +24,7 @@ export const loadBookmarks = () => createApiCallAction(
 // Reducer
 //
 
-const DEFAULT_BOOKMARKS = Immutable.fromJS({
+const DEFAULT = Immutable.fromJS({
   data: {
     bookmarks: [],
     paging: null,
@@ -34,7 +34,7 @@ const DEFAULT_BOOKMARKS = Immutable.fromJS({
   error: null
 })
 
-export const bookmarksList = (state = DEFAULT_BOOKMARKS, action) => {
+export const bookmarksList = (state = DEFAULT, action) => {
   switch (action.type) {
     case BOOKMARKS_REQUEST:
       return state.merge({

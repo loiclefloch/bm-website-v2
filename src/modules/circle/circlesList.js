@@ -24,7 +24,7 @@ export const loadCircles = () => createApiCallAction(
 // Reducer
 //
 
-const DEFAULT_CIRCLES = Immutable.fromJS({
+const DEFAULT = Immutable.fromJS({
   data: {
     circles: [],
     paging: null,
@@ -34,7 +34,7 @@ const DEFAULT_CIRCLES = Immutable.fromJS({
   error: null
 })
 
-export const circlesList = (state = DEFAULT_CIRCLES, action) => {
+export const circlesList = (state = DEFAULT, action) => {
   switch (action.type) {
     case CIRCLES_REQUEST:
       return state.merge({

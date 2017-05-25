@@ -1,9 +1,11 @@
 import * as ActionTypes from '../actions'
 import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
-import Immutable from "immutable"
+import Immutable from 'immutable'
+import { reducer as uiReducer } from 'redux-ui'
 
 import entities from './entities'
+import ux from './ux'
 
 const DEFAULT_SESSION = Immutable.fromJS({
   authRequired: true,
@@ -39,6 +41,8 @@ const apiError = (state = DEFAULT_API_ERROR, action) => {
 
 const rootReducer = combineReducers({
   entities,
+  ux,
+  ui: uiReducer,
   routing,
   apiError,
   session,

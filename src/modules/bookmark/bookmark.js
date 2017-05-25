@@ -29,7 +29,7 @@ export const showBookmark = bookmark => (dispatch, getState) => {
 // Reducer
 //
 
-const DEFAULT_BOOKMARK = Immutable.fromJS({
+const DEFAULT = Immutable.fromJS({
   data: {
     bookmark: {},
   },
@@ -38,7 +38,7 @@ const DEFAULT_BOOKMARK = Immutable.fromJS({
   error: null
 })
 
-export const bookmark = (state = DEFAULT_BOOKMARK, action) => {
+export const bookmark = (state = DEFAULT, action) => {
   switch (action.type) {
     case BOOKMARK_REQUEST:
       return state.merge({
