@@ -1,3 +1,8 @@
+# Library used
+
+TODO: complete
+
+- https://github.com/roylee0704/react-flexbox-grid for grid system
 
 # Resources
 
@@ -8,7 +13,7 @@ Interesting links that helped me to architecture this app:
 - https://hashnode.com/post/tips-for-a-better-redux-architecture-lessons-for-enterprise-scale-civrlqhuy0keqc6539boivk2f
 - https://github.com/erikras/ducks-modular-redux
 - https://github.com/markerikson/react-redux-links/blob/master/redux-architecture.md
-- 
+-
 
 ## Architecture
 

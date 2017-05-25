@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import { List } from 'material-ui/List';
 import CirclesListItem from './CirclesListItem'
 import CircularProgress from 'material-ui/CircularProgress'
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import LoadingList from '../../../../components/loading/LoadingList'
+
 
 const style = {
   container: {
@@ -24,15 +26,22 @@ const CirclesList = ({ circles, isFetching, actions }) => {
         />
       }
 
-      {circles.map(circle => {
-        return (
-          <CirclesListItem
-            key={circle.id}
-            circle={circle}
-            actions={actions}
-          />
-        )
-      })}
+      <Grid fluid>
+        <Row>
+
+          {circles.map(circle => {
+            return (
+              <Col xs={6} md={6}>
+                <CirclesListItem
+                  key={circle.id}
+                  circle={circle}
+                  actions={actions}
+                />
+              </Col>
+            )
+          })}
+        </Row>
+      </Grid>
     </List>
   )
 }

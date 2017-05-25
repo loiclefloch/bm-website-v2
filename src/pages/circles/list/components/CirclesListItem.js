@@ -56,13 +56,18 @@ const CirclesListItem = ({ circle, actions }) => {
             <CardTitle
               title={circle.name}
               subtitle={
-                circle.description
+                <span>
+                  {circle.numberOfMember} people
+                </span>
               }
               style={style.title}
             />
           }
         >
         </CardHeader>
+        <CardText>
+          {circle.description}
+        </CardText>
       </Card>
     </ListItem>
   )
