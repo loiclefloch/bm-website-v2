@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { showBookmark } from '../DashboardActions'
-import { getBookmarksSortedByDate, isFetching } from '../selectors'
+import { getBookmarksSortedByDate, isFetchingBookmarks } from '../selectors'
 
 import BookmarksList from '../components/BookmarksList'
 import { loadBookmarks } from '../DashboardActions'
@@ -11,7 +11,7 @@ import { loadBookmarks } from '../DashboardActions'
 class DashboardPage extends Component {
   static propTypes = {
     bookmarks: PropTypes.array.isRequired,
-    isFetching: PropTypes.bool.isRequired,
+    isFetchingBookmarks: PropTypes.bool.isRequired,
     showBookmark: PropTypes.func.isRequired,
     loadBookmarks: PropTypes.func.isRequired,
   }
@@ -41,7 +41,7 @@ class DashboardPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isFetchingBookmarks: isFetching(state),
+    isFetchingBookmarks: isFetchingBookmarks(state),
     bookmarks: getBookmarksSortedByDate(state),
    }
 }

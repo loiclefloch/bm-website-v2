@@ -39,8 +39,7 @@ const renderIcon = bookmark => {
     <Avatar
       {...props}
     >
-      {/* TODO: use website name */}
-      {bookmark.url[0]}
+      {bookmark.domain[0]}
     </Avatar>
   )
 }
@@ -55,7 +54,7 @@ const BookmarksListItem = ({ bookmark, actions }) => {
           avatar={renderIcon(bookmark)}
           title={
             <CardTitle
-              title={bookmark.title}
+              title={bookmark.name}
               subtitle={
                 <span>
                   <FontAwesome
@@ -65,7 +64,7 @@ const BookmarksListItem = ({ bookmark, actions }) => {
                   &nbsp;
                   {bookmark.readingTime} minutes
                   &nbsp;
-                  - {bookmark.url} {/* TODO: domain name */}
+                  - {bookmark.domain}
                 </span>
               }
               style={style.title}
