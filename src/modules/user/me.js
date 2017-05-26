@@ -26,6 +26,8 @@ export const fetchMe = () => createApiCallAction(
 
 const DEFAULT = Immutable.fromJS({
   data: {
+    circles: {},
+    circlesAdmin: {},
   },
   isFetching: false,
   lastUpdated: null,
@@ -37,8 +39,7 @@ export const me = (state = DEFAULT, action) => {
     case ME_REQUEST:
       return state.merge({
         isFetching: true,
-        error: null,
-        data: action.me,
+        error: null
       })
 
     case ME_SUCCESS:

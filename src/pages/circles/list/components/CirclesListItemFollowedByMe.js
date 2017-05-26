@@ -13,11 +13,12 @@ const Following = ({ circle, muiTheme, onTouchTap }) => {
   const styles = {
     following: {
       borderColor: muiTheme.palette.primary1Color,
-      color: muiTheme.palette.primary1Color,
+      backgroundColor: muiTheme.palette.primary1Color,
+      color: muiTheme.palette.primary3Color,
     },
     notFollowing: {
-      borderColor: muiTheme.palette.primary3Color,
-      color: muiTheme.palette.primary3Color,
+      borderColor: muiTheme.palette.primary1Color,
+      color: muiTheme.palette.primary1Color,
     },
     administrate: {
       borderColor: red700,

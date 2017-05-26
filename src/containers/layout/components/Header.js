@@ -31,6 +31,7 @@ const Logged = ({ me }) => (
   <div>
     {/* MENU */}
     <IconMenu
+      className="cursor"
       iconButtonElement={
         <AvatarWithDefault
           src={me.avatar}

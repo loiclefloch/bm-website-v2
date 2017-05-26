@@ -26,7 +26,7 @@ export const loadCircles = () => createApiCallAction(
 
 const DEFAULT = Immutable.fromJS({
   data: {
-    circles: [],
+    circles: {},
     paging: null,
   },
   isFetching: false,

@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 import {
   showCircle,
   loadCircles,
+
+  isFetchingCircles,
 } from '../../../modules/circle'
 
 import {
   getCirclesSortedByDate,
-  isFetchingCircles,
-  getFollowedCircles,
  } from './selectors'
 
 import CirclesList from './components/CirclesList'

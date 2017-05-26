@@ -1,55 +1,12 @@
 import { createSelector } from 'reselect'
 
-import isEmpty from 'lodash/isEmpty'
-import ArrayUtils from '../../../utils/ArrayUtils'
-
 import {
-  formatCircle,
-  setCircleIsFollowedByMe,
-  setCircleIsFAdministrateByMe,
-} from '../../../modules/circle/utils'
+  getCirclesAsList,
+} from '../../../modules/circle'
 
 //
 // Circles
 //
-
-const getMeCirclesIds = (state) => {
-  // TODO
-  return [ 2 ]
-}
-
-const getMeAdministratedCirclesIds = (state) => {
-  // TODO
-  return [ 2 ]
-}
-
-// input-selectors. They are created as ordinary non-memoized selector functions because they do
-// not transform the data they select
-const getCirclesMap = (state) => state.entities.circlesList.getIn([ 'data', 'circles' ])
-
-// memoized selector. It takes getCirclesMap as input-selectors, and a transform function that
-// calculates the data
-const getCircles = createSelector(
-    getCirclesMap,
-    (resultMap) => resultMap && resultMap.toArray()
-);
-
-export const getCirclesAsList = createSelector(
-  [ getCircles, getMeCirclesIds, getMeAdministratedCirclesIds ],
-  (circles, meCirclesIds, meAdministratedCirclesIds) => {
-    return circles
-    // .filter(circle => {
-    //   return true
-    // })
-    .map(circle => {
-      circle = formatCircle(circle.toJS())
-      circle = setCircleIsFollowedByMe(circle, meCirclesIds)
-      circle = setCircleIsFAdministrateByMe(circle, meAdministratedCirclesIds)
-      return circle
-    })
-
-  }
-)
 
 export const getCirclesSortedByDate = createSelector(
   [ getCirclesAsList ],
@@ -58,27 +15,4 @@ export const getCirclesSortedByDate = createSelector(
       return b.id - a.id // TODO: createdAt
     })
   }
-)
-
-//
-// Fetching circlesList
-//
-
-const getCirclesIsFetching = (state) => state.entities.circlesList.get('isFetching')
-
-export const isFetchingCircles = createSelector(
-    getCirclesIsFetching,
-    (isFetching) => isFetching
-)
-
-
-//
-//
-//
-
-export const getFollowedCircles = createSelector(
-    [ getCirclesAsList, getMeCirclesIds ],
-    (circles, meCirclesIds) => circles.map(circle => {
-      return circle.isFollowedByMe
-    })
 )
