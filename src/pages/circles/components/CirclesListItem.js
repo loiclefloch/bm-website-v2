@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty'
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
-import { AvatarWithDefault } from '../../../../components/avatar'
+import { AvatarWithDefault } from '../../../components/avatar'
 
 import CirclesListItemFollowedByMe from './CirclesListItemFollowedByMe'
 

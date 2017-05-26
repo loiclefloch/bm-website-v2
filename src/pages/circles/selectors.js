@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 
 import {
   getCirclesAsList,
-} from '../../../modules/circle'
+} from '../../modules/circle'
 
 //
 // Circles

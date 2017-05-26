@@ -7,7 +7,7 @@ import {
   loadCircles,
 
   isFetchingCircles,
-} from '../../../modules/circle'
+} from '../../modules/circle'
 
 import {
   getCirclesSortedByDate,

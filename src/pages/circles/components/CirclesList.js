@@ -5,7 +5,7 @@ import { List } from 'material-ui/List';
 import CirclesListItem from './CirclesListItem'
 import CircularProgress from 'material-ui/CircularProgress'
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import LoadingList from '../../../../components/loading/LoadingList'
+import LoadingList from '../../../components/loading/LoadingList'
 
 
 const style = {
