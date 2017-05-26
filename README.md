@@ -6,6 +6,10 @@ TODO: complete
 
 # Resources
 
+Design & material
+- https://material.io/icons/
+- http://www.material-ui.com/#/customization/colors
+
 Interesting links that helped me to architecture this app:
 - https://medium.com/@benipsen/seven-months-into-redux-two-things-my-team-learned-along-the-way-5d979c25ea61
 - https://blog.agolo.com/our-redux-migration-and-5-tips-for-adoption-in-a-mature-codebase-dc62322cb921

@@ -17,6 +17,8 @@ import {
   purple600,
 } from 'material-ui/styles/colors';
 
+import { ColorsList } from '../../../../components/colorpicker'
+
 class ThemeContainer extends Component {
 
   handleChangeTheme = () =>{
@@ -29,6 +31,14 @@ class ThemeContainer extends Component {
     // get random color
     const color = colors[Math.floor(Math.random() * colors.length)]
 
+    this.props.changeCurrentTheme({
+      palette: {
+        primary1Color: color,
+      }
+    })
+  }
+
+  onColorChosen = (color) => {
     this.props.changeCurrentTheme({
       palette: {
         primary1Color: color,
@@ -50,6 +60,12 @@ class ThemeContainer extends Component {
         <FlatButton
           label="test change theme"
           onClick={this.handleChangeTheme}
+        />
+
+
+        <ColorsList
+          onColorChosen={this.onColorChosen}
+          defaultSelection={theme.palette.primary1Color}
         />
       </div>
     );
