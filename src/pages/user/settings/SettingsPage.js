@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ui from 'redux-ui'
 
-import {Tabs, Tab} from 'material-ui/Tabs'
+import { Tabs, Tab } from 'material-ui/Tabs'
 import FontIcon from 'material-ui/FontIcon'
 import SwipeableViews from 'react-swipeable-views'
 import ThemeContainer from './theme/ThemeContainer'
+import AccountCircleIcon from 'material-ui/svg-icons/action/account-circle';
+import StyleIcon from 'material-ui/svg-icons/image/style';
 
 @ui({
   state: {
@@ -30,12 +32,12 @@ class SettingsPage extends Component {
           value={ui.tabIndex}
         >
           <Tab
-            icon={<FontIcon className="fa fa-user"></FontIcon>}
+            icon={<AccountCircleIcon />}
             label="ACCOUNT"
             value={0}
           />
           <Tab
-            icon={<FontIcon className="fa fa-paint-brush"></FontIcon>}
+            icon={<StyleIcon />}
             label="THEMES"
             value={1}
           />

@@ -7,7 +7,6 @@ import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
 import { AvatarWithDefault } from '../../../../components/avatar'
-import FontAwesome from 'react-fontawesome'
 
 import CirclesListItemFollowedByMe from './CirclesListItemFollowedByMe'
 

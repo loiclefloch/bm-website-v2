@@ -7,7 +7,7 @@ import { ListItem } from 'material-ui/List';
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
-import FontAwesome from 'react-fontawesome'
+import AccessTimeIcon from 'material-ui/svg-icons/device/access-time';
 import { AvatarWithDefault } from '../../../components/avatar'
 
 const style = {
@@ -81,14 +81,18 @@ const BookmarksListItem = ({ bookmark, actions }) => {
               title={bookmark.name}
               subtitle={
                 <span>
-                  <FontAwesome
-                    name='clock-o'
-                    size='1x'
+                  <AccessTimeIcon
+                    style={{
+                      height: '18px',
+                      marginTop: '2px',
+                      verticalAlign: 'middle',
+                      // trick to use the parent color
+                      color: 'currentColor',
+                    }}
                   />
                   &nbsp;
-                  {bookmark.readingTime} minutes
-                  &nbsp;
-                  - {bookmark.domain}
+                  {bookmark.readingTime} min
+                  &nbsp;- {bookmark.domain}
                 </span>
               }
               style={style.title}
