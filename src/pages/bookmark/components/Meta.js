@@ -2,39 +2,28 @@ import React from 'react'
 import { AvatarWithDefault } from '../../../components/avatar'
 
 import HeaderMetaAuthor from './HeaderMetaAuthor'
+import HeaderMetaDomain from './HeaderMetaDomain'
 
 const Meta = ({ bookmark }) => {
 
-  const Icon = ({ bookmark }) => {
-    return (
-      <AvatarWithDefault
-        src={bookmark.icon}
-        placeholder={bookmark.domain}
-      />
-    )
-  }
-
   return (
-    <div>
-      {bookmark.icon &&
-        <Icon
-          bookmark={bookmark}
-        />
-      }
-
-      <a
-        href={bookmark.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {bookmark.prettyUrl}
-      </a>
-
-      <br />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        // justifyContent: 'center',
+        justifyContent: 'space-between',
+      }}
+    >
 
       <HeaderMetaAuthor
         websiteInfo={bookmark.websiteInfo}
       />
+      
+      <HeaderMetaDomain
+        bookmark={bookmark}
+      />
+
     </div>
   )
 }

@@ -3,7 +3,12 @@ import React from 'react'
 const Description = ({ bookmark }) => {
 
   return (
-    <p>
+    <p
+      style={{
+        margin: '20px 0',
+      }}
+      className="readable"
+    >
       {bookmark.description}
     </p>
   )

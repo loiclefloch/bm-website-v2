@@ -31,7 +31,12 @@ class BookmarkPage extends Component {
     }
 
     return (
-      <div>
+      <div
+        style={{
+          maxWidth: '800px',
+          paddingLeft: '5vw', // TODO: remove on mobile
+        }}
+      >
         <Header
           bookmark={bookmark}
         />

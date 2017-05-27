@@ -8,7 +8,8 @@ import App from './App'
 
 // modules css
 
-import './index.css'
+import './index.scss'
+import './font.scss'
 import 'font-awesome/css/font-awesome.min.css';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';

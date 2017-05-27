@@ -7,6 +7,11 @@ const BookmarkActionBar = ({ bookmark }) => {
     <div>
       <ReadingTime
         readingTime={bookmark.readingTime}
+        style={{
+          marginTop: '10px',
+          display: 'inline-block',
+          color: 'gray',
+        }}
       />
 
       {/* TODO: icon delete */}

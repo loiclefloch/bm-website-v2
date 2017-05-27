@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './content.scss'
+
 import VideoContent from './VideoContent'
 import SlideContent from './SlideContent'
 import HtmlBlock from '../../../components/html/HtmlBlock'
@@ -23,7 +25,7 @@ const Content = ({ bookmark }) => {
   }
 
   return (
-    <div>
+    <div className="bookmark_content">
       <HtmlBlock
         content={bookmark.content}
       />
