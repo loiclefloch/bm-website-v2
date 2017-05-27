@@ -1,13 +1,15 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+
+import { connect } from 'react-redux'
 
 import AppBar from 'material-ui/AppBar'
-import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import FlatButton from 'material-ui/FlatButton'
-import Toggle from 'material-ui/Toggle'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
+
+import {
+  showAddBookmarkDialog
+} from '../../../modules/bookmark'
 
 import { AvatarWithDefault } from '../../../components/avatar'
 
@@ -27,11 +29,26 @@ class Login extends Component {
 //
 //
 
-const Logged = ({ me }) => (
-  <div>
+const Logged = ({ me, showAddBookmarkDialog }) => (
+  <div
+    style={{
+      display: 'flex',
+      alignContent: 'center',
+      paddingTop: '4px',
+    }}
+  >
+    <FlatButton
+      label="Add bookmark"
+      onClick={showAddBookmarkDialog}
+      style={{
+          color: 'white',
+          marginRight: '20px',
+      }}
+    />
+
     {/* MENU */}
     <IconMenu
-      className="cursor"
+      className="pointer"
       iconButtonElement={
         <AvatarWithDefault
           src={me.avatar}
@@ -46,23 +63,36 @@ const Logged = ({ me }) => (
 
     </IconMenu>
   </div>
-);
-Logged.muiName = 'IconMenu';
+)
+Logged.muiName = 'IconMenu'
 
 //
 //
 //
 
 /**
-* By default, the left icon is a navigation-menu.
+*
 */
-const Header = ({ isLoggedIn, me }) => (
-  <header>
-    <AppBar
-      title="Bookmark Manager"
-      iconElementRight={isLoggedIn ? <Logged me={me} /> : <Login />}
-    />
-  </header>
-);
+class Header extends Component {
+  render() {
+    const { isLoggedIn } = this.props;
+    return (
+      <header>
+        <AppBar
+          title="Bookmark Manager"
+          iconElementRight={isLoggedIn ? <Logged  {...this.props} /> : <Login />}
+        />
+      </header>
+    )
+  }
+}
 
-export default Header;
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, {
+  showAddBookmarkDialog,
+})(Header)

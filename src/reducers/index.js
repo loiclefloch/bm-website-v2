@@ -23,28 +23,11 @@ const session = (state = DEFAULT_SESSION, action) => {
   return state
 }
 
-const DEFAULT_API_ERROR = Immutable.fromJS({})
-
-// Updates error message to notify about the failed fetches.
-const apiError = (state = DEFAULT_API_ERROR, action) => {
-  const { type, apiError } = action
-
-  if (type === ActionTypes.RESET_ERROR_MESSAGE) {
-    return DEFAULT_API_ERROR
-  } else if (apiError) {
-    return state.merge(apiError)
-  }
-
-  return state
-}
-
-
 const rootReducer = combineReducers({
   entities,
   ux,
   ui: uiReducer,
   routing,
-  apiError,
   session,
 })
 

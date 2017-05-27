@@ -4,8 +4,13 @@ import {
   theme
 } from '../modules/theme'
 
+import {
+  bookmarkUX
+} from '../modules/bookmark'
+
 const ux = combineReducers({
-  theme
+  theme,
+  bookmarkUX,
 });
 
 export default ux

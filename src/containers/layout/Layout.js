@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
+
+import DialogRenderer from './components/DialogRenderer'
 
 import { getTheme } from '../../modules/theme'
 
@@ -44,6 +46,9 @@ class Layout extends Component {
         </div>
 
         <Footer
+        />
+
+        <DialogRenderer
         />
       </div>
     )

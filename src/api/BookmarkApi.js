@@ -24,7 +24,16 @@ const BookmarkApi = {
         bookmarkId
       }
     }
-  }
+  },
+
+  postBookmark: (bookmark) => {
+    return {
+      type: 'POST',
+      schema: BookmarkSchema,
+      endpoint: ApiEndpoints.BOOKMARKS,
+      data: bookmark,
+    }
+  },
 
 }
 
