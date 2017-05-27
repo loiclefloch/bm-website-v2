@@ -22,6 +22,7 @@ body {
 	max-width: 1160px;
 	margin: 0 auto;
 	padding-left: 256px;
+  padding-top: 50px;
 }
 
 /* for footer, TODO: fix / better way */

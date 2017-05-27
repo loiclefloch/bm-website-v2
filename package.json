@@ -61,6 +61,7 @@
     "react-swipeable-views": "0.12.3",
     "react-tap-event-plugin": "2.0.1",
     "redux": "^3.5.2",
+    "redux-orm": "0.9.0",
     "redux-persist": "4.8.0",
     "redux-thunk": "^2.1.0",
     "redux-ui": "0.1.1",

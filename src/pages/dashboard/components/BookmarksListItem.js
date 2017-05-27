@@ -1,12 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import isEmpty from 'lodash/isEmpty'
-
 import { ListItem } from 'material-ui/List';
-import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
-import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
-import FlatButton from 'material-ui/FlatButton'
+import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import AccessTimeIcon from 'material-ui/svg-icons/device/access-time';
 import { AvatarWithDefault } from '../../../components/avatar'
 
@@ -21,11 +17,6 @@ const style = {
 }
 
 const Icon = ({ bookmark }) => {
-  const props = {
-    size: 30,
-    style: style.icon,
-  }
-
   return (
     <AvatarWithDefault
       src={bookmark.icon}
@@ -35,11 +26,6 @@ const Icon = ({ bookmark }) => {
 }
 
 const AuthorAvatar = ({ authorName, authorAvatar }) => {
-  const props = {
-    size: 30,
-    style: style.icon,
-  }
-
   return (
     <AvatarWithDefault
       src={authorAvatar}
@@ -55,11 +41,26 @@ const Meta = ({ websiteInfo })  => {
   const meta = websiteInfo.meta
   return (
     <CardText>
-      <AuthorAvatar
-        author={websiteInfo.author}
-        authorAvatar={websiteInfo.authorAvatar}
-      />
-      {websiteInfo.author}
+      <div
+        style={{
+          verticalAlign: 'middle',
+          display: 'inline-block',
+        }}
+      >
+        <AuthorAvatar
+          author={websiteInfo.author}
+          authorAvatar={websiteInfo.authorAvatar}
+        />
+      </div>
+      <div
+        style={{
+          verticalAlign: 'middle',
+          display: 'inline-block',
+          paddingLeft: '10px',
+        }}
+      >
+        {websiteInfo.author}
+      </div>
     </CardText>
   )
 }

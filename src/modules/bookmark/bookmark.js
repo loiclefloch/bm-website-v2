@@ -1,5 +1,7 @@
 import Immutable from "immutable"
 
+import isNil from 'lodash/isNil'
+import { push } from 'react-router-redux'
 import { createApiCallAction } from '../../actions/creators'
 
 import BookmarkApi from '../../api/BookmarkApi'
@@ -12,17 +14,27 @@ export const BOOKMARK_REQUEST = 'BOOKMARK::REQUEST'
 export const BOOKMARK_SUCCESS = 'BOOKMARK::SUCCESS'
 export const BOOKMARK_FAILURE = 'BOOKMARK::FAILURE'
 
+const redirectToBookmark = bookmarkId => (dispatch, getState) => {
+  // TODO: use RoutingEnum
+  return dispatch(push(`/bookmarks/${bookmarkId}`))
+}
+
 // Fetches a page of stargazers for a particular repo.
 // Relies on the custom API middleware defined in ../middleware/api.js.
-const fetchBookmark = (bookmark) => createApiCallAction(
+export const fetchBookmark = (bookmarkId) => createApiCallAction(
   [
     BOOKMARK_REQUEST, BOOKMARK_SUCCESS, BOOKMARK_FAILURE
   ],
-  BookmarkApi.getBookmark(bookmark.id)
+  BookmarkApi.getBookmark(bookmarkId)
 )
 
+/**
+ *
+ * @param  Bookmark|string bookmark either the bookmark or the bookmark.id
+ */
 export const showBookmark = bookmark => (dispatch, getState) => {
-  return dispatch(fetchBookmark(bookmark))
+  const bookmarkId = isNil(bookmark.id) ? bookmark : bookmark.id
+  return dispatch(redirectToBookmark(bookmarkId))
 }
 
 //
@@ -30,8 +42,7 @@ export const showBookmark = bookmark => (dispatch, getState) => {
 //
 
 const DEFAULT = Immutable.fromJS({
-  data: {
-    bookmark: {},
+  list: {
   },
   isFetching: false,
   lastUpdated: null,
@@ -44,14 +55,13 @@ export const bookmark = (state = DEFAULT, action) => {
       return state.merge({
         isFetching: true,
         error: null,
-        data: action.bookmark,
       })
 
     case BOOKMARK_SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
-        data: action.response.result,
+        list: action.response.entities.bookmarks,
         lastUpdated: Date.now(),
       })
 

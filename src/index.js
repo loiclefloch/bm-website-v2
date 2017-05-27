@@ -1,10 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
+
+// have to be first import, otherwise have priority on custom style
+import './reset_css.css'
+
 import App from './App'
 
 // modules css
 
-import './reset_css.css'
 import './index.css'
 import 'font-awesome/css/font-awesome.min.css';
 
