@@ -13,14 +13,14 @@ import { getMe } from '../user'
 // Circles
 //
 
-const getMeCirclesIds = createSelector(
+export const getMeCirclesIds = createSelector(
   getMe,
   (me) => {
     return values(me.circles).map((circle) => { return circle.id })
   }
 )
 
-const getMeAdministratedCirclesIds = createSelector(
+export const getMeAdministratedCirclesIds = createSelector(
   getMe,
   (me) => {
     return values(me.circlesAdmin).map((circle) => { return circle.id })

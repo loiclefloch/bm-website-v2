@@ -14,6 +14,7 @@ class TestPage extends Component {
     return (
       <LoadingPage
         message="Loading bookmark"
+        show
       />
     )
   }

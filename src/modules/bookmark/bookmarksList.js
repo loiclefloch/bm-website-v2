@@ -39,7 +39,7 @@ export const bookmarksList = (state = DEFAULT, action) => {
     case BOOKMARKS_REQUEST:
       return state.merge({
         isFetching: true,
-        error: null
+        error: null,
       })
 
     case BOOKMARKS_SUCCESS:

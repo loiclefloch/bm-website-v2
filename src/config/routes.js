@@ -9,6 +9,7 @@ import Layout from '../containers/layout/Layout'
 import UserPage from '../pages/login'
 import DashboardPage from '../pages/dashboard'
 import CirclesListPage from '../pages/circles/CirclesListPage'
+import CirclePage from '../pages/circle/CirclePage'
 import SettingsPage from '../pages/user/settings/SettingsPage'
 import BookmarkPage from '../pages/bookmark/BookmarkPage'
 import TestPage from '../pages/test/TestPage'
@@ -51,6 +52,10 @@ const routes = [
   {
     definition: RoutingEnum.CIRCLES,
     handler: CirclesListPage,
+  },
+  {
+    definition: RoutingEnum.CIRCLE,
+    handler: CirclePage,
   },
   {
     definition: RoutingEnum.BOOKS,

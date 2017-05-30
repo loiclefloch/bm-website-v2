@@ -33,6 +33,7 @@ class BookmarkPage extends Component {
       return (
         <LoadingPage
           message="Loading bookmark"
+          show
         />
       )
     }

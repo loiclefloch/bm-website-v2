@@ -9,6 +9,8 @@ import { formatBookmark } from './utils'
 import BookmarkApi from '../../api/BookmarkApi'
 import RoutingEnum from '../../config/RoutingEnum'
 
+import { POST_BOOKMARK_SUCCESS } from './newBookmark'
+
 //
 // Actions
 //
@@ -91,8 +93,14 @@ export const bookmark = (state = DEFAULT, action) => {
       return state.merge({
         isFetching: false,
         error: null,
-        list: action.response.entities.bookmarks,
+        list:  state.get('list').merge(action.response.entities.circles),
         lastUpdated: Date.now(),
+      })
+
+    case POST_BOOKMARK_SUCCESS:
+      const newBookmark = action.response.result
+      return state.merge({
+        list: state.get('list').add(newBookmark),
       })
 
     case BOOKMARK_FAILURE:

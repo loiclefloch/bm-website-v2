@@ -15,6 +15,8 @@ class RoutingEnum {
 
   static CIRCLES = new Route('CIRCLES', '/circles')
 
+  static CIRCLE = new Route('CIRCLE', '/circles/:circleId')
+
   static BOOKS = new Route('BOOKS', '/books')
 
   static TESTS = new Route('TESTS', '/tests')

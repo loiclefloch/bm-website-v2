@@ -3,7 +3,11 @@ import React from 'react'
 import CircularProgress from 'material-ui/CircularProgress';
 import LinearProgress from 'material-ui/LinearProgress';
 
-const LoadingPage = ({ size = 50, message = '' }) => {
+const LoadingPage = ({ size = 50, message = '', show }) => {
+  if (!show) {
+    return (null)
+  }
+
   return (
     <div
       style={{
