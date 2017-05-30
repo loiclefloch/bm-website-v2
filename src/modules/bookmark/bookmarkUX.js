@@ -39,7 +39,7 @@ export const shouldShowBookmarkAdd = createSelector(
 //
 
 const DEFAULT = Immutable.fromJS({
-  showAddBookmarkDialogModal: true,
+  showAddBookmarkDialogModal: false,
 })
 
 export const bookmarkUX = (state = DEFAULT, action) => {

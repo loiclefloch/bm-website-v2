@@ -11,9 +11,6 @@ export default class Route {
   // The path of the route. Ex: /home or /restaurants/:id
   path: string = ''
 
-  // The handler for this route.
-  handler: string = ''
-
   disable: boolean = false
 
   authRequired: boolean = true
@@ -26,14 +23,12 @@ export default class Route {
    * @param handler Define if the route is restrict to loggedIn user
    * @param disable
    */
-  constructor(name: string, path: string, handler: string, authRequired: boolean = true,
+  constructor(name: string, path: string, authRequired: boolean = true,
     disable: boolean = false) {
     this.name = name
     this.path = path
-    this.handler = handler
     this.authRequired = authRequired
-    // disable if the handler is null.
-    this.disable = handler === null ? false : disable
+    this.disable = disable
   }
 
   /*

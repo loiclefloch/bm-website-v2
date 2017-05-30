@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import {
   bookmarksList,
   bookmark,
+  newBookmark,
 } from '../modules/bookmark'
 
 import {
@@ -27,6 +28,7 @@ const entities = combineReducers({
   oauth,
   me,
   users,
+  newBookmark,
 });
 
 export default entities

@@ -52,13 +52,15 @@ export default {
       // TODO
       return true
     }
+    
+    // if (res.statusCode === 500) {
+    //   Logger.error('API 500', res)
+    //
+    //   // TODO: redirect to error page
+    //   return true
+    // }
 
-    if (res.statusCode === 500) {
-      Logger.error('API 500', res)
-
-      // TODO: redirect to error page
-      return true
-    }
+    return false
   }
 
 }

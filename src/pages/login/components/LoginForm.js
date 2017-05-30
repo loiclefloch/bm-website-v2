@@ -46,11 +46,10 @@ const LoginForm = ({ userCredentials, isFetching, onLogin }) => {
         }}
       >
 
-        {isFetching &&
-          <LoadingBlock
-          />
-        }
-
+        <LoadingBlock
+          show={isFetching}
+        />
+        
         <TextField
           floatingLabelText="Login"
           {...fieldProps}

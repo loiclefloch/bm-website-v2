@@ -67,49 +67,50 @@ const Meta = ({ websiteInfo })  => {
 
 const BookmarksListItem = ({ bookmark, actions }) => {
   return (
-    <ListItem
+    <Card
       onClick={() => actions.showBookmark(bookmark)}
+      style={{
+        marginBottom: '30px',
+      }}
     >
-      <Card>
-        <CardHeader
-          avatar={
-            <Icon
-              bookmark={bookmark}
-            />
-          }
-          title={
-            <CardTitle
-              title={bookmark.name}
-              subtitle={
-                <span>
-                  <AccessTimeIcon
-                    style={{
-                      height: '18px',
-                      marginTop: '2px',
-                      verticalAlign: 'middle',
-                      // trick to use the parent color
-                      color: 'currentColor',
-                    }}
-                  />
-                  &nbsp;
-                  {bookmark.readingTime} min
-                  &nbsp;- {bookmark.domain}
-                </span>
-              }
-              style={style.title}
-            />
-          }
-        >
-        </CardHeader>
-        <CardText>
-          {bookmark.description}
-        </CardText>
+      <CardHeader
+        avatar={
+          <Icon
+            bookmark={bookmark}
+          />
+        }
+        title={
+          <CardTitle
+            title={bookmark.name}
+            subtitle={
+              <span>
+                <AccessTimeIcon
+                  style={{
+                    height: '18px',
+                    marginTop: '2px',
+                    verticalAlign: 'middle',
+                    // trick to use the parent color
+                    color: 'currentColor',
+                  }}
+                />
+                &nbsp;
+                {bookmark.readingTime} min
+                &nbsp;- {bookmark.domain}
+              </span>
+            }
+            style={style.title}
+          />
+        }
+      >
+      </CardHeader>
+      <CardText>
+        {bookmark.description}
+      </CardText>
 
-        <Meta
-          websiteInfo={bookmark.websiteInfo}
-        />
-      </Card>
-    </ListItem>
+      <Meta
+        websiteInfo={bookmark.websiteInfo}
+      />
+    </Card>
   )
 }
 

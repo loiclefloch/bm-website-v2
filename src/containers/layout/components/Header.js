@@ -77,9 +77,18 @@ class Header extends Component {
   render() {
     const { isLoggedIn } = this.props;
     return (
-      <header>
+      <header
+        style={{
+          position: 'fixed',
+          paddingLeft: '250px',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 200,
+        }}
+      >
         <AppBar
-          title="Bookmark Manager"
+          title={document.title}
           iconElementRight={isLoggedIn ? <Logged  {...this.props} /> : <Login />}
         />
       </header>

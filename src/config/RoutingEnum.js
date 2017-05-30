@@ -1,24 +1,25 @@
 import Route from '../utils/Route';
 
-import UserPage from '../pages/login'
-import DashboardPage from '../pages/dashboard'
-import CirclesListPage from '../pages/circles/CirclesListPage'
-import SettingsPage from '../pages/user/settings/SettingsPage'
-import BookmarkPage from '../pages/bookmark/BookmarkPage'
+/**
+ * Note: we do not define the handler page here since RoutingEnum is import and use before they are
+ * correclty initialize..
+ * @type {Route}
+ */
 
-// TODO: set pages on routes.js, we defining routes
 class RoutingEnum {
-  static LOGIN = new Route('LOGIN', '/login', UserPage)
+  static LOGIN = new Route('LOGIN', '/login')
 
-  static DASHBOARD = new Route('DASHBOARD', '/dashboard', DashboardPage)
+  static DASHBOARD = new Route('DASHBOARD', '/dashboard')
 
-  static BOOKMARK = new Route('BOOKMARK', '/bookmarks/:bookmarkId', BookmarkPage)
+  static BOOKMARK = new Route('BOOKMARK', '/bookmarks/:bookmarkId')
 
-  static CIRCLES = new Route('CIRCLES', '/circles', CirclesListPage)
+  static CIRCLES = new Route('CIRCLES', '/circles')
 
-  static BOOKS = new Route('BOOKS', '/books', null)
+  static BOOKS = new Route('BOOKS', '/books')
 
-  static SETTINGS = new Route('SETTINGS', '/settings', SettingsPage)
+  static TESTS = new Route('TESTS', '/tests')
+
+  static SETTINGS = new Route('SETTINGS', '/settings')
 }
 
 export default RoutingEnum

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import _ from 'lodash'
 
@@ -9,6 +8,21 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 import './loading_list.css'
 
 const style = {
+  listEmpty: {
+    position: 'relative',
+    textAlign: 'center',
+    marginTop: '10%',
+    marginBottom: 0,
+    zIndex: 100,
+  },
+  listNotEmpty: {
+    position: 'fixed',
+    top: '8%',
+    left: '50%',
+    textAlign: 'center',
+    marginBottom: '40px',
+    zIndex: 100,
+  },
   refresh: {
     display: 'inline-block',
     position: 'relative',
@@ -52,12 +66,7 @@ const LoadingList = ({ size = 50, listEmpty = false, thickness = 4 }) => {
 
   return (
     <div
-      style={{
-        position: 'relative',
-        textAlign: 'center',
-        marginTop: listEmpty ? '10%' : '40px',
-        marginBottom: listEmpty ? '0' : '40px',
-      }}
+      style={listEmpty ? style.listEmpty : style.listNotEmpty}
     >
       {listEmpty ? emptyList(loaderProps) : notEmptyList(loaderProps) }
     </div>

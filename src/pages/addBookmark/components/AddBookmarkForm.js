@@ -4,17 +4,24 @@ import ui from 'redux-ui'
 import isEmpty from 'lodash/isEmpty'
 import { connect } from 'react-redux'
 
-import { postBookmark, getAddBookmarkError } from '../../../modules/bookmark'
+import {
+  postBookmark,
+  getAddBookmarkError,
+  isAddBookmarkFetching,
+} from '../../../modules/bookmark'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+
+import ApiErrorBlock from '../../../components/error/ApiErrorBlock'
+import LoadingBlock from '../../../components/loading/LoadingBlock'
 
 @ui({
   key: 'AddBookingForm',
   persist: false,
   state: {
     bookmark: {
-      url: 'https://material.io/icons/',
+      url: 'https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/',
       name: '',
       notes: '',
     },
@@ -63,9 +70,13 @@ class AddBookmarkForm extends Component {
           marginTop: '20px',
         }}
       >
-        <div>
-          {this.props.addBookmarkError}
-        </div>
+        <ApiErrorBlock
+          apiError={this.props.addBookmarkError}
+        />
+
+        <LoadingBlock
+          show={this.props.isAddBookmarkFetching}
+        />
 
         <TextField
           floatingLabelText="url"
@@ -105,7 +116,8 @@ class AddBookmarkForm extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    addBookmarkError: getAddBookmarkError(),
+    addBookmarkError: getAddBookmarkError(state),
+    isAddBookmarkFetching: isAddBookmarkFetching(state),
   }
 }
 

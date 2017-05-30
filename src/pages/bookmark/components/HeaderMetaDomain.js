@@ -1,7 +1,7 @@
 import React from 'react'
 import { AvatarWithDefault } from '../../../components/avatar'
 import { CardText } from 'material-ui/Card'
-
+import { gray700 } from 'material-ui/styles/colors'
 
 const HeaderMetaDomain = ({ bookmark }) => {
 
@@ -28,6 +28,7 @@ const HeaderMetaDomain = ({ bookmark }) => {
             verticalAlign: 'middle',
             display: 'inline-block',
             paddingLeft: '10px',
+            color: gray700,
         }}
       >
         {bookmark.domain}

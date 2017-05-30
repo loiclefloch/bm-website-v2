@@ -7,6 +7,7 @@ import { createSelector } from 'reselect'
 import { formatBookmark } from './utils'
 
 import BookmarkApi from '../../api/BookmarkApi'
+import RoutingEnum from '../../config/RoutingEnum'
 
 //
 // Actions
@@ -17,8 +18,7 @@ export const BOOKMARK_SUCCESS = 'BOOKMARK::GET:SUCCESS'
 export const BOOKMARK_FAILURE = 'BOOKMARK::GET:FAILURE'
 
 const redirectToBookmark = bookmarkId => (dispatch, getState) => {
-  // TODO: use RoutingEnum
-  return dispatch(push(`/bookmarks/${bookmarkId}`))
+  return dispatch(push(RoutingEnum.BOOKMARK.generatePathWithParams({ bookmarkId })))
 }
 
 // Fetches a page of stargazers for a particular repo.
@@ -39,17 +39,6 @@ export const showBookmark = bookmark => (dispatch, getState) => {
   return dispatch(redirectToBookmark(bookmarkId))
 }
 
-export const POST_BOOKMARK_REQUEST = 'BOOKMARK::POST:REQUEST'
-export const POST_BOOKMARK_SUCCESS = 'BOOKMARK::POST:SUCCESS'
-export const POST_BOOKMARK_FAILURE = 'BOOKMARK::POST:FAILURE'
-
-export const postBookmark = bookmark => createApiCallAction(
-  [
-    POST_BOOKMARK_REQUEST, POST_BOOKMARK_SUCCESS, POST_BOOKMARK_FAILURE
-  ],
-  BookmarkApi.postBookmark(bookmark)
-)
-
 //
 // Selectors
 //
@@ -57,33 +46,26 @@ export const postBookmark = bookmark => createApiCallAction(
 const getBookmarkIsFetching = (state) => state.entities.bookmark.get('isFetching')
 const getBookmarks = (state) => state.entities.bookmark.get('list')
 
-// TODO
-const getApiError = (state) => null
-
 export const isFetchingBookmark = createSelector(
     getBookmarkIsFetching,
     (isFetching) => isFetching
 )
 
-export const getBookmark = createSelector(
-    getBookmarks,
-    (list) => {
-      const bookmark = list.get('722')
+const getBookmarkIdOnProps = (state, props) => props.routeParams.bookmarkId
 
-      if (isNil(bookmark)) {
-        return null
+
+export const makeGetBookmark = () => {
+    return createSelector(
+      [ getBookmarkIdOnProps, getBookmarks ],
+      (bookmarkId, list) => {
+        const bookmark = list.get(bookmarkId)
+        if (isNil(bookmark)) {
+          return null
+        }
+        return formatBookmark(bookmark.toJS())
       }
-
-      return formatBookmark(bookmark.toJS())
-    }
-)
-
-export const getAddBookmarkError = createSelector(
-    getApiError,
-    (apiError) => {
-      return apiError
-    }
-)
+    )
+}
 
 //
 // Reducer

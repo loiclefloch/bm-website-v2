@@ -19,6 +19,9 @@ const ItemOnCol = ({ circle, actions }) => {
     <Col
       xs={6}
       md={6}
+      style={{
+        padding: '10px',
+      }}
     >
       <CirclesListItem
         circle={circle}

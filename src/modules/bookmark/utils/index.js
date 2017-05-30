@@ -145,6 +145,10 @@ const pretifytContentContent = (bookmark) => {
   //
   const regex = /(<[^>]+\s+)(?:style\s*=\s*"(?!(?:|[^"]*[;\s])color\s*:[^";]*)(?!(?:|[^"]*[;\s])background-color\s*:[^";]*)[^"]*"|(style\s*=\s*")(?=(?:|[^"]*[;\s])(color\s*:[^";]*))?(?=(?:|[^"]*)(;))?(?=(?:|[^"]*[;\s])(background-color\s*:[^";]*))?[^"]*("))/gi
 
+  if (isEmpty(bookmark.content)) {
+    return bookmark
+  }
+
   const contentWithoutStyle = bookmark.content.replace(
     regex,
     (match, $1, $2, $3, $4, $5, $6, offset, string) => {

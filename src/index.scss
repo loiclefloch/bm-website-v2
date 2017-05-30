@@ -24,7 +24,7 @@ body {
 	max-width: 1160px;
 	margin: 0 auto;
 	padding-left: 256px;
-  padding-top: 50px;
+  padding-top: 85px;
 }
 
 /* for footer, TODO: fix / better way */
@@ -70,6 +70,10 @@ h1, h3 { font-weight: 300; }
 h1 { color: #636363; font-size: 2em; }
 
 h3 { color: #4a89dc; font-size: 1.17em; }
+
+a:visited {
+  color: #757575; // grey600
+}
 
 .bold {
   font-weight: bold;

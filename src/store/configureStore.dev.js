@@ -11,6 +11,8 @@ import { routerMiddleware } from 'react-router-redux'
 import api from '../middleware/api'
 import auth from '../middleware/auth'
 
+import newBookmarkMiddleware from '../modules/bookmark/middleware/newBookmarkMiddleware'
+
 const configureStore = preloadedState => {
   const store = createStore(
     rootReducer,
@@ -20,6 +22,7 @@ const configureStore = preloadedState => {
         thunk,
         api,
         auth,
+        newBookmarkMiddleware,
         createLogger(),
         routerMiddleware(browserHistory)
       ),

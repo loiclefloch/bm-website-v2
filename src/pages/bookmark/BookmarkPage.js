@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 import {
   fetchBookmark,
   isFetchingBookmark,
-  getBookmark,
+  makeGetBookmark,
 } from '../../modules/bookmark'
 
 import Header from './components/Header'
 import Content from './components/Content'
+
+import LoadingPage from '../../components/loading/LoadingPage'
 
 class BookmarkPage extends Component {
   static propTypes = {
@@ -20,6 +22,7 @@ class BookmarkPage extends Component {
 
   componentDidMount() {
     // load bookmark
+    // TODO: use the newBookmark on state if exists.
     this.props.fetchBookmark(this.props.params.bookmarkId)
   }
 
@@ -27,7 +30,11 @@ class BookmarkPage extends Component {
     const { isFetchingBookmark, bookmark } = this.props
 
     if (isFetchingBookmark || !bookmark) {
-      return null
+      return (
+        <LoadingPage
+          message="Loading bookmark"
+        />
+      )
     }
 
     return (
@@ -37,6 +44,7 @@ class BookmarkPage extends Component {
           paddingLeft: '5vw', // TODO: remove on mobile
         }}
       >
+
         <Header
           bookmark={bookmark}
         />
@@ -49,13 +57,18 @@ class BookmarkPage extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isFetchingBookmark: isFetchingBookmark(state),
-    bookmark: getBookmark(state),
-   }
+
+const makeMapStateToProps = () => {
+  const getBookmark = makeGetBookmark()
+  const mapStateToProps = (state, props) => {
+    return {
+      isFetchingBookmark: isFetchingBookmark(state),
+      bookmark: getBookmark(state, props),
+     }
+  }
+  return mapStateToProps
 }
 
-export default connect(mapStateToProps, {
+export default connect(makeMapStateToProps, {
   fetchBookmark,
 })(BookmarkPage)

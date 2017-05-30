@@ -3,7 +3,7 @@ import PropType from 'prop-types'
 
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import AppBar from 'material-ui/AppBar'
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import { Link, RoutingEnum } from '../../../components/router'
 
@@ -11,45 +11,68 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <div>
         <Drawer
           open={true}
         >
-          <AppBar title="Bookmark manager" />
-
-          <Link
-            to={Link.Route.DASHBOARD}
+          <div
+            style={{
+              borderBottom: '1px solid #e0e0e0',
+              boxSizing: 'border-box',
+              display: 'block',
+              height: this.props.muiTheme.appBar.height,
+              padding: '16px 0 11px 24px',
+              position: 'relative',
+            }}
           >
-            <MenuItem>
-              Home
-            </MenuItem>
-          </Link>
+            Bookmark Manager
+          </div>
 
-          <Link
-            to={Link.Route.CIRCLES}
+          <div
+            style={{
+              paddingTop: '50px',
+            }}
           >
-            <MenuItem>
-              Circles
-            </MenuItem>
-          </Link>
+            <Link
+              to={Link.Route.DASHBOARD}
+            >
+              <MenuItem>
+                Home
+              </MenuItem>
+            </Link>
 
-          <Link
-            to={Link.Route.BOOKS}
-          >
-            <MenuItem>
-              Books
-            </MenuItem>
-          </Link>
+            <Link
+              to={Link.Route.CIRCLES}
+            >
+              <MenuItem>
+                Circles
+              </MenuItem>
+            </Link>
 
-          <Link
-            to={Link.Route.SETTINGS}
-          >
-            <MenuItem>
-              Settings
-            </MenuItem>
-          </Link>
-          </Drawer>
-      </div>
+            <Link
+              to={Link.Route.BOOKS}
+            >
+              <MenuItem>
+                Books
+              </MenuItem>
+            </Link>
+
+            <Link
+              to={Link.Route.SETTINGS}
+            >
+              <MenuItem>
+                Settings
+              </MenuItem>
+            </Link>
+
+            <Link
+              to={Link.Route.TESTS}
+            >
+              <MenuItem>
+                Tests
+              </MenuItem>
+            </Link>
+          </div>
+        </Drawer>
     );
   }
 }
@@ -59,4 +82,4 @@ Sidebar.propTypes = {
   me: PropType.object
 }
 
-export default Sidebar
+export default muiThemeable()(Sidebar)

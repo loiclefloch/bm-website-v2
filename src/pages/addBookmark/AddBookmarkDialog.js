@@ -19,6 +19,8 @@ class AddBookmarkDialog extends Component {
       <Dialog
         modal={true}
         open={true}
+        autoScrollBodyContent={true}
+        onRequestClose={this.props.hideAddBookmarkDialog}
       >
         <IconButton
           onClick={this.props.hideAddBookmarkDialog}

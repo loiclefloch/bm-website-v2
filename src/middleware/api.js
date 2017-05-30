@@ -10,7 +10,7 @@ import Logger from '../utils/Logger'
 const callApi = (request, schema) => {
   return new Promise(
     (resolve, reject) => {
-      const success = (json => {
+      const success = (json) => {
         const camelizedJson = camelizeKeys(json)
 
         const data = Object.assign({},
@@ -19,11 +19,11 @@ const callApi = (request, schema) => {
 
         resolve(data)
         // resolve(Immutable.fromJs(data))
-      })
+      }
 
-      const failure = (json => {
+      const failure = (json) => {
         reject(json)
-      })
+      }
 
       const { type } = request
 
@@ -34,19 +34,19 @@ const callApi = (request, schema) => {
 
       switch (type) {
         case 'GET':
-          ApiManager.get(request)
-          break
+        ApiManager.get(request)
+        break
         case 'POST':
-          ApiManager.post(request)
-          break
+        ApiManager.post(request)
+        break
         case 'UPDATE':
-          ApiManager.update(request)
-          break
+        ApiManager.update(request)
+        break
         case 'DELETE':
-          ApiManager.delete(request)
-          break
+        ApiManager.delete(request)
+        break
         default:
-          Logger.error('api', `unknown type ${type}`)
+        Logger.error('api', `unknown type ${type}`)
       }
     }
   );
@@ -127,16 +127,30 @@ export default store => next => action => {
   }
 
   const [ requestType, successType, failureType ] = types
-  next(actionWith({ type: requestType }))
+  next(actionWith({
+    type: requestType,
+    request: request,
+  }))
 
-  return callApi(request, schema).then(
-    response => next(actionWith({
-      response,
-      type: successType
-    })),
-    apiError => next(actionWith({
-      type: failureType,
-      apiError
-    }))
+  return callApi(request, schema)
+  .then(
+    response => next(
+      actionWith(
+        {
+          type: successType,
+          response,
+        }
+      )
+    )
+  )
+  .catch(
+    apiError => next(
+      actionWith(
+        {
+          type: failureType,
+          apiError,
+        }
+      )
+    )
   )
 }

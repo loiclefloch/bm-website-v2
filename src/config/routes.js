@@ -6,6 +6,13 @@ import isEmpty from 'lodash/isEmpty'
 import RoutingEnum from './RoutingEnum'
 import Layout from '../containers/layout/Layout'
 
+import UserPage from '../pages/login'
+import DashboardPage from '../pages/dashboard'
+import CirclesListPage from '../pages/circles/CirclesListPage'
+import SettingsPage from '../pages/user/settings/SettingsPage'
+import BookmarkPage from '../pages/bookmark/BookmarkPage'
+import TestPage from '../pages/test/TestPage'
+
 // see https://stackoverflow.com/questions/38563679/react-redux-dispatch-action-on-app-load-init
 const authenticate = (state, replace, callback) => {
   if (isEmpty(state.oauthToken) || isEmpty(state.oauthToken.token)) {
@@ -27,19 +34,51 @@ const onAppInit = (store) => {
   };
 }
 
+
+const routes = [
+  {
+    definition: RoutingEnum.LOGIN,
+    handler: UserPage,
+  },
+  {
+    definition: RoutingEnum.DASHBOARD,
+    handler: DashboardPage,
+  },
+  {
+    definition: RoutingEnum.BOOKMARK,
+    handler: BookmarkPage,
+  },
+  {
+    definition: RoutingEnum.CIRCLES,
+    handler: CirclesListPage,
+  },
+  {
+    definition: RoutingEnum.BOOKS,
+    handler: null,
+  },
+  {
+    definition: RoutingEnum.TESTS,
+    handler: TestPage,
+  },
+  {
+    definition: RoutingEnum.SETTINGS,
+    handler: SettingsPage,
+  },
+]
+
 // See https://stackoverflow.com/questions/35849970/accessing-redux-store-from-routes-set-up-via-react-router
 export const getRoutes = (store) => (
   <Route path="/"
     component={Layout}
     // onEnter={onAppInit(store)}
   >
-    {map(RoutingEnum, (route) => {
-      if (!route.disable) {
+    {map(routes, (route) => {
+      if (!route.definition.disable) {
         return <Route
-          name={route.name}
-          path={route.path}
+          name={route.definition.name}
+          path={route.definition.path}
           component={route.handler}
-          key={route.name}
+          key={route.definition.name}
           // onEnter={route.authRequired ? requireAuth : null}
         />
       }
