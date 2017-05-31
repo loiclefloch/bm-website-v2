@@ -1,7 +1,7 @@
 import React from 'react'
 import { AvatarWithDefault } from '../../../components/avatar'
 import { CardText } from 'material-ui/Card'
-
+import isEmpty from 'lodash/isEmpty'
 
 const AuthorAvatar = ({ authorName, authorAvatar }) => {
   return (
@@ -14,33 +14,38 @@ const AuthorAvatar = ({ authorName, authorAvatar }) => {
 
 const HeaderMetaAuthor = ({ websiteInfo })  => {
 
-  if (!websiteInfo || !websiteInfo.meta) {
+  const { author, authorAvatar } = websiteInfo
+
+  if (!websiteInfo || (isEmpty(author) && isEmpty(authorAvatar))) {
     return (null)
   }
-  const meta = websiteInfo.meta
 
   return (
     <CardText>
-      <div
-        style={{
-          verticalAlign: 'middle',
-          display: 'inline-block',
-        }}
-      >
-        <AuthorAvatar
-          author={websiteInfo.author}
-          authorAvatar={websiteInfo.authorAvatar}
-        />
-      </div>
-      <div
-        style={{
-          verticalAlign: 'middle',
-          display: 'inline-block',
-          paddingLeft: '10px',
-        }}
-      >
-        {websiteInfo.author}
-      </div>
+      {!isEmpty(authorAvatar) &&
+        <div
+          style={{
+            verticalAlign: 'middle',
+            display: 'inline-block',
+          }}
+        >
+          <AuthorAvatar
+            author={author}
+            authorAvatar={authorAvatar}
+          />
+        </div>
+      }
+      {!isEmpty(author) &&
+        <div
+          style={{
+            verticalAlign: 'middle',
+            display: 'inline-block',
+            paddingLeft: '10px',
+          }}
+        >
+          {author}
+        </div>
+      }
     </CardText>
   )
 }

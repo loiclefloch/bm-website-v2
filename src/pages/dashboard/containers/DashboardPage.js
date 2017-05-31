@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ui from 'redux-ui'
 
 import {
   showBookmark,
@@ -8,7 +9,7 @@ import {
   onLoadMoreBookmarks,
 } from '../../../modules/bookmark'
 
-import { getBookmarksSortedByDate, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
+import { getFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
 import BookmarksList from '../components/BookmarksList'
 
 class DashboardPage extends Component {
@@ -31,6 +32,7 @@ class DashboardPage extends Component {
           actions={{
             showBookmark: this.props.showBookmark,
             onLoadMore: this.props.onLoadMoreBookmarks,
+            onSearchQueryChange: (searchQuery) => this.props.updateUI({ searchQuery }),
           }}
         />
       </div>
@@ -60,13 +62,19 @@ DashboardPage.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     isFetchingBookmarks: isFetchingBookmarks(state),
-    bookmarks: getBookmarksSortedByDate(state),
+    bookmarks: getFilteredBookmarks(state, ownProps),
     paging: getBookmarksPaging(state),
    }
 }
 
-export default connect(mapStateToProps, {
+export default ui({ // see https://github.com/tonyhb/redux-ui/issues/49
+  name: 'DashboardPage',
+  persist: false,
+  state: {
+    searchQuery: '',
+  },
+})(connect(mapStateToProps, {
   showBookmark,
   loadBookmarks,
   onLoadMoreBookmarks,
-})(DashboardPage)
+})(DashboardPage))

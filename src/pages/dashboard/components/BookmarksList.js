@@ -6,6 +6,7 @@ import BookmarksListItem from './BookmarksListItem'
 import CircularProgress from 'material-ui/CircularProgress'
 import LoadingList from '../../../components/loading/LoadingList'
 import LoadMore from './LoadMore'
+import SearchBar from '../../../components/search/SearchBar'
 
 const style = {
   container: {
@@ -13,7 +14,7 @@ const style = {
   }
 }
 
-const BookmarksList = ({ bookmarks, paging, isFetching, actions }) => {
+const BookmarksList = ({ bookmarks, paging, isFetching, actions, onSearchQueryChange }) => {
   return (
     <List
       style={style.container}
@@ -25,15 +26,28 @@ const BookmarksList = ({ bookmarks, paging, isFetching, actions }) => {
         />
       }
 
-      {bookmarks.map(bookmark => {
-        return (
-          <BookmarksListItem
-            key={bookmark.id}
-            bookmark={bookmark}
-            onShowBookmark={actions.showBookmark}
-          />
-        )
-      })}
+      <SearchBar
+        onChange={ (event, value) => actions.onSearchQueryChange(value) }
+        style={{
+          width: '60%',
+        }}
+      />
+
+      <div
+        style={{
+          marginTop: '20px',
+        }}
+      >
+        {bookmarks.map(bookmark => {
+          return (
+            <BookmarksListItem
+              key={bookmark.id}
+              bookmark={bookmark}
+              onShowBookmark={actions.showBookmark}
+            />
+          )
+        })}
+      </div>
 
       <LoadMore
         paging={paging}
@@ -54,6 +68,7 @@ BookmarksList.propTypes = {
    *   - showBookmark(bookmark)
    * - LoadMore
    *   - onLoadMore(paging)
+   * - onSearchQueryChange(string)
    */
   actions: PropTypes.object.isRequired,
 }

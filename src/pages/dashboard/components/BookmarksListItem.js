@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import isEmpty from 'lodash/isEmpty'
 
 import { ListItem } from 'material-ui/List';
 import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card'
@@ -9,10 +10,10 @@ import { AvatarWithDefault } from '../../../components/avatar'
 const style = {
   title: {
     display: 'inline-block',
-    padding: '0 8px'
+    padding: '0 8px',
   },
   icon: {
-    marginTop: '14px'
+    marginTop: '14px',
   }
 }
 
@@ -25,20 +26,23 @@ const Icon = ({ bookmark }) => {
   )
 }
 
-const AuthorAvatar = ({ authorName, authorAvatar }) => {
+const AuthorAvatar = ({ author, authorAvatar }) => {
+  if (isEmpty(author)) {
+    return (null)
+  }
   return (
     <AvatarWithDefault
       src={authorAvatar}
-      placeholder={authorName}
+      placeholder={author}
     />
   )
 }
 
 const Meta = ({ websiteInfo })  => {
-  if (!websiteInfo || !websiteInfo.meta) {
+  const { author, authorAvatar } = websiteInfo
+  if (!websiteInfo || (isEmpty(author) && isEmpty(authorAvatar))) {
     return (null)
   }
-  const meta = websiteInfo.meta
   return (
     <CardText>
       <div
@@ -48,8 +52,8 @@ const Meta = ({ websiteInfo })  => {
         }}
       >
         <AuthorAvatar
-          author={websiteInfo.author}
-          authorAvatar={websiteInfo.authorAvatar}
+          author={author}
+          authorAvatar={authorAvatar}
         />
       </div>
       <div
@@ -59,16 +63,16 @@ const Meta = ({ websiteInfo })  => {
           paddingLeft: '10px',
         }}
       >
-        {websiteInfo.author}
+        {author}
       </div>
     </CardText>
   )
 }
 
-const BookmarksListItem = ({ bookmark, showBookmark }) => {
+const BookmarksListItem = ({ bookmark, onShowBookmark }) => {
   return (
     <Card
-      onClick={() => showBookmark(bookmark)}
+      onClick={() => onShowBookmark(bookmark)}
       style={{
         marginBottom: '30px',
       }}
@@ -103,9 +107,16 @@ const BookmarksListItem = ({ bookmark, showBookmark }) => {
         }
       >
       </CardHeader>
-      <CardText>
-        {bookmark.description}
-      </CardText>
+      {!isEmpty(bookmark.description) &&
+        <CardText
+          className="readable"
+          style={{
+            fontSize: '14pt',
+          }}
+        >
+          {bookmark.description}
+        </CardText>
+      }
 
       <Meta
         websiteInfo={bookmark.websiteInfo}

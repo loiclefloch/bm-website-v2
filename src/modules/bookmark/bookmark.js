@@ -1,6 +1,7 @@
 import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
+import merge from 'lodash/merge'
 import { push } from 'react-router-redux'
 import { createApiCallAction } from '../../actions/creators'
 import { createSelector } from 'reselect'
@@ -93,7 +94,7 @@ export const bookmark = (state = DEFAULT, action) => {
       return state.merge({
         isFetching: false,
         error: null,
-        list:  state.get('list').merge(action.response.entities.circles),
+        list: merge({}, state.get('list').toJS(), action.response.entities.bookmarks),
         lastUpdated: Date.now(),
       })
 
