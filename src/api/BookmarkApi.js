@@ -11,6 +11,10 @@ const BookmarkApi = {
     return {
       type: 'GET',
       schema: BookmarksListSchema,
+      query: {
+        page,
+        limit,
+      },
       endpoint: ApiEndpoints.BOOKMARKS,
     }
   },

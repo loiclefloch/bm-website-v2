@@ -11,7 +11,7 @@ function getAuthorizationHeader(state) {
       return 'Bearer ' + accessToken
     } else {
       // TODO: remove
-      return 'Bearer YjZmMTI0MTJmYjg5ZDQwNmI5NWQ0MGM4YTk1N2JhOTZiZDFjMGEwODQ2ZjRlMDdmMDAwNmU2NjQ2OWMyYjViYQ'
+      return 'Bearer MzQyZjQ0NjNmYzliNTdmMGZjNGMwODUwNmYzNTRmZWJlZjg5NDUwMTBiZGM1NTExODg5YTg5YWQwODMzMmJkYg'
     }
   }
 
@@ -52,7 +52,7 @@ export default {
       // TODO
       return true
     }
-    
+
     // if (res.statusCode === 500) {
     //   Logger.error('API 500', res)
     //

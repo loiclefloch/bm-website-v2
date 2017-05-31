@@ -5,25 +5,20 @@ import { connect } from 'react-redux'
 import {
   showBookmark,
   loadBookmarks,
+  onLoadMoreBookmarks,
 } from '../../../modules/bookmark'
 
-import { getBookmarksSortedByDate, isFetchingBookmarks } from '../selectors'
+import { getBookmarksSortedByDate, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
 import BookmarksList from '../components/BookmarksList'
 
 class DashboardPage extends Component {
-  static propTypes = {
-    bookmarks: PropTypes.array.isRequired,
-    isFetchingBookmarks: PropTypes.bool.isRequired,
-    showBookmark: PropTypes.func.isRequired,
-    loadBookmarks: PropTypes.func.isRequired,
-  }
 
   componentDidMount() {
     this.props.loadBookmarks()
   }
 
   render() {
-    const { isFetchingBookmarks, bookmarks } = this.props
+    const { isFetchingBookmarks, bookmarks, paging } = this.props
 
     return (
       <div>
@@ -31,9 +26,11 @@ class DashboardPage extends Component {
 
         <BookmarksList
           bookmarks={bookmarks}
+          paging={paging}
           isFetching={isFetchingBookmarks}
           actions={{
-            showBookmark: this.props.showBookmark
+            showBookmark: this.props.showBookmark,
+            onLoadMore: this.props.onLoadMoreBookmarks,
           }}
         />
       </div>
@@ -41,14 +38,35 @@ class DashboardPage extends Component {
   }
 }
 
+DashboardPage.propTypes = {
+  bookmarks: PropTypes.array.isRequired,
+  isFetchingBookmarks: PropTypes.bool.isRequired,
+
+  /**
+   * @param bookmark
+   */
+  showBookmark: PropTypes.func.isRequired,
+
+  /**
+   */
+  loadBookmarks: PropTypes.func.isRequired,
+
+  /**
+   * @param paging
+   */
+  onLoadMoreBookmarks: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
     isFetchingBookmarks: isFetchingBookmarks(state),
     bookmarks: getBookmarksSortedByDate(state),
+    paging: getBookmarksPaging(state),
    }
 }
 
 export default connect(mapStateToProps, {
   showBookmark,
   loadBookmarks,
+  onLoadMoreBookmarks,
 })(DashboardPage)

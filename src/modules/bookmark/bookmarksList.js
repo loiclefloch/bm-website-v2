@@ -3,6 +3,7 @@ import Immutable from "immutable"
 import { createApiCallAction } from '../../actions/creators'
 
 import BookmarkApi from '../../api/BookmarkApi'
+import merge from 'lodash/merge'
 
 //
 // Actions
@@ -13,12 +14,17 @@ export const BOOKMARKS_SUCCESS = 'BOOKMARKS::SUCCESS'
 export const BOOKMARKS_FAILURE = 'BOOKMARKS::FAILURE'
 
 // Login on the api
-export const loadBookmarks = () => createApiCallAction(
+export const loadBookmarks = (page = 1) => createApiCallAction(
   [
     BOOKMARKS_REQUEST, BOOKMARKS_SUCCESS, BOOKMARKS_FAILURE
   ],
-  BookmarkApi.getBookmarks()
+  BookmarkApi.getBookmarks(page)
 )
+
+export const onLoadMoreBookmarks = paging => (dispatch, getState) => {
+  const nextPage = paging.page + 1
+  return dispatch(loadBookmarks(nextPage))
+}
 
 //
 // Reducer
@@ -26,8 +32,8 @@ export const loadBookmarks = () => createApiCallAction(
 
 const DEFAULT = Immutable.fromJS({
   data: {
-    bookmarks: [],
-    paging: null,
+    bookmarks: {},
+    pagination: {},
   },
   isFetching: false,
   lastUpdated: null,
@@ -43,12 +49,18 @@ export const bookmarksList = (state = DEFAULT, action) => {
       })
 
     case BOOKMARKS_SUCCESS:
-      return state.merge({
+      const oldData = state.get('data').toJS()
+      const newState = state.mergeDeep({
         isFetching: false,
         error: null,
-        data: action.response.result,
+        data: {
+          bookmarks: merge({}, oldData.bookmarks, action.response.entities.bookmarks),
+          pagination: merge({}, oldData.pagination, action.response.entities.pagination),
+        },
         lastUpdated: Date.now(),
       })
+
+      return newState
 
     case BOOKMARKS_FAILURE:
       return state.merge({

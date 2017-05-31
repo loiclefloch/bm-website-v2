@@ -5,6 +5,7 @@ import { List } from 'material-ui/List';
 import BookmarksListItem from './BookmarksListItem'
 import CircularProgress from 'material-ui/CircularProgress'
 import LoadingList from '../../../components/loading/LoadingList'
+import LoadMore from './LoadMore'
 
 const style = {
   container: {
@@ -12,7 +13,7 @@ const style = {
   }
 }
 
-const BookmarksList = ({ bookmarks, isFetching, actions }) => {
+const BookmarksList = ({ bookmarks, paging, isFetching, actions }) => {
   return (
     <List
       style={style.container}
@@ -29,16 +30,32 @@ const BookmarksList = ({ bookmarks, isFetching, actions }) => {
           <BookmarksListItem
             key={bookmark.id}
             bookmark={bookmark}
-            actions={actions}
+            onShowBookmark={actions.showBookmark}
           />
         )
       })}
+
+      <LoadMore
+        paging={paging}
+        onLoadMore={actions.onLoadMore}
+      />
     </List>
   )
 }
 
 BookmarksList.propTypes = {
   bookmarks: PropTypes.array.isRequired,
+  paging: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+
+  /**
+   * Required actions:
+   * - BookmarksListItem actions
+   *   - showBookmark(bookmark)
+   * - LoadMore
+   *   - onLoadMore(paging)
+   */
+  actions: PropTypes.object.isRequired,
 }
 
 export default BookmarksList

@@ -65,10 +65,10 @@ const Meta = ({ websiteInfo })  => {
   )
 }
 
-const BookmarksListItem = ({ bookmark, actions }) => {
+const BookmarksListItem = ({ bookmark, showBookmark }) => {
   return (
     <Card
-      onClick={() => actions.showBookmark(bookmark)}
+      onClick={() => showBookmark(bookmark)}
       style={{
         marginBottom: '30px',
       }}
@@ -116,6 +116,11 @@ const BookmarksListItem = ({ bookmark, actions }) => {
 
 BookmarksListItem.propTypes = {
   bookmark: PropTypes.object.isRequired,
+
+  /**
+   * @param bookmark
+   */
+  showBookmark: PropTypes.func.isRequired,
 }
 
 export default BookmarksListItem
