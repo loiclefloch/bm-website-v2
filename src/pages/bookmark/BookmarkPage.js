@@ -11,6 +11,9 @@ import {
 import Header from './components/Header'
 import Content from './components/Content'
 
+import RightNav from './components/RightNav'
+import TocView from './components/TocView'
+
 import LoadingPage from '../../components/loading/LoadingPage'
 
 class BookmarkPage extends Component {
@@ -49,6 +52,12 @@ class BookmarkPage extends Component {
         <Header
           bookmark={bookmark}
         />
+
+        <RightNav>
+          <TocView
+            bookmark={bookmark}
+          />
+        </RightNav>
 
         <Content
           bookmark={bookmark}

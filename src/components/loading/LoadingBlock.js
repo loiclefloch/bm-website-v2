@@ -10,17 +10,11 @@ const LoadingBlock = ({ size = 50, show = false }) => {
 
   return (
     <div
+      className="u-flexCenter u-justifyContentCenter u-sizeFull u-absolute u-zIndexFloating"
       style={{
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
         left: '0',
         top: '0',
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        zIndex: '10',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
       }}
     >
       <CircularProgress

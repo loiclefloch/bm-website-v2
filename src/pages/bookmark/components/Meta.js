@@ -8,18 +8,13 @@ const Meta = ({ bookmark }) => {
 
   return (
     <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        // justifyContent: 'center',
-        justifyContent: 'space-between',
-      }}
+      className="u-FlexCenter u-justifyContentSpaceBetween"
     >
 
       <HeaderMetaAuthor
         websiteInfo={bookmark.websiteInfo}
       />
-      
+
       <HeaderMetaDomain
         bookmark={bookmark}
       />

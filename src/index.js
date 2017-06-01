@@ -2,14 +2,13 @@ import React from 'react'
 import { render } from 'react-dom'
 
 // have to be first import, otherwise have priority on custom style
-import './reset_css.css'
+import 'normalize.css/normalize.css'
 
 import App from './App'
 
 // modules css
 
 import './index.scss'
-import './font.scss'
 import 'font-awesome/css/font-awesome.min.css';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';

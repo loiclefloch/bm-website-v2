@@ -24,15 +24,8 @@ export default class ColorRow extends Component {
     if (this.props.isSelected) {
       selectedView = (
         <span
+          className="u-flexCenter u-justifyContentCenter u-sizeFull u-floatRight u-marginRight10"
           style={{
-            // display: 'inline-block',
-            marginRight: '10px',
-            float: 'right',
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             margin: '0 auto',
           }}
         >
@@ -49,20 +42,11 @@ export default class ColorRow extends Component {
 
     return (
       <span
-        className="pointer"
+        className="pointer u-height40 u-width40 u-marginRight5 u-marginLeft5 u-marginTop5 u-inlineBlock u-textAlignCenter u-relative"
         onClick={this.onColorClicked}
         style={{
           lineHeight: '40px',
-          height: '40px',
-          width: '40px',
-          marginRight: '5px',
-          marginLeft: '5px',
-          marginTop: '5px',
-          overflow: 'hidden',
           background: this.props.color,
-          display: 'inline-block',
-          textAlign: 'center',
-          position: 'relative'
         }}
       >
         {selectedView}

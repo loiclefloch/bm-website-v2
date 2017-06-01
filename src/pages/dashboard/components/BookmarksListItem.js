@@ -72,6 +72,7 @@ const Meta = ({ websiteInfo })  => {
 const BookmarksListItem = ({ bookmark, onShowBookmark }) => {
   return (
     <Card
+      className="pointer"
       onClick={() => onShowBookmark(bookmark)}
       style={{
         marginBottom: '30px',
