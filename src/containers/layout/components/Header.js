@@ -31,18 +31,14 @@ class Login extends Component {
 
 const Logged = ({ me, showAddBookmarkDialog }) => (
   <div
-    style={{
-      display: 'flex',
-      alignContent: 'center',
-      paddingTop: '4px',
-    }}
+    className="u-flexCenter u-sizeFullHeight"
   >
     <FlatButton
       label="Add bookmark"
       onClick={showAddBookmarkDialog}
+      className="u-marginRight20"
       style={{
           color: 'white',
-          marginRight: '20px',
       }}
     />
 
@@ -75,7 +71,7 @@ Logged.muiName = 'IconMenu'
 */
 class Header extends Component {
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn } = this.props
     return (
       <header
         style={{
@@ -90,6 +86,11 @@ class Header extends Component {
         <AppBar
           title={document.title}
           iconElementRight={isLoggedIn ? <Logged  {...this.props} /> : <Login />}
+          iconStyleRight={{
+            // remove default style
+            marginTop: 0,
+            marginRight: '10px',
+          }}
         />
       </header>
     )

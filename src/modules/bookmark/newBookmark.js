@@ -31,7 +31,8 @@ const getApiError = (state) => state.entities.newBookmark.get('error')
 export const getAddBookmarkError = createSelector(
     getApiError,
     (apiError) => {
-      if (isNil(apiError)) {
+      // TODO: remove second check
+      if (isNil(apiError) || isNil(apiError.toJS)) {
         return null
       }
       return apiError.toJS()

@@ -24,15 +24,10 @@ class AddBookmarkDialog extends Component {
       >
         <IconButton
           onClick={this.props.hideAddBookmarkDialog}
+          className="u-flexCenter u-justifyContentCenter u-absolute u-right0 u-top0"
           style={{
-            position: 'absolute',
-            right: '0',
-            top: '0',
             width: 48,
             height: 48,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
           }}
           iconStyle={{
             width: 36,

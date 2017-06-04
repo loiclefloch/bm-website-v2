@@ -1,29 +1,56 @@
-import React from 'react'
+import React, { Component } from 'react'
 
+import ui from 'redux-ui'
 
-// TODO: SlideContent
+import './slide_content.scss'
 
-// const SlideNav = () => {
-//   const contentForJquery = $(`<div>${this.bookmark.content}</div>`);
-//
-//   return (
-//       <SlideNavigation
-//         firstPage={contentForJquery.find('.slide').first().data('index')}
-//         lastPage={contentForJquery.find('.slide').last().data('index')}
-//         changeUrl={this.props.changeUrl}
-//         urlQueryParams={this.props.urlQueryParams}
-//         toggleFullScreenMode={this.toggleFullScreenMode}
-//       />
-//   )
-// }
+import HtmlBlock from '../../../components/html/HtmlBlock'
+import SlideNavigation from './SlideNavigation'
 
-const SlideContent = ({ bookmark }) => {
+@ui({
+  persist: false,
+  state: {
+    currentPage: 0,
+  },
+})
+class SlideContent extends Component {
 
-  return (
-    <div>
+  handleCurrentPageChange = (newPage) => {
+    this.props.updateUI({ currentPage: newPage })
+  }
 
-    </div>
-  )
+  handleNext = () => {
+    const newPageNb = this.props.currentPage + 1
+
+    if (newPageNb < this.props.bookmark.nbSlides) {
+      this.handleCurrentPageChange(newPageNb)
+    }
+  }
+
+  render() {
+    const { bookmark, ui } = this.props;
+
+    return (
+      <div className="slide_content u-flexColumn u-justifyContentCenter">
+        <div
+          onClick={this.handleNext}
+        >
+          <HtmlBlock
+            content={bookmark.slides[ui.currentPage]}
+          />
+        </div>
+
+        <SlideNavigation
+          currentPage={ui.currentPage}
+          firstPage={0}
+          lastPage={bookmark.nbSlides}
+          onCurrentPageChange={this.handleCurrentPageChange}
+          toggleFullScreenMode={() => {}}
+          changeUrl={() => {}}
+        />
+      </div>
+    )
+  }
 }
 
 export default SlideContent

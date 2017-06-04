@@ -3,7 +3,9 @@ import isEmpty from 'lodash/isEmpty'
 
 const styles = {
   H1: {
-
+    display: 'inline-block',
+    paddingLeft: '10px',
+    paddingTop: '5px',
   },
   H2: {
     display: 'inline-block',
@@ -49,6 +51,15 @@ const TocView = ({ bookmark }) => {
       }}
     >
       <ul>
+        <li>
+          <a
+            href="#"
+            className="link hoverPrimary u-marginBottom4"
+            style={{...styles.H1, ...styles.link}}
+          >
+            Top
+          </a>
+        </li>
         {toc.map(elem => (
           <li>
             <a

@@ -4,8 +4,6 @@ export const generateToc = content => {
   const div = document.createElement('div');
   div.innerHTML = content;
 
-  console.log('----------------------------------')
-
   // get all titles in order
   const titles = div.querySelectorAll('h1, h2, h3, h4, h5, h6')
 
@@ -36,11 +34,6 @@ export const generateToc = content => {
   toc = toc.filter((elem) => {
     return countForTag[elem.type] >= 2
   })
-
-  console.log(toc)
-
-  console.log('----------------------------------')
-
 
   return toc
 }

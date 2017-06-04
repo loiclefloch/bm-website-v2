@@ -3,6 +3,8 @@ import isNil from 'lodash/isNil'
 import map from 'lodash/map'
 
 import { generateToc } from './toc'
+import { generateSlides } from './slides'
+import { formatVideo } from './formatVideo'
 
 export const formatBookmark = (bookmark) => {
   if (isNil(bookmark)) {
@@ -14,6 +16,8 @@ export const formatBookmark = (bookmark) => {
   bookmark = setType(bookmark)
   bookmark = pretifytContent(bookmark)
   bookmark = addToc(bookmark)
+  bookmark = setSlides(bookmark)
+  bookmark = formatVideo(bookmark)
   return bookmark
 }
 
@@ -100,6 +104,17 @@ const setType = (bookmark) => {
   bookmark.isTypeCode = bookmark.type === BookmarkType.CODE
   bookmark.isTypeGame = bookmark.type === BookmarkType.GAME
   bookmark.isTypeSlide = bookmark.type === BookmarkType.SLIDE
+
+  return bookmark
+}
+
+const setSlides = (bookmark) => {
+  if (!bookmark.isTypeSlide) {
+    return bookmark
+  }
+
+  bookmark.slides = generateSlides(bookmark.content)
+  bookmark.nbSlides = bookmark.slides.length
 
   return bookmark
 }

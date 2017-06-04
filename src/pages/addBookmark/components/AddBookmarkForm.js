@@ -63,12 +63,7 @@ class AddBookmarkForm extends Component {
 
     return (
       <form
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-          marginTop: '20px',
-        }}
+        className="u-flexColumn u-justifyContentCenter u-marginTop20 u-flexCenter"
       >
         <ApiErrorBlock
           apiError={this.props.addBookmarkError}
@@ -80,18 +75,21 @@ class AddBookmarkForm extends Component {
 
         <TextField
           floatingLabelText="url"
+          className="u-minWidth360"
           value={url}
           onChange={this.handleUrlChange}
         />
 
         <TextField
           floatingLabelText="name"
+          className="u-minWidth360"
           value={name}
           onChange={this.handleNameChange}
         />
 
         <TextField
           floatingLabelText="notes"
+          className="u-minWidth360"
           multiLine={true}
           rows={4}
           value={notes}

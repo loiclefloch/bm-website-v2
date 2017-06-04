@@ -24,7 +24,7 @@ export default class ColorRow extends Component {
     if (this.props.isSelected) {
       selectedView = (
         <span
-          className="u-flexCenter u-justifyContentCenter u-sizeFull u-floatRight u-marginRight10"
+          className="u-flexCenter u-justifyContentCenter u-sizeFull u-floatRight"
           style={{
             margin: '0 auto',
           }}
