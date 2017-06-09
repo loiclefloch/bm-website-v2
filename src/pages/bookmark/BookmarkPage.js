@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import {
   fetchBookmark,
+  addTagsToBookmark,
   isFetchingBookmark,
   makeGetBookmark,
 } from '../../modules/bookmark'
@@ -29,6 +30,10 @@ class BookmarkPage extends Component {
     this.props.fetchBookmark(this.props.params.bookmarkId)
   }
 
+  handleSelectedTagsChange = (tags) => {
+    this.props.addTagsToBookmark(tags, this.props.bookmark)
+  }
+
   render() {
     const { isFetchingBookmark, bookmark } = this.props
 
@@ -51,6 +56,7 @@ class BookmarkPage extends Component {
 
         <Header
           bookmark={bookmark}
+          onSelectedTagsChange={this.handleSelectedTagsChange}
         />
 
         <RightNav>
@@ -74,11 +80,12 @@ const makeMapStateToProps = () => {
     return {
       isFetchingBookmark: isFetchingBookmark(state),
       bookmark: getBookmark(state, props),
-     }
+    }
   }
   return mapStateToProps
 }
 
 export default connect(makeMapStateToProps, {
   fetchBookmark,
+  addTagsToBookmark,
 })(BookmarkPage)

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import I18n from '../modules/i18n'
+import Logger from '../utils/Logger'
 
 import request from 'superagent'
 
@@ -204,6 +205,40 @@ class ApiManager {
   //
   // ------------- Requests tools for the API
   //
+
+  /**
+  * @param  {Object} request An object that represent a request:
+  * {
+  *  type: PUT, POST, UPDATE, DELETE, GET
+  *  success: success callback (param: JSON)
+  *  failure: failure callback (param: ApiError)
+  *  endpoint: the endpoint,
+  *  params: the url parameters to set on the endpoint,
+  *  query: the url query params,
+  *  data: the body data to be send as json,
+  *  headers: an object of headers,
+  * }
+  */
+  run(request) {
+    console.info('apiCall', request)
+    switch (request.type) {
+      case 'GET':
+        this.get(request)
+        break
+      case 'POST':
+        this.post(request)
+        break
+      case 'UPDATE':
+      case 'PUT':
+        this.put(request)
+        break
+      case 'DELETE':
+        this.delete(request)
+        break
+      default:
+        Logger.error('api', `unknown type ${request.type}`)
+    }
+  }
 
   /**
   * Create an HTTP GET request.

@@ -10,7 +10,7 @@ import UserPage from '../pages/login'
 import DashboardPage from '../pages/dashboard'
 import CirclesListPage from '../pages/circles/CirclesListPage'
 import CirclePage from '../pages/circle/CirclePage'
-import SettingsPage from '../pages/user/settings/SettingsPage'
+import SettingsPage from '../pages/settings/SettingsPage'
 import BookmarkPage from '../pages/bookmark/BookmarkPage'
 import TestPage from '../pages/test/TestPage'
 

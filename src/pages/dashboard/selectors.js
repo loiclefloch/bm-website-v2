@@ -63,7 +63,7 @@ export const getFilteredBookmarks = createSelector(
       })
     }
 
-    var options = {
+    const options = {
       shouldSort: true,
       tokenize: true,
       threshold: 0.6,
@@ -79,7 +79,7 @@ export const getFilteredBookmarks = createSelector(
         // "websiteInfo.",
       ]
     };
-    var fuse = new Fuse(bookmarks.toArray(), options)
+    const fuse = new Fuse(bookmarks.toArray(), options)
     const results = fuse.search(searchQuery)
 
     return results

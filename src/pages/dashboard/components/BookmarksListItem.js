@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
-import { ListItem } from 'material-ui/List';
 import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import AccessTimeIcon from 'material-ui/svg-icons/device/access-time';
 import { AvatarWithDefault } from '../../../components/avatar'
+import ListItemMeta from './ListItemMeta'
+import TagsList from './TagsList'
 
 const style = {
   title: {
@@ -26,59 +27,17 @@ const Icon = ({ bookmark }) => {
   )
 }
 
-const AuthorAvatar = ({ author, authorAvatar }) => {
-  if (isEmpty(author)) {
-    return (null)
-  }
-  return (
-    <AvatarWithDefault
-      src={authorAvatar}
-      placeholder={author}
-    />
-  )
-}
-
-const Meta = ({ websiteInfo })  => {
-  const { author, authorAvatar } = websiteInfo
-  if (!websiteInfo || (isEmpty(author) && isEmpty(authorAvatar))) {
-    return (null)
-  }
-  return (
-    <CardText>
-      <div
-        style={{
-          verticalAlign: 'middle',
-          display: 'inline-block',
-        }}
-      >
-        <AuthorAvatar
-          author={author}
-          authorAvatar={authorAvatar}
-        />
-      </div>
-      <div
-        style={{
-          verticalAlign: 'middle',
-          display: 'inline-block',
-          paddingLeft: '10px',
-        }}
-      >
-        {author}
-      </div>
-    </CardText>
-  )
-}
 
 const BookmarksListItem = ({ bookmark, onShowBookmark }) => {
   return (
     <Card
       className="pointer"
-      onClick={() => onShowBookmark(bookmark)}
       style={{
         marginBottom: '30px',
       }}
     >
       <CardHeader
+        onClick={() => onShowBookmark(bookmark)}
         avatar={
           <Icon
             bookmark={bookmark}
@@ -108,18 +67,25 @@ const BookmarksListItem = ({ bookmark, onShowBookmark }) => {
         }
       >
       </CardHeader>
+
       {!isEmpty(bookmark.description) &&
         <CardText
           className="readable"
           style={{
             fontSize: '14pt',
           }}
+          onClick={() => onShowBookmark(bookmark)}
         >
           {bookmark.description}
         </CardText>
       }
 
-      <Meta
+      <TagsList
+        bookmark={bookmark}
+      />
+
+      <ListItemMeta
+        onClick={() => onShowBookmark(bookmark)}
         websiteInfo={bookmark.websiteInfo}
       />
     </Card>

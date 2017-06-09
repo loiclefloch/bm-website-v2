@@ -6,7 +6,7 @@ import {
   changeCurrentTheme,
   getTheme,
   getDefaultTheme,
-} from '../../../../modules/theme'
+} from '../../../modules/theme'
 
 import ThemeView from './components/ThemeView'
 import FlatButton from 'material-ui/FlatButton'
@@ -17,7 +17,7 @@ import {
   purple600,
 } from 'material-ui/styles/colors';
 
-import { ColorsList } from '../../../../components/colorpicker'
+import { ColorsList } from '../../../components/colorpicker'
 
 class ThemeContainer extends Component {
 

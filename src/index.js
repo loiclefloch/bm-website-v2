@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 // -- css
 // have to be first import, otherwise have priority on custom style
 import 'normalize.css/normalize.css'
-import './index.scss'
+import './styles/index.scss'
 
 import App from './App'
 

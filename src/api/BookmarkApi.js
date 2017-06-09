@@ -39,6 +39,20 @@ const BookmarkApi = {
     }
   },
 
+  putBookmarkTags: (bookmark, tags) => {
+    return {
+      type: 'PUT',
+      schema: BookmarkSchema,
+      params: {
+        bookmarkId: bookmark.id,
+      },
+      endpoint: ApiEndpoints.BOOKMARK_TAGS,
+      data: {
+        tags,
+      },
+    }
+  },
+
 }
 
 export default BookmarkApi

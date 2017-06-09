@@ -5,6 +5,7 @@ import map from 'lodash/map'
 import { generateToc } from './toc'
 import { generateSlides } from './slides'
 import { formatVideo } from './formatVideo'
+import { formatTags } from './formatTags'
 
 export const formatBookmark = (bookmark) => {
   if (isNil(bookmark)) {
@@ -18,6 +19,7 @@ export const formatBookmark = (bookmark) => {
   bookmark = addToc(bookmark)
   bookmark = setSlides(bookmark)
   bookmark = formatVideo(bookmark)
+  bookmark = formatTags(bookmark)
   return bookmark
 }
 

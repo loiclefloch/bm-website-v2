@@ -42,6 +42,17 @@ export const showBookmark = bookmark => (dispatch, getState) => {
   return dispatch(redirectToBookmark(bookmarkId))
 }
 
+export const UPDATE_BOOKMARK_TAGS_REQUEST = 'BOOKMARK::TAGS::PUT:REQUEST'
+export const UPDATE_BOOKMARK_TAGS_SUCCESS = 'BOOKMARK::TAGS::PUT:SUCCESS'
+export const UPDATE_BOOKMARK_TAGS_FAILURE = 'BOOKMARK::TAGS::PUT:FAILURE'
+
+export const addTagsToBookmark = (tags, bookmark) => createApiCallAction(
+  [
+    UPDATE_BOOKMARK_TAGS_REQUEST, UPDATE_BOOKMARK_TAGS_SUCCESS, UPDATE_BOOKMARK_TAGS_FAILURE
+  ],
+  BookmarkApi.putBookmarkTags(bookmark, tags)
+)
+
 //
 // Selectors
 //
@@ -78,6 +89,7 @@ const DEFAULT = Immutable.fromJS({
   list: {
   },
   isFetching: false,
+  isFetchingTags: false, // When updating the bookmark tags
   lastUpdated: null,
   error: null
 })
@@ -98,10 +110,28 @@ export const bookmark = (state = DEFAULT, action) => {
         lastUpdated: Date.now(),
       })
 
-    case POST_BOOKMARK_SUCCESS:
-      const newBookmark = action.response.result
+    case UPDATE_BOOKMARK_TAGS_REQUEST:
       return state.merge({
-        list: state.get('list').add(newBookmark),
+        isFetchingTags: true,
+      })
+
+    case UPDATE_BOOKMARK_TAGS_SUCCESS:
+      return state.merge({
+        isFetchingTags: false,
+        list: merge({}, state.get('list').toJS(), action.response.entities.bookmarks),
+      })
+
+    case UPDATE_BOOKMARK_TAGS_FAILURE:
+      // TODO
+      return state.merge({
+        isFetchingTags: false,
+      })
+      break
+
+    case POST_BOOKMARK_SUCCESS:
+      const postedNewBookmark = action.response.result
+      return state.merge({
+        list: merge({}, { [postedNewBookmark.id]: postedNewBookmark }, state.get('list').toJS()),
       })
 
     case BOOKMARK_FAILURE:

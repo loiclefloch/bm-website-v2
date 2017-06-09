@@ -25,29 +25,10 @@ const callApi = (request, schema) => {
         reject(json)
       }
 
-      const { type } = request
-
       request.success = success
       request.failure = failure
 
-      console.log('apiCall', request)
-
-      switch (type) {
-        case 'GET':
-        ApiManager.get(request)
-        break
-        case 'POST':
-        ApiManager.post(request)
-        break
-        case 'UPDATE':
-        ApiManager.update(request)
-        break
-        case 'DELETE':
-        ApiManager.delete(request)
-        break
-        default:
-        Logger.error('api', `unknown type ${type}`)
-      }
+      ApiManager.run(request)
     }
   );
 }

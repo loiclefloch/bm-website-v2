@@ -4,9 +4,10 @@ import ActionBar from './ActionBar'
 import PreviewPicture from './PreviewPicture'
 import Description from './Description'
 import Meta from './Meta'
-import Divider from 'material-ui/Divider';
+import Divider from 'material-ui/Divider'
+import TagsList from './TagsList'
 
-const BookmarkHeader = ({ bookmark }) => {
+const BookmarkHeader = ({ bookmark, onSelectedTagsChange }) => {
 
   return (
     <div>
@@ -22,6 +23,11 @@ const BookmarkHeader = ({ bookmark }) => {
 
       <Description
         bookmark={bookmark}
+      />
+
+      <TagsList
+        bookmark={bookmark}
+        onSelectedTagsChange={onSelectedTagsChange}
       />
 
       {/* TODO: tags list */}

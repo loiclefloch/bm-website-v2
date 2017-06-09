@@ -1,9 +1,13 @@
 const ColorsUtils = {
 
   isLightColor(color) {
+    if (color === null) {
+      return true
+    }
+
     let r, b, g, hsp, a = color
 
-    if (a.match(/^rgb/)) {
+    if (a !== null && a.match(/^rgb/)) {
       a = a.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/)
       r = a[1]
       g = a[2]
@@ -23,7 +27,8 @@ const ColorsUtils = {
       0.114 * (b * b)
     )
 
-    return (hsp > 127.5)
+    // return (hsp > 127.5)
+    return (hsp > 150)
   },
 
   isDarkColor(color) {

@@ -28,6 +28,7 @@ const BookmarksList = ({ bookmarks, paging, isFetching, actions, onSearchQueryCh
 
       <SearchBar
         onChange={ (event, value) => actions.onSearchQueryChange(value) }
+        // TODO: value
         style={{
           width: '60%',
         }}

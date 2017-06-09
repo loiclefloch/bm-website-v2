@@ -6,8 +6,9 @@ import _ from 'lodash';
 export default class ArrayUtils {
 
   static moveOnArray(array, fromIndex, toIndex) {
-    array.splice(toIndex, 0, array.splice(fromIndex, 1)[0]);
-    return array;
+    const newArray = _.concat([], array)
+    newArray.splice(toIndex, 0, newArray.splice(fromIndex, 1)[0]);
+    return newArray
   }
 
   static moveUpObjectOnArray(array, object, comparator) {
@@ -53,19 +54,20 @@ export default class ArrayUtils {
    * see http://stackoverflow.com/questions/27641731/is-there-a-function-in-lodash-to-replace-matched-item
    */
   static updateObjectOrAdd(array, obj, comparator) {
-    const match = _.find(array, comparator);
+    const newArray = _.concat([], array)
+    const match = _.find(newArray, comparator);
 
     if (match) {
       // Find item index using indexOf+find
-      const index = _.indexOf(array, match);
+      const index = _.indexOf(newArray, match);
 
       // Replace item at index using native splice
-      array.splice(index, 1, obj);
+      newArray.splice(index, 1, obj);
     } else {
-      array.push(obj);
+      newArray.push(obj);
     }
 
-    return array;
+    return newArray
   }
 
   /**
@@ -77,17 +79,18 @@ export default class ArrayUtils {
    * see http://stackoverflow.com/questions/27641731/is-there-a-function-in-lodash-to-replace-matched-item
    */
   static updateObject(array, obj, comparator) {
-    const match = _.find(array, comparator);
+    const newArray = _.concat([], array)
+    const match = _.find(newArray, comparator);
 
     if (match) {
       // Find item index using indexOf+find
-      const index = _.indexOf(array, match);
+      const index = _.indexOf(newArray, match);
 
       // Replace item at index using native splice
-      array.splice(index, 1, obj);
+      newArray.splice(index, 1, obj);
     }
 
-    return array;
+    return newArray
   }
 
 
@@ -100,26 +103,28 @@ export default class ArrayUtils {
    * see http://stackoverflow.com/questions/27641731/is-there-a-function-in-lodash-to-replace-matched-item
    */
   static removeObject(array, comparator) {
-    const match = _.find(array, comparator);
+    const newArray = _.concat([], array);
+    const match = _.find(newArray, comparator);
 
     if (match) {
       // Find item index using indexOf+find
-      const index = _.indexOf(array, match);
+      const index = _.indexOf(newArray, match);
 
       // Replace item at index using native splice
-      array.splice(index, 1);
+      newArray.splice(index, 1);
     }
 
-    return array;
+    return newArray
   }
 
   static removeObjectAtIndex(array, index) {
-    if (array.length > index) {
+    const newArray = _.concat([], array); // new array
+    if (newArray.length > index) {
       // Replace item at index using native splice
-      array.splice(index, 1);
+      newArray.splice(index, 1);
     }
 
-    return array;
+    return newArray
   }
 
   static deleteObject(array, comparator) {
@@ -145,11 +150,12 @@ export default class ArrayUtils {
    * Add the value if it's not on the given array, otherwise remove it.
    */
   static toggleObject(array, obj, comparator) {
-    if (ArrayUtils.exists(array, obj, comparator)) {
-      return ArrayUtils.deleteObject(array, obj, comparator);
+    const newArray = _.concat([], array);
+    if (ArrayUtils.exists(newArray, obj, comparator)) {
+      return ArrayUtils.deleteObject(newArray, obj, comparator);
     }
 
-    array.push(obj);
-    return array;
+    newArray.push(obj);
+    return newArray
   }
 }

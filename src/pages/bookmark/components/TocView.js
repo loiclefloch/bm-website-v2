@@ -43,7 +43,7 @@ const TocView = ({ bookmark }) => {
   const toc = bookmark.toc
   return (
     <div
-      className="u-zIndexFloating u-borderLeft4 borderPrimary"
+      className="u-zIndexFloating u-borderLeft4 borderPrimary u-maxHeight300"
       style={{
         overflowX: 'hidden',
         overflowY: 'auto',
