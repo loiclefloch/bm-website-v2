@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 
-import defaultTheme from '../../config/defaultTheme'
+import getTheme from './getTheme'
 
 const CHANGE_CURRENT_THEME = 'Theme::CHANGE_CURRENT_THEME'
 
@@ -9,7 +9,7 @@ export const changeCurrentTheme = (newCurrentTheme) => ({
   newCurrentTheme
 })
 
-const DEFAULT = Immutable.fromJS(defaultTheme)
+const DEFAULT = Immutable.fromJS(getTheme())
 
 export const currentTheme = (state = DEFAULT, action) => {
   switch (action.type) {

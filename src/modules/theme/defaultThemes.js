@@ -1,9 +1,9 @@
 import Immutable from 'immutable'
 
-import defaultTheme from '../../config/defaultTheme'
+import getTheme from './getTheme'
 
 const DEFAULT = Immutable.fromJS({
-  light: defaultTheme
+  light: getTheme(),
 })
 
 export const defaultThemes = (state = DEFAULT, action) => {
