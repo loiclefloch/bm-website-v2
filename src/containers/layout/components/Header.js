@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import {
+  showAddBookmarkDialog
+} from '../../../modules/bookmark'
+
 import AppBar from 'material-ui/AppBar'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import FlatButton from 'material-ui/FlatButton'
-
-import {
-  showAddBookmarkDialog
-} from '../../../modules/bookmark'
+import themeable from '../../../modules/theme/themeable'
 
 import { AvatarWithDefault } from '../../../components/avatar'
 
@@ -76,7 +77,7 @@ class Header extends Component {
       <header
         style={{
           position: 'fixed',
-          paddingLeft: '250px',
+          paddingLeft: this.props.theme.sidebar.width,
           top: 0,
           left: 0,
           right: 0,
@@ -103,6 +104,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {
+export default themeable()(connect(mapStateToProps, {
   showAddBookmarkDialog,
-})(Header)
+})(Header))

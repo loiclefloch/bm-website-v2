@@ -64,7 +64,7 @@ class BookmarkPage extends Component {
             bookmark={bookmark}
           />
         </RightNav>
-
+        
         <Content
           bookmark={bookmark}
         />

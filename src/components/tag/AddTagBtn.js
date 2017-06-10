@@ -7,7 +7,7 @@ import ChooseTagDialog from './ChooseTagDialog'
 @ui({
   persist: false,
   state: {
-    openTagSelector: true,
+    openTagSelector: false,
   },
 })
 class AddTagBtn extends Component {

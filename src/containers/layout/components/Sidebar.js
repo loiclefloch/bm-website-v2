@@ -3,7 +3,7 @@ import PropType from 'prop-types'
 
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import themeable from '../../../modules/theme/themeable'
 
 import { Link, RoutingEnum } from '../../../components/router'
 
@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
               borderBottom: '1px solid #e0e0e0',
               boxSizing: 'border-box',
               display: 'block',
-              height: this.props.muiTheme.appBar.height,
+              height: this.props.theme.appBar.height,
               padding: '16px 0 11px 24px',
               position: 'relative',
             }}
@@ -82,4 +82,4 @@ Sidebar.propTypes = {
   me: PropType.object
 }
 
-export default muiThemeable()(Sidebar)
+export default themeable()(Sidebar)

@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import ThemeProvider from '../../modules/theme/ThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
@@ -57,14 +59,19 @@ class Layout extends Component {
   render() {
     const { theme, isFetchingMe } = this.props
 
-    const muiTheme = getMuiTheme(theme);
+    const muiTheme = getMuiTheme({ ...lightBaseTheme, ...theme });
 
     return (
       <MuiThemeProvider
         muiTheme={muiTheme}
       >
-        {isFetchingMe ? this.renderPageLoading() : this.renderLayout() }
-
+        <ThemeProvider
+          themes={[muiTheme]}
+          // themeInd={1}
+          override
+        >
+          {isFetchingMe ? this.renderPageLoading() : this.renderLayout() }
+        </ThemeProvider>
       </MuiThemeProvider>
     );
   }

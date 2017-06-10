@@ -34,7 +34,7 @@ const LoadingPage = ({ size = 50, message = '', show }) => {
           zIndex: '10',
         }}
       />
-
+      
       <div
         style={{
           top: '40%',

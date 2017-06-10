@@ -1,18 +1,18 @@
 import React from 'react'
 
 import Chip from 'material-ui/Chip';
-import muiThemeable from 'material-ui/styles/muiThemeable'
+import themeable from '../../../modules/theme/themeable'
 
 import { red700 } from 'material-ui/styles/colors';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 
-const Following = ({ circle, muiTheme, onTouchTap }) => {
+const Following = ({ circle, theme, onTouchTap }) => {
 
   const styles = {
     following: {
-      borderColor: muiTheme.palette.primary1Color,
-      backgroundColor: muiTheme.palette.primary1Color,
-      color: muiTheme.palette.primary3Color,
+      borderColor: theme.palette.primary1Color,
+      backgroundColor: theme.palette.primary1Color,
+      color: theme.palette.primary3Color,
       boxSizing: 'content-box',
 
       //
@@ -22,8 +22,8 @@ const Following = ({ circle, muiTheme, onTouchTap }) => {
       lineHeight: '20px',
     },
     notFollowing: {
-      borderColor: muiTheme.palette.primary1Color,
-      color: muiTheme.palette.primary1Color,
+      borderColor: theme.palette.primary1Color,
+      color: theme.palette.primary1Color,
       backgroundColor: 'transparent',
 
       //
@@ -46,7 +46,7 @@ const Following = ({ circle, muiTheme, onTouchTap }) => {
     icon: {
       width: '15px',
       height: '15px',
-      color: muiTheme.palette.primary3Color,
+      color: theme.palette.primary3Color,
     }
   }
 
@@ -124,4 +124,4 @@ const IsAdministrateByMe = ({ styles, onTouchTap }) => {
   )
 }
 
-export default muiThemeable()(Following)
+export default themeable()(Following)
