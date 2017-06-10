@@ -6,14 +6,14 @@ import map from 'lodash/map'
 import AddTagBtn from '../../../components/tag/AddTagBtn'
 import Tag from '../../../components/tag/Tag'
 
-const TagsList = ({ bookmark, onSelectedTagsChange })  => {
-  const { tags } = bookmark
+const TagsList = ({ bookmark, tags, onSelectedTagsChange })  => {
+  const selectedTags = bookmark.tags
 
   return (
     <div
-      className="u-height28"
+      className="u-height28 u-flexCenter"
     >
-      {map(tags, (tag) => {
+      {map(selectedTags, (tag) => {
         return (
           <Tag
             key={tag.id}
@@ -23,8 +23,8 @@ const TagsList = ({ bookmark, onSelectedTagsChange })  => {
         )
       })}
       <AddTagBtn
-        tags={tags} // TODO
-        selectedTags={tags}
+        tags={tags}
+        selectedTags={selectedTags}
         onValidate={onSelectedTagsChange}
       />
     </div>

@@ -23,10 +23,15 @@ import {
   getMe,
 } from '../../modules/user'
 
+import {
+  fetchMeTags
+} from '../../modules/tag'
+
 class Layout extends Component {
 
   componentDidMount() {
     this.props.fetchMe()
+    this.props.fetchMeTags()
   }
 
   renderLayout() {
@@ -88,4 +93,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   fetchMe,
+  fetchMeTags,
 })(Layout)

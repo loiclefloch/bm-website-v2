@@ -9,6 +9,10 @@ import {
   makeGetBookmark,
 } from '../../modules/bookmark'
 
+import {
+  getTagsList,
+} from '../../modules/tag'
+
 import Header from './components/Header'
 import Content from './components/Content'
 
@@ -35,7 +39,7 @@ class BookmarkPage extends Component {
   }
 
   render() {
-    const { isFetchingBookmark, bookmark } = this.props
+    const { isFetchingBookmark, bookmark, tags } = this.props
 
     if (isFetchingBookmark || !bookmark) {
       return (
@@ -57,6 +61,7 @@ class BookmarkPage extends Component {
         <Header
           bookmark={bookmark}
           onSelectedTagsChange={this.handleSelectedTagsChange}
+          tags={tags}
         />
 
         <RightNav>
@@ -64,7 +69,7 @@ class BookmarkPage extends Component {
             bookmark={bookmark}
           />
         </RightNav>
-        
+
         <Content
           bookmark={bookmark}
         />
@@ -80,6 +85,7 @@ const makeMapStateToProps = () => {
     return {
       isFetchingBookmark: isFetchingBookmark(state),
       bookmark: getBookmark(state, props),
+      tags: getTagsList(state),
     }
   }
   return mapStateToProps
@@ -88,4 +94,5 @@ const makeMapStateToProps = () => {
 export default connect(makeMapStateToProps, {
   fetchBookmark,
   addTagsToBookmark,
+  getTagsList,
 })(BookmarkPage)

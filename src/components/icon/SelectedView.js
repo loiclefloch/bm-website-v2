@@ -1,12 +1,12 @@
 import React from 'react'
 
-import CheckCircleIcon from 'material-ui/svg-icons/action/check-circle';
+import CheckCircleIcon from 'material-ui/svg-icons/action/check-circle'
 
 const SelectedView = ({ show, isLightColor }) => {
   if (!show) {
     return (null)
   }
-  
+
   return (
     <span
       className="u-flexCenter u-justifyContentCenter u-sizeFull u-floatRight"

@@ -2,7 +2,7 @@ import ApiEndpoints from '../config/ApiEndpoints'
 
 import BookmarksListSchema from './schemas/BookmarksListSchema'
 import BookmarkSchema from './schemas/BookmarkSchema'
-import AddBookmarkSchema from './schemas/AddBookmarkSchema'
+import BookmarkAddSchema from './schemas/BookmarkAddSchema'
 
 const BookmarkApi = {
 
@@ -33,7 +33,7 @@ const BookmarkApi = {
   postBookmark: (bookmark) => {
     return {
       type: 'POST',
-      schema: AddBookmarkSchema,
+      schema: BookmarkAddSchema,
       endpoint: ApiEndpoints.BOOKMARKS,
       data: bookmark,
     }

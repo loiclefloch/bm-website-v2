@@ -7,6 +7,10 @@ import {
 } from '../modules/bookmark'
 
 import {
+  tagsList,
+} from '../modules/tag'
+
+import {
   circlesList,
   circle,
 } from '../modules/circle'
@@ -23,12 +27,13 @@ import {
 const entities = combineReducers({
   bookmarksList,
   bookmark,
+  newBookmark,
   circlesList,
   circle,
   oauth,
   me,
   users,
-  newBookmark,
+  tagsList,
 });
 
 export default entities
