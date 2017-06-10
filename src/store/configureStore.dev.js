@@ -2,8 +2,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
-import DevTools from '../containers/DevTools'
-import { persistStore, autoRehydrate } from 'redux-persist'
+// import { persistStore, autoRehydrate } from 'redux-persist'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import Immutable from 'immutable';
 
 import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
@@ -13,11 +14,17 @@ import auth from '../middleware/auth'
 
 import newBookmarkMiddleware from '../modules/bookmark/middleware/newBookmarkMiddleware'
 
+const composeEnhancers = composeWithDevTools({
+  serialize: {
+     immutable: Immutable
+   },
+});
+
 const configureStore = preloadedState => {
   const store = createStore(
     rootReducer,
     preloadedState,
-    compose(
+    composeEnhancers(
       applyMiddleware(
         thunk,
         api,
@@ -26,8 +33,7 @@ const configureStore = preloadedState => {
         createLogger(),
         routerMiddleware(browserHistory)
       ),
-      DevTools.instrument(),
-      autoRehydrate()
+      // autoRehydrate()
     )
   )
 
@@ -40,7 +46,7 @@ const configureStore = preloadedState => {
   }
 
   // begin periodically persisting the store
-  persistStore(store)
+  // persistStore(store)
 
   return store
 }
