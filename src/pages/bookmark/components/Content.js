@@ -2,9 +2,11 @@ import React from 'react'
 
 import './content.scss'
 
+import HtmlBlock from '../../../components/html/HtmlBlock'
+import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
 import VideoContent from './VideoContent'
 import SlideContent from './SlideContent'
-import HtmlBlock from '../../../components/html/HtmlBlock'
+import BookmarkReadingPercent from './BookmarkReadingPercent'
 
 const Content = ({ bookmark }) => {
 
@@ -25,11 +27,18 @@ const Content = ({ bookmark }) => {
   }
 
   return (
-    <div className="bookmark_content">
-      <HtmlBlock
-        content={bookmark.content}
-      />
-    </div>
+    <ScrollPercentage>
+      {({ percentage }) => (
+        <div className="bookmark_content">
+          <BookmarkReadingPercent
+            percentage={percentage * 100}
+          />
+          <HtmlBlock
+            content={bookmark.content}
+          />
+        </div>
+      )}
+    </ScrollPercentage>
   )
 }
 
