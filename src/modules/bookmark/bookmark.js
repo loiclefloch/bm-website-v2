@@ -1,7 +1,7 @@
 import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
-import merge from 'lodash/merge'
+import assign from 'lodash/assign'
 import { push } from 'react-router-redux'
 import { createApiCallAction } from '../../actions/creators'
 import { createSelector } from 'reselect'
@@ -67,7 +67,6 @@ export const isFetchingBookmark = createSelector(
 
 const getBookmarkIdOnProps = (state, props) => props.routeParams.bookmarkId
 
-
 export const makeGetBookmark = () => {
     return createSelector(
       [ getBookmarkIdOnProps, getBookmarks ],
@@ -106,7 +105,7 @@ export const bookmark = (state = DEFAULT, action) => {
       return state.merge({
         isFetching: false,
         error: null,
-        list: merge({}, state.get('list').toJS(), action.response.entities.bookmarks),
+        list: assign(state.get('list').toJS(), action.response.entities.bookmarks),
         lastUpdated: Date.now(),
       })
 
@@ -118,7 +117,7 @@ export const bookmark = (state = DEFAULT, action) => {
     case UPDATE_BOOKMARK_TAGS_SUCCESS:
       return state.merge({
         isFetchingTags: false,
-        list: merge({}, state.get('list').toJS(), action.response.entities.bookmarks),
+        list: assign(state.get('list').toJS(), action.response.entities.bookmarks),
       })
 
     case UPDATE_BOOKMARK_TAGS_FAILURE:
@@ -131,7 +130,7 @@ export const bookmark = (state = DEFAULT, action) => {
     case POST_BOOKMARK_SUCCESS:
       const postedNewBookmark = action.response.result
       return state.merge({
-        list: merge({}, { [postedNewBookmark.id]: postedNewBookmark }, state.get('list').toJS()),
+        list: assign(state.get('list').toJS(), { [postedNewBookmark.id]: postedNewBookmark }),
       })
 
     case BOOKMARK_FAILURE:

@@ -23,7 +23,6 @@ class AddTagBtn extends Component {
 
   handeSaveTags = (selectedTags) => {
     this.handleCloseTagSelector()
-    this.props.onValidate(selectedTags)
   }
 
   render() {
@@ -36,24 +35,23 @@ class AddTagBtn extends Component {
       >
         <AddIcon
         />
-        <ChooseTagDialog
-          open={this.props.ui.openTagSelector}
-          tags={this.props.tags}
-          selectedTags={this.props.selectedTags}
-          onClose={this.handleCloseTagSelector}
-          onSave={this.handeSaveTags}
-        />
+
+        {this.props.ui.openTagSelector &&
+          <ChooseTagDialog
+            open
+            bookmark={this.props.bookmark}
+            selectedTags={this.props.selectedTags}
+            onClose={this.handleCloseTagSelector}
+            onSave={this.handeSaveTags}
+          />
+        }
       </div>
     )
   }
 }
 
 AddTagBtn.propTypes = {
-  /**
-   * @param tags
-   * @type {Function}
-   */
-  onValidate: PropTypes.func.isRequired,
+  bookmark: PropTypes.object.isRequired,
   tags: PropTypes.array,
   selectedTags: PropTypes.array,
   style: PropTypes.object,

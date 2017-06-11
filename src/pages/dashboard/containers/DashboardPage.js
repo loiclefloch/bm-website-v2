@@ -9,7 +9,12 @@ import {
   onLoadMoreBookmarks,
 } from '../../../modules/bookmark'
 
-import { getFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
+import {
+  getTagsList,
+  isFetchingTags,
+} from '../../../modules/tag'
+
+import { makeGetFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
 import BookmarksList from '../components/BookmarksList'
 
 class DashboardPage extends Component {
@@ -43,6 +48,8 @@ class DashboardPage extends Component {
 DashboardPage.propTypes = {
   bookmarks: PropTypes.array.isRequired,
   isFetchingBookmarks: PropTypes.bool.isRequired,
+  tags: PropTypes.array.isRequired,
+  isFetchingTags: PropTypes.bool.isRequired,
 
   /**
    * @param bookmark
@@ -59,12 +66,17 @@ DashboardPage.propTypes = {
   onLoadMoreBookmarks: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isFetchingBookmarks: isFetchingBookmarks(state),
-    bookmarks: getFilteredBookmarks(state, ownProps),
-    paging: getBookmarksPaging(state),
-   }
+const makeMapStateToProps = () => {
+  const getFilteredBookmarks = makeGetFilteredBookmarks()
+  const mapStateToProps = (state, props) => {
+    return {
+      isFetchingBookmarks: isFetchingBookmarks(state),
+      isFetchingTags: isFetchingTags(state),
+      bookmarks: getFilteredBookmarks(state, props),
+      paging: getBookmarksPaging(state),
+    }
+  }
+  return mapStateToProps
 }
 
 export default ui({ // see https://github.com/tonyhb/redux-ui/issues/49
@@ -73,7 +85,7 @@ export default ui({ // see https://github.com/tonyhb/redux-ui/issues/49
   state: {
     searchQuery: '',
   },
-})(connect(mapStateToProps, {
+})(connect(makeMapStateToProps, {
   showBookmark,
   loadBookmarks,
   onLoadMoreBookmarks,

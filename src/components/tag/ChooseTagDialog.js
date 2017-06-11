@@ -1,10 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import Fuse from 'fuse.js'
 import isEmpty from 'lodash/isEmpty'
 import ArrayUtils from '../../utils/ArrayUtils'
 
 import ui from 'redux-ui'
+
+import {
+  addTagsToBookmark,
+} from '../../modules/bookmark'
+
+import {
+  getTagsList,
+} from '../../modules/tag'
 
 import Dialog from 'material-ui/Dialog'
 import RaisedButton from 'material-ui/RaisedButton';
@@ -19,7 +28,6 @@ import Tag from './Tag'
   }
 })
 class ChooseTagDialog extends React.Component {
-
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedTags !== this.props.selectedTags) {
@@ -46,6 +54,7 @@ class ChooseTagDialog extends React.Component {
   handleOnSave = () => {
     const selectedTags = this.props.ui.selectedTags
     this.props.onSave(selectedTags)
+    this.props.addTagsToBookmark(selectedTags, this.props.bookmark)
     this.props.resetUI()
   }
 
@@ -170,6 +179,7 @@ ChooseTagDialog.defaultProps = {
 ChooseTagDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   tags: PropTypes.array.isRequired,
+  bookmark: PropTypes.object.isRequired,
   selectedTags: PropTypes.array,
 
   /**
@@ -181,4 +191,12 @@ ChooseTagDialog.propTypes = {
   onClose: PropTypes.bool.isRequired,
 }
 
-export default ChooseTagDialog
+const mapStateToProps = (state) => {
+  return {
+    tags: getTagsList(state),
+  }
+}
+
+export default connect(mapStateToProps, {
+  addTagsToBookmark,
+})(ChooseTagDialog)

@@ -7,7 +7,7 @@ import Meta from './Meta'
 import Divider from 'material-ui/Divider'
 import TagsList from './TagsList'
 
-const BookmarkHeader = ({ bookmark, tags, onSelectedTagsChange }) => {
+const BookmarkHeader = ({ bookmark }) => {
 
   return (
     <div>
@@ -27,8 +27,6 @@ const BookmarkHeader = ({ bookmark, tags, onSelectedTagsChange }) => {
 
       <TagsList
         bookmark={bookmark}
-        tags={tags}
-        onSelectedTagsChange={onSelectedTagsChange}
       />
 
       {/* TODO: tags list */}

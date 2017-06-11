@@ -52,39 +52,42 @@ export const getBookmarksSortedByDate = createSelector(
   }
 )
 
-export const getFilteredBookmarks = createSelector(
-  [ getBookmarksAsList, getBookmarksSearchQuery ],
-  (bookmarks, searchQuery) => {
+export const makeGetFilteredBookmarks = () => {
+  return createSelector(
+    [ getBookmarksAsList, getBookmarksSearchQuery ],
+    (bookmarks, searchQuery) => {
 
-    // no search, returns sorted by date
-    if (isEmpty(searchQuery)) {
-      return bookmarks.sort((a, b) => {
-        return b.id - a.id // TODO: createdAt
-      })
+      // no search, returns sorted by date
+      if (isEmpty(searchQuery)) {
+        return bookmarks.sort((a, b) => {
+          return b.id - a.id // TODO: createdAt
+        })
+      }
+
+      const options = {
+        shouldSort: true,
+        tokenize: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          "description",
+          "title",
+          "name",
+          "url",
+          // "websiteInfo.",
+        ]
+      };
+      const fuse = new Fuse(bookmarks.toArray(), options)
+      const results = fuse.search(searchQuery)
+
+      return results
     }
+  )
 
-    const options = {
-      shouldSort: true,
-      tokenize: true,
-      threshold: 0.6,
-      location: 0,
-      distance: 100,
-      maxPatternLength: 32,
-      minMatchCharLength: 1,
-      keys: [
-        "description",
-        "title",
-        "name",
-        "url",
-        // "websiteInfo.",
-      ]
-    };
-    const fuse = new Fuse(bookmarks.toArray(), options)
-    const results = fuse.search(searchQuery)
-
-    return results
-  }
-)
+}
 
 //
 // Fetching bookmarksList

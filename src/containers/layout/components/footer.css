@@ -14,14 +14,7 @@ footer p {
   letter-spacing: .4px;
 }
 
-footer a {
-  color: #4a89dc;
-  text-decoration: none;
-  transition: all .2s ease;
-}
-
 footer a:hover {
-  color: #666;
   text-decoration: underline;
 }
 

@@ -9,39 +9,24 @@ import DoneIcon from 'material-ui/svg-icons/action/done';
 const Following = ({ circle, theme, onTouchTap }) => {
 
   const styles = {
-    following: {
+    chip: {
       borderColor: theme.palette.primary1Color,
-      backgroundColor: theme.palette.primary1Color,
-      color: theme.palette.primary3Color,
-      boxSizing: 'content-box',
-
-      //
-      display: 'inline-block',
       borderWidth: '1px',
       borderStyle: 'solid',
-      lineHeight: '20px',
+      backgroundColor: 'transparent',
+    },
+    following: {
+      backgroundColor: theme.palette.primary1Color,
+      color: theme.palette.textColor,
     },
     notFollowing: {
-      borderColor: theme.palette.primary1Color,
       color: theme.palette.primary1Color,
-      backgroundColor: 'transparent',
-
-      //
-      display: 'inline-block',
       borderWidth: '1px',
       borderStyle: 'solid',
-      lineHeight: '20px',
     },
     administrate: {
       borderColor: red700,
       color: red700,
-      backgroundColor: 'transparent',
-
-      //
-      display: 'inline-block',
-      borderWidth: '1px',
-      borderStyle: 'solid',
-      lineHeight: '20px',
     },
     icon: {
       width: '15px',
@@ -66,9 +51,9 @@ const Following = ({ circle, theme, onTouchTap }) => {
 const IsFollowedByMe = ({ styles, onTouchTap }) => {
   return (
     <Chip
-      className="CirclesListItemFollowedByMe pointer"
+      className="pointer u-height20 u-marginLeft5 u-flexCenter"
       onTouchTap={onTouchTap}
-      style={styles.following}
+      style={{ ...styles.chip, ...styles.following}}
     >
       <span
         style={{
@@ -80,6 +65,7 @@ const IsFollowedByMe = ({ styles, onTouchTap }) => {
         &nbsp;
         <DoneIcon
           style={styles.icon}
+          color={styles.following.color}
         />
       </span>
     </Chip>
@@ -90,8 +76,8 @@ const NotFollowedByMe = ({ styles, onTouchTap }) => {
 
   return (
     <Chip
-      className="CirclesListItemFollowedByMe pointer"
-      style={styles.notFollowing}
+      className="pointer u-height20 u-marginLeft5 u-flexCenter"
+      style={{ ...styles.chip, ...styles.notFollowing}}
     >
       <span
         style={{
@@ -108,9 +94,9 @@ const NotFollowedByMe = ({ styles, onTouchTap }) => {
 const IsAdministrateByMe = ({ styles, onTouchTap }) => {
   return (
     <Chip
-      className="CirclesListItemFollowedByMe pointer"
+      className="pointer u-height20 u-marginLeft5 u-flexCenter"
       onTouchTap={onTouchTap}
-      style={styles.administrate}
+      style={{ ...styles.chip, ...styles.administrate}}
     >
       <span
         style={{

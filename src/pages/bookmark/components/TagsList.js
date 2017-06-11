@@ -6,12 +6,13 @@ import map from 'lodash/map'
 import AddTagBtn from '../../../components/tag/AddTagBtn'
 import Tag from '../../../components/tag/Tag'
 
-const TagsList = ({ bookmark, tags, onSelectedTagsChange })  => {
+const TagsList = ({ bookmark, tags, style, className })  => {
   const selectedTags = bookmark.tags
 
   return (
     <div
-      className="u-height28 u-flexCenter"
+      className={`u-height28 u-flexCenter ${className}`}
+      style={style}
     >
       {map(selectedTags, (tag) => {
         return (
@@ -23,20 +24,28 @@ const TagsList = ({ bookmark, tags, onSelectedTagsChange })  => {
         )
       })}
       <AddTagBtn
+        bookmark={bookmark}
         tags={tags}
         selectedTags={selectedTags}
-        onValidate={onSelectedTagsChange}
       />
     </div>
   )
 }
 
+TagsList.defaultProps = {
+  tags: [],
+  style: {},
+  className: '',
+}
+
 TagsList.propTypes = {
-  /**
-   * @param tags
-   * @type {Function}
-   */
-  onSelectedTagsChange: PropTypes.func.isRequired,
+  bookmark: PropTypes.object.isRequired,
+
+  tags: PropTypes.array.isRequired,
+
+  style: PropTypes.object,
+
+  className: PropTypes.string,
 }
 
 export default TagsList

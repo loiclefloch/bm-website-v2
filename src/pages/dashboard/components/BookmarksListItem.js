@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import AccessTimeIcon from 'material-ui/svg-icons/device/access-time';
 import { AvatarWithDefault } from '../../../components/avatar'
 import ListItemMeta from './ListItemMeta'
-import TagsList from './TagsList'
+import TagsList from '../../bookmark/components/TagsList'
 
 const style = {
   title: {
@@ -28,7 +28,7 @@ const Icon = ({ bookmark }) => {
 }
 
 
-const BookmarksListItem = ({ bookmark, onShowBookmark }) => {
+const BookmarksListItem = ({ bookmark, onShowBookmark, addTagsToBookmark }) => {
   return (
     <Card
       className="pointer"
@@ -81,6 +81,7 @@ const BookmarksListItem = ({ bookmark, onShowBookmark }) => {
       }
 
       <TagsList
+        className="u-marginLeft15 u-paddingBottom10"
         bookmark={bookmark}
       />
 

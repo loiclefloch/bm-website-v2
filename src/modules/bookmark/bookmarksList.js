@@ -3,7 +3,9 @@ import Immutable from "immutable"
 import { createApiCallAction } from '../../actions/creators'
 
 import BookmarkApi from '../../api/BookmarkApi'
-import merge from 'lodash/merge'
+import assign from 'lodash/assign'
+
+import { UPDATE_BOOKMARK_TAGS_SUCCESS } from './bookmark'
 
 //
 // Actions
@@ -41,6 +43,8 @@ const DEFAULT = Immutable.fromJS({
 })
 
 export const bookmarksList = (state = DEFAULT, action) => {
+  const oldData = state.get('data').toJS()
+
   switch (action.type) {
     case BOOKMARKS_REQUEST:
       return state.merge({
@@ -49,13 +53,12 @@ export const bookmarksList = (state = DEFAULT, action) => {
       })
 
     case BOOKMARKS_SUCCESS:
-      const oldData = state.get('data').toJS()
-      const newState = state.mergeDeep({
+      const newState = state.merge({
         isFetching: false,
         error: null,
         data: {
-          bookmarks: merge({}, oldData.bookmarks, action.response.entities.bookmarks),
-          pagination: merge({}, oldData.pagination, action.response.entities.pagination),
+          bookmarks: assign(oldData.bookmarks, action.response.entities.bookmarks),
+          pagination: assign(oldData.pagination, action.response.entities.pagination),
         },
         lastUpdated: Date.now(),
       })
@@ -66,6 +69,14 @@ export const bookmarksList = (state = DEFAULT, action) => {
       return state.merge({
         isFetching: false,
         error: action.apiError,
+      })
+
+    case UPDATE_BOOKMARK_TAGS_SUCCESS:
+      return state.merge({
+        data: {
+          ...oldData,
+          bookmarks: assign(oldData.bookmarks, action.response.entities.bookmarks),
+        },
       })
 
     default:

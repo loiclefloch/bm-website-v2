@@ -48,6 +48,17 @@ export const getTagsList = createSelector(
 )
 
 //
+// Fetching bookmarksList
+//
+
+const getTagsIsFetching = (state) => state.entities.tagsList.get('isFetching')
+
+export const isFetchingTags = createSelector(
+    getTagsIsFetching,
+    (isFetching) => isFetching
+)
+
+//
 // Reducer
 //
 

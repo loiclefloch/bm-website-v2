@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 
 import {
   fetchBookmark,
-  addTagsToBookmark,
   isFetchingBookmark,
   makeGetBookmark,
 } from '../../modules/bookmark'
 
 import {
-  getTagsList,
+  isFetchingTags,
 } from '../../modules/tag'
 
 import Header from './components/Header'
@@ -22,11 +21,6 @@ import TocView from './components/TocView'
 import LoadingPage from '../../components/loading/LoadingPage'
 
 class BookmarkPage extends Component {
-  static propTypes = {
-    fetchBookmark: PropTypes.func.isRequired,
-    isFetchingBookmark: PropTypes.bool.isRequired,
-    bookmark: PropTypes.object,
-  }
 
   componentDidMount() {
     // load bookmark
@@ -34,12 +28,8 @@ class BookmarkPage extends Component {
     this.props.fetchBookmark(this.props.params.bookmarkId)
   }
 
-  handleSelectedTagsChange = (tags) => {
-    this.props.addTagsToBookmark(tags, this.props.bookmark)
-  }
-
   render() {
-    const { isFetchingBookmark, bookmark, tags } = this.props
+    const { isFetchingBookmark, bookmark } = this.props
 
     if (isFetchingBookmark || !bookmark) {
       return (
@@ -60,8 +50,6 @@ class BookmarkPage extends Component {
 
         <Header
           bookmark={bookmark}
-          onSelectedTagsChange={this.handleSelectedTagsChange}
-          tags={tags}
         />
 
         <RightNav>
@@ -78,6 +66,11 @@ class BookmarkPage extends Component {
   }
 }
 
+BookmarkPage.propTypes = {
+  fetchBookmark: PropTypes.func.isRequired,
+  isFetchingBookmark: PropTypes.bool.isRequired,
+  bookmark: PropTypes.object,
+}
 
 const makeMapStateToProps = () => {
   const getBookmark = makeGetBookmark()
@@ -85,7 +78,7 @@ const makeMapStateToProps = () => {
     return {
       isFetchingBookmark: isFetchingBookmark(state),
       bookmark: getBookmark(state, props),
-      tags: getTagsList(state),
+      isFetchingTags: isFetchingTags(state),
     }
   }
   return mapStateToProps
@@ -93,6 +86,4 @@ const makeMapStateToProps = () => {
 
 export default connect(makeMapStateToProps, {
   fetchBookmark,
-  addTagsToBookmark,
-  getTagsList,
 })(BookmarkPage)

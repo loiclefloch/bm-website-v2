@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card'
 import { grey400, darkBlack, lightBlack } from 'material-ui/styles/colors'
+import IconPeople from 'material-ui/svg-icons/social/people'
 import FlatButton from 'material-ui/FlatButton'
 import { AvatarWithDefault } from '../../../components/avatar'
 
@@ -54,9 +55,17 @@ const CirclesListItem = ({ circle, actions }) => {
               </div>
             }
             subtitle={
-              <div>
-                <span>
-                  {circle.numberOfMember} people
+              <div
+                className="u-flexCenter"
+              >
+                <span
+                  className="u-flexCenter u-justifyContentCenter"
+                >
+                  {circle.numberOfMember}
+                  &nbsp;
+                  <IconPeople
+                    style={{color:"inherit"}}
+                  />
                 </span>
                 &nbsp;
                 <CirclesListItemFollowedByMe
@@ -71,7 +80,10 @@ const CirclesListItem = ({ circle, actions }) => {
       </CardHeader>
       <CardText
         onClick={onShowDetail}
-        className="pointer"
+        className="pointer readable"
+        style={{
+          fontSize: '18px',
+        }}
       >
         {circle.description}
       </CardText>
