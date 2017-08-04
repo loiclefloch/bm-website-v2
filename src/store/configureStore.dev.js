@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers'
 // import { persistStore, autoRehydrate } from 'redux-persist'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import Immutable from 'immutable';
+import Immutable from 'immutable'
 
 import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
@@ -18,7 +18,28 @@ const composeEnhancers = composeWithDevTools({
   serialize: {
      immutable: Immutable
    },
-});
+})
+
+// Transform Immutable objects into JSON
+// TODO
+const convertState = (state) => {
+  // const newState = {};
+  // for (let i of Object.keys(state)) {
+  //   if (Immutable.Iterable.isIterable(state[i])) {
+  //     newState[i] = state[i].toJS()
+  //   } else {
+  //     newState[i] = convertState(state[i])
+  //   }
+  // }
+  return state;
+}
+
+const reduxLogger = createLogger({
+  collapsed: true,
+  transformer: (state) => {
+    return convertState(state)
+  }
+})
 
 const configureStore = preloadedState => {
   const store = createStore(
@@ -30,7 +51,7 @@ const configureStore = preloadedState => {
         api,
         auth,
         newBookmarkMiddleware,
-        createLogger(),
+        reduxLogger,
         routerMiddleware(browserHistory)
       ),
       // autoRehydrate()

@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField';
 
-const SearchBar = ({ onChange, style, autoFocus }) => (
+const SearchBar = ({ onChange, className = '', style = {}, autoFocus }) => (
   <TextField
     hintText="Search"
     onChange={onChange}
     style={style}
+    className={className}
     autoFocus={autoFocus}
   />
 )
@@ -16,6 +17,10 @@ SearchBar.defaultProps = {
 }
 
 SearchBar.propTypes = {
+  value: PropTypes.string,
+
+  className: PropTypes.string,
+
   /**
    * @param string new search query
    */

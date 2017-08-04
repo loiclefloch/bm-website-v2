@@ -11,7 +11,7 @@ function getAuthorizationHeader(state) {
       return 'Bearer ' + accessToken
     } else {
       // TODO: remove
-      return 'Bearer ODQ0NTA4OTVkOTU0NjdmYTZhMDA4ODI5ZDJkNmZlNzMwODA4ZDM0NmQ3MzgxMTI4MGU4OWE5ZmRlNTA5NmExNA'
+      return 'Bearer OTgxNmJjNjI4Y2VhYzc2NGI1ZDViOTdmMjliNzE1MTEyZmI0NmVmYWFhN2I3ZGE3M2JjMzVjYWJlZDIzYTJlYQ'
     }
   }
 

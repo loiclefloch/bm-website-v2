@@ -85,7 +85,7 @@ export const getRoutes = (store) => (
           component={route.handler}
           key={route.definition.name}
           // onEnter={route.authRequired ? requireAuth : null}
-        />
+               />
       }
 
       return null

@@ -78,6 +78,7 @@ class Header extends Component {
         style={{
           position: 'fixed',
           paddingLeft: this.props.theme.sidebar.width,
+          height: this.props.theme.header.height,
           top: 0,
           left: 0,
           right: 0,
@@ -91,6 +92,17 @@ class Header extends Component {
             // remove default style
             marginTop: 0,
             marginRight: '10px',
+          }}
+          iconStyleLeft={{
+            // remove default style
+            marginTop: 0,
+          }}
+          style={{
+            height: '100%',
+          }}
+          titleStyle={{
+            height: '100%',
+            lineHeight: this.props.theme.header.height,
           }}
         />
       </header>

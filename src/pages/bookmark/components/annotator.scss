@@ -1,0 +1,20 @@
+.annotator-widget {
+  margin: 0;
+  padding: 0;
+  bottom: 0!important;
+  right: 0!important;
+  min-width: 265px;
+  background-color: #FBFBFB;
+  /* background-color: rgba(251, 251, 251, 0.98); */
+  /* border: 1px solid #7A7A7A; */
+  /* border: 1px solid rgba(122, 122, 122, 0.6); */
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  left: 0;
+  /* text-align: center; */
+  width: 30vw!important;
+  left: 40vw!important;
+  position: fixed!important;
+}

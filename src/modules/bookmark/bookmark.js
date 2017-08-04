@@ -1,7 +1,6 @@
 import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
-import assign from 'lodash/assign'
 import { push } from 'react-router-redux'
 import { createApiCallAction } from '../../actions/creators'
 import { createSelector } from 'reselect'
@@ -50,7 +49,12 @@ export const addTagsToBookmark = (tags, bookmark) => createApiCallAction(
   [
     UPDATE_BOOKMARK_TAGS_REQUEST, UPDATE_BOOKMARK_TAGS_SUCCESS, UPDATE_BOOKMARK_TAGS_FAILURE
   ],
-  BookmarkApi.putBookmarkTags(bookmark, tags)
+  BookmarkApi.putBookmarkTags(bookmark, tags),
+  {
+    // we give the bookmark with the new tags, so we display the bookmark before the api call
+    // end
+    bookmark: { ...bookmark, tags },
+  }
 )
 
 //
@@ -105,19 +109,34 @@ export const bookmark = (state = DEFAULT, action) => {
       return state.merge({
         isFetching: false,
         error: null,
-        list: assign(state.get('list').toJS(), action.response.entities.bookmarks),
+        list: {
+          ...state.get('list').toJS(),
+          ...action.response.entities.bookmarks
+        },
         lastUpdated: Date.now(),
       })
 
+    /*
+     * update the bookmark's tags on the request to display the new selected tags directly,
+     * without waiting for the request to end.
+     */
     case UPDATE_BOOKMARK_TAGS_REQUEST:
       return state.merge({
         isFetchingTags: true,
+        list: {
+          ...state.get('list').toJS(),
+          // update the bookmark so the modification is see before the api call end.
+          [action.data.bookmark.id]: action.data.bookmark,
+        },
       })
 
     case UPDATE_BOOKMARK_TAGS_SUCCESS:
       return state.merge({
         isFetchingTags: false,
-        list: assign(state.get('list').toJS(), action.response.entities.bookmarks),
+        list: {
+          ...state.get('list').toJS(),
+          ...action.response.entities.bookmarks
+        },
       })
 
     case UPDATE_BOOKMARK_TAGS_FAILURE:
@@ -130,7 +149,10 @@ export const bookmark = (state = DEFAULT, action) => {
     case POST_BOOKMARK_SUCCESS:
       const postedNewBookmark = action.response.result
       return state.merge({
-        list: assign(state.get('list').toJS(), { [postedNewBookmark.id]: postedNewBookmark }),
+        list: {
+          ...state.get('list').toJS(),
+          [postedNewBookmark.id]: postedNewBookmark
+        },
       })
 
     case BOOKMARK_FAILURE:

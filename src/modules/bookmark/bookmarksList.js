@@ -3,9 +3,8 @@ import Immutable from "immutable"
 import { createApiCallAction } from '../../actions/creators'
 
 import BookmarkApi from '../../api/BookmarkApi'
-import assign from 'lodash/assign'
 
-import { UPDATE_BOOKMARK_TAGS_SUCCESS } from './bookmark'
+import { UPDATE_BOOKMARK_TAGS_SUCCESS, UPDATE_BOOKMARK_TAGS_REQUEST } from './bookmark'
 
 //
 // Actions
@@ -57,8 +56,8 @@ export const bookmarksList = (state = DEFAULT, action) => {
         isFetching: false,
         error: null,
         data: {
-          bookmarks: assign(oldData.bookmarks, action.response.entities.bookmarks),
-          pagination: assign(oldData.pagination, action.response.entities.pagination),
+          bookmarks: { ...oldData.bookmarks, ...action.response.entities.bookmarks },
+          pagination: { ...oldData.pagination, ...action.response.entities.pagination },
         },
         lastUpdated: Date.now(),
       })
@@ -71,11 +70,25 @@ export const bookmarksList = (state = DEFAULT, action) => {
         error: action.apiError,
       })
 
+    /*
+     * update the bookmark's tags on the request to display the new selected tags directly,
+     * without waiting for the request to end.
+     */
+    case UPDATE_BOOKMARK_TAGS_REQUEST:
+      return state.merge({
+        data: {
+          ...oldData,
+          bookmarks: {
+            [action.data.bookmark.id]: action.data.bookmark,
+          }
+        },
+      })
+
     case UPDATE_BOOKMARK_TAGS_SUCCESS:
       return state.merge({
         data: {
           ...oldData,
-          bookmarks: assign(oldData.bookmarks, action.response.entities.bookmarks),
+          bookmarks: { ...oldData.bookmarks, ...action.response.entities.bookmarks },
         },
       })
 

@@ -6,77 +6,81 @@ based on dark.css by Ivan Sagalaev
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #3f3f3f;
-  color: #dcdcdc;
+    display: block;
+    overflow-x: auto;
+    padding: .5em;
+    color: #333;
+    background: #f8f8f8
 }
-
+.hljs-comment,
+.hljs-quote {
+    color: #998;
+    font-style: italic
+}
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-tag {
-  color: #e3ceab;
-}
-
-.hljs-template-tag {
-  color: #dcdcdc;
-}
-
-.hljs-number {
-  color: #8cd0d3;
-}
-
-.hljs-variable,
-.hljs-template-variable,
-.hljs-attribute {
-  color: #efdcbc;
-}
-
-.hljs-literal {
-  color: #efefaf;
-}
-
 .hljs-subst {
-  color: #8f8f8f;
+    color: #333;
+    font-weight: 700
 }
-
-.hljs-title,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
+.hljs-literal,
+.hljs-number,
+.hljs-tag .hljs-attr,
+.hljs-template-variable,
+.hljs-variable {
+    color: teal
+}
+.hljs-doctag,
+.hljs-string {
+    color: #d14
+}
 .hljs-section,
+.hljs-selector-id,
+.hljs-title {
+    color: #900;
+    font-weight: 700
+}
+.hljs-subst {
+    font-weight: 400
+}
+.hljs-class .hljs-title,
 .hljs-type {
-  color: #efef8f;
+    color: #458;
+    font-weight: 700
 }
-
-.hljs-symbol,
+.hljs-attribute,
+.hljs-name,
+.hljs-tag {
+    color: navy;
+    font-weight: 400
+}
+.hljs-link,
+.hljs-regexp {
+    color: #009926
+}
 .hljs-bullet,
-.hljs-link {
-  color: #dca3a3;
+.hljs-symbol {
+    color: #990073
 }
-
-.hljs-deletion,
-.hljs-string,
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #cc9393;
+    color: #0086b3
 }
-
-.hljs-addition,
-.hljs-comment,
-.hljs-quote,
 .hljs-meta {
-  color: #7f9f7f;
+    color: #999;
+    font-weight: 700
 }
-
-
+.hljs-deletion {
+    background: #fdd
+}
+.hljs-addition {
+    background: #dfd
+}
 .hljs-emphasis {
-  font-style: italic;
+    font-style: italic
 }
-
 .hljs-strong {
-  font-weight: bold;
+  font-weight: 700
 }
 
 /*
@@ -85,81 +89,81 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 
 */
 
-//.hljs {
+// .hljs {
 //  display: block;
 //  overflow-x: auto;
 //  padding: 0.5em;
 //  background: #002b36;
 //  color: #839496;
-//}
+// }
 //
-//.hljs-comment,
-//.hljs-quote {
+// .hljs-comment,
+// .hljs-quote {
 //  color: #586e75;
-//}
+// }
 //
-///* Solarized Green */
-//.hljs-keyword,
-//.hljs-selector-tag,
-//.hljs-addition {
+// /* Solarized Green */
+// .hljs-keyword,
+// .hljs-selector-tag,
+// .hljs-addition {
 //  color: #859900;
-//}
+// }
 //
-///* Solarized Cyan */
-//.hljs-number,
-//.hljs-string,
-//.hljs-meta .hljs-meta-string,
-//.hljs-literal,
-//.hljs-doctag,
-//.hljs-regexp {
+// /* Solarized Cyan */
+// .hljs-number,
+// .hljs-string,
+// .hljs-meta .hljs-meta-string,
+// .hljs-literal,
+// .hljs-doctag,
+// .hljs-regexp {
 //  color: #2aa198;
-//}
+// }
 //
-///* Solarized Blue */
-//.hljs-title,
-//.hljs-section,
-//.hljs-name,
-//.hljs-selector-id,
-//.hljs-selector-class {
+// /* Solarized Blue */
+// .hljs-title,
+// .hljs-section,
+// .hljs-name,
+// .hljs-selector-id,
+// .hljs-selector-class {
 //  color: #268bd2;
-//}
+// }
 //
-///* Solarized Yellow */
-//.hljs-attribute,
-//.hljs-attr,
-//.hljs-variable,
-//.hljs-template-variable,
-//.hljs-class .hljs-title,
-//.hljs-type {
+// /* Solarized Yellow */
+// .hljs-attribute,
+// .hljs-attr,
+// .hljs-variable,
+// .hljs-template-variable,
+// .hljs-class .hljs-title,
+// .hljs-type {
 //  color: #b58900;
-//}
+// }
 //
-///* Solarized Orange */
-//.hljs-symbol,
-//.hljs-bullet,
-//.hljs-subst,
-//.hljs-meta,
-//.hljs-meta .hljs-keyword,
-//.hljs-selector-attr,
-//.hljs-selector-pseudo,
-//.hljs-link {
+// /* Solarized Orange */
+// .hljs-symbol,
+// .hljs-bullet,
+// .hljs-subst,
+// .hljs-meta,
+// .hljs-meta .hljs-keyword,
+// .hljs-selector-attr,
+// .hljs-selector-pseudo,
+// .hljs-link {
 //  color: #cb4b16;
-//}
+// }
 //
-///* Solarized Red */
-//.hljs-built_in,
-//.hljs-deletion {
+// /* Solarized Red */
+// .hljs-built_in,
+// .hljs-deletion {
 //  color: #dc322f;
-//}
+// }
 //
-//.hljs-formula {
+// .hljs-formula {
 //  background: #073642;
-//}
+// }
 //
-//.hljs-emphasis {
+// .hljs-emphasis {
 //  font-style: italic;
-//}
+// }
 //
-//.hljs-strong {
+// .hljs-strong {
 //  font-weight: bold;
-//}
+// }

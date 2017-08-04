@@ -1,4 +1,8 @@
-import _ from 'lodash'
+import merge from 'lodash/merge'
+import isUndefined from 'lodash/isUndefined'
+import isNull from 'lodash/isNull'
+import isNil from 'lodash/isNil'
+import isEmpty from 'lodash/isEmpty'
 
 import I18n from '../modules/i18n'
 import Logger from '../utils/Logger'
@@ -19,7 +23,7 @@ function ApiError(code, message) {
 
 
 function formatEndpoint(endpoint, params = null): string {
-  if (_.isNull(params)) {
+  if (isNull(params)) {
     return endpoint;
   }
 
@@ -64,7 +68,7 @@ class ApiManager {
     *
     * ```
     * errorMiddleware: (error, res, success, failure) => {
-    * if (!_.isNil(res)) {
+    * if (!isNil(res)) {
     *       if (res.statusCode === 401) {
     *         console.error('[API] 401, redirect to login')
     *         return true
@@ -106,7 +110,7 @@ class ApiManager {
   }
 
   configure(configuration: Object) {
-    this.config = _.merge(this.config, configuration)
+    this.config = merge(this.config, configuration)
   }
 
   //
@@ -114,7 +118,7 @@ class ApiManager {
   //
 
   getApiUrl(defaultUrl = null): string {
-    if (defaultUrl !== null) {
+    if (!isEmpty(defaultUrl)) {
       return defaultUrl
     }
 
@@ -126,7 +130,7 @@ class ApiManager {
   * Priority is given to the params headers over the middleware headers.
   */
   getHeaders(headersParam: Object): Object {
-    const headersToSet = _.merge(this.config.headersMiddleware(), headersParam)
+    const headersToSet = merge(this.config.headersMiddleware(), headersParam)
 
     return headersToSet
   }
@@ -142,8 +146,8 @@ class ApiManager {
   * @param failure the closure called on failure. Take an ApiError as parameter.
   */
   handleResponse(error: Object, res: Object, success: Function, failure: Function) {
-    if (!_.isUndefined(res) && this.isSuccessResponse(res.statusCode)) {
-      if (!_.isEmpty(res.text)) {
+    if (!isUndefined(res) && this.isSuccessResponse(res.statusCode)) {
+      if (!isEmpty(res.text)) {
         try {
           success(JSON.parse(res.text))
         } catch (e) {
@@ -156,7 +160,7 @@ class ApiManager {
       const errorMiddlewareUsed = this.config.errorMiddleware(error, res, success, failure)
 
       if (!errorMiddlewareUsed) {
-        if (_.isUndefined(res)) { // no internet connexion / no response
+        if (isUndefined(res)) { // no internet connexion / no response
           const apiError = ApiError(Error.NO_INTERNET, 'No internet connectivity')
           apiError.localizedMessage = I18n.tr('api_error.no_internet')
           failure(apiError)
@@ -173,20 +177,20 @@ class ApiManager {
   * @returns {ApiError} A populate ApiError object.
   */
   createApiError(responseBody: string): ApiError {
-    const error = ApiError(Error.UNKNOWN, 'Something went wrong, please try again')
+    const error = { code: Error.UNKNOWN, message: 'Something went wrong, please try again' }
 
-    if (!_.isNull(responseBody) && !_.isUndefined(responseBody)) {
+    if (!isNull(responseBody) && !isUndefined(responseBody)) {
       try {
         const json = JSON.parse(responseBody)
 
         if (json) {
-          if (!_.isEmpty(json.code)) {
-            error.setCode(json.code)
-            error.setMessage(json.message)
+          if (!isEmpty(json.code)) {
+            error.code = json.code
+            error.message = json.message
           }
         }
       } catch (syntaxError) { // SyntaxError exception
-        error.setDetail(responseBody)
+        error.detail = responseBody
       }
     }
 
@@ -416,7 +420,7 @@ class ApiManager {
         const file = files[key]
 
         // handle file keys with '.' in it.
-        if (!_.isUndefined(file) && !_.isNull(file)) {
+        if (!isUndefined(file) && !isNull(file)) {
           console.log('[put multipart] attach file', key)
           req.attach(key, file)
         } else {
@@ -455,7 +459,7 @@ getExtern(options: Object) {
   .query(query)
   .set(headers)
   .end((error: Object, res: Object) => {
-    if (!_.isNil(res) && this.isSuccessResponse(res.statusCode)) {
+    if (!isNil(res) && this.isSuccessResponse(res.statusCode)) {
       success(res)
     } else {
       failure(error, res)
@@ -474,7 +478,7 @@ postExtern(options: Object) {
   .send(data)
   .set(headers)
   .end((error: Object, res: Object) => {
-    if (!_.isNil(res) && this.isSuccessResponse(res.statusCode)) {
+    if (!isNil(res) && this.isSuccessResponse(res.statusCode)) {
       success(res)
     } else {
       failure(error, res)

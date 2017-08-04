@@ -6,6 +6,9 @@ const bmTheme = {
   sidebar: {
     width: '250px',
   },
+  appBar: {
+    height: '50px',
+  }
 }
 
 export default bmTheme

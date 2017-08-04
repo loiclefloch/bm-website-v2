@@ -2,17 +2,15 @@ import React from 'react'
 
 import './content.scss'
 
-import HtmlBlock from '../../../components/html/HtmlBlock'
-import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
-import VideoContent from './VideoContent'
-import SlideContent from './SlideContent'
-import BookmarkReadingPercent from './BookmarkReadingPercent'
+import ContentVideo from './ContentVideo'
+import ContentSlide from './ContentSlide'
+import ContentArticle from './ContentArticle'
 
 const Content = ({ bookmark }) => {
 
   if (bookmark.isTypeVideo) {
     return (
-      <VideoContent
+      <ContentVideo
         bookmark={bookmark}
       />
     )
@@ -20,25 +18,16 @@ const Content = ({ bookmark }) => {
 
   if (bookmark.isTypeSlide) {
     return (
-      <SlideContent
+      <ContentSlide
         bookmark={bookmark}
       />
     )
   }
 
   return (
-    <ScrollPercentage>
-      {({ percentage }) => (
-        <div className="bookmark_content">
-          <BookmarkReadingPercent
-            percentage={percentage * 100}
-          />
-          <HtmlBlock
-            content={bookmark.content}
-          />
-        </div>
-      )}
-    </ScrollPercentage>
+    <ContentArticle
+      bookmark={bookmark}
+    />
   )
 }
 
