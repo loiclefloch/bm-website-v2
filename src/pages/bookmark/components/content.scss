@@ -95,6 +95,10 @@
       color: $content-text-color;
     }
 
+    h3 a {
+      background-position: 0 37px;
+    }
+
     strong {
       font-family: $font-readable;
       font-weight: 800;

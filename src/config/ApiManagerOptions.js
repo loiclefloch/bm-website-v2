@@ -10,8 +10,7 @@ function getAuthorizationHeader(state) {
     if (!_.isEmpty(accessToken)) {
       return 'Bearer ' + accessToken
     } else {
-      // TODO: remove
-      return 'Bearer OTgxNmJjNjI4Y2VhYzc2NGI1ZDViOTdmMjliNzE1MTEyZmI0NmVmYWFhN2I3ZGE3M2JjMzVjYWJlZDIzYTJlYQ'
+			return 'Bearer MzAxZmQ3NGUwMzZkYWQxOWM1NjJiMzYwZTZjY2VjYzBlNTliZTMzNDk2ZTU4ZDQzYWQzMjA4YzhlOGE1YjQzYQ'
     }
   }
 
