@@ -3,8 +3,9 @@ import { Route } from 'react-router'
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty'
 
+import Layout from './Layout'
+
 import RoutingEnum from './RoutingEnum'
-import Layout from '../containers/layout/Layout'
 
 import UserPage from '../pages/login'
 import DashboardPage from '../pages/dashboard'

@@ -8,10 +8,11 @@ import {
   makeGetCircle,
 } from '../../modules/circle'
 
-import LoadingPage from '../../components/loading/LoadingPage'
+import Page from '../../containers/Page'
 import Header from './components/Header'
 
 class CirclePage extends Component {
+
   static propTypes = {
     fetchCircle: PropTypes.func.isRequired,
     isFetchingCircle: PropTypes.bool.isRequired,
@@ -28,26 +29,23 @@ class CirclePage extends Component {
   render() {
     const { isFetchingCircle, circle } = this.props
 
-    if (isFetchingCircle || !circle) {
-      return (
-        <LoadingPage
-          message="Loading circle"
-          show
-        />
-      )
-    }
-
     return (
-      <div
-        style={{
-          maxWidth: '800px',
-          paddingLeft: '5vw', // TODO: remove on mobile
-        }}
+      <Page
+        title={circle && circle.name}
+        isFetching={isFetchingCircle || !circle}
+        loadingMessage="Loading circle"
       >
-        <Header
-          circle={circle}
-        />
-      </div>
+        <div
+          style={{
+            maxWidth: '800px',
+            paddingLeft: '5vw', // TODO: remove on mobile
+          }}
+        >
+          <Header
+            circle={circle}
+          />
+        </div>
+      </Page>
     )
   }
 }

@@ -21,20 +21,6 @@ const LoadingPage = ({ size = 50, message = '', show }) => {
         zIndex: '10',
       }}
     >
-      <LinearProgress
-        mode="indeterminate"
-        style={{
-          height: '5px',
-          width: '100%',
-          position: 'absolute',
-          textAlign: 'center',
-          left: '0',
-          top: '50px',
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-          zIndex: '10',
-        }}
-      />
-      
       <div
         style={{
           top: '40%',

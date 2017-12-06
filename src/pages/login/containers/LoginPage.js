@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { login } from '../../../modules/auth'
 import LoginForm from '../components/LoginForm'
 
+import Page from '../../../containers/Page'
+
 class LoginPage extends Component {
   static propTypes = {
     userCredentials: PropTypes.shape({
@@ -22,13 +24,16 @@ class LoginPage extends Component {
     const { userCredentials, isFetching } = this.props;
 
     return (
-      <div>
+      <Page
+        title="Login"
+        isFullPage
+      >
         <LoginForm
           userCredentials={userCredentials}
           onLogin={this.onLogin}
           isFetching={isFetching}
         />
-      </div>
+      </Page>
     )
   }
 }

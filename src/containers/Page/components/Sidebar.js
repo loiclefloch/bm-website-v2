@@ -7,17 +7,30 @@ import themeable from '../../../modules/theme/themeable'
 
 import { Link, RoutingEnum } from '../../../components/router'
 
+const Item = ({ children }) => (
+  <MenuItem
+    style={{
+      color: 'white',
+    }}
+  >
+    {children}
+  </MenuItem>
+)
+
 class Sidebar extends React.Component {
 
   render() {
     return (
         <Drawer
           open={true}
+          containerStyle={{
+            backgroundColor: this.props.theme.sidebar.color,
+          }}
         >
           <div
             style={{
-              borderBottom: '1px solid #e0e0e0',
               boxSizing: 'border-box',
+              color: 'white',
               display: 'block',
               height: this.props.theme.appBar.height,
               padding: '16px 0 11px 24px',
@@ -35,41 +48,41 @@ class Sidebar extends React.Component {
             <Link
               to={Link.Route.DASHBOARD}
             >
-              <MenuItem>
+              <Item>
                 Home
-              </MenuItem>
+              </Item>
             </Link>
 
             <Link
               to={Link.Route.CIRCLES}
             >
-              <MenuItem>
+              <Item>
                 Circles
-              </MenuItem>
+              </Item>
             </Link>
 
             <Link
               to={Link.Route.BOOKS}
             >
-              <MenuItem>
+              <Item>
                 Books
-              </MenuItem>
+              </Item>
             </Link>
 
             <Link
               to={Link.Route.SETTINGS}
             >
-              <MenuItem>
+              <Item>
                 Settings
-              </MenuItem>
+              </Item>
             </Link>
 
             <Link
               to={Link.Route.TESTS}
             >
-              <MenuItem>
+              <Item>
                 Tests
-              </MenuItem>
+              </Item>
             </Link>
           </div>
         </Drawer>

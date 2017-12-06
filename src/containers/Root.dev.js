@@ -2,18 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { getRoutes } from '../config/routes'
-import DevTools from './DevTools'
 import { Router } from 'react-router'
 
 const Root = ({ store, history }) => (
   <Provider store={store}>
-    <div>
-      <Router
-        history={history}
-        routes={getRoutes(store)}
-      />
-      <DevTools />
-    </div>
+    <Router
+      history={history}
+      routes={getRoutes(store)}
+    />
   </Provider>
 )
 

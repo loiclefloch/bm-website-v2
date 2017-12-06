@@ -72,13 +72,18 @@ Logged.muiName = 'IconMenu'
 */
 class Header extends Component {
   render() {
-    const { isLoggedIn } = this.props
+    const {
+      isLoggedIn,
+      title
+    } = this.props
+
     return (
       <header
         style={{
           position: 'fixed',
           paddingLeft: this.props.theme.sidebar.width,
           height: this.props.theme.header.height,
+          opacity: 1,
           top: 0,
           left: 0,
           right: 0,
@@ -86,7 +91,7 @@ class Header extends Component {
         }}
       >
         <AppBar
-          title={document.title}
+          title={title}
           iconElementRight={isLoggedIn ? <Logged  {...this.props} /> : <Login />}
           iconStyleRight={{
             // remove default style

@@ -10,7 +10,7 @@ import LoadingList from '../../../components/loading/LoadingList'
 
 const style = {
   container: {
-    marginTop: '30px'
+    marginTop: 0,
   }
 }
 

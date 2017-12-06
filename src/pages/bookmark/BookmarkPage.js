@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+
 import {
   fetchBookmark,
   isFetchingBookmark,
@@ -12,13 +13,13 @@ import {
   isFetchingTags,
 } from '../../modules/tag'
 
+import Page from '../../containers/Page'
+
 import Header from './components/Header'
 import Content from './components/Content'
 
 import RightNav from './components/RightNav'
 import TocView from './components/TocView'
-
-import LoadingPage from '../../components/loading/LoadingPage'
 
 class BookmarkPage extends Component {
 
@@ -31,37 +32,34 @@ class BookmarkPage extends Component {
   render() {
     const { isFetchingBookmark, bookmark } = this.props
 
-    if (isFetchingBookmark || !bookmark) {
-      return (
-        <LoadingPage
-          message="Loading bookmark"
-          show
-        />
-      )
-    }
-
     return (
-      <div
-        style={{
-          maxWidth: '800px',
-          paddingLeft: '5vw', // TODO: remove on mobile
-        }}
+      <Page
+        title=''
+        isFetching={isFetchingBookmark || !bookmark}
+        loadingMessage='Loading bookmark'
       >
+        <div
+          style={{
+            maxWidth: '800px',
+            paddingLeft: '5vw', // TODO: remove on mobile
+          }}
+        >
 
-        <Header
-          bookmark={bookmark}
-        />
-
-        <RightNav>
-          <TocView
+          <Header
             bookmark={bookmark}
           />
-        </RightNav>
 
-        <Content
-          bookmark={bookmark}
-        />
-      </div>
+          <RightNav>
+            <TocView
+              bookmark={bookmark}
+            />
+          </RightNav>
+
+          <Content
+            bookmark={bookmark}
+          />
+        </div>
+      </Page>
     )
   }
 }

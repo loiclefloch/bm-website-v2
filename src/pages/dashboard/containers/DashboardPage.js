@@ -14,6 +14,8 @@ import {
   isFetchingTags,
 } from '../../../modules/tag'
 
+import Page from '../../../containers/Page'
+
 import { makeGetFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
 import BookmarksList from '../components/BookmarksList'
 
@@ -27,9 +29,9 @@ class DashboardPage extends Component {
     const { isFetchingBookmarks, bookmarks, paging } = this.props
 
     return (
-      <div>
-        <h1>Dashboard</h1>
-
+      <Page
+        title="Dashboard"
+      >
         <BookmarksList
           bookmarks={bookmarks}
           paging={paging}
@@ -40,7 +42,7 @@ class DashboardPage extends Component {
             onSearchQueryChange: (searchQuery) => this.props.updateUI({ searchQuery }),
           }}
         />
-      </div>
+      </Page>
     )
   }
 }

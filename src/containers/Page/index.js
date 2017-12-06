@@ -27,33 +27,73 @@ import {
   fetchMeTags
 } from '../../modules/tag'
 
-class Layout extends Component {
+import LoadingPage from '../../components/loading/LoadingPage'
+
+class Page extends Component {
 
   componentDidMount() {
     this.props.fetchMe()
     this.props.fetchMeTags()
   }
 
-  renderLayout() {
-    const { isLoggedIn, me, children } = this.props
+  render() {
+    const {
+      isFetchingMe,
+      isLoggedIn,
+      isFetching,
+      isFullPage,
+      isFetchingMessage,
+      me,
+      title,
+      children,
+    } = this.props
+
+    if (isFetchingMe || isFetching) {
+      return (
+        <LoadingPage
+          show
+          message={isFetchingMessage}
+        />
+      )
+    }
+
+    const containerStyle = {
+      maxWidth: '1160px',
+      margin: '0 auto',
+      paddingTop: '85px',
+      minHeight: '100%',
+      height: '100%',
+    }
+
+    if (!isFullPage) {
+      containerStyle.paddingLeft = '256px' // TODO: theme sidebar width
+    }
+
     return (
       <div id="layout">
-        <Header
-          isLoggedIn={isLoggedIn}
-          me={me}
-        />
+        {!isFullPage &&
+          <Header
+            title={title}
+            isLoggedIn={isLoggedIn}
+            me={me}
+          />
+        }
 
-        <Sidebar
-          isLoggedIn={isLoggedIn}
-          me={me}
-        />
+        {!isFullPage &&
+          <Sidebar
+            isLoggedIn={isLoggedIn}
+            me={me}
+          />
+        }
 
-        <div id="container">
+        <div style={containerStyle}>
           {children}
         </div>
 
-        <Footer
-        />
+        {!isFullPage &&
+          <Footer
+          />
+        }
 
         <DialogRenderer
         />
@@ -61,25 +101,6 @@ class Layout extends Component {
     )
   }
 
-  render() {
-    const { theme, isFetchingMe } = this.props
-
-    const muiTheme = getMuiTheme({ ...lightBaseTheme, ...theme });
-
-    return (
-      <MuiThemeProvider
-        muiTheme={muiTheme}
-      >
-        <ThemeProvider
-          themes={[muiTheme]}
-          // themeInd={1}
-          override
-        >
-          {isFetchingMe ? this.renderPageLoading() : this.renderLayout() }
-        </ThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -94,4 +115,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   fetchMe,
   fetchMeTags,
-})(Layout)
+})(Page)

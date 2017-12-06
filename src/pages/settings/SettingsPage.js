@@ -10,6 +10,8 @@ import ThemeContainer from './theme/ThemeContainer'
 import AccountCircleIcon from 'material-ui/svg-icons/action/account-circle';
 import StyleIcon from 'material-ui/svg-icons/image/style';
 
+import Page from '../../containers/Page'
+
 @ui({
   state: {
     tabIndex: 1,
@@ -26,7 +28,9 @@ class SettingsPage extends Component {
     const { ui } = this.props
 
     return (
-      <div>
+      <Page
+        title="Settings"
+      >
         <Tabs
           onChange={this.handleChangeView}
           value={ui.tabIndex}
@@ -55,7 +59,7 @@ class SettingsPage extends Component {
             />
           </div>
         </SwipeableViews>
-      </div>
+      </Page>
     )
   }
 }

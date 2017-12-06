@@ -13,6 +13,7 @@ import {
   getCirclesSortedByDate,
  } from './selectors'
 
+import Page from '../../containers/Page'
 import CirclesList from './components/CirclesList'
 
 class DashboardPage extends Component {
@@ -31,11 +32,10 @@ class DashboardPage extends Component {
     const { isFetchingCircles, circles } = this.props
 
     return (
-      <div>
-        <h1>
-          Circles
-        </h1>
-
+      <Page
+        title='Circles'
+        isFetching={isFetchingCircles}
+      >
         <CirclesList
           circles={circles}
           isFetching={isFetchingCircles}
@@ -43,7 +43,7 @@ class DashboardPage extends Component {
             showCircle: this.props.showCircle
           }}
         />
-      </div>
+      </Page>
     )
   }
 }
