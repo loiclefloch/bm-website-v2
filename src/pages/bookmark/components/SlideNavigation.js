@@ -9,10 +9,57 @@ import FullscreenExit from 'material-ui/svg-icons/navigation/fullscreen-exit'
 
 class SlideNavigation extends Component {
 
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeydown, false)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeydown, false)
+  }
+
+
+  handleKeydown = (event) => {
+    switch (event.keyCode) {
+      case 27: // esc
+        if (this.props.isFullScreen) {
+          this.props.toggleFullScreenMode()
+        }
+        break
+
+      case 37: // left
+        this.handlePrevious()
+        break
+
+      case 38: // up
+        break
+
+      case 39: // right
+        this.handleNext()
+        break
+
+      case 40: // down
+        break
+
+      case 72: // h
+      case 74: // j
+        this.handlePrevious()
+        break
+
+      case 75: // k
+      case 76: // l
+        this.handleNext()
+        break
+
+      default:
+
+    }
+  }
+
+
   handlePrevious = () => {
     const newPageNb = this.props.currentPage - 1
 
-    if (newPageNb > 0) {
+    if (newPageNb >= 0) {
       this.props.onCurrentPageChange(newPageNb)
     }
   }
@@ -26,17 +73,23 @@ class SlideNavigation extends Component {
   }
 
   render() {
+    const { isFullScreen } = this.props
+
     const styles = {
       button: {
         width: 72,
         height: 72,
         padding: 16,
+        color: isFullScreen ? 'black' : 'white',
       },
       smallIcon: {
         width: 36,
         height: 36,
+        color: isFullScreen ? 'black' : 'white',
       },
     }
+
+    const iconColor = isFullScreen ? 'white' : 'black'
 
     return (
       <nav
@@ -48,17 +101,25 @@ class SlideNavigation extends Component {
           style={styles.button}
           iconStyle={styles.icon}
         >
-          <NavigateBefore />
+          <NavigateBefore
+            color={iconColor}
+          />
         </IconButton>
 
-        <span>
+        <span
+          style={{
+            color: iconColor,
+          }}
+        >
           {this.props.currentPage + 1} / {this.props.lastPage}
         </span>
 
         <IconButton
           onClick={this.handleNext}
         >
-          <NavigateNext />
+          <NavigateNext
+            color={iconColor}
+          />
         </IconButton>
 
         <div>
@@ -66,9 +127,13 @@ class SlideNavigation extends Component {
             onClick={this.props.toggleFullScreenMode}
           >
             {this.props.isFullScreen ?
-              <FullscreenExit />
-              :
-              <Fullscreen />
+              <FullscreenExit
+                color={iconColor}
+              />
+            :
+            <Fullscreen
+              color={iconColor}
+            />
             }
           </IconButton>
         </div>

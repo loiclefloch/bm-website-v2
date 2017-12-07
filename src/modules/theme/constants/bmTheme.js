@@ -4,6 +4,9 @@ const bmTheme = {
   palette: {
     primary1Color: '#000c', //darkBlack,
   },
+  background: {
+    dark: '#000c',
+  },
   header: {
     height: '50px',
   },

@@ -3,4 +3,11 @@
   img {
     max-width: 100%;
   }
+
+  &.isFullScreen {
+    img {
+      height: 90vh;
+      margin-top: 2vh;
+    }
+  }
 }

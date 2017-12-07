@@ -42,17 +42,17 @@ class Page extends Component {
       isLoggedIn,
       isFetching,
       isFullPage,
-      isFetchingMessage,
+      loadingMessage,
       me,
       title,
       children,
     } = this.props
 
-    if (isFetchingMe || isFetching) {
+    if (isFetchingMe) {
       return (
         <LoadingPage
           show
-          message={isFetchingMessage}
+          message={loadingMessage}
         />
       )
     }
@@ -87,7 +87,14 @@ class Page extends Component {
         }
 
         <div style={containerStyle}>
-          {children}
+          {isFetching ?
+            <LoadingPage
+              show
+              message={loadingMessage}
+            />
+          : (
+            children
+          )}
         </div>
 
         {!isFullPage &&

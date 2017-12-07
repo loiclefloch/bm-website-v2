@@ -15,7 +15,10 @@ const style = {
   },
   icon: {
     marginTop: '14px',
-  }
+  },
+  card: {
+    marginBottom: '30px',
+  },
 }
 
 const Icon = ({ bookmark }) => {
@@ -32,9 +35,7 @@ const BookmarksListItem = ({ bookmark, onShowBookmark, addTagsToBookmark }) => {
   return (
     <Card
       className="pointer"
-      style={{
-        marginBottom: '30px',
-      }}
+      style={style.card}
     >
       <CardHeader
         onClick={() => onShowBookmark(bookmark)}

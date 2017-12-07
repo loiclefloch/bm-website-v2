@@ -10,7 +10,9 @@ import SearchBar from '../../../components/search/SearchBar'
 
 const style = {
   container: {
-    marginTop: '0'
+    marginTop: '0',
+    paddingLeft: '5vw',
+    maxWidth: '800px',
   }
 }
 
