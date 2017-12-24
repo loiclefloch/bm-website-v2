@@ -45,12 +45,12 @@ const DEFAULT = Immutable.fromJS({
 export const bookmarkUX = (state = DEFAULT, action) => {
   switch (action.type) {
     case BOOKMARK_SHOW_ADD:
-      return state.mergeDeep({
+      return state.merge({
         showAddBookmarkDialogModal: true,
       })
 
     case BOOKMARK_HIDE_ADD:
-      return state.mergeDeep({
+      return state.merge({
         showAddBookmarkDialogModal: false,
       })
 

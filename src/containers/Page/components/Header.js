@@ -1,28 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
-import {
-  showAddBookmarkDialog
-} from '../../../modules/bookmark'
+import { showAddBookmarkDialog } from "../../../modules/bookmark";
 
-import AppBar from 'material-ui/AppBar'
-import IconMenu from 'material-ui/IconMenu'
-import MenuItem from 'material-ui/MenuItem'
-import FlatButton from 'material-ui/FlatButton'
-import themeable from '../../../modules/theme/themeable'
+import AppBar from "material-ui/AppBar";
+import IconMenu from "material-ui/IconMenu";
+import MenuItem from "material-ui/MenuItem";
+import FlatButton from "material-ui/FlatButton";
+import themeable from "../../../modules/theme/themeable";
 
-import { AvatarWithDefault } from '../../../components/avatar'
+import { AvatarWithDefault } from "../../../components/avatar";
 
 class Login extends Component {
-  static muiName = 'FlatButton';
+  static muiName = "FlatButton";
 
   render() {
-    return (
-      <FlatButton
-        label="Login"
-      />
-    );
+    return <FlatButton label="Login" />;
   }
 }
 
@@ -31,15 +25,13 @@ class Login extends Component {
 //
 
 const Logged = ({ me, showAddBookmarkDialog }) => (
-  <div
-    className="u-flexCenter u-sizeFullHeight"
-  >
+  <div className="u-flexCenter u-sizeFullHeight">
     <FlatButton
       label="Add bookmark"
       onClick={showAddBookmarkDialog}
       className="u-marginRight20"
       style={{
-          color: 'white',
+        color: "white"
       }}
     />
 
@@ -48,79 +40,74 @@ const Logged = ({ me, showAddBookmarkDialog }) => (
       className="pointer"
       iconButtonElement={
         <AvatarWithDefault
-          src={me.avatar}
+          /* src={process.env.PUBLIC_URL + "/img/logo.svg"} */
+          /* src={me.avatar} */
           placeholder={me.username}
         />
       }
-      targetOrigin={{horizontal: 'right', vertical: 'top'}}
-      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+      targetOrigin={{ horizontal: "right", vertical: "top" }}
+      anchorOrigin={{ horizontal: "right", vertical: "top" }}
     >
       {/* TODO */}
       <MenuItem primaryText="Sign out" />
-
     </IconMenu>
   </div>
-)
-Logged.muiName = 'IconMenu'
+);
+Logged.muiName = "IconMenu";
 
 //
 //
 //
 
 /**
-*
-*/
+ *
+ */
 class Header extends Component {
   render() {
-    const {
-      isLoggedIn,
-      title
-    } = this.props
+    const { isLoggedIn, title } = this.props;
 
     return (
       <header
         style={{
-          position: 'fixed',
-          paddingLeft: this.props.theme.sidebar.width,
+          position: "fixed",
+          paddingLeft: 0,
           height: this.props.theme.header.height,
           opacity: 1,
           top: 0,
-          left: 0,
+          left: this.props.theme.sidebar.leftOf,
           right: 0,
-          zIndex: 200,
+          zIndex: 200
         }}
       >
         <AppBar
           title={title}
-          iconElementRight={isLoggedIn ? <Logged  {...this.props} /> : <Login />}
+          iconElementRight={isLoggedIn ? <Logged {...this.props} /> : <Login />}
           iconStyleRight={{
             // remove default style
             marginTop: 0,
-            marginRight: '10px',
+            marginRight: "10px"
           }}
           iconStyleLeft={{
             // remove default style
-            marginTop: 0,
+            marginTop: 0
           }}
-          style={{
-            height: '100%',
-          }}
+          style={{ height: "100%" }}
           titleStyle={{
-            height: '100%',
-            lineHeight: this.props.theme.header.height,
+            height: "100%",
+            lineHeight: this.props.theme.header.height
           }}
         />
       </header>
-    )
+    );
   }
 }
-
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-  }
-}
+  return {};
+};
 
-export default themeable()(connect(mapStateToProps, {
-  showAddBookmarkDialog,
-})(Header))
+export default themeable()(
+  connect(mapStateToProps, {
+    showAddBookmarkDialog
+  })(Header)
+);

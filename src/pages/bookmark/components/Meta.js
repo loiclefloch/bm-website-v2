@@ -8,7 +8,7 @@ const Meta = ({ bookmark }) => {
 
   return (
     <div
-      className="u-flexCenter u-justifyContentSpaceBetween"
+      className=""
     >
 
       <HeaderMetaAuthor

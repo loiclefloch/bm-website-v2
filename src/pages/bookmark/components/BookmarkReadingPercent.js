@@ -12,10 +12,11 @@ const BookmarkReadingPercent = ({ percentage, theme }) => (
       width: '100%',
       position: 'fixed',
       textAlign: 'center',
-      left: theme.sidebar.width,
+      left: theme.sidebar.leftOf,
       top: theme.header.height,
       backgroundColor: 'rgba(0, 0, 0, 0.3)',
       zIndex: '10',
+      borderRadius: '0',
     }}
   />
 )

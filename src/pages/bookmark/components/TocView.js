@@ -42,12 +42,15 @@ const styles = {
 const TocView = ({ bookmark }) => {
   const toc = bookmark.toc
   return (
+    // TODO: take remaining space
     <div
       className="u-zIndexFloating u-maxHeight300 u-borderLeft4 borderPrimary"
       style={{
         overflowX: 'hidden',
         overflowY: 'auto',
-        width: '160px',
+        minWidth: '160px',
+        marginTop: 20,
+        height: '100%',
       }}
     >
       <ul>
