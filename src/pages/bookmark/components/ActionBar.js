@@ -1,8 +1,10 @@
 import React from 'react'
 
+import { BookmarkCrawlerStatus } from '../../../modules/bookmark/constants'
+
 import ReadingTime from './ReadingTime'
 
-const BookmarkActionBar = ({ bookmark }) => {
+const BookmarkActionBar = ({ bookmark, onUpdateBookmark }) => {
   return (
     <div>
       <ReadingTime
@@ -15,6 +17,26 @@ const BookmarkActionBar = ({ bookmark }) => {
       />
 
       {/* TODO: icon delete */}
+
+      {bookmark.crawlerStatus !== BookmarkCrawlerStatus.CONTENT_BUG && (
+        <div
+          style={{
+            marginTop: 20,
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            const r = window.confirm('Are you sure ?')
+            if (r === true) {
+              onUpdateBookmark({
+                ...bookmark,
+                crawlerStatus: BookmarkCrawlerStatus.CONTENT_BUG,
+              })
+            }
+          }}
+        >
+          Marquer le contenu comme bugué
+        </div>
+      )}
     </div>
   )
 }

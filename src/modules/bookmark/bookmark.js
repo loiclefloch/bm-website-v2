@@ -32,6 +32,23 @@ export const fetchBookmark = (bookmarkId) => createApiCallAction(
   BookmarkApi.getBookmark(bookmarkId)
 )
 
+//
+// Update bookmark
+//
+
+export const PUT_BOOKMARK_REQUEST = 'BOOKMARK::PUT:REQUEST'
+export const PUT_BOOKMARK_SUCCESS = 'BOOKMARK::PUT:SUCCESS'
+export const PUT_BOOKMARK_FAILURE = 'BOOKMARK::PUT:FAILURE'
+
+// Fetches a page of stargazers for a particular repo.
+// Relies on the custom API middleware defined in ../middleware/api.js.
+export const updateBookmark = bookmark => createApiCallAction(
+  [
+    PUT_BOOKMARK_REQUEST, PUT_BOOKMARK_SUCCESS, PUT_BOOKMARK_FAILURE
+  ],
+  BookmarkApi.putBookmark(bookmark)
+)
+
 /**
  *
  * @param  Bookmark|string bookmark either the bookmark or the bookmark.id
@@ -100,12 +117,14 @@ const DEFAULT = Immutable.fromJS({
 export const bookmark = (state = DEFAULT, action) => {
   switch (action.type) {
     case BOOKMARK_REQUEST:
+    case PUT_BOOKMARK_REQUEST:
       return state.merge({
         isFetching: true,
         error: null,
       })
 
     case BOOKMARK_SUCCESS:
+    case PUT_BOOKMARK_SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -156,6 +175,7 @@ export const bookmark = (state = DEFAULT, action) => {
       })
 
     case BOOKMARK_FAILURE:
+    case PUT_BOOKMARK_FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

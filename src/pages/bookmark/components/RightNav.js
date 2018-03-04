@@ -6,7 +6,7 @@ import TagsList from './TagsList'
 import Meta from './Meta'
 import Divider from 'material-ui/Divider'
 
-const RightNav = ({ bookmark }) => (
+const RightNav = ({ bookmark, onUpdateBookmark }) => (
   <nav
     style={{
       position: 'fixed',
@@ -25,20 +25,20 @@ const RightNav = ({ bookmark }) => (
     >
       <div>
         <h1
-        style={{
-          fontSize: 16,
-          lineHeight: '20px',
-        }}
+          style={{
+            fontSize: 16,
+            lineHeight: '20px',
+          }}
         >
           {bookmark.title}
         </h1>
 
-        <ActionBar bookmark={bookmark} />
+        <ActionBar bookmark={bookmark} onUpdateBookmark={onUpdateBookmark} />
 
         <div
-        style={{
-          marginTop: 10,
-        }}
+          style={{
+            marginTop: 10,
+          }}
         >
           <TagsList bookmark={bookmark} />
         </div>
