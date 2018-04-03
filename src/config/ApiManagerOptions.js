@@ -10,7 +10,7 @@ function getAuthorizationHeader(state) {
     if (!_.isEmpty(accessToken)) {
       return 'Bearer ' + accessToken
     } else {
-      return 'Bearer Yzc1YjEyOWJhNjQ0NThlZmUzMGFjYWI2ZWY0YTQ1MDU1MGQ4ZTIwNzczZWM5ODM4OGNlNGYzZjJkMDdlZDEyMg'
+      return 'Bearer NTY0MmNhZjY3YjliOWQ2NTVmNTNjNmU5M2JiYjI4ZDA5YTM1ZDc1Y2Q0NWZhMzdkNWRjYjZhOTI0N2VjZDllMw'
     }
   }
 
@@ -18,14 +18,13 @@ function getAuthorizationHeader(state) {
 }
 
 export default {
-
   apiUrl: Config.API_URL,
 
   store: null,
 
   headersMiddleware: () => {
     const headers = {
-      'Accept': 'application/json',
+      Accept: 'application/json',
     }
 
     // TODO: why this.a ?
@@ -60,6 +59,5 @@ export default {
     // }
 
     return false
-  }
-
+  },
 }

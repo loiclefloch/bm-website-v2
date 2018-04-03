@@ -184,9 +184,10 @@ class ApiManager {
         const json = JSON.parse(responseBody)
 
         if (json) {
-          if (!isEmpty(json.code)) {
+          if (!isNil(json.code)) {
             error.code = json.code
             error.message = json.message
+            error.detail = json.detail || null
           }
         }
       } catch (syntaxError) { // SyntaxError exception
