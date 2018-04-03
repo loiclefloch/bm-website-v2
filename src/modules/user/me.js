@@ -1,6 +1,6 @@
 import Immutable from "immutable"
 
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 
 import UserApi from '../../api/UserApi'
 
@@ -8,15 +8,8 @@ import UserApi from '../../api/UserApi'
 // Actions
 //
 
-export const ME_REQUEST = 'ME::REQUEST'
-export const ME_SUCCESS = 'ME::SUCCESS'
-export const ME_FAILURE = 'ME::FAILURE'
-
-
-export const fetchMe = () => createApiCallAction(
-  [
-    ME_REQUEST, ME_SUCCESS, ME_FAILURE
-  ],
+export const fetchMe = createApiCallAction(
+  'ME::FETCH',
   UserApi.getMe()
 )
 
@@ -36,13 +29,13 @@ const DEFAULT = Immutable.fromJS({
 
 export const me = (state = DEFAULT, action) => {
   switch (action.type) {
-    case ME_REQUEST:
+    case fetchMe.REQUEST:
       return state.merge({
         isFetching: true,
         error: null
       })
 
-    case ME_SUCCESS:
+    case fetchMe.SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -50,7 +43,7 @@ export const me = (state = DEFAULT, action) => {
         lastUpdated: Date.now(),
       })
 
-    case ME_FAILURE:
+    case fetchMe.FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

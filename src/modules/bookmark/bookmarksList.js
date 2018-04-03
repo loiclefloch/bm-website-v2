@@ -1,24 +1,16 @@
-import Immutable from "immutable"
+import Immutable from 'immutable'
 
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 
 import BookmarkApi from '../../api/BookmarkApi'
 
-import { UPDATE_BOOKMARK_TAGS_SUCCESS, UPDATE_BOOKMARK_TAGS_REQUEST } from './bookmark'
+import { addTagsToBookmark } from './bookmark'
 
 //
 // Actions
 //
 
-export const BOOKMARKS_REQUEST = 'BOOKMARKS::REQUEST'
-export const BOOKMARKS_SUCCESS = 'BOOKMARKS::SUCCESS'
-export const BOOKMARKS_FAILURE = 'BOOKMARKS::FAILURE'
-
-// Login on the api
-export const loadBookmarks = (page = 1) => createApiCallAction(
-  [
-    BOOKMARKS_REQUEST, BOOKMARKS_SUCCESS, BOOKMARKS_FAILURE
-  ],
+export const loadBookmarks = createApiCallAction('BOOKMARKS', (page = 1) =>
   BookmarkApi.getBookmarks(page)
 )
 
@@ -38,20 +30,20 @@ const DEFAULT = Immutable.fromJS({
   },
   isFetching: false,
   lastUpdated: null,
-  error: null
+  error: null,
 })
 
 export const bookmarksList = (state = DEFAULT, action) => {
   const oldData = state.get('data').toJS()
 
   switch (action.type) {
-    case BOOKMARKS_REQUEST:
+    case loadBookmarks.REQUEST:
       return state.merge({
         isFetching: true,
         error: null,
       })
 
-    case BOOKMARKS_SUCCESS:
+    case loadBookmarks.SUCCESS:
       const newState = state.merge({
         isFetching: false,
         error: null,
@@ -64,7 +56,7 @@ export const bookmarksList = (state = DEFAULT, action) => {
 
       return newState
 
-    case BOOKMARKS_FAILURE:
+    case loadBookmarks.FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,
@@ -74,17 +66,17 @@ export const bookmarksList = (state = DEFAULT, action) => {
      * update the bookmark's tags on the request to display the new selected tags directly,
      * without waiting for the request to end.
      */
-    case UPDATE_BOOKMARK_TAGS_REQUEST:
+    case addTagsToBookmark.REQUEST:
       return state.merge({
         data: {
           ...oldData,
           bookmarks: {
             [action.data.bookmark.id]: action.data.bookmark,
-          }
+          },
         },
       })
 
-    case UPDATE_BOOKMARK_TAGS_SUCCESS:
+    case addTagsToBookmark.SUCCESS:
       return state.merge({
         data: {
           ...oldData,

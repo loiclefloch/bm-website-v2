@@ -1,7 +1,7 @@
 import Immutable from "immutable"
 import { createSelector } from 'reselect'
 import { formatTag } from './utils'
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 
 import TagApi from '../../api/TagApi'
 import merge from 'lodash/merge'
@@ -10,15 +10,8 @@ import merge from 'lodash/merge'
 // Actions
 //
 
-export const TAGS_REQUEST = 'TAGS::REQUEST'
-export const TAGS_SUCCESS = 'TAGS::SUCCESS'
-export const TAGS_FAILURE = 'TAGS::FAILURE'
-
-// Login on the api
-export const fetchMeTags = () => createApiCallAction(
-  [
-    TAGS_REQUEST, TAGS_SUCCESS, TAGS_FAILURE
-  ],
+export const fetchMeTags = createApiCallAction(
+  'TAGS::FETCH',
   TagApi.getTags()
 )
 
@@ -73,13 +66,13 @@ const DEFAULT = Immutable.fromJS({
 
 export const tagsList = (state = DEFAULT, action) => {
   switch (action.type) {
-    case TAGS_REQUEST:
+    case fetchMeTags.REQUEST:
       return state.merge({
         isFetching: true,
         error: null,
       })
 
-    case TAGS_SUCCESS:
+    case fetchMeTags.SUCCESS:
       const oldData = state.get('data').toJS()
       const newState = state.mergeDeep({
         isFetching: false,
@@ -92,7 +85,7 @@ export const tagsList = (state = DEFAULT, action) => {
 
       return newState
 
-    case TAGS_FAILURE:
+    case fetchMeTags.FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

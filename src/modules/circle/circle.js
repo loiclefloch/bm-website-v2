@@ -2,7 +2,7 @@ import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
 import { push } from 'react-router-redux'
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 import { createSelector } from 'reselect'
 import {
   formatCircle,
@@ -22,21 +22,13 @@ import {
 // Actions
 //
 
-export const CIRCLE_REQUEST = 'CIRCLE::REQUEST'
-export const CIRCLE_SUCCESS = 'CIRCLE::SUCCESS'
-export const CIRCLE_FAILURE = 'CIRCLE::FAILURE'
-
 const redirectToCircle = circleId => (dispatch, getState) => {
   return dispatch(push(RoutingEnum.CIRCLE.generatePathWithParams({ circleId })))
 }
 
-// Fetches a page of stargazers for a particular repo.
-// Relies on the custom API middleware defined in ../middleware/api.js.
-export const fetchCircle = (circleId) => createApiCallAction(
-  [
-    CIRCLE_REQUEST, CIRCLE_SUCCESS, CIRCLE_FAILURE
-  ],
-  CircleApi.getCircle(circleId)
+export const fetchCircle = createApiCallAction(
+  'CIRCLE::GET',
+  circleId => CircleApi.getCircle(circleId)
 )
 
 /**
@@ -94,14 +86,14 @@ const DEFAULT = Immutable.fromJS({
 
 export const circle = (state = DEFAULT, action) => {
   switch (action.type) {
-    case CIRCLE_REQUEST:
+    case fetchCircle.REQUEST:
       return state.merge({
         isFetching: true,
         error: null,
         data: action.circle,
       })
 
-    case CIRCLE_SUCCESS:
+    case fetchCircle.SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -115,7 +107,7 @@ export const circle = (state = DEFAULT, action) => {
     //     list: state.get('list').add(newCircle),
     //   })
 
-    case CIRCLE_FAILURE:
+    case fetchCircle.FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

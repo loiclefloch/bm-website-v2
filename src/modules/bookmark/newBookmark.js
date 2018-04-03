@@ -1,22 +1,16 @@
 import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 import { createSelector } from 'reselect'
 import { formatBookmark } from './utils'
 
 import BookmarkApi from '../../api/BookmarkApi'
 import RoutingEnum from '../../config/RoutingEnum'
 
-export const POST_BOOKMARK_REQUEST = 'BOOKMARK::POST:REQUEST'
-export const POST_BOOKMARK_SUCCESS = 'BOOKMARK::POST:SUCCESS'
-export const POST_BOOKMARK_FAILURE = 'BOOKMARK::POST:FAILURE'
-
-export const postBookmark = bookmark => createApiCallAction(
-  [
-    POST_BOOKMARK_REQUEST, POST_BOOKMARK_SUCCESS, POST_BOOKMARK_FAILURE
-  ],
-  BookmarkApi.postBookmark(bookmark)
+export const postBookmark = createApiCallAction(
+  'BOOKMARK::POST',
+  bookmark => BookmarkApi.postBookmark(bookmark)
 )
 
 //
@@ -70,7 +64,7 @@ const DEFAULT = Immutable.fromJS({
 
 export const newBookmark = (state = DEFAULT, action) => {
   switch (action.type) {
-    case POST_BOOKMARK_REQUEST:
+    case postBookmark.REQUEST:
       return state.merge({
         data: action.request.data,
         isFetching: true,
@@ -78,7 +72,7 @@ export const newBookmark = (state = DEFAULT, action) => {
         error: null,
       })
 
-    case POST_BOOKMARK_SUCCESS:
+    case postBookmark.requestSUCCESS:
       const newBookmark = action.response.result
 
       return state.merge({
@@ -89,7 +83,7 @@ export const newBookmark = (state = DEFAULT, action) => {
         isCreated: true,
       })
 
-    case POST_BOOKMARK_FAILURE:
+    case postBookmark.FAILURE:
       return state.merge({
         isFetching: false,
         isCreated: true,

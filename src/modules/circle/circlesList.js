@@ -1,6 +1,6 @@
 import Immutable from "immutable"
 
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 
 import CircleApi from '../../api/CircleApi'
 
@@ -8,15 +8,8 @@ import CircleApi from '../../api/CircleApi'
 // Actions
 //
 
-export const CIRCLES_REQUEST = 'CIRCLES::REQUEST'
-export const CIRCLES_SUCCESS = 'CIRCLES::SUCCESS'
-export const CIRCLES_FAILURE = 'CIRCLES::FAILURE'
-
-// Login on the api
-export const loadCircles = () => createApiCallAction(
-  [
-    CIRCLES_REQUEST, CIRCLES_SUCCESS, CIRCLES_FAILURE
-  ],
+export const loadCircles = createApiCallAction(
+  'CIRCLES::GET',
   CircleApi.getCircles()
 )
 
@@ -36,13 +29,13 @@ const DEFAULT = Immutable.fromJS({
 
 export const circlesList = (state = DEFAULT, action) => {
   switch (action.type) {
-    case CIRCLES_REQUEST:
+    case loadCircles.REQUEST:
       return state.merge({
         isFetching: true,
         error: null
       })
 
-    case CIRCLES_SUCCESS:
+    case loadCircles.SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -50,7 +43,7 @@ export const circlesList = (state = DEFAULT, action) => {
         lastUpdated: Date.now(),
       })
 
-    case CIRCLES_FAILURE:
+    case loadCircles.FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

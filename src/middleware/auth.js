@@ -1,6 +1,6 @@
 // auth middleware
 
-import { LOGIN_SUCCESS } from '../modules/auth'
+import { login } from '../modules/auth'
 import RoutingEnum from '../config/RoutingEnum'
 import { replace } from 'react-router-redux'
 
@@ -13,7 +13,7 @@ import { replace } from 'react-router-redux'
 function authMiddleware({getState, dispatch}) {
   return (next) => (action) => {
     if (typeof action === 'object' && action.hasOwnProperty('type')) {
-      if (action.type === LOGIN_SUCCESS) {
+      if (action.type === login.SUCCESS) {
         next(action) // send it to next so identity will be set
 
         const path = RoutingEnum.DASHBOARD.getPath()

@@ -1,6 +1,6 @@
 import Immutable from "immutable"
 
-import { createApiCallAction } from '../../actions/creators'
+import createApiCallAction from '../../modules/redux/createApiCallAction'
 
 import UserApi from '../../api/UserApi'
 
@@ -8,17 +8,11 @@ import UserApi from '../../api/UserApi'
 // Actions
 //
 
-export const USER_REQUEST = 'USER::REQUEST'
-export const USER_SUCCESS = 'USER::SUCCESS'
-export const USER_FAILURE = 'USER::FAILURE'
-
 // Fetches a page of stargazers for a particular repo.
 // Relies on the custom API middleware defined in ../middleware/api.js.
-const fetchUser = (user) => createApiCallAction(
-  [
-    USER_REQUEST, USER_SUCCESS, USER_FAILURE
-  ],
-  UserApi.getUser(user.id)
+const fetchUser = createApiCallAction(
+  'USER::FETCH',
+  user => UserApi.getUser(user.id)
 )
 
 export const showUser = user => (dispatch, getState) => {
@@ -39,14 +33,14 @@ const DEFAULT = Immutable.fromJS({
 
 export const users = (state = DEFAULT, action) => {
   switch (action.type) {
-    case USER_REQUEST:
+    case fetchUser.REQUEST:
       return state.merge({
         isFetching: true,
         error: null,
         data: action.user,
       })
 
-    case USER_SUCCESS:
+    case fetchUser.SUCCESS:
       return state.merge({
         isFetching: false,
         error: null,
@@ -54,7 +48,7 @@ export const users = (state = DEFAULT, action) => {
         lastUpdated: Date.now(),
       })
 
-    case USER_FAILURE:
+    case fetchUser.FAILURE:
       return state.merge({
         isFetching: false,
         error: action.apiError,

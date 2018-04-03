@@ -1,9 +1,5 @@
 // auth middleware
 
-import { LOGIN_SUCCESS } from '../pages/login/actions'
-import RoutingEnum from '../config/RoutingEnum'
-import { replace } from 'react-router-redux';
-
 /**
  * Intercepts @@router/LOCATION_CHANGE action and redirects to login screen if needed
  */
@@ -25,4 +21,4 @@ function routeRequireLoginMiddleware({getState, dispatch}) {
     };
 }
 
-export default authMiddleware
+export default routeRequireLoginMiddleware

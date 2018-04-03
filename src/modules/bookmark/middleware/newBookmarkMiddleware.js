@@ -1,6 +1,6 @@
 // auth middleware
 
-import { POST_BOOKMARK_SUCCESS, POST_BOOKMARK_FAILURE } from '../newBookmark'
+import { postBookmark } from '../newBookmark'
 import RoutingEnum from '../../../config/RoutingEnum'
 import { push } from 'react-router-redux'
 import { hideAddBookmarkDialog } from '../'
@@ -13,7 +13,7 @@ import { hideAddBookmarkDialog } from '../'
 function newBookmarkMiddleware({ getState, dispatch }) {
     return (next) => (action) => {
         if (typeof action === 'object' && action.hasOwnProperty('type')) {
-            if (action.type === POST_BOOKMARK_SUCCESS) {
+            if (action.type === postBookmark.SUCCESS) {
                 next(action) // send it to next so identity will be set
 
                 // hide AddBookmarkDialog
@@ -30,7 +30,7 @@ function newBookmarkMiddleware({ getState, dispatch }) {
             }
 
             // handle already exists, we redirect to it
-            if (action.type === POST_BOOKMARK_FAILURE && action.apiError.code === 101) {
+            if (action.type === postBookmark.FAILURE && action.apiError.code === 101) {
                 next(action)
                 
                 // hide AddBookmarkDialog
