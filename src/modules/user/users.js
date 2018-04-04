@@ -1,6 +1,6 @@
 import Immutable from "immutable"
 
-import createApiCallAction from '../../modules/redux/createApiCallAction'
+import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
 
 import UserApi from '../../api/UserApi'
 
@@ -8,8 +8,6 @@ import UserApi from '../../api/UserApi'
 // Actions
 //
 
-// Fetches a page of stargazers for a particular repo.
-// Relies on the custom API middleware defined in ../middleware/api.js.
 const fetchUser = createApiCallAction(
   'USER::FETCH',
   user => UserApi.getUser(user.id)

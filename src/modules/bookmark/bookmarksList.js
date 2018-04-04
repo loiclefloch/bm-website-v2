@@ -1,10 +1,10 @@
 import Immutable from 'immutable'
 
-import createApiCallAction from '../../modules/redux/createApiCallAction'
+import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
 
 import BookmarkApi from '../../api/BookmarkApi'
 
-import { addTagsToBookmark } from './bookmark'
+import { addTagsToBookmark } from './bookmark/actions'
 
 //
 // Actions

@@ -3,16 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ui from 'redux-ui'
 
-import {
-  showBookmark,
-  loadBookmarks,
-  onLoadMoreBookmarks,
-} from '../../../modules/bookmark'
+import { showBookmark } from '../../../modules/bookmark/bookmark/actions'
+import { loadBookmarks, onLoadMoreBookmarks } from '../../../modules/bookmark'
 
-import {
-  getTagsList,
-  isFetchingTags,
-} from '../../../modules/tag'
+import { getTagsList, isFetchingTags } from '../../../modules/tag'
 
 import Page from '../../../containers/Page'
 
@@ -20,7 +14,6 @@ import { makeGetFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } fro
 import BookmarksList from '../components/BookmarksList'
 
 class DashboardPage extends Component {
-
   componentDidMount() {
     this.props.loadBookmarks()
   }
@@ -29,9 +22,7 @@ class DashboardPage extends Component {
     const { isFetchingBookmarks, bookmarks, paging } = this.props
 
     return (
-      <Page
-        title="Dashboard"
-      >
+      <Page title="Dashboard">
         <BookmarksList
           bookmarks={bookmarks}
           paging={paging}
@@ -39,7 +30,7 @@ class DashboardPage extends Component {
           actions={{
             showBookmark: this.props.showBookmark,
             onLoadMore: this.props.onLoadMoreBookmarks,
-            onSearchQueryChange: (searchQuery) => this.props.updateUI({ searchQuery }),
+            onSearchQueryChange: searchQuery => this.props.updateUI({ searchQuery }),
           }}
         />
       </Page>
@@ -81,14 +72,17 @@ const makeMapStateToProps = () => {
   return mapStateToProps
 }
 
-export default ui({ // see https://github.com/tonyhb/redux-ui/issues/49
+export default ui({
+  // see https://github.com/tonyhb/redux-ui/issues/49
   name: 'DashboardPage',
   persist: false,
   state: {
     searchQuery: '',
   },
-})(connect(makeMapStateToProps, {
-  showBookmark,
-  loadBookmarks,
-  onLoadMoreBookmarks,
-})(DashboardPage))
+})(
+  connect(makeMapStateToProps, {
+    showBookmark,
+    loadBookmarks,
+    onLoadMoreBookmarks,
+  })(DashboardPage)
+)

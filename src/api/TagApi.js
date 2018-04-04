@@ -1,4 +1,4 @@
-import ApiEndpoints from '../config/ApiEndpoints'
+import ApiEndpoints from './ApiEndpoints'
 
 import TagsListSchema from './schemas/TagsListSchema'
 import TagSchema from './schemas/TagSchema'

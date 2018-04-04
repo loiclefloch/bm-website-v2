@@ -1,29 +1,10 @@
 import React from 'react'
 
-import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import Root from './modules/reactoon/archi/components/Root'
 
-import configureStore from './store/configureStore'
 
-import ApiManager from './api/ApiManager'
-import ApiManagerOptions from './config/ApiManagerOptions'
-
-import Root from './containers/Root'
-
-const store = configureStore()
-const history = syncHistoryWithStore(browserHistory, store)
-
-ApiManagerOptions.store = store
-
-ApiManager.configure(ApiManagerOptions)
-
-const App = () => {
-  return (
-    <Root
-      store={store}
-      history={history}
-    />
-  )
+const App = ({ store, history, appOptions }) => {
+  return <Root store={store} history={history} appOptions={appOptions} />
 }
 
 export default App

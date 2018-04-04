@@ -1,4 +1,4 @@
-import createApiCallAction from '../../modules/redux/createApiCallAction'
+import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
 import UserApi from '../../api/UserApi'
 import Immutable from "immutable"
 

@@ -9,7 +9,7 @@ import ui from 'redux-ui'
 
 import {
   addTagsToBookmark,
-} from '../../modules/bookmark'
+} from '../../modules/bookmark/bookmark/actions.js'
 
 import {
   getTagsList,

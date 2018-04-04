@@ -1,4 +1,4 @@
-import ApiEndpoints from '../config/ApiEndpoints'
+import ApiEndpoints from './ApiEndpoints'
 
 import BookmarksListSchema from './schemas/BookmarksListSchema'
 import BookmarkSchema from './schemas/BookmarkSchema'

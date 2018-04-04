@@ -1,7 +1,7 @@
 import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
-import createApiCallAction from '../../modules/redux/createApiCallAction'
+import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
 import { createSelector } from 'reselect'
 import { formatBookmark } from './utils'
 

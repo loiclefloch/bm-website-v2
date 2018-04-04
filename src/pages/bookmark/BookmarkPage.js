@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import { connect } from '../../modules/reactoon/view'
+// import { connect } from 'react-redux'
 
-import {
-  fetchBookmark,
-  updateBookmark,
-  isFetchingBookmark,
-  makeGetBookmark,
-} from '../../modules/bookmark'
+import { isFetchingBookmark, makeGetBookmark } from '../../modules/bookmark/bookmark/selectors'
+import { fetchBookmark, updateBookmark } from '../../modules/bookmark/bookmark/actions'
 
 import { isFetchingTags } from '../../modules/tag'
 
@@ -67,19 +64,23 @@ BookmarkPage.propTypes = {
   bookmark: PropTypes.object,
 }
 
-const makeMapStateToProps = () => {
-  const getBookmark = makeGetBookmark()
-  const mapStateToProps = (state, props) => {
-    return {
-      isFetchingBookmark: isFetchingBookmark(state),
-      bookmark: getBookmark(state, props),
-      isFetchingTags: isFetchingTags(state),
-    }
-  }
-  return mapStateToProps
-}
+export default connect(
+  'Bookmark',
+  Bookmark => {
+    const getBookmark = Bookmark.makeGetBookmark()
 
-export default connect(makeMapStateToProps, {
-  fetchBookmark,
-  updateBookmark,
-})(BookmarkPage)
+    const mapStateToProps = (state, props) => {
+      return {
+        isFetchingBookmark: Bookmark.isFetchingBookmark(state),
+        bookmark: getBookmark(state, props),
+        isFetchingTags: isFetchingTags(state),
+      }
+    }
+
+    return mapStateToProps
+  },
+  Bookmark => ({
+    fetchBookmark: Bookmark.fetchBookmark,
+    updateBookmark: Bookmark.updateBookmark,
+  })
+)(BookmarkPage)

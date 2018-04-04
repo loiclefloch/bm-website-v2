@@ -1,6 +1,6 @@
 import Immutable from "immutable"
 
-import createApiCallAction from '../../modules/redux/createApiCallAction'
+import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
 
 import CircleApi from '../../api/CircleApi'
 
