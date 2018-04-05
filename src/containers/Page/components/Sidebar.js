@@ -7,7 +7,7 @@ import themeable from "../../../modules/theme/themeable";
 
 import LogoIcon from "../../../components/Logo";
 
-import { Link, RoutingEnum } from "../../../components/router";
+import Link from "../../../modules/reacticoon/routing/Link";
 
 const Item = ({ children }) => (
   <MenuItem
@@ -48,23 +48,23 @@ class Sidebar extends React.Component {
         </div>
 
         <div style={{ paddingTop: "50px" }}>
-          <Link to={Link.Route.DASHBOARD}>
+          <Link to={Link.getRoute('DASHBOARD')}>
             <Item>Home</Item>
           </Link>
 
-          <Link to={Link.Route.CIRCLES}>
+          <Link to={Link.getRoute('CIRCLES')}>
             <Item>Circles</Item>
           </Link>
 
-          <Link to={Link.Route.BOOKS}>
+          <Link to={Link.getRoute('BOOKS')}>
             <Item>Books</Item>
           </Link>
 
-          <Link to={Link.Route.SETTINGS}>
+          <Link to={Link.getRoute('SETTINGS')}>
             <Item>Settings</Item>
           </Link>
 
-          <Link to={Link.Route.TESTS}>
+          <Link to={Link.getRoute('TESTS')}>
             <Item>Tests</Item>
           </Link>
         </div>

@@ -1,7 +1,6 @@
-import merge from 'lodash/merge';
+import merge from 'lodash/merge'
 
 const Env = {
-
   COMMON: {
     IS_DEV: false,
 
@@ -14,8 +13,8 @@ const Env = {
     github_api_repository_link: 'http://github.com/loiclefloch/bm',
 
     Logger: {
-      SENTRY_URL: ''
-    }
+      SENTRY_URL: '',
+    },
   },
 
   LOCAL: {
@@ -30,9 +29,8 @@ const Env = {
     Auth: {
       client_id: '3_41usi26rwc6cs4gwcooskss8g0ww0kg44coowg0wkoc4cwwkgs',
       client_secret: '3wgrk1sdtny88skgsk00o8cc8o84swos4gckkgc4skw00s84ss',
-      grant_type: 'password'
-    }
-
+      grant_type: 'password',
+    },
   },
 
   DEV: {
@@ -47,22 +45,21 @@ const Env = {
     Auth: {
       client_id: '1_4fpqq4qixvy84skg0oskkccc0wk84wwss48cckos48g0488g0s',
       client_secret: '584tmbzo4ngo80gc4gss0sss0cg4wc8ss4s80s888ww4ocowks',
-      grant_type: 'password'
-    }
-
+      grant_type: 'password',
+    },
   },
 
-  PRODUCTION: {}
-};
-
-let currentEnv = Env.LOCAL;
-const hostname = window.location.hostname;
-if (hostname === Env.LOCAL.HOSTNAME) {
-  currentEnv = Env.LOCAL;
-} else if (hostname === Env.DEV.HOSTNAME) {
-  currentEnv = Env.DEV;
-} else if (hostname === Env.PRODUCTION.HOSTNAME) {
-  currentEnv = Env.PRODUCTION;
+  PRODUCTION: {},
 }
 
-export default merge({}, Env.COMMON, currentEnv);
+let currentEnv = Env.LOCAL
+const hostname = window.location.hostname
+if (hostname === Env.LOCAL.HOSTNAME) {
+  currentEnv = Env.LOCAL
+} else if (hostname === Env.DEV.HOSTNAME) {
+  currentEnv = Env.DEV
+} else if (hostname === Env.PRODUCTION.HOSTNAME) {
+  currentEnv = Env.PRODUCTION
+}
+
+export default merge({}, Env.COMMON, currentEnv)

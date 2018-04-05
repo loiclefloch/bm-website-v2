@@ -1,6 +1,6 @@
-import createMiddleware from '../../reactoon/middleware/createMiddleware'
+import createMiddleware from '../../reacticoon/middleware/createMiddleware'
 import { redirectToBookmark } from './actions'
-import { redirectTo } from '../../reactoon/routing'
+import { redirectTo } from '../../reacticoon/routing'
 
 export const redirectToBookmarkMiddleware = createMiddleware(
   'redirectToBookmarkMiddleware',

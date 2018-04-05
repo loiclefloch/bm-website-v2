@@ -1,7 +1,6 @@
 import _ from 'lodash'
 
 import Config from './Config'
-import Logger from '../utils/Logger'
 
 function getAuthorizationHeader(state) {
   let entities = state.entities

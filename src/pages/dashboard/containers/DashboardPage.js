@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import ui from 'redux-ui'
 
 import { showBookmark } from '../../../modules/bookmark/bookmark/actions'
-import { loadBookmarks, onLoadMoreBookmarks } from '../../../modules/bookmark'
+import { loadBookmarks, onLoadMoreBookmarks } from '../../../modules/bookmark/bookmarkList/actions'
 
 import { getTagsList, isFetchingTags } from '../../../modules/tag'
 
 import Page from '../../../containers/Page'
 
-import { makeGetFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } from '../selectors'
+import { makeGetFilteredBookmarks, isFetchingBookmarks, getBookmarksPaging } from '../../../modules/bookmark/bookmarkList/selectors'
 import BookmarksList from '../components/BookmarksList'
 
 class DashboardPage extends Component {

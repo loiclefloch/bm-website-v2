@@ -1,13 +1,13 @@
-import { createModule } from '../../reactoon/module'
+import { createModule } from '../../reacticoon/module'
 
 import * as actions from './actions'
 import * as selectors from './selectors'
 import * as middlewares from './middlewares'
-import bookmarkReducer from './reducer'
+import reducer from './reducer'
 
 const BookmarkModule = createModule('Bookmark', {
   actions,
-  reducer: bookmarkReducer,
+  reducer,
   selectors,
   middlewares,
 })

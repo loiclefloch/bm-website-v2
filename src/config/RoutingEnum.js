@@ -1,4 +1,4 @@
-import Route from '../utils/Route';
+import Route from '../modules/reacticoon/routing/Route'
 
 /**
  * Note: we do not define the handler page here since RoutingEnum is import and use before they are
@@ -6,22 +6,22 @@ import Route from '../utils/Route';
  * @type {Route}
  */
 
-class RoutingEnum {
-  static LOGIN = new Route('LOGIN', '/login')
+const RoutingEnum =  {
+  LOGIN: new Route('LOGIN', '/login'),
 
-  static DASHBOARD = new Route('DASHBOARD', '/dashboard')
+  DASHBOARD: new Route('DASHBOARD', '/dashboard'),
 
-  static BOOKMARK = new Route('BOOKMARK', '/bookmarks/:bookmarkId')
+  BOOKMARK: new Route('BOOKMARK', '/bookmarks/:bookmarkId'),
 
-  static CIRCLES = new Route('CIRCLES', '/circles')
+  CIRCLES: new Route('CIRCLES', '/circles'),
 
-  static CIRCLE = new Route('CIRCLE', '/circles/:circleId')
+  CIRCLE: new Route('CIRCLE', '/circles/:circleId'),
 
-  static BOOKS = new Route('BOOKS', '/books')
+  BOOKS: new Route('BOOKS', '/books'),
 
-  static TESTS = new Route('TESTS', '/tests')
+  TESTS: new Route('TESTS', '/tests'),
 
-  static SETTINGS = new Route('SETTINGS', '/settings')
+  SETTINGS: new Route('SETTINGS', '/settings'),
 }
 
 export default RoutingEnum

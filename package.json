@@ -55,6 +55,8 @@
     "intl-messageformat": "2.1.0",
     "lodash": "^4.16.1",
     "material-ui": "0.18.1",
+    "moment": "2.22.0",
+    "node-polyglot": "2.2.2",
     "normalize.css": "7.0.0",
     "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",

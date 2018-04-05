@@ -2,7 +2,7 @@ import Immutable from "immutable"
 
 import isNil from 'lodash/isNil'
 import { push } from 'react-router-redux'
-import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
+import createApiCallAction from '../../modules/reacticoon/action/createApiCallAction'
 import { createSelector } from 'reselect'
 import {
   formatCircle,

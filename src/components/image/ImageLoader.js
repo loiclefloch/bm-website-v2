@@ -5,8 +5,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-import Logger from '../../utils/Logger'
-
 import classNames from 'classnames'
 
 const { span } = React.DOM
@@ -110,7 +108,7 @@ export default class ImageLoader extends Component {
       status: Status.FAILED
     })
 
-    Logger.warning('ImageLoader', `Could not load the image with url ${this.props.src}`)
+    // Logger.warning('ImageLoader', `Could not load the image with url ${this.props.src}`)
     if (this.props.onError) this.props.onError(error)
   }
 

@@ -1,7 +1,7 @@
 import Immutable from "immutable"
 import { createSelector } from 'reselect'
 import { formatTag } from './utils'
-import createApiCallAction from '../../modules/reactoon/action/createApiCallAction'
+import createApiCallAction from '../../modules/reacticoon/action/createApiCallAction'
 
 import TagApi from '../../api/TagApi'
 import merge from 'lodash/merge'

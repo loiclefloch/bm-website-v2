@@ -8,6 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 
 import { getTheme } from '../modules/theme'
+import { isFetchingI18nPhrases } from '../modules/reacticoon/i18n'
 
 /**
  * The content of the app will have the `router` as children.
@@ -18,7 +19,7 @@ import { getTheme } from '../modules/theme'
  */
 class Content extends Component {
   render() {
-    const { theme } = this.props
+    const { theme, isFetchingI18nPhrases, children } = this.props
 
     const muiTheme = getMuiTheme({ ...lightBaseTheme, ...theme })
 
@@ -29,7 +30,10 @@ class Content extends Component {
           // themeInd={1}
           override
         >
-          {this.props.children}
+          {isFetchingI18nPhrases
+            ? // TODO: display loading
+              null
+            : children}
         </ThemeProvider>
       </MuiThemeProvider>
     )
@@ -39,6 +43,7 @@ class Content extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     theme: getTheme(state),
+    isFetchingI18nPhrases: isFetchingI18nPhrases(state),
   }
 }
 

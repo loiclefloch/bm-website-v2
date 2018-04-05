@@ -1,6 +1,6 @@
 import RoutingEnum from './RoutingEnum'
 
-import UserPage from '../pages/login'
+import LoginPage from '../pages/login'
 import DashboardPage from '../pages/dashboard'
 import CirclesListPage from '../pages/circles/CirclesListPage'
 import CirclePage from '../pages/circle/CirclePage'
@@ -11,7 +11,7 @@ import TestPage from '../pages/test/TestPage'
 const routes = [
   {
     definition: RoutingEnum.LOGIN,
-    handler: UserPage,
+    handler: LoginPage,
   },
   {
     definition: RoutingEnum.DASHBOARD,

@@ -1,7 +1,7 @@
 import { push } from 'react-router-redux'
 
-import createApiCallAction from '../../reactoon/action/createApiCallAction'
-import createAction from '../../reactoon/action/createAction'
+import createApiCallAction from '../../reacticoon/action/createApiCallAction'
+import createAction from '../../reacticoon/action/createAction'
 
 import isNil from 'lodash/isNil'
 

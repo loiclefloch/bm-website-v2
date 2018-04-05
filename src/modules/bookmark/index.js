@@ -1,5 +1,4 @@
 export * from './bookmark'
-export * from './bookmarksList'
 export * from './constants'
 export * from './utils'
 export * from './bookmarkUX'

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import map from 'lodash/map'
+// import map from 'lodash/map'
 
-import LoadingPage from '../../components/loading/LoadingPage'
-import { generateToc } from '../../modules/bookmark/utils'
-import Link from '../../components/router/Link'
+// import LoadingPage from '../../components/loading/LoadingPage'
+// import { generateToc } from '../../modules/bookmark/utils'
+import Link from '../../modules/reacticoon/routing/Link'
 
 class TestPage extends Component {
   static propTypes = {
