@@ -4,14 +4,19 @@
 import forOwn from 'lodash/forOwn'
 import isNil from 'lodash/isNil'
 import invariant from 'invariant'
-import { getModules } from './config'
+import { __DEV__ } from '../environment'
 
-const generateModuleEntities = () => {
+const generateModuleEntities = modules => {
   const entities = {}
 
-  forOwn(getModules(), (module, key) => {
+  forOwn(modules, (module, key) => {
     invariant(!isNil(module.content.reducer), `no reducer found for ${module.name}`)
-    entities[module.name] = module.content.reducer
+    const reducer = module.content.reducer
+    if (__DEV__) {
+      reducer._module = module.name
+      reducer.toString = () => `[reducer] ${module.name}`
+    }
+    entities[module.name] = reducer
   })
 
   return entities

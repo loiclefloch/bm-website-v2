@@ -4,7 +4,7 @@
  * 
  * Note: Plugins can defines there custom events via the `customEvents` config.
  */
-const ReactoonEvents = {
+const ReacticoonEvents = {
   //
   // Dispatched once the `Application` is initialized, but before rendering any react component.
   //
@@ -78,4 +78,4 @@ const ReactoonEvents = {
   CLEAR_USER_CONTEXT: 'REACTICOON::USER_CONTEXT::CLEAR',
 }
 
-export default ReactoonEvents
+export default ReacticoonEvents

@@ -16,12 +16,19 @@ import { EventManager } from '../../event'
 const crashReporter = store => next => action => {
   try {
     if (isNil(action)) {
-      EventManager.warn({ type: 'crashReporter', detail: 'Action is nil' })
+      EventManager.dispatch(EventManager.Event.LOG_WARN, {
+        type: 'crashReporter',
+        detail: 'Action is nil',
+      })
     } else {
       return next(action) // dispatch
     }
   } catch (err) {
-    EventManager.reduxException({ err, action, state: store.getState() })
+    EventManager.dispatch(EventManager.Events.LOG_EXCEPTION, {
+      err,
+      action,
+      state: store.getState(),
+    })
 
     throw err // re-throw error in order to be seen on console
   }

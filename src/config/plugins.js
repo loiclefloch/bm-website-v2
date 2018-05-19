@@ -1,15 +1,45 @@
-import reactoonPluginExample from '../plugins/reacticoon-plugin-example'
-import reactoonLogger from '../plugins/reacticoon-plugin-logger'
+import reacticoonPluginExample from '../plugins/reacticoon-plugin-example'
+import reacticoonLogger from '../plugins/reacticoon-plugin-logger'
+import reacticoonSentry from '../plugins/reacticoon-plugin-sentry'
+import reacticoonForm from '../plugins/reacticoon-form'
+
+import bookmarkForm from '../modules/bookmarkForm'
+import { reacticoonValidator } from '../plugins/reacticoon-validation'
 
 export default [
   {
-    plugin: reactoonPluginExample,
+    plugin: reacticoonPluginExample,
     config: {
       toto: 42,
     },
   },
   {
-    plugin: reactoonLogger,
+    plugin: reacticoonLogger,
     config: {},
+  },
+  {
+    plugin: reacticoonSentry,
+    config: {
+      // TODO:
+      sentryUrl: '',
+
+      displayReportDialog: true,
+
+      // TODO:
+      appVersion: '',
+    },
+  },
+  {
+    plugin: reacticoonForm,
+    config: {
+      // the validator to use with our form
+      validator: reacticoonValidator,
+      forms: [
+        {
+          form: bookmarkForm,
+          options: {}
+        }
+      ]
+    },
   },
 ]

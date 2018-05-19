@@ -7,17 +7,21 @@ const generateDefaultPluginConfig = () => {
 
   // return default config
   return {
+    // empty list of modules
     modules: [],
+    // no events to use
     events: {},
+    // no custom events
     customEvents: {},
-    getConfig: () => {
-      return _config
-    },
     // 
-    // register the fron config for this plugin
+    // register the front config for this plugin
     //
     registerConfig: config => {
       _config = config
+    },
+    // retrieve the saved config
+    getConfig: () => {
+      return _config
     },
   }
 }

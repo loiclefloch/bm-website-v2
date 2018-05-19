@@ -6,6 +6,6 @@ export const redirectToBookmarkMiddleware = createMiddleware(
   'redirectToBookmarkMiddleware',
   redirectToBookmark,
   ({ action, dispatch }) => {
-    dispatch(redirectTo(action.route, action.params))
+    dispatch(redirectTo(action.data.route, action.data.params))
   }
 )

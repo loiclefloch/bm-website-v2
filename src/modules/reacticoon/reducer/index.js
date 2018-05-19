@@ -1,3 +1,3 @@
 
 export createReducer from './createReducer'
-export createSimpleReducer from './createSimpleReducer'
+export createApiReducer from './createApiReducer'

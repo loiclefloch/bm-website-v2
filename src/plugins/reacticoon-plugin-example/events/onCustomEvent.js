@@ -1,8 +1,9 @@
 
-const onCustomEvent = () => {
-  console.info('received onCustomEvent event')
+const onCustomEvent = event => {
+  console.info(`received onCustomEvent event (${event.type}`)
+  console.info(event.data)
 }
 
-onCustomEvent.EVENT = 'ReactoonPluginExample::onCustomEvent'
+onCustomEvent.EVENT = 'ReacticoonPluginExample::Event::onCustomEvent'
 
 export default onCustomEvent

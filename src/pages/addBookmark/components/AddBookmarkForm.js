@@ -16,12 +16,14 @@ import RaisedButton from 'material-ui/RaisedButton'
 import ApiErrorBlock from '../../../components/error/ApiErrorBlock'
 import LoadingBlock from '../../../components/loading/LoadingBlock'
 
+import FormContent from './FormContent'
+
 @ui({
   key: 'AddBookingForm',
   persist: false,
   state: {
     bookmark: {
-      url: 'https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/',
+      url: '',
       name: '',
       notes: '',
     },
@@ -71,6 +73,10 @@ class AddBookmarkForm extends Component {
 
         <LoadingBlock
           show={this.props.isAddBookmarkFetching}
+        />
+
+        <FormContent 
+
         />
 
         <TextField

@@ -5,7 +5,7 @@ import forOwn from 'lodash/forOwn'
 import isArray from 'lodash/isArray'
 import isFunction from 'lodash/isFunction'
 import invariant from 'invariant'
-import { getModules } from './config'
+import { __DEV__ } from '../environment'
 
 /**
  * Generate an array of the middlewares defined on our modules.
@@ -16,10 +16,10 @@ import { getModules } from './config'
  * Note: when `middlewares` is an object, each value of the object MUST be a middleware
  *
  */
-const generateModuleMiddlewares = () => {
+const generateModuleMiddlewares = modules => {
   const middlewares = []
 
-  forOwn(getModules(), (module, key) => {
+  forOwn(modules, (module, key) => {
     if (isArray(module.content.middlewares)) {
       module.content.middlewares.forEach((middleware, index) => {
         invariant(
@@ -32,6 +32,8 @@ const generateModuleMiddlewares = () => {
         // returns an anonymous function
         // we don't have a nice name to display, so we display the module name, and its index
         middleware.middlewareName = middleware.middlewareName || `${module.name} ${index}`
+
+        addDevDataToMiddleware(middleware, module)
 
         middlewares.push(middleware)
       })
@@ -46,12 +48,21 @@ const generateModuleMiddlewares = () => {
         // returns an anonymous function
         middleware.middlewareName = middleware.middlewareName || middlewareName
 
+        addDevDataToMiddleware(middleware, module)
+
         middlewares.push(middleware)
       })
     }
   })
 
   return middlewares
+}
+
+const addDevDataToMiddleware = (middleware, module) => {
+  if (__DEV__) {
+    middleware._moduleName = module.name
+    middleware.toString = () => `[middleware] ${module.name}::${middleware.middlewareName}`
+  }
 }
 
 export default generateModuleMiddlewares

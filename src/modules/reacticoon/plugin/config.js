@@ -1,9 +1,16 @@
 import invariant from 'invariant'
 import find from 'lodash/find'
+import forEach from 'lodash/forEach'
+import isUndefined from 'lodash/isUndefined'
 import isFunction from 'lodash/isFunction'
+
+import { __DEV__ } from '../environment'
 
 import EventManager from '../event/EventManager'
 import validatePlugin from './validatePlugin'
+
+import generateModuleEntities from '../module/generateModuleEntities'
+import generateModuleMiddlewares from '../module/generateModuleMiddlewares'
 
 //
 // array of plugins config
@@ -44,31 +51,50 @@ const registerPluginEvent = plugin => {
   EventManager.addListeners(plugin.events)
 }
 
+export const getPluginConfig = pluginName => {
+  const pluginConfig = find(_pluginsConfig, pluginConfig => pluginConfig.plugin.name === pluginName)
+
+  invariant(!isUndefined(pluginConfig), `invalid plugin name '${pluginName}'`)
+
+  // we call getConfig() instead if `pluginConfig.config` since the `registerConfig` could change
+  // the plugin configuration (add defaults, etc) and `pluginConfig.config` is the config set by
+  // the user
+  return pluginConfig.plugin.getConfig()
+}
+
 export const generatePluginEntities = () => {
-  let entities = {}
+  let reducers = {}
 
   forEachPlugin(({ plugin, config }) => {
-    entities = { ...entities, ...(plugin.entities || {}) }
+    //
+    // add plugin modules reducers
+    //
+    const moduleReducers = generateModuleEntities(plugin.modules || [])
+    if (__DEV__) {
+      // add additionnal private debug var
+      forEach(moduleReducers, (reducer, name) => {
+        reducer._plugin = plugin.name
+      })
+    }
+    reducers = { ...reducers, ...moduleReducers }
   })
 
-  return entities
+  return reducers
 }
 
 export const generatePluginMiddlewares = () => {
   let middlewares = []
 
   forEachPlugin(({ plugin, config }) => {
-    middlewares = { ...middlewares, ...(plugin.middlewares || []) }
+    const moduleMiddlewares = generateModuleMiddlewares(plugin.modules || [])
+    if (__DEV__) {
+      // add additionnal private debug var
+      forEach(moduleMiddlewares, (middleware) => {
+        middleware._plugin = plugin.name
+      })
+    }
+    middlewares = [...middlewares, ...moduleMiddlewares]
   })
 
   return middlewares
-}
-
-export const getPluginConfig = pluginName => {
-  const pluginConfig = find(_pluginsConfig, pluginConfig => pluginConfig.plugin.name === pluginName)
-
-  // we call getConfig() instead if `pluginConfig.config` since the `registerConfig` could change 
-  // the plugin configuration (add defaults, etc) and `pluginConfig.config` is the config set by
-  // the user
-  return pluginConfig.plugin.getConfig()
 }

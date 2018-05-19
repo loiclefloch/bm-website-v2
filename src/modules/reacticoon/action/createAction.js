@@ -18,10 +18,17 @@ const createAction = (type, data, callback = null) => {
       'action is not correctly initialized: const myAction = () => creatAction(...'
     )
 
-    return dispatch({
+    const payload = { ...(isFunction(data) ? data.apply(null, params) : data) }
+
+    // TODO: follow https://github.com/redux-utilities/flux-standard-action?
+    const action = {
       type,
-      ...(isFunction(data) ? data.apply(null, params) : data),
-    })
+      // TODO: remove legacy 'data'
+      data: payload,
+      payload,
+    }
+
+    return dispatch(action)
   }
 
   //

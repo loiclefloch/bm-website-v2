@@ -1,16 +1,11 @@
 import invariant from 'invariant'
+import isEmpty from 'lodash/isEmpty'
 
 const validatePlugin = plugin => {
   // plugin name 
-  // not empty
+  invariant(!isEmpty(plugin.name), 'Plugin name not defined')
 
-  // plugin events
-
-  // plugin middlewares
-  // isArray
-
-  // plugin reducers
-  // isObject
+  // TODO: more validations
 }
 
 export default validatePlugin

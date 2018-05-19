@@ -1,3 +1,5 @@
+import Immutable from 'immutable'
+
 /*
  * create a reducer.
  * 
@@ -7,7 +9,7 @@
  *      - value: function (state, action)
  * 
  */
-const createReducer = (initialState, fnMap) => (state = initialState, action) => {
+const createReducer = (initialState, fnMap) => (state = Immutable.fromJS(initialState), action) => {
   const handler = fnMap[action.type]
 
   return handler ? handler(state, action) : state

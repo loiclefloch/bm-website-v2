@@ -1,39 +1,39 @@
 import forEach from 'lodash/forEach'
-import ReactoonEvents from './ReactoonEvents'
+import ReacticoonEvents from './ReacticoonEvents'
 
 /**
  * Manage dispatch of Reacticoon Events and plugins custom events
  */
 class EventManager {
   /**
-   * key: event
+   * key: eventType
    * value: array of events
    */
   listeners = {}
 
   /**
-   * Shortctut to ReactoonEvents.
+   * Shortctut to ReacticoonEvents.
    * Also contains the plugins events. (see registerEvents)
    */
-  Event = { ...ReactoonEvents }
+  Event = { ...ReacticoonEvents }
 
-  addListener(event, fn) {
-    this.listeners[event] = [...(this.listeners[event] || []), fn]
+  addListener(eventType, fn) {
+    this.listeners[eventType] = [...(this.listeners[eventType] || []), fn]
 
     // TODO:
     // - verify fn is a function
     // - verify event is listed on Reacticoon events or plugins events
   }
 
-  dispatch(event, data = {}) {
-    const listeners = this.listeners[event]
+  dispatch(eventType, data = {}) {
+    const listeners = this.listeners[eventType]
 
     // TODO: dev log
 
     if (listeners !== undefined) {
       listeners.forEach(listener => {
         listener({
-          event,
+          type: eventType,
           data,
         })
       })
@@ -46,8 +46,8 @@ class EventManager {
   }
 
   addListeners(listeners) {
-    forEach(listeners, (fn, event) => {
-      this.addListener(event, fn)
+    forEach(listeners, (fn, eventType) => {
+      this.addListener(eventType, fn)
     })
   }
 }

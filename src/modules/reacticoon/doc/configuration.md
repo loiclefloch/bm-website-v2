@@ -207,18 +207,18 @@ Reacticoon can be extended via `plugins`.
 TODO: see ...
 
 ```javascript
-import reactoonPluginExample from '../plugins/reacticoon-plugin-example'
-import reactoonLogger from '../plugins/reacticoon-plugin-logger'
+import reacticoonPluginExample from '../plugins/reacticoon-plugin-example'
+import reacticoonLogger from '../plugins/reacticoon-plugin-logger'
 
 export default [
   {
-    plugin: reactoonPluginExample,
+    plugin: reacticoonPluginExample,
     config: {
       toto: 42
     },
   },
   {
-    plugin: reactoonLogger,
+    plugin: reacticoonLogger,
     config: {},
   },
 ]

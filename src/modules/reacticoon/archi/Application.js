@@ -19,7 +19,7 @@ import { AppContainer } from 'react-hot-loader'
 import configureRootReducer from './utils/configureRootReducer'
 
 import { setCurrentEnv } from '../environment'
-import { registerModules } from '../module'
+import { registerModules, getModules } from '../module'
 import generateModuleEntities from '../module/generateModuleEntities'
 import generateModuleMiddlewares from '../module/generateModuleMiddlewares'
 import { registerHistory } from '../routing/config'
@@ -69,7 +69,7 @@ const Application = appOptions => {
   appOptions.entities = {
     // allow user to give reducer directly via `appOptions`, which is not registered as a module
     ...(appOptions.entities || {}),
-    ...generateModuleEntities(),
+    ...generateModuleEntities(getModules()),
     ...generatePluginEntities(),
   }
 
@@ -79,7 +79,7 @@ const Application = appOptions => {
   // allow user to give middleware directly via `appOptions`, which is not registered as a module
   appOptions.middlewares = [
     ...(appOptions.middlewares || []),
-    ...generateModuleMiddlewares(),
+    ...generateModuleMiddlewares(getModules()),
     ...generatePluginMiddlewares(),
   ]
 
@@ -127,7 +127,7 @@ const Application = appOptions => {
 
   ApiManager.configure(appOptions.ApiManagerOptions)
 
-  // 
+  //
   // Event: ON_APP_INIT
   //
 

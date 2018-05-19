@@ -1,18 +1,18 @@
-import { ReactoonEvents } from '../../modules/reacticoon/event'
+import { ReacticoonEvents } from '../../modules/reacticoon/event'
 import { createPlugin } from '../../modules/reacticoon/plugin'
 
 import Logger from './logger'
 
-const ReactoonPluginExample = createPlugin({
-  name: 'ReactoonLogger',
+const ReacticoonPluginExample = createPlugin({
+  name: 'ReacticoonLogger',
   modules: [],
   events: {
-    [ReactoonEvents.LOG_WARN]: Logger.warning,
-    [ReactoonEvents.LOG_NOT_IMPLEMENTED]: Logger.notImplemented,
-    [ReactoonEvents.LOG_ERROR]: Logger.error,
-    [ReactoonEvents.LOG_EXCEPTION]: Logger.logException,
-    [ReactoonEvents.LOG_COMPONENT_DID_CATCH]: Logger.componentDidCatch,
+    [ReacticoonEvents.LOG_WARN]: Logger.warn,
+    [ReacticoonEvents.LOG_NOT_IMPLEMENTED]: Logger.notImplemented,
+    [ReacticoonEvents.LOG_ERROR]: Logger.error,
+    [ReacticoonEvents.LOG_EXCEPTION]: Logger.logException,
+    [ReacticoonEvents.LOG_COMPONENT_DID_CATCH]: Logger.componentDidCatch,
   },
 })
 
-export default ReactoonPluginExample
+export default ReacticoonPluginExample
