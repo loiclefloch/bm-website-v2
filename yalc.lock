@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "react-app-rewired": {
+      "signature": "225b7cd4e3658be48e30137cb48f0a3e",
+      "file": true
+    }
+  }
+}

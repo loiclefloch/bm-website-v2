@@ -4,10 +4,10 @@ import HtmlBlock from '../../../components/html/HtmlBlock'
 import BookmarkReadingPercent from './BookmarkReadingPercent'
 import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
 
-import annotator from 'annotator'
-import AnnotatorModule from './AnnotatorModule'
+// import annotator from 'annotator'
+// import AnnotatorModule from './AnnotatorModule'
 
-import './annotator.scss'
+// import './annotator.scss'
 // TO SEE:
 // http://annotatorjs.org/plugins/index.html
 //

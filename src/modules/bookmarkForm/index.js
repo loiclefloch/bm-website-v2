@@ -7,7 +7,6 @@ const defaultData = {
   name: null,
 }
 
-
 const validationRules = () => ({
   url: [
     [notEmpty, ''],

@@ -2,8 +2,8 @@ import React from 'react'
 
 import _ from 'lodash'
 
-import CircularProgress from 'material-ui/CircularProgress';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import RefreshIndicator from '@material-ui/core/RefreshIndicator';
 
 import './loading_list.css'
 

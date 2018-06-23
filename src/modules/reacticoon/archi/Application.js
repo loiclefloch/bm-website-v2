@@ -14,7 +14,8 @@ import { render } from 'react-dom'
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import { AppContainer } from 'react-hot-loader'
+// TODO: hot-loader
+// import { AppContainer } from 'react-hot-loader'
 
 import configureRootReducer from './utils/configureRootReducer'
 
@@ -146,9 +147,9 @@ const Application = appOptions => {
   const renderApp = App => {
     render(
       // TODO: AppContainer in prod?
-      <AppContainer>
+      //<AppContainer>
         <App store={store} history={history} appOptions={appOptions} />
-      </AppContainer>,
+      ,//</AppContainer>,
       rootElement
     )
   }

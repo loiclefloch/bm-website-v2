@@ -76,6 +76,12 @@ const ReacticoonEvents = {
 
   SET_USER_CONTEXT: 'REACTICOON::USER_CONTEXT::SET',
   CLEAR_USER_CONTEXT: 'REACTICOON::USER_CONTEXT::CLEAR',
+
+  //
+  // -- form
+  // Note: those events are generic for any form plugin to allow replace the `reacticoon-form` plugin 
+  //
+  REGISTER_FORM: 'REACTICOON::REGISTER_FORM',
 }
 
 export default ReacticoonEvents

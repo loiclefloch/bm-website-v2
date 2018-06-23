@@ -1,89 +1,102 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 
-import LoadingBlock from '../../../components/loading/LoadingBlock'
+import LoadingBlock from "../../../components/loading/LoadingBlock";
 
-const LoginForm = ({ userCredentials, isFetching, onLogin }) => {
-  const { username, password } = userCredentials
+const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
+  const { username, password } = formData;
 
   const fieldProps = {
-    autoComplete: 'off',
-    autoCorrect: 'off',
-    autoCapitalize: 'off',
-    spellCheck: 'false',
+    autoComplete: "off",
+    autoCorrect: "off",
+    autoCapitalize: "off",
+    spellCheck: "false",
     style: {
-      width: '100%',
-      textAlign: 'center',
-      marginBottom: '20px'
-    },
-  }
+      width: "100%",
+      textAlign: "center",
+      marginBottom: "20px"
+    }
+  };
 
   return (
     <div
       className="Login"
       style={{
-        textAlign: 'center',
+        textAlign: "center"
       }}
     >
-      <h1>
-        Login
-      </h1>
+      <Typography variant="display1">Login</Typography>
 
       <Paper
-        zDepth={2}
+        elevation={2}
         style={{
-          maxWidth: '600px',
-          width: '380px',
-          margin: '4em auto',
-          padding: '3em 2em 2em 2em',
+          maxWidth: "600px",
+          width: "380px",
+          margin: "4em auto",
+          padding: "3em 2em 2em 2em",
 
           // LoadingBlock parent requirements
-          position: 'relative',
+          position: "relative"
         }}
       >
+        <LoadingBlock show={isFetching}>
+          <React.Fragment>
+            <TextField
+              autoComplete="email"
+              label="Login"
+              value={username}
+              onChange={event =>
+                onChange({
+                  ...formData,
+                  username: event.target.value
+                })
+              }
+              {...fieldProps}
+            />
 
-        <LoadingBlock
-          show={isFetching}
-        />
-        
-        <TextField
-          floatingLabelText="Login"
-          {...fieldProps}
-        />
+            <TextField
+              label="Password"
+              type="password"
+              value={password}
+              onChange={event =>
+                onChange({
+                  ...formData,
+                  password: event.target.value
+                })
+              }
+              {...fieldProps}
+            />
 
-        <TextField
-          floatingLabelText="Password"
-          type="password"
-          {...fieldProps}
-        />
+            <br />
 
-        <br />
-
-        <RaisedButton
-          label="Login"
-          primary={true}
-          style={{
-            margin: '.3em 0 1em 0',
-            width: '200px',
-          }}
-          onClick={onLogin}
-        />
+            <Button
+              color="primary"
+              style={{
+                margin: ".3em 0 1em 0",
+                width: "200px"
+              }}
+              onClick={onLogin}
+            >
+              Login
+            </Button>
+          </React.Fragment>
+        </LoadingBlock>
       </Paper>
-
     </div>
-  )
-}
+  );
+};
 
 LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired,
   userCredentials: PropTypes.shape({
     username: PropTypes.string,
-    password: PropTypes.string,
+    password: PropTypes.string
   }).isRequired
-}
+};
 
-export default LoginForm
+export default LoginForm;

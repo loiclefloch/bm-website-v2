@@ -1,5 +1,5 @@
 import merge from 'lodash/merge'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+// import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import bmTheme from './constants/bmTheme'
 
 /**
@@ -9,11 +9,11 @@ import bmTheme from './constants/bmTheme'
 
 const getTheme = (themeOverride, ...more) => {
   let theme = merge(
-    getMuiTheme(
-      {
-        palette: bmTheme.palette,
-      },
-    ),  // the default Mui theme
+    // getMuiTheme(
+    //   {
+    //     palette: bmTheme.palette,
+    //   },
+    // ),  // the default Mui theme
     bmTheme, // our override of the mui theme + custom data
     themeOverride, // the override parameter
   )

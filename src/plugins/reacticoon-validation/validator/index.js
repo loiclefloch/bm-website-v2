@@ -4,6 +4,20 @@ import isObject from 'lodash/isObject'
 import isArray from 'lodash/isArray'
 import each from 'lodash/each'
 
+//
+// Reacticoon validator with spected (https://github.com/25th-floor/spected) under the hood.
+// We format the data returned by spected to match the following format:
+// formErrors:
+// - invalidFields: array of fields names that are invalid
+// - isValid: boolean, does the whole data valid ?
+// - [fieldname]:
+//   - isValid: boolean, true if the field is valid
+//   - messages, array of string, containing the different errors
+//   - message, string, the first message of `messages`
+//
+// The validator must be passed to the plugin configuration via the `validator` option.
+//
+
 const trMessage = key => {
   // Some strings are already translated, while legacy behavior gives the key to translate
   // a key does not have a space, most of the strings have one
@@ -93,12 +107,13 @@ const formatValidator = validation => {
 
 /**
  * Validate data with the given rules
+ * 
  * @param  {Object} rules See spected documentation for the rules format
  * @param  {Object} data  The form data
  * @return {Object} See spected documentation for the returned format. Note that we add an 'isValid'
  *                      var for convenience
  */
-const reacticoonValidator = (rules, data): Object => {
+const reacticoonValidator = (rules, data) => {
   // validate data with spected library
   const validation = spected(rules, data)
 

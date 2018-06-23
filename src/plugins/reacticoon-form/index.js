@@ -4,6 +4,7 @@ import { ReacticoonEvents } from '../../modules/reacticoon/event'
 import formModule from './modules/form'
 
 import onAppInit from './events/onAppInit'
+import onRegisterForm from './events/onRegisterForm'
 
 //
 // Exports
@@ -29,6 +30,9 @@ const ReacticoonPluginForm = createPlugin({
   ],
   events: {
     [ReacticoonEvents.ON_APP_INIT]: onAppInit,
+    // Handle the register form event.
+    // This event allows to register forms dinamically from plugins
+    [ReacticoonEvents.REGISTER_FORM]: onRegisterForm,
   },
 })
 

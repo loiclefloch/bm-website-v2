@@ -3,11 +3,11 @@ import Application from './modules/reacticoon/archi/Application'
 import 'normalize.css/normalize.css'
 import './styles/index.scss'
 
-// required by material-ui onTouchTap (see below)
-import injectTapEventPlugin from 'react-tap-event-plugin'
-
 // -- smooth scrolling
-import smoothScroll from 'smooth-scroll'
+import SmoothScroll from 'smooth-scroll'
+
+// Roboto font
+import 'typeface-roboto'
 
 //
 // options
@@ -30,17 +30,11 @@ import plugins from './config/plugins'
 //
 
 // see https://cferdinandi.github.io/smooth-scroll/setup.html
-smoothScroll.init({
-  selector: 'a[href*="#"]', // for all anchor
-  offset: 100, // let a top padding
-})
-
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-// http://www.material-ui.com/#/get-started/installation
-injectTapEventPlugin()
-
+var scroll = new SmoothScroll('a[href*="#"]');
+// smoothScroll.init({
+  // selector: '', // for all anchor
+  // offset: 100, // let a top padding
+// })
 
 //
 // Application configuration

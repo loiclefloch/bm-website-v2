@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import ThemeProvider from '../modules/theme/ThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import ThemeProvider from '../modules/theme/ThemeProvider'
+// import getMuiTheme from 'material-ui/styles/getMuiTheme'
+// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 
-import { getTheme } from '../modules/theme'
+// import { getTheme } from '../modules/theme'
 import { isFetchingI18nPhrases } from '../modules/reacticoon/i18n'
 
 /**
@@ -15,34 +15,35 @@ import { isFetchingI18nPhrases } from '../modules/reacticoon/i18n'
  * Use it to englobe the router with providers in order to not re-render those providers when the
  * route change
  *
- * Ex: MuiThemeProvider, CssThemeProvider, I18n initial loading, ...
  */
 class Content extends Component {
   render() {
     const { theme, isFetchingI18nPhrases, children } = this.props
 
-    const muiTheme = getMuiTheme({ ...lightBaseTheme, ...theme })
+    // const muiTheme = getMuiTheme({ ...lightBaseTheme, ...theme })
 
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <ThemeProvider
-          themes={[muiTheme]}
-          // themeInd={1}
-          override
-        >
-          {isFetchingI18nPhrases
-            ? // TODO: display loading
-              null
-            : children}
-        </ThemeProvider>
-      </MuiThemeProvider>
-    )
+    return isFetchingI18nPhrases
+    ? // TODO: display loading
+      null
+    : children
+
+    // return (
+    //   {/* <MuiThemeProvider muiTheme={muiTheme}>
+    //     <ThemeProvider
+    //       themes={[muiTheme]}
+    //       // themeInd={1}
+    //       override
+    //     > */}
+         
+    //     {/* </ThemeProvider> */}
+    //   {/* </MuiThemeProvider> */}
+    // )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    theme: getTheme(state),
+    // theme: getTheme(state),
     isFetchingI18nPhrases: isFetchingI18nPhrases(state),
   }
 }

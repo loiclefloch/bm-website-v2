@@ -4,7 +4,7 @@ import each from 'lodash/each'
 
 import { createSelector, getStateForModule } from '../../../../modules/reacticoon/selector'
 
-import { getFormValidator, getFormFormatter } from './config'
+import { getFormValidator } from './config'
 import { getFormType } from './utils'
 
 // create the `getState` function, that will receive the state for the given module `reducer`.
@@ -39,9 +39,8 @@ export const makeGetFormData = () =>
     if (isNil(formData)) {
       return {}
     }
-    const formatter = getFormFormatter(formType)
 
-    return !isNull(formatter) ? formatter(formData) : formData
+    return formData
   })
 
 const getFormsDataArray = (state, props) => {
@@ -61,10 +60,9 @@ export const makeGetFormsData = () =>
   createSelector([getFormsDataArray], formsData => {
     const formattedFormsData = {}
     formsData.forEach(formData => {
-      const formatter = getFormFormatter(formData.formType)
       formattedFormsData[formData.formType] = {
-        data: !isNull(formatter) ? formatter(formData.data) : formData.data,
         ...formData,
+        data: formData.data,
       }
     })
 

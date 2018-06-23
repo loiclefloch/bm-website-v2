@@ -39,6 +39,9 @@ export const getFormsDefaultState = () => {
  */
 export const getFormConfig = formDef => {
   const formType = getFormType(formDef)
+
+  // TODO: optimize this
+  // instead of finding on the getForms array, save a map of type / form
   const formConfig = find(getForms(), formConfig => formType === formConfig.form.type)
 
   invariant(
@@ -86,15 +89,16 @@ export const getFormReducer = formDef => {
   return reducer
 }
 
-export const getFormFormatter = formDef => {
+export const getFormModifier = formDef => {
   const formType = getFormType(formDef)
   const form = getForm(formType)
 
-  const formatter = form.options.formatter
+  const formatter = form.options.modifier
   invariant(isNil(formatter) || isFunction(formatter), 'form ' + formType + ' has no formatter')
 
   return formatter
 }
+
 
 export const getFormValidator = formType => getForm(formType).validator
 

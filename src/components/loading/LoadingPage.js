@@ -1,7 +1,7 @@
 import React from 'react'
 
-import CircularProgress from 'material-ui/CircularProgress';
-import LinearProgress from 'material-ui/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const LoadingPage = ({ size = 50, message = '', show }) => {
   if (!show) {

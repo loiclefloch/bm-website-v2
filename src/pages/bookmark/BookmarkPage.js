@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from '../../modules/reacticoon/view'
+import { reacticoonConnect } from '../../modules/reacticoon/view'
 // import { connect } from 'react-redux'
 
 import { isFetchingBookmark, makeGetBookmark } from '../../modules/bookmark/bookmark/selectors'
@@ -64,7 +64,7 @@ BookmarkPage.propTypes = {
   bookmark: PropTypes.object,
 }
 
-export default connect(
+export default reacticoonConnect(
   'Bookmark',
   Bookmark => {
     const getBookmark = Bookmark.makeGetBookmark()

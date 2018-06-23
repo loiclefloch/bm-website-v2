@@ -17,7 +17,8 @@ const DEFAULT_OPTIONS = {
   // object of actions specific to the form
   customActions: {},
   // data formatter of the form
-  formatter: null,
+  // will format the data before updating the state
+  modifier: null,
 }
 
 /**
@@ -39,7 +40,11 @@ const DEFAULT_OPTIONS = {
  *                                        }
  *                                     }
  *                                   - customActions: mandatory with reducer
- *                                   - formatter
+ *                                   - modifier: like a formatter but modify the data before saving
+ *                                     it on the state -> the data on the store is the right data
+ *                                     while using the formatter returns the right data on the
+ *                                     selector, but the formatted data on the state is one-state
+ *                                     behind
  *
  * @return {[type]}                 the form:
  *                                  {

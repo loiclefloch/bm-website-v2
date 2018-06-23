@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-import ui from 'redux-ui'
-import isEmpty from 'lodash/isEmpty'
-import { connect } from 'react-redux'
+import { connect, compose } from '../../../modules/reacticoon/view'
 
-import {
-  postBookmark,
-  getAddBookmarkError,
-  isAddBookmarkFetching,
-} from '../../../modules/bookmark'
+import { postBookmark, getAddBookmarkError, isAddBookmarkFetching } from '../../../modules/bookmark'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -16,81 +10,39 @@ import RaisedButton from 'material-ui/RaisedButton'
 import ApiErrorBlock from '../../../components/error/ApiErrorBlock'
 import LoadingBlock from '../../../components/loading/LoadingBlock'
 
-import FormContent from './FormContent'
+import BookmarkForm from '../../../modules/bookmarkForm'
+import { withForm } from '../../../plugins/reacticoon-form'
 
-@ui({
-  key: 'AddBookingForm',
-  persist: false,
-  state: {
-    bookmark: {
-      url: '',
-      name: '',
-      notes: '',
-    },
-  },
-})
-class AddBookmarkForm extends Component {
-
-  isValid() {
-    const { bookmark: { url, name, notes } } = this.props.ui
-
-    return !isEmpty(url)
-  }
-
+class AddBookmarkForm extends React.Component {
   handleSubmit = () => {
-    const bookmark = this.props.ui.bookmark
+    const bookmark = this.props.formData
 
-    if (this.isValid()) {
-      this.props.postBookmark(bookmark)
-    }
-  }
-
-  handleUrlChange = (event, url) => {
-    const bookmark = { ...this.props.ui.bookmark, url }
-    this.props.updateUI({ bookmark })
-  }
-
-  handleNameChange = (event, name) => {
-    const bookmark = { ...this.props.ui.bookmark, name }
-    this.props.updateUI({ bookmark })
-  }
-
-  handleNotesChange = (event, notes) => {
-    const bookmark = { ...this.props.ui.bookmark, notes }
-    this.props.updateUI({ bookmark })
+    this.props.postBookmark(bookmark)
   }
 
   render() {
-    const { bookmark: { url, name, notes } } = this.props.ui
+    const { formData, formErrors, isValid, onChange } = this.props
+
+    const { url, name, notes } = formData
 
     return (
-      <form
-        className="u-flexColumn u-justifyContentCenter u-marginTop20 u-flexCenter"
-      >
-        <ApiErrorBlock
-          apiError={this.props.addBookmarkError}
-        />
+      <form className="u-flexColumn u-justifyContentCenter u-marginTop20 u-flexCenter">
+        <ApiErrorBlock apiError={this.props.addBookmarkError} />
 
-        <LoadingBlock
-          show={this.props.isAddBookmarkFetching}
-        />
-
-        <FormContent 
-
-        />
+        <LoadingBlock show={this.props.isAddBookmarkFetching} />
 
         <TextField
           floatingLabelText="url"
           className="u-minWidth360"
           value={url}
-          onChange={this.handleUrlChange}
+          onChange={event => onChange('url', event.target.value)}
         />
 
         <TextField
           floatingLabelText="name"
           className="u-minWidth360"
           value={name}
-          onChange={this.handleNameChange}
+          onChange={event => onChange('name', event.target.value)}
         />
 
         <TextField
@@ -99,20 +51,19 @@ class AddBookmarkForm extends Component {
           multiLine={true}
           rows={4}
           value={notes}
-          onChange={this.handleNotesChange}
+          onChange={event => onChange('notes', event.target.value)}
         />
 
         <RaisedButton
           label="Submit"
           primary={true}
-          disabled={!this.isValid()}
+          disabled={!isValid}
           onClick={this.handleSubmit}
           style={{
             marginTop: '50px',
             minWidth: '200px',
           }}
         />
-
       </form>
     )
   }
@@ -125,6 +76,9 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  postBookmark
-})(AddBookmarkForm)
+export default compose(
+  withForm(BookmarkForm),
+  connect(mapStateToProps, {
+    postBookmark,
+  })
+)(AddBookmarkForm)
