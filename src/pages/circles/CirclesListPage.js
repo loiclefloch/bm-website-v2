@@ -5,15 +5,14 @@ import { connect } from 'react-redux'
 import {
   showCircle,
   loadCircles,
-
   isFetchingCircles,
-} from '../../modules/circle'
+} from 'modules/circle'
 
 import {
   getCirclesSortedByDate,
  } from './selectors'
 
-import Page from '../../containers/Page'
+import Page from 'components/Page'
 import CirclesList from './components/CirclesList'
 
 class DashboardPage extends Component {

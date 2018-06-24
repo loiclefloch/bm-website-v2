@@ -4,7 +4,7 @@ import LoginPage from '../pages/login'
 import DashboardPage from '../pages/dashboard'
 import BookmarkPage from '../pages/bookmark'
 import BookmarkNewPage from '../pages/bookmarkNew'
-// import CirclesListPage from '../pages/circles/CirclesListPage'
+import CirclesListPage from '../pages/circles/CirclesListPage'
 // import CirclePage from '../pages/circle/CirclePage'
 // import SettingsPage from '../pages/settings/SettingsPage'
 import TestPage from '../pages/test/TestPage'
@@ -26,10 +26,10 @@ const routes = [
     definition: RoutingEnum.NEW_BOOKMARK,
     handler: BookmarkNewPage,
   },
-  // {
-  //   definition: RoutingEnum.CIRCLES,
-  //   handler: CirclesListPage,
-  // },
+  {
+    definition: RoutingEnum.CIRCLES,
+    handler: CirclesListPage,
+  },
   // {
   //   definition: RoutingEnum.CIRCLE,
   //   handler: CirclePage,

@@ -11,7 +11,7 @@ import LoadMore from './LoadMore'
 const styles = theme => ({
   container: {
     marginTop: '0',
-    paddingLeft: '5vw',
+    // paddingLeft: '5vw',
     maxWidth: '800px',
     paddingBottom: theme.spacing.unit * 10,
   },
