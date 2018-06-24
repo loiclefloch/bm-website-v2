@@ -52,7 +52,7 @@ class SlideContent extends Component {
         left: 0,
         right: 0,
         zIndex: 3000,
-        background: this.props.theme.background.dark,
+        background: this.props.theme.app.background.dark,
       }
 
       contentStyle = {

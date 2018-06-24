@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
+
 import IconButton from '@material-ui/core/IconButton'
 import NavigateNext from '@material-ui/icons/NavigateNext'
 import NavigateBefore from '@material-ui/icons/NavigateBefore'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
+
+const styles = theme => ({
+  button: {
+    width: 72,
+    height: 72,
+    padding: 16,
+    color: 'black',
+  },
+  textFullScreen: {
+    color: 'white',
+  },
+})
 
 class SlideNavigation extends Component {
   componentDidMount() {
@@ -69,48 +84,36 @@ class SlideNavigation extends Component {
   }
 
   render() {
-    const { isFullScreen } = this.props
+    const { isFullScreen, classes } = this.props
 
-    const styles = {
-      button: {
-        width: 72,
-        height: 72,
-        padding: 16,
-        color: isFullScreen ? 'black' : 'white',
-      },
-      smallIcon: {
-        width: 36,
-        height: 36,
-        color: isFullScreen ? 'black' : 'white',
-      },
-    }
+    const textClass = classNames({
+      [classes.textFullScreen]: isFullScreen,
+    })
 
-    const iconColor = isFullScreen ? 'white' : 'black'
+    const iconButtonClasses = classNames(classNames.button, textClass)
 
     return (
       <nav className="u-sizeFullHeight u-flexCenter u-justifyContentCenter">
-        <IconButton onClick={this.handlePrevious} style={styles.button} iconStyle={styles.icon}>
-          <NavigateBefore color={iconColor} />
+        <IconButton onClick={this.handlePrevious} className={iconButtonClasses}>
+          <NavigateBefore />
         </IconButton>
 
         <span
-          style={{
-            color: iconColor,
-          }}
+          className={textClass}
         >
           {this.props.currentPage + 1} / {this.props.lastPage}
         </span>
 
-        <IconButton onClick={this.handleNext}>
-          <NavigateNext color={iconColor} />
+        <IconButton onClick={this.handleNext} className={iconButtonClasses}>
+          <NavigateNext />
         </IconButton>
 
         <div>
-          <IconButton onClick={this.props.toggleFullScreenMode}>
+          <IconButton onClick={this.props.toggleFullScreenMode} className={iconButtonClasses}>
             {this.props.isFullScreen ? (
-              <FullscreenExit color={iconColor} />
+              <FullscreenExit  />
             ) : (
-              <Fullscreen color={iconColor} />
+              <Fullscreen />
             )}
           </IconButton>
         </div>
@@ -133,4 +136,4 @@ SlideNavigation.propTypes = {
   isFullScreen: PropTypes.bool,
 }
 
-export default SlideNavigation
+export default withStyles(styles)(SlideNavigation)

@@ -23,7 +23,7 @@ class TestPage extends Component {
         /> */}
 
         <Link
-          to={Link.Route.BOOKMARK}
+          to={Link.getRoute('BOOKMARK')}
           params={{
             bookmarkId: '622',
           }}
@@ -31,8 +31,10 @@ class TestPage extends Component {
           youtube video
         </Link>
 
+        <br />
+
         <Link
-          to={Link.Route.BOOKMARK}
+          to={Link.getRoute('BOOKMARK')}
           params={{
             bookmarkId: '591',
           }}
