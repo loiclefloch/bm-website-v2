@@ -69,18 +69,12 @@ const Sidebar = ({ classes }) => (
     <MenuList className={classes.menuList}>
       <Item route="DASHBOARD" classes={classes} text="Home" />
       <Item route="CIRCLES" classes={classes} text="Circles" />
+      <Item route="SETTINGS" classes={classes} text="Settings" />
+      <Item route="TESTS" classes={classes} text="Tests" />
 
       {/* <Link to={Link.getRoute('BOOKS')}>
         <Item classes={classes}>Books</Item>
-      </Link>
-
-      <Link to={Link.getRoute('SETTINGS')}>
-        <Item classes={classes}>Settings</Item>
-      </Link>
-
-      <Link to={Link.getRoute('TESTS')}>
-        <Item classes={classes}>Tests</Item>
-      </Link> */}
+      </Link>*/}
     </MenuList>
   </Drawer>
 )

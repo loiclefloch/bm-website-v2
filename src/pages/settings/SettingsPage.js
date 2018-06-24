@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
 import ui from 'redux-ui'
 
-import { Tabs, Tab } from 'material-ui/Tabs'
-import FontIcon from 'material-ui/FontIcon'
-import SwipeableViews from 'react-swipeable-views'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 import ThemeContainer from './theme/ThemeContainer'
-import AccountCircleIcon from 'material-ui/svg-icons/action/account-circle';
-import StyleIcon from 'material-ui/svg-icons/image/style';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import StyleIcon from '@material-ui/icons/Style';
 
-import Page from '../../containers/Page'
+import Page from 'components/Page'
 
 @ui({
   state: {
@@ -20,7 +19,6 @@ import Page from '../../containers/Page'
 class SettingsPage extends Component {
 
   handleChangeView = (tabIndex) => {
-    console.log('handleChangeView')
     this.props.updateUI({ tabIndex })
   }
 
@@ -47,10 +45,10 @@ class SettingsPage extends Component {
           />
         </Tabs>
 
-        <SwipeableViews
+        {/* <SwipeableViews
           index={ui.tabIndex}
           onChangeIndex={this.handleChangeView}
-        >
+        > */}
           <div>
             LOL
           </div>
@@ -58,7 +56,7 @@ class SettingsPage extends Component {
             <ThemeContainer
             />
           </div>
-        </SwipeableViews>
+        {/* </SwipeableViews> */}
       </Page>
     )
   }

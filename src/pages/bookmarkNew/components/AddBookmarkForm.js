@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { connect, compose } from 'modules/reacticoon/view'
+import { connect, compose } from 'reacticoon/view'
 
 import { postBookmark, getAddBookmarkError, isAddBookmarkFetching } from 'modules/bookmark'
 

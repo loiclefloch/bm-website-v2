@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { colorsList } from '../../modules/theme'
+import { colorsList } from 'modules/theme/constants'
 
 import ColorRow from './ColorRow'
 

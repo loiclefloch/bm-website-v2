@@ -6,7 +6,7 @@ import BookmarkPage from '../pages/bookmark'
 import BookmarkNewPage from '../pages/bookmarkNew'
 import CirclesListPage from '../pages/circles/CirclesListPage'
 import CirclePage from '../pages/circle/CirclePage'
-// import SettingsPage from '../pages/settings/SettingsPage'
+import SettingsPage from '../pages/settings/SettingsPage'
 import TestPage from '../pages/test/TestPage'
 
 const routes = [
@@ -43,10 +43,10 @@ const routes = [
     definition: RoutingEnum.TESTS,
     handler: TestPage,
   },
-  // {
-  //   definition: RoutingEnum.SETTINGS,
-  //   handler: SettingsPage,
-  // },
+  {
+    definition: RoutingEnum.SETTINGS,
+    handler: SettingsPage,
+  },
 ]
 
 export default routes
