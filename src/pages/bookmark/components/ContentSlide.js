@@ -5,8 +5,8 @@ import classNames from 'classnames'
 
 import './slide_content.scss'
 
+import { withTheme } from '@material-ui/core/styles'
 import HtmlBlock from '../../../components/html/HtmlBlock'
-import themeable from '../../../modules/theme/themeable'
 import SlideNavigation from './SlideNavigation'
 
 @ui({
@@ -95,4 +95,4 @@ class SlideContent extends Component {
   }
 }
 
-export default themeable()(SlideContent)
+export default withTheme()(SlideContent)

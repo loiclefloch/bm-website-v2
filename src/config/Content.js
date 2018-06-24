@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
+import { connect } from 'reacticoon/view'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-// import ThemeProvider from '../modules/theme/ThemeProvider'
-// import getMuiTheme from 'material-ui/styles/getMuiTheme'
-// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-
-// import { getTheme } from '../modules/theme'
-import { isFetchingI18nPhrases } from '../modules/reacticoon/i18n'
+import getTheme from 'modules/theme/getTheme'
+import { isFetchingI18nPhrases } from 'reacticoon/i18n'
 
 /**
  * The content of the app will have the `router` as children.
@@ -18,34 +15,31 @@ import { isFetchingI18nPhrases } from '../modules/reacticoon/i18n'
  */
 class Content extends Component {
   render() {
-    const { theme, isFetchingI18nPhrases, children } = this.props
+    const { isFetchingI18nPhrases, children } = this.props
 
-    // const muiTheme = getMuiTheme({ ...lightBaseTheme, ...theme })
+    const theme = getTheme()
 
-    return isFetchingI18nPhrases
-    ? // TODO: display loading
-      null
-    : children
-
-    // return (
-    //   {/* <MuiThemeProvider muiTheme={muiTheme}>
-    //     <ThemeProvider
-    //       themes={[muiTheme]}
-    //       // themeInd={1}
-    //       override
-    //     > */}
-         
-    //     {/* </ThemeProvider> */}
-    //   {/* </MuiThemeProvider> */}
-    // )
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <MuiThemeProvider theme={theme}>
+          {isFetchingI18nPhrases
+            ? // TODO: display loading
+              null
+            : children}
+        </MuiThemeProvider>
+      </React.Fragment>
+    )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    // theme: getTheme(state),
     isFetchingI18nPhrases: isFetchingI18nPhrases(state),
   }
 }
 
-export default connect(mapStateToProps, {})(Content)
+export default connect(
+  mapStateToProps,
+  {}
+)(Content)

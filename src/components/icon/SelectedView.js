@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CheckCircleIcon from 'material-ui/svg-icons/action/check-circle'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 
 const SelectedView = ({ show, isLightColor }) => {
   if (!show) {

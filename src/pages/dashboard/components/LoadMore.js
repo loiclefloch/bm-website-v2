@@ -1,30 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FlatButton from 'material-ui/FlatButton';
 
-const LoadMore = ({ paging, onLoadMore }) => {
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+
+const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    marginTop: '20px',
+  },
+  loadMoreBtn: {
+    marginTop: 20,
+  },
+})
+
+const LoadMore = ({ paging, onLoadMore, classes }) => {
   if (!paging) {
-    return (null)
+    return null
   }
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        marginTop: '20px',
-      }}
-    >
-      <div>
+    <div className={classes.root}>
+      <Typography>
         page {paging.page} on {paging.lastPage} ({paging.total} results)
-      </div>
+      </Typography>
 
-      <FlatButton
-        label="Load more"
-        primary
+      <Button
+        color="primary"
         onClick={() => onLoadMore(paging)}
-        style={{
-          marginTop: '20px',
-        }}
-      />
+        classes={{ root: classes.loadMoreBtn }}
+      >
+        <Typography>Load more</Typography>
+      </Button>
     </div>
   )
 }
@@ -38,4 +45,4 @@ LoadMore.propTypes = {
   onLoadMore: PropTypes.func.isRequired,
 }
 
-export default LoadMore
+export default withStyles(styles)(LoadMore)

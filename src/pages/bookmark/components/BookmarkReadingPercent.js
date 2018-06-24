@@ -1,24 +1,30 @@
 import React from 'react'
 
-import themeable from '../../../modules/theme/themeable'
-import LinearProgress from 'material-ui/LinearProgress'
+import { withStyles } from '@material-ui/core/styles'
+import LinearProgress from '@material-ui/core/LinearProgress'
 
-const BookmarkReadingPercent = ({ percentage, theme }) => (
+const styles = theme => ({
+  root: {
+    height: '5px',
+    width: '100%',
+    position: 'fixed',
+    textAlign: 'center',
+    left: theme.app.sidebar.width,
+    top: theme.app.header.height,
+    zIndex: '10',
+    borderRadius: '0',
+  },
+  bar: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  },
+})
+
+const BookmarkReadingPercent = ({ percentage, classes }) => (
   <LinearProgress
-    mode="determinate"
+    variant="determinate"
     value={percentage}
-    style={{
-      height: '5px',
-      width: '100%',
-      position: 'fixed',
-      textAlign: 'center',
-      left: theme.sidebar.leftOf,
-      top: theme.header.height,
-      backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      zIndex: '10',
-      borderRadius: '0',
-    }}
+    classes={classes}
   />
 )
 
-export default themeable()(BookmarkReadingPercent)
+export default withStyles(styles)(BookmarkReadingPercent)

@@ -1,13 +1,21 @@
 import React from 'react'
 
-import PreviewPicture from './PreviewPicture'
-import Description from './Description'
-import Divider from 'material-ui/Divider'
+import { withStyles } from '@material-ui/core/styles'
 
-const BookmarkHeader = ({ bookmark }) => {
+// import PreviewPicture from './PreviewPicture'
+import Description from './Description'
+import Divider from '@material-ui/core/Divider'
+
+const styles = theme => ({
+  root: {
+    paddingTop: theme.spacing.unit * 6,
+  }
+})
+
+const BookmarkHeader = ({ bookmark, classes }) => {
 
   return (
-    <div>
+    <div className={classes.root}>
       <h1>{bookmark.name}</h1>
 
      
@@ -26,4 +34,4 @@ const BookmarkHeader = ({ bookmark }) => {
   )
 }
 
-export default BookmarkHeader
+export default withStyles(styles)(BookmarkHeader)

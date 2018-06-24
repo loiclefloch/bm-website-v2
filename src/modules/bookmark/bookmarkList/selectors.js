@@ -59,7 +59,7 @@ export const makeGetFilteredBookmarks = () => {
 
       // no search, returns sorted by date
       if (isEmpty(searchQuery)) {
-        return bookmarks.sort((a, b) => {
+        return bookmarks.toArray().sort((a, b) => {
           return b.id - a.id // TODO: createdAt
         })
       }

@@ -1,5 +1,8 @@
 import React from 'react'
 
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+
 import HtmlBlock from '../../../components/html/HtmlBlock'
 import BookmarkReadingPercent from './BookmarkReadingPercent'
 import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
@@ -19,7 +22,12 @@ import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
 // https://github.com/Luperi/PageAnnotatorBundle/blob/master/Controller/AnnotationController.php
 //
 
-const ContentArticle = ({ bookmark }) => {
+const styles = theme => ({
+  root: {
+  },
+})
+
+const ContentArticle = ({ bookmark, classes }) => {
   // const app = new annotator.App()
   //
   // // http://docs.annotatorjs.org/en/latest/modules/ui.html
@@ -45,19 +53,16 @@ const ContentArticle = ({ bookmark }) => {
   // })
 
   return (
-    <ScrollPercentage>
+    // TODO: fix ScrollPercentage -> due to flex ?
+    <ScrollPercentage id="scroll-percentage">
       {({ percentage }) => (
-        <div className="bookmark_content">
-          <BookmarkReadingPercent
-            percentage={percentage * 100}
-          />
-          <HtmlBlock
-            content={bookmark.content}
-          />
+        <div className={classNames('bookmark_content', classes.root)}>
+          <BookmarkReadingPercent percentage={percentage * 100} />
+          <HtmlBlock content={bookmark.content} />
         </div>
       )}
     </ScrollPercentage>
   )
 }
 
-export default ContentArticle
+export default withStyles(styles)(ContentArticle)

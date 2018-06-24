@@ -28,7 +28,7 @@ class LoginPage extends Component {
     const { formData, formErrors, onChange, isFetching } = this.props;
 
     return (
-      <Page title="Login" isFullPage>
+      <Page title="Login" isFullPage darkMode>
         <LoginFormView
           onLogin={this.onLogin}
           isFetching={isFetching}

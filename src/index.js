@@ -1,14 +1,5 @@
 import Application from './modules/reacticoon/archi/Application'
 
-import 'normalize.css/normalize.css'
-import './styles/index.scss'
-
-// -- smooth scrolling
-import SmoothScroll from 'smooth-scroll'
-
-// Roboto font
-import 'typeface-roboto'
-
 //
 // options
 //
@@ -29,11 +20,22 @@ import plugins from './config/plugins'
 // custom app configuration
 //
 
+import './styles/index.scss'
+
+// -- smooth scrolling
+import SmoothScroll from 'smooth-scroll'
+
+// Roboto font
+import 'typeface-roboto'
+
 // see https://cferdinandi.github.io/smooth-scroll/setup.html
-var scroll = new SmoothScroll('a[href*="#"]');
+var scroll = new SmoothScroll('a[href*="#"]', {
+  selector: '', // for all anchor
+  offset: 100, // let a top padding
+})
 // smoothScroll.init({
-  // selector: '', // for all anchor
-  // offset: 100, // let a top padding
+// selector: '', // for all anchor
+// offset: 100, // let a top padding
 // })
 
 //

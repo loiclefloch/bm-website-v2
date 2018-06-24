@@ -27,18 +27,14 @@ export const oauth = (state = DEFAULT_OAUTH, action) => {
       })
 
     case login.SUCCESS:
-      state = state.merge(action.response.result)
-      state = state.merge({
+      return state.merge({
         isFetching: false,
       })
-      return state
 
     case login.FAILURE:
-      state = state.merge(action.response.result)
-      state = state.merge({
+      return state.merge({
         isFetching: false,
       })
-      return state
 
     default:
       return state

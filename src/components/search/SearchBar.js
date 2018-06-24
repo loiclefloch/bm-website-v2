@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TextField from 'material-ui/TextField'
+
+import TextField from '@material-ui/core/TextField'
 
 import debounce from 'lodash/debounce'
 
-const SearchBar = ({ onChange, className = '', style = {}, autoFocus }) => (
+const SearchBar = ({ onChange, classes, className = '', style = {}, autoFocus }) => (
   <TextField
-    hintText="Search"
-    onChange={debounce(onChange, 1000)}
+    label="Search"
+    // TODO: debounce
+    onChange={onChange}//debounce(onChange, 1000)}
     style={style}
     className={className}
+    classes={classes}
     autoFocus={autoFocus}
   />
 )

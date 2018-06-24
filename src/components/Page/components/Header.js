@@ -1,54 +1,76 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import { connect } from "react-redux";
+import { withStyles } from '@material-ui/core/styles'
 
 // import { showAddBookmarkDialog } from "../../../modules/bookmark";
 
-import AppBar from "@material-ui/core/AppBar";
-// import IconMenu from "@material-ui/icons/IconMenu";
-// import MenuItem from "@material-ui/icons/MenuItem";
-import Button from "@material-ui/core/Button";
+import AppBar from '@material-ui/core/AppBar'
+import MenuIcon from '@material-ui/icons/Menu'
+import Button from '@material-ui/core/Button'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import Link from 'reacticoon/routing/Link'
 
-import { AvatarWithDefault } from "../../../components/avatar";
 
-class Login extends Component {
-  render() {
-    return <Button label="Login" />;
-  }
-}
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: theme.app.header.height,
+    position: 'relative',
+    width: '100%',
+  },
+  appBar: {
+    position: 'absolute',
+    height: theme.app.header.height,
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - ${theme.app.sidebar.width}px)`,
+    },
+    marginLeft: theme.app.sidebar.width,
+    background: theme.app.background.dark,
+    position: 'fixed',
+  },
+  toolbarRoot: {
+    minHeight: theme.app.header.height,
+  },
+  title: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  btn: {
+    color: 'white',
+    ...theme.style.focusPrimary,
+  },
+})
+
+
+const Login = () => <Button label="Login" />
 
 //
 //
 //
 
-const Logged = ({ me, showAddBookmarkDialog }) => (
+const Logged = ({ me, classes }) => (
   <div className="u-flexCenter u-sizeFullHeight">
-    <Button
-      label="Add bookmark"
-      onClick={showAddBookmarkDialog}
-      className="u-marginRight20"
-      style={{
-        color: "white"
-      }}
-    />
+    <Button component={Link} to={Link.getRoute('NEW_BOOKMARK')} className={classes.btn}>
+      Add bookmark
+    </Button>
 
     {/* MENU */}
-    {/* <IconMenu
-      className="pointer"
-      iconButtonElement={
-        <AvatarWithDefault
-          // src={process.env.PUBLIC_URL + "/img/logo.svg"}
-          // src={me.avatar}
-          placeholder={me.username}
-        />
-      }
-      targetOrigin={{ horizontal: "right", vertical: "top" }}
-      anchorOrigin={{ horizontal: "right", vertical: "top" }}
+    <IconButton
+      //aria-owns={open ? 'menu-appbar' : null}
+      aria-haspopup="true"
+      //onClick={this.handleMenu}
+      color="inherit"
     >
-      <MenuItem primaryText="Sign out" />
-    </IconMenu> */}
+      <AccountCircle />
+    </IconButton>
   </div>
-);
+)
 
 //
 //
@@ -57,53 +79,22 @@ const Logged = ({ me, showAddBookmarkDialog }) => (
 /**
  *
  */
-class Header extends Component {
-  render() {
-    const { isLoggedIn, title } = this.props;
+const Header = ({ isLoggedIn, title, classes }) => (
+  <div className={classes.root}>
+    <AppBar position="fixed" className={classes.appBar}>
+      <Toolbar classes={{ root: classes.toolbarRoot }}>
+        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <MenuIcon />
+        </IconButton>
 
-    return (
-      <header
-        style={{
-          position: "fixed",
-          paddingLeft: 0,
-          height: this.props.theme.header.height,
-          opacity: 1,
-          top: 0,
-          left: this.props.theme.sidebar.leftOf,
-          right: 0,
-          zIndex: 200
-        }}
-      >
-        <AppBar
-          title={title}
-          iconElementRight={isLoggedIn ? <Logged {...this.props} /> : <Login />}
-          iconStyleRight={{
-            // remove default style
-            marginTop: 0,
-            marginRight: "10px"
-          }}
-          iconStyleLeft={{
-            // remove default style
-            marginTop: 0
-          }}
-          style={{ height: "100%" }}
-          titleStyle={{
-            height: "100%",
-            lineHeight: this.props.theme.header.height
-          }}
-        />
-      </header>
-    );
-  }
-}
+        <Typography variant="title" color="inherit" className={classes.title}>
+          {title}
+        </Typography>
 
-const mapStateToProps = (state, ownProps) => {
-  return {};
-};
+        {isLoggedIn ? <Logged {...this.props} classes={classes} /> : <Login />}
+      </Toolbar>
+    </AppBar>
+  </div>
+)
 
-export default connect(
-  mapStateToProps,
-  {
-    // showAddBookmarkDialog
-  }
-)(Header);
+export default withStyles(styles)(Header)

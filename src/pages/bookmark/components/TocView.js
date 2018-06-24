@@ -58,24 +58,24 @@ const TocView = ({ bookmark }) => {
           <a
             href="#"
             className="link hoverPrimary u-marginBottom4"
-            style={{...styles.H1, ...styles.link}}
+            style={{ ...styles.H1, ...styles.link }}
           >
             Top
           </a>
         </li>
         {toc.map(elem => (
-          <li>
-          {elem.hasId ? (
-            <a
-              href={`#${elem.id}`}
-              className="link hoverPrimary u-marginBottom4"
-              style={{ ...styles[elem.type], ...styles.link }}
-            >
-              {elem.title}
-            </a>
-          ) : (
-            <span>{elem.title}</span>
-          )}
+          <li key={elem.hasId ? elem.id : elem.title}>
+            {elem.hasId ? (
+              <a
+                href={`#${elem.id}`}
+                className="link hoverPrimary u-marginBottom4"
+                style={{ ...styles[elem.type], ...styles.link }}
+              >
+                {elem.title}
+              </a>
+            ) : (
+              <span>{elem.title}</span>
+            )}
           </li>
         ))}
       </ul>

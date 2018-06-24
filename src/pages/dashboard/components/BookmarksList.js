@@ -1,61 +1,59 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { List } from 'material-ui/List';
+import { withStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import LoadingList from 'components/loading/LoadingList'
+import SearchBar from 'components/search/SearchBar'
 import BookmarksListItem from './BookmarksListItem'
-import CircularProgress from 'material-ui/CircularProgress'
-import LoadingList from '../../../components/loading/LoadingList'
 import LoadMore from './LoadMore'
-import SearchBar from '../../../components/search/SearchBar'
 
-const style = {
+const styles = theme => ({
   container: {
     marginTop: '0',
     paddingLeft: '5vw',
     maxWidth: '800px',
-  }
-}
+    paddingBottom: theme.spacing.unit * 10,
+  },
+  searchBar: {
+    width: '60%',
+  },
+  bookmarksList: {
+    marginTop: '20px',
+  },
+})
 
-const BookmarksList = ({ bookmarks, paging, isFetching, actions, onSearchQueryChange }) => {
+const BookmarksList = ({
+  bookmarks,
+  paging,
+  isFetching,
+  actions,
+  classes,
+  onSearchQueryChange,
+}) => {
   return (
-    <List
-      style={style.container}
-    >
+    <List className={classes.container}>
+      {isFetching && <LoadingList listEmpty={bookmarks} />}
 
-      {isFetching &&
-        <LoadingList
-          listEmpty={bookmarks}
+      {paging && (
+        <SearchBar
+          onChange={event => actions.onSearchQueryChange(event.target.value)}
+          // TODO: value
+          className={classes.searchBar}
         />
-      }
+      )}
 
-      <SearchBar
-        onChange={ (event, value) => actions.onSearchQueryChange(value) }
-        // TODO: value
-        style={{
-          width: '60%',
-        }}
-      />
-
-      <div
-        style={{
-          marginTop: '20px',
-        }}
-      >
-        {bookmarks.map(bookmark => {
-          return (
-            <BookmarksListItem
-              key={bookmark.id}
-              bookmark={bookmark}
-              onShowBookmark={actions.showBookmark}
-            />
-          )
-        })}
+      <div className={classes.bookmarksList}>
+        {bookmarks.map(bookmark => (
+          <BookmarksListItem
+            key={bookmark.id.toString()}
+            bookmark={bookmark}
+            onShowBookmark={actions.showBookmark}
+          />
+        ))}
       </div>
 
-      <LoadMore
-        paging={paging}
-        onLoadMore={actions.onLoadMore}
-      />
+      <LoadMore paging={paging} onLoadMore={actions.onLoadMore} />
     </List>
   )
 }
@@ -76,4 +74,4 @@ BookmarksList.propTypes = {
   actions: PropTypes.object.isRequired,
 }
 
-export default BookmarksList
+export default withStyles(styles)(BookmarksList)

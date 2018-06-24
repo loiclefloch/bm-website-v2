@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import LogoIcon from 'components/Logo'
 
-import LoadingBlock from "../../../components/loading/LoadingBlock";
+import LoadingBlock from "components/loading/LoadingBlock";
 
 const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
   const { username, password } = formData;
@@ -30,8 +30,6 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
         textAlign: "center"
       }}
     >
-      <Typography variant="display1">Login</Typography>
-
       <Paper
         elevation={2}
         style={{
@@ -46,6 +44,9 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
       >
         <LoadingBlock show={isFetching}>
           <React.Fragment>
+
+            <LogoIcon width={48} height={48} fill="#2F2F2F" />
+
             <TextField
               autoComplete="email"
               label="Login"
@@ -76,8 +77,9 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
 
             <Button
               color="primary"
+              variant="raised"
               style={{
-                margin: ".3em 0 1em 0",
+                margin: "16px 0px 16px",
                 width: "200px"
               }}
               onClick={onLogin}

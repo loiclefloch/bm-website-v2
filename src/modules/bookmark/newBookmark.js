@@ -72,7 +72,7 @@ export const newBookmark = (state = DEFAULT, action) => {
         error: null,
       })
 
-    case postBookmark.requestSUCCESS:
+    case postBookmark.SUCCESS:
       const newBookmark = action.response.result
 
       return state.merge({

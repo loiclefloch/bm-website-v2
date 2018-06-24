@@ -1,14 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import AccessTimeIcon from 'material-ui/svg-icons/device/access-time';
+import AccessTimeIcon from '@material-ui/icons/AccessTime'
 
 const BookmarkEstimatedTime = ({ readingTime, style }) => {
-  const readingTimeInt = parseInt(readingTime, 10);
+  const readingTimeInt = parseInt(readingTime, 10)
 
   return (
-    <em
-      style={style}
-    >
+    <em style={style}>
       <AccessTimeIcon
         style={{
           verticalAlign: 'middle',
@@ -17,22 +15,17 @@ const BookmarkEstimatedTime = ({ readingTime, style }) => {
           height: '18px',
         }}
       />
-
       &nbsp;
-
       <span
         style={{
           verticalAlign: 'middle',
           display: 'inline-block',
         }}
       >
-        { readingTimeInt === 1
-          ? readingTime + " minute"
-          : readingTime + " minutes"
-        }
+        {readingTimeInt === 1 ? readingTime + ' minute' : readingTime + ' minutes'}
       </span>
     </em>
-  );
+  )
 }
 
 export default BookmarkEstimatedTime

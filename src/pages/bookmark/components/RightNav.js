@@ -4,7 +4,7 @@ import ActionBar from './ActionBar'
 import TocView from './TocView'
 import TagsList from './TagsList'
 import Meta from './Meta'
-import Divider from 'material-ui/Divider'
+import Divider from '@material-ui/core/Divider'
 
 const RightNav = ({ bookmark, onUpdateBookmark }) => (
   <nav
@@ -33,7 +33,7 @@ const RightNav = ({ bookmark, onUpdateBookmark }) => (
           {bookmark.title}
         </h1>
 
-        <ActionBar bookmark={bookmark} onUpdateBookmark={onUpdateBookmark} />
+        <ActionBar bookmark={bookmark} />
 
         <div
           style={{
@@ -43,7 +43,7 @@ const RightNav = ({ bookmark, onUpdateBookmark }) => (
           <TagsList bookmark={bookmark} />
         </div>
 
-        <Meta bookmark={bookmark} />
+        <Meta bookmark={bookmark} onUpdateBookmark={onUpdateBookmark} />
 
         <Divider />
       </div>

@@ -1,50 +1,48 @@
 import React from 'react'
 import isEmpty from 'lodash/isEmpty'
 
-import { CardText } from 'material-ui/Card'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 import { AvatarWithDefault } from '../../../components/avatar'
+
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  avatarArea: {
+    verticalAlign: 'middle',
+    display: 'inline-block',
+  },
+  authorArea: {
+    verticalAlign: 'middle',
+    display: 'inline-block',
+    paddingLeft: '10px',
+  },
+})
 
 const AuthorAvatar = ({ author, authorAvatar }) => {
   if (isEmpty(author)) {
-    return (null)
+    return null
   }
-  return (
-    <AvatarWithDefault
-      src={authorAvatar}
-      placeholder={author}
-    />
-  )
+  return <AvatarWithDefault src={authorAvatar} placeholder={author} />
 }
 
-const Meta = ({ websiteInfo })  => {
+const Meta = ({ websiteInfo, classes }) => {
   const { author, authorAvatar } = websiteInfo
   if (!websiteInfo || (isEmpty(author) && isEmpty(authorAvatar))) {
-    return (null)
+    return null
   }
+
   return (
-    <CardText>
-      <div
-        style={{
-          verticalAlign: 'middle',
-          display: 'inline-block',
-        }}
-      >
-        <AuthorAvatar
-          author={author}
-          authorAvatar={authorAvatar}
-        />
+    <div className={classes.root}>
+      <div className={classes.avatarArea}>
+        <AuthorAvatar author={author} authorAvatar={authorAvatar} />
       </div>
-      <div
-        style={{
-          verticalAlign: 'middle',
-          display: 'inline-block',
-          paddingLeft: '10px',
-        }}
-      >
-        {author}
+      <div className={classes.authorArea}>
+        <Typography>{author}</Typography>
       </div>
-    </CardText>
+    </div>
   )
 }
 
-export default Meta
+export default withStyles(styles)(Meta)

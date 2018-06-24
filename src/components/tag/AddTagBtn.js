@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ui from 'redux-ui'
 
-import AddIcon from 'material-ui/svg-icons/content/add'
+import AddIcon from '@material-ui/icons/Add'
 import ChooseTagDialog from './ChooseTagDialog'
 
 @ui({

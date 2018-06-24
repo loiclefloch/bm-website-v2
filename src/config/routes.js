@@ -1,11 +1,12 @@
 import RoutingEnum from './RoutingEnum'
 
 import LoginPage from '../pages/login'
-// import DashboardPage from '../pages/dashboard'
+import DashboardPage from '../pages/dashboard'
+import BookmarkPage from '../pages/bookmark'
+import BookmarkNewPage from '../pages/bookmarkNew'
 // import CirclesListPage from '../pages/circles/CirclesListPage'
 // import CirclePage from '../pages/circle/CirclePage'
 // import SettingsPage from '../pages/settings/SettingsPage'
-// import BookmarkPage from '../pages/bookmark/BookmarkPage'
 // import TestPage from '../pages/test/TestPage'
 
 const routes = [
@@ -13,14 +14,18 @@ const routes = [
     definition: RoutingEnum.LOGIN,
     handler: LoginPage,
   },
-  // {
-  //   definition: RoutingEnum.DASHBOARD,
-  //   handler: DashboardPage,
-  // },
-  // {
-  //   definition: RoutingEnum.BOOKMARK,
-  //   handler: BookmarkPage,
-  // },
+  {
+    definition: RoutingEnum.DASHBOARD,
+    handler: DashboardPage,
+  },
+  {
+    definition: RoutingEnum.BOOKMARK,
+    handler: BookmarkPage,
+  },
+  {
+    definition: RoutingEnum.NEW_BOOKMARK,
+    handler: BookmarkNewPage,
+  }
   // {
   //   definition: RoutingEnum.CIRCLES,
   //   handler: CirclesListPage,

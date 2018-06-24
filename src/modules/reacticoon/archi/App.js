@@ -38,4 +38,6 @@ App.propTypes = {
   store: PropTypes.object.isRequired,
 }
 
-export default App
+// apply hot reload
+// https://github.com/gaearon/react-hot-loader
+export default hot(module)(App)

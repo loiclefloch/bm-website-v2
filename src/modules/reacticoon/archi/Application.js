@@ -5,17 +5,9 @@ import isNil from 'lodash/isNil'
 
 import { render } from 'react-dom'
 
-// -- css
-// have to be first import, otherwise have priority on custom style
-// TODO:
-// import 'normalize.css/normalize.css'
-
 // hot loader
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-
-// TODO: hot-loader
-// import { AppContainer } from 'react-hot-loader'
 
 import configureRootReducer from './utils/configureRootReducer'
 
@@ -145,25 +137,10 @@ const Application = appOptions => {
   const rootElement = appOptions.rootElement || document.getElementById('root')
 
   const renderApp = App => {
-    render(
-      // TODO: AppContainer in prod?
-      //<AppContainer>
-        <App store={store} history={history} appOptions={appOptions} />
-      ,//</AppContainer>,
-      rootElement
-    )
+    render(<App store={store} history={history} appOptions={appOptions} />, rootElement)
   }
 
   renderApp(App)
-
-  // https://medium.com/superhighfives/hot-reloading-create-react-app-73297a00dcad
-  // http://joshbroton.com/add-react-hot-reloading-create-react-app/
-  // https://medium.com/@sheepsteak/adding-hot-module-reloading-to-create-react-app-e053fadf569d
-  if (module.hot) {
-    module.hot.accept('./App', () => {
-      renderApp(App)
-    })
-  }
 }
 
 export default Application

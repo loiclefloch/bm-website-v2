@@ -11,6 +11,8 @@ const RoutingEnum =  {
 
   DASHBOARD: new Route('DASHBOARD', '/dashboard'),
 
+  NEW_BOOKMARK: new Route('NEW_BOOKMARK', '/bookmark/new'),
+
   BOOKMARK: new Route('BOOKMARK', '/bookmarks/:bookmarkId'),
 
   CIRCLES: new Route('CIRCLES', '/circles'),

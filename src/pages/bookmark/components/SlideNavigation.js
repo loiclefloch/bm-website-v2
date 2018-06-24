@@ -1,24 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import IconButton from 'material-ui/IconButton'
-import NavigateNext from 'material-ui/svg-icons/image/navigate-next'
-import NavigateBefore from 'material-ui/svg-icons/image/navigate-before'
-import Fullscreen from 'material-ui/svg-icons/navigation/fullscreen'
-import FullscreenExit from 'material-ui/svg-icons/navigation/fullscreen-exit'
+import IconButton from '@material-ui/core/IconButton'
+import NavigateNext from '@material-ui/icons/NavigateNext'
+import NavigateBefore from '@material-ui/icons/NavigateBefore'
+import Fullscreen from '@material-ui/icons/Fullscreen'
+import FullscreenExit from '@material-ui/icons/FullscreenExit'
 
 class SlideNavigation extends Component {
-
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeydown, false)
+    document.addEventListener('keydown', this.handleKeydown, false)
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeydown, false)
+    document.removeEventListener('keydown', this.handleKeydown, false)
   }
 
-
-  handleKeydown = (event) => {
+  handleKeydown = event => {
     switch (event.keyCode) {
       case 27: // esc
         if (this.props.isFullScreen) {
@@ -51,10 +49,8 @@ class SlideNavigation extends Component {
         break
 
       default:
-
     }
   }
-
 
   handlePrevious = () => {
     const newPageNb = this.props.currentPage - 1
@@ -92,18 +88,9 @@ class SlideNavigation extends Component {
     const iconColor = isFullScreen ? 'white' : 'black'
 
     return (
-      <nav
-        className="u-sizeFullHeight u-flexCenter u-justifyContentCenter"
-      >
-
-        <IconButton
-          onClick={this.handlePrevious}
-          style={styles.button}
-          iconStyle={styles.icon}
-        >
-          <NavigateBefore
-            color={iconColor}
-          />
+      <nav className="u-sizeFullHeight u-flexCenter u-justifyContentCenter">
+        <IconButton onClick={this.handlePrevious} style={styles.button} iconStyle={styles.icon}>
+          <NavigateBefore color={iconColor} />
         </IconButton>
 
         <span
@@ -114,27 +101,17 @@ class SlideNavigation extends Component {
           {this.props.currentPage + 1} / {this.props.lastPage}
         </span>
 
-        <IconButton
-          onClick={this.handleNext}
-        >
-          <NavigateNext
-            color={iconColor}
-          />
+        <IconButton onClick={this.handleNext}>
+          <NavigateNext color={iconColor} />
         </IconButton>
 
         <div>
-          <IconButton
-            onClick={this.props.toggleFullScreenMode}
-          >
-            {this.props.isFullScreen ?
-              <FullscreenExit
-                color={iconColor}
-              />
-            :
-            <Fullscreen
-              color={iconColor}
-            />
-            }
+          <IconButton onClick={this.props.toggleFullScreenMode}>
+            {this.props.isFullScreen ? (
+              <FullscreenExit color={iconColor} />
+            ) : (
+              <Fullscreen color={iconColor} />
+            )}
           </IconButton>
         </div>
       </nav>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './footer.css'
+import Typography from '@material-ui/core/Typography';
 
 const Footer = (isLoggedIn) => (
   <footer>
@@ -8,9 +9,9 @@ const Footer = (isLoggedIn) => (
       <a href="" target="_blank">
       <img src="" />
     </a> */}
-    <p>
+    <Typography>
       By <a href="https://github.com/loiclefloch" target="_blank" rel="noopener noreferrer"> Loïc Lefloch</a>
-    </p>
+    </Typography>
   </footer>
 );
 

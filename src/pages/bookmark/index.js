@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { reacticoonConnect } from '../../modules/reacticoon/view'
-// import { connect } from 'react-redux'
 
-import { isFetchingBookmark, makeGetBookmark } from '../../modules/bookmark/bookmark/selectors'
-import { fetchBookmark, updateBookmark } from '../../modules/bookmark/bookmark/actions'
+import { reacticoonConnect } from 'modules/reacticoon/view'
+import { isFetchingTags } from 'modules/tag'
 
-import { isFetchingTags } from '../../modules/tag'
-
-import Page from '../../containers/Page'
+import Page from 'components/Page'
 
 import Header from './components/Header'
 import Content from './components/Content'
@@ -33,9 +29,9 @@ class BookmarkPage extends Component {
     return (
       <Page title="" isFetching={false} loadingMessage="Loading bookmark">
         <div
-          style={
-            { maxWidth: '800px', paddingLeft: '5vw' } // TODO: remove on mobile
-          }
+          style={{
+            maxWidth: '800px',
+          }}
         >
           {isFetchingBookmark || !bookmark ? (
             <ContentLoaderView />

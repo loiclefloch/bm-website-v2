@@ -1,13 +1,28 @@
-/**
- * see https://github.com/thebuilder/react-scroll-percentage
- *
- */
- 
-import React, { PureComponent } from 'react' // eslint-disable-line no-unused-vars
-import PropTypes from 'prop-types'
+// @flow
+//
+// https://github.com/thebuilder/react-scroll-percentage
+//
+import * as React from 'react' // eslint-disable-line no-unused-vars
 import Observer from 'react-intersection-observer'
+import { unwatch, watch } from './scroll'
 
-const isFunction = func => typeof func === 'function'
+type Props = {
+  /** Element tag to use for the wrapping */
+  tag: string,
+  /** Children should be either a function or a node */
+  children: React.Node | ((percentage: number, inView: boolean) => React.Node),
+  /** Call this function whenever the percentage changes */
+  onChange?: (percentage: number, inView: boolean) => void,
+  /** Number between 0 and 1 indicating the the percentage that should be visible before triggering */
+  threshold?: number,
+  /** Get a reference to the the inner DOM node */
+  innerRef?: (element: ?HTMLElement) => void,
+}
+
+type State = {
+  percentage: number,
+  inView: boolean,
+}
 
 /**
  * Monitors scroll, and triggers the children function with updated props
@@ -18,18 +33,7 @@ const isFunction = func => typeof func === 'function'
  )}
  </ScrollPercentage>
  */
-class ScrollPercentage extends PureComponent {
-  static propTypes = {
-    /** Element tag to use for the wrapping */
-    tag: PropTypes.node,
-    /** Children should be either a function or a node */
-    children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-    /** Call this function whenever the percentage changes */
-    onChange: PropTypes.func,
-    /** Number between 0 and 1 indicating the the percentage that should be visible before triggering */
-    threshold: PropTypes.number,
-  }
-
+class ScrollPercentage extends React.PureComponent<Props, State> {
   static defaultProps = {
     tag: 'div',
     threshold: 0,
@@ -38,14 +42,17 @@ class ScrollPercentage extends PureComponent {
   /**
    * Get the correct viewport height. If rendered inside an iframe, grab it from the parent
    */
-  static viewportHeight() {
-    return global.parent ? global.parent.innerHeight : global.innerHeight
+  static viewportHeight(): number {
+    return global.parent ? global.parent.innerHeight : global.innerHeight || 0
   }
 
-  static calculatePercentage(height, bottom, threshold = 0) {
+  static calculatePercentage(
+    bounds: ClientRect,
+    threshold: number = 0,
+  ): number {
     const vh = ScrollPercentage.viewportHeight()
-    const offsetTop = threshold * vh * 0.5
-    const offsetBottom = threshold * vh * 0.5
+    const offsetTop = threshold * vh * 0.25
+    const offsetBottom = threshold * vh * 0.25
 
     return (
       1 -
@@ -53,7 +60,8 @@ class ScrollPercentage extends PureComponent {
         0,
         Math.min(
           1,
-          (bottom - offsetTop) / (vh + height - offsetBottom - offsetTop),
+          (bounds.bottom - offsetTop) /
+            (vh + bounds.height - offsetBottom - offsetTop),
         ),
       )
     )
@@ -64,17 +72,22 @@ class ScrollPercentage extends PureComponent {
     inView: false,
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentDidMount() {
+    // Start by updating the scroll position, so it correctly reflects the elements start position
+    this.handleScroll()
+  }
+
+  componentWillUpdate(nextProps: Props, nextState: State) {
     if (!nextProps.onChange) return
     if (
       nextState.percentage !== this.state.percentage ||
       nextState.inView !== this.state.inView
     ) {
-      nextProps.onChange({ ...this.state })
+      nextProps.onChange(nextState.percentage, nextState.inView)
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevState.inView !== this.state.inView) {
       this.monitorScroll(this.state.inView)
     }
@@ -82,35 +95,29 @@ class ScrollPercentage extends PureComponent {
 
   componentWillUnmount() {
     this.monitorScroll(false)
-    this.observer = null
   }
 
-  observer = null
+  node: ?HTMLElement = null
 
-  monitorScroll(enable) {
+  monitorScroll(enable: boolean) {
     if (enable) {
-      window.addEventListener('scroll', this.handleScroll)
-      this.handleScroll()
+      watch(this.handleScroll)
     } else {
-      window.removeEventListener('scroll', this.handleScroll)
+      unwatch(this.handleScroll)
     }
   }
 
-  handleChange = inView => {
+  handleInView = (inView: boolean) => {
     this.setState({ inView })
   }
 
-  handleNode = node => (this.observer = node)
-  handleScroll = () => requestAnimationFrame(() => this.updatePercentage())
+  handleNode = (observer: ?Observer) => (this.node = observer && observer.node)
 
-  updatePercentage() {
+  handleScroll = () => {
+    if (!this.node) return
     const { threshold } = this.props
-    const { bottom, height } = this.observer.node.getBoundingClientRect()
-    const percentage = ScrollPercentage.calculatePercentage(
-      height,
-      bottom,
-      threshold,
-    )
+    const bounds = this.node.getBoundingClientRect()
+    const percentage = ScrollPercentage.calculatePercentage(bounds, threshold)
 
     if (percentage !== this.state.percentage) {
       this.setState({
@@ -120,23 +127,14 @@ class ScrollPercentage extends PureComponent {
   }
 
   render() {
-    const { children, threshold, ...props } = this.props
+    const { children, threshold, onChange, ...props } = this.props
 
-    return React.createElement(
-      Observer,
-      {
-        ...props,
-        onChange: this.handleChange,
-        ref: this.handleNode,
-      },
-      // If children is a function, render it with the current percentage and inView status.
-      // Otherwise always render children. Assume onChange is being used outside, to control the the state of children.
-      isFunction(children)
-        ? children({
-            percentage: this.state.percentage,
-            inView: this.state.inView,
-          })
-        : children,
+    return (
+      <Observer ref={this.handleNode} {...props} onChange={this.handleInView}>
+        {children && typeof children === 'function'
+          ? children(this.state.percentage, this.state.inView)
+          : children}
+      </Observer>
     )
   }
 }

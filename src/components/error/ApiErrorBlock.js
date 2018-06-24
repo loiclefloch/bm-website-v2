@@ -5,7 +5,7 @@ import ui from 'redux-ui'
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
 
-import Snackbar from 'material-ui/Snackbar'
+import Snackbar from '@material-ui/core/Snackbar'
 
 @ui({
   persist: false,

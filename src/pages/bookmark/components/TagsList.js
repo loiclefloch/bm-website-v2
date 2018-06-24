@@ -3,39 +3,35 @@ import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 
+import { withStyles } from '@material-ui/core/styles'
 import AddTagBtn from '../../../components/tag/AddTagBtn'
 import Tag from '../../../components/tag/Tag'
 
-const TagsList = ({ bookmark, tags, style, className })  => {
+const styles = theme => ({
+  root: {
+    height: 28,
+    marginLeft: theme.spacing.unit,
+    ...theme.style.flexCenter,
+  },
+  tagRoot: {
+    marginRight: 15,
+    fontSize: 13,
+  },
+})
+
+const TagsList = ({ bookmark, tags, classes }) => {
   const selectedTags = bookmark.tags
 
   return (
-    <div
-      className={`u-height28 u-flexCenter ${className}`}
-      style={style}
-    >
-      {map(selectedTags, (tag) => {
-        return (
-          <Tag
-            key={tag.id}
-            tag={tag}
-            className="u-marginLeft5 u-fontSize13"
-          />
-        )
-      })}
-      <AddTagBtn
-        bookmark={bookmark}
-        tags={tags}
-        selectedTags={selectedTags}
-      />
+    <div className={classes.root}>
+      {map(selectedTags, tag => <Tag key={tag.id} tag={tag} classes={{ root: classes.tagRoot }} />)}
+      <AddTagBtn bookmark={bookmark} tags={tags} selectedTags={selectedTags} />
     </div>
   )
 }
 
 TagsList.defaultProps = {
   tags: [],
-  style: {},
-  className: '',
 }
 
 TagsList.propTypes = {
@@ -48,4 +44,4 @@ TagsList.propTypes = {
   className: PropTypes.string,
 }
 
-export default TagsList
+export default withStyles(styles)(TagsList)

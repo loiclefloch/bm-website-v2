@@ -1,82 +1,93 @@
-import React from "react";
-import PropType from "prop-types";
+import React from 'react'
+import PropType from 'prop-types'
 
-import Drawer from "@material-ui/core/Drawer";
-import MenuItem from "@material-ui/core/MenuItem";
+import Drawer from '@material-ui/core/Drawer'
+import MenuItem from '@material-ui/core/MenuItem'
+import MenuList from '@material-ui/core/MenuList'
 
-import { withTheme } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 
-import LogoIcon from "../../../components/Logo";
+import LogoIcon from 'components/Logo'
 
-import Link from "../../../modules/reacticoon/routing/Link";
+import Link from '../../../modules/reacticoon/routing/Link'
+import Typography from '@material-ui/core/Typography'
 
-const Item = ({ children }) => (
-  <MenuItem
-    style={{
-      color: "white"
-    }}
-  >
-    {children}
-  </MenuItem>
-);
+const Item = ({ route, classes, text }) => (
+  <Link to={Link.getRoute(route)}>
+    <MenuItem classes={{ root: classes.menuItem }}>
+      <span className={classes.menuItemText}>{text}</span>
+    </MenuItem>
+  </Link>
+)
 
-class Sidebar extends React.Component {
-  render() {
-    return (
-      <Drawer
-        open={true}
-        containerStyle={{ backgroundColor: this.props.theme.sidebar.color }}
-      >
-        <div
-          style={{
-            boxSizing: "border-box",
-            color: "white",
-            display: "block",
-            height: this.props.theme.appBar.height,
-            padding: "16px 0 11px 24px",
-            position: "relative"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <LogoIcon width={48} height={48} fill="white" />
-            <div style={{ marginLeft: 12 }}>Bookmark Manager</div>
-          </div>
-        </div>
+const styles = theme => ({
+  drawerPaper: {
+    backgroundColor: theme.app.background.dark,
+    width: theme.app.sidebar.width,
+  },
+  leftArea: {
+    boxSizing: 'border-box',
+    display: 'block',
+    height: theme.app.header.height,
+    padding: '4px 0 16px 16px',
+    position: 'relative',
+    color: theme.palette.common.white,
+  },
+  logoArea: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  brand: {
+    marginLeft: 12,
+    color: theme.palette.common.white,
+    fontSize: '1rem',
+  },
+  menuList: {
+    paddingTop: 50,
+  },
+  menuItem: {
+    paddingLeft: theme.spacing.unit * 4,
+    color: theme.palette.common.white,
+    ...theme.style.focusPrimary,
+  },
+  menuItemText: {
+    // required for menuItem focus
+  },
+})
 
-        <div style={{ paddingTop: "50px" }}>
-          <Link to={Link.getRoute('DASHBOARD')}>
-            <Item>Home</Item>
-          </Link>
+const Sidebar = ({ classes }) => (
+  <Drawer variant="permanent" open={true} classes={{ paper: classes.drawerPaper }}>
+    <div className={classes.leftArea}>
+      <div className={classes.logoArea}>
+        <LogoIcon width={48} height={48} fill="white" />
+        <Typography className={classes.brand} variant="headline">
+          Bookmark Manager
+        </Typography>
+      </div>
+    </div>
 
-          <Link to={Link.getRoute('CIRCLES')}>
-            <Item>Circles</Item>
-          </Link>
+    <MenuList className={classes.menuList}>
+      <Item route="DASHBOARD" classes={classes} text="Home" />
+      <Item route="CIRCLES" classes={classes} text="Circles" />
 
-          <Link to={Link.getRoute('BOOKS')}>
-            <Item>Books</Item>
-          </Link>
+      {/* <Link to={Link.getRoute('BOOKS')}>
+        <Item classes={classes}>Books</Item>
+      </Link>
 
-          <Link to={Link.getRoute('SETTINGS')}>
-            <Item>Settings</Item>
-          </Link>
+      <Link to={Link.getRoute('SETTINGS')}>
+        <Item classes={classes}>Settings</Item>
+      </Link>
 
-          <Link to={Link.getRoute('TESTS')}>
-            <Item>Tests</Item>
-          </Link>
-        </div>
-      </Drawer>
-    );
-  }
-}
+      <Link to={Link.getRoute('TESTS')}>
+        <Item classes={classes}>Tests</Item>
+      </Link> */}
+    </MenuList>
+  </Drawer>
+)
 
 Sidebar.propTypes = {
   isLoggedIn: PropType.bool.isRequired,
-  me: PropType.object
-};
+  me: PropType.object,
+}
 
-export default withTheme()(Sidebar);
+export default withStyles(styles)(Sidebar)

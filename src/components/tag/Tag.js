@@ -1,19 +1,50 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import merge from 'lodash/merge'
+import classNames from 'classnames'
+
+import { withStyles } from '@material-ui/core/styles'
 
 import SelectedView from '../icon/SelectedView'
 
-const Tag = (props) => {
+const styles = theme => ({
+  root: {
+    display: 'inline-block',
+    justifyContent: 'center',
+    minWidth: 20,
+    cursor: 'pointer',
+  },
+  modeDefault: {
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 2,
+    paddingBottom: 2,
+    borderRadius: '4px',
+    fontSize: 13,
+  },
+  modeSquareSquare: {
+    ...theme.style.flexCenter,
+    display: 'table-cell',
+    justifyContent: 'center',
+  },
+  modeSquareName: {
+    paddingTop: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    fontSize: 16,
+    display: 'table-cell',
+  },
+})
 
-  const handleClick = (event) => {
+const Tag = props => {
+  const handleClick = event => {
     if (props.onClick) {
       props.onClick(props.tag, event)
     }
   }
 
   // classNames
-  const { className, squareClassName, nameClassName } = props
+  const { classes } = props
   // styles
   const { style, squareStyle, nameStyle } = props
   // other props
@@ -28,7 +59,7 @@ const Tag = (props) => {
     return (
       <span
         onClick={handleClick}
-        className={`u-paddingLeft5 u-paddingRight5 u-paddingTop2 u-paddingBottom2 u-borderRadius4 u-fontSize13 ${className}`}
+        className={classNames(classes.root, classes.modeDefault)}
         style={mergedStyle}
       >
         {tag.name}
@@ -36,8 +67,7 @@ const Tag = (props) => {
     )
   }
 
-  const mergedStyle = merge({}, style, {
-  })
+  const mergedStyle = merge({}, style, {})
 
   const mergedSquareStyle = merge({}, squareStyle, {
     backgroundColor: tag.color,
@@ -46,30 +76,15 @@ const Tag = (props) => {
     height: '26px',
   })
 
-  const mergedNameStyle = merge({}, nameStyle, {
-
-  })
+  const mergedNameStyle = merge({}, nameStyle, {})
 
   // Tag.Mode.SQUARE_WITH_NAME
   return (
-    <div
-      onClick={handleClick}
-      style={mergedStyle}
-      className={`u-inlineBlock u-flexCenter u-justifyContentCenter u-minWidth200 ${className}`}
-    >
-      <div
-        className={`u-tableCell u-flexCenter u-justifyContentCenter ${squareClassName}`}
-        style={mergedSquareStyle}
-      >
-        <SelectedView
-          show={isSelected}
-          isLightColor={tag.isLightColor}
-        />
+    <div onClick={handleClick} style={mergedStyle} className={classes.root}>
+      <div className={classes.modeSquareSquare} style={mergedSquareStyle}>
+        <SelectedView show={isSelected} isLightColor={tag.isLightColor} />
       </div>
-      <div
-        className={`u-paddingLeft5 u-paddingRight5 u-fontSize16 u-tableCell ${nameClassName}`}
-        style={mergedNameStyle}
-      >
+      <div className={classes.modeSquareName} style={mergedNameStyle}>
         {tag.name}
       </div>
     </div>
@@ -91,14 +106,13 @@ Tag.Mode = {
 Tag.propTypes = {
   tag: PropTypes.object.isRequired,
   className: PropTypes.string,
-  squareClassName: PropTypes.string,
   nameClassName: PropTypes.string,
 
   style: PropTypes.object,
   squareStyle: PropTypes.object,
   nameStyle: PropTypes.object,
 
-  mode: PropTypes.oneOf([ Tag.Mode.SQUARE_WITH_NAME, Tag.Mode.DEFAULT ]),
+  mode: PropTypes.oneOf([Tag.Mode.SQUARE_WITH_NAME, Tag.Mode.DEFAULT]),
 
   /**
    * @param tag
@@ -117,9 +131,7 @@ Tag.propTypes = {
 Tag.defaultProps = {
   mode: Tag.Mode.DEFAULT,
   className: '',
-  squareClassName: '',
-  nameClassName: '',
   isSelected: false,
 }
 
-export default Tag
+export default withStyles(styles)(Tag)

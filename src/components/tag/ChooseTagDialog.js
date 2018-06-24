@@ -1,74 +1,100 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+
+import { compose, connect } from 'reacticoon/view'
 import Fuse from 'fuse.js'
 import isEmpty from 'lodash/isEmpty'
 import ArrayUtils from '../../utils/ArrayUtils'
 
-import ui from 'redux-ui'
+import { withStyles } from '@material-ui/core/styles'
+import { addTagsToBookmark } from 'modules/bookmark/bookmark/actions.js'
 
-import {
-  addTagsToBookmark,
-} from '../../modules/bookmark/bookmark/actions.js'
+import { getTagsList } from 'modules/tag'
 
-import {
-  getTagsList,
-} from '../../modules/tag'
-
-import Dialog from 'material-ui/Dialog'
-import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
+import Button from '@material-ui/core/Button'
 import SearchBar from '../search/SearchBar'
 import Tag from './Tag'
 
-@ui({
-  persist: false,
-  state: {
-    searchQuery: '',
-    selectedTags: (props) => props.selectedTags,
-  }
+const styles = theme => ({
+  dialogPaper: {
+    minWidth: 300,
+    height: '400px',
+  },
+  tagRoot: {
+    marginBottom: 10,
+    minWidth: 200,
+    display: 'inline-block',
+  },
+  tagList: {
+    minHeight: 300,
+    height: 300,
+    marginTop: 20,
+    justifyContent: 'center',
+    overflowY: 'scroll',
+    display: 'flex',
+    alignItems: 'stretch',
+    flexWrap: 'wrap',
+  },
+  searchBar: {
+    width: '60%',
+  },
+  saveBtn: {
+    minWidth: 110,
+    marginLeft: theme.spacing.unit * 2,
+  },
 })
+
 class ChooseTagDialog extends React.Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      searchQuery: '',
+      selectedTags: props.selectedTags,
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedTags !== this.props.selectedTags) {
-      this.props.updateUI({
+      this.setState({
         selectedTags: nextProps.selectedTags,
       })
     }
   }
 
-  isTagSelected(tag): boolean {
-    return ArrayUtils.exists(this.props.ui.selectedTags, { id: tag.id })
+  isTagSelected(tag) {
+    return ArrayUtils.exists(this.state.selectedTags, { id: tag.id })
   }
 
   handleOnTagClick = (tag, event) => {
-    this.props.updateUI({
-      selectedTags: ArrayUtils.toggleObject(this.props.ui.selectedTags, tag, { id: tag.id }),
+    this.setState({
+      selectedTags: ArrayUtils.toggleObject(this.state.selectedTags, tag, { id: tag.id }),
     })
   }
 
-  handleSearchQueryChange = (event, searchQuery) => {
-    this.props.updateUI({ searchQuery })
+  handleSearchQueryChange = event => {
+    this.setState({ searchQuery: event.target.value })
   }
 
   handleOnSave = () => {
-    const selectedTags = this.props.ui.selectedTags
+    const selectedTags = this.state.selectedTags
     this.props.onSave(selectedTags)
     this.props.addTagsToBookmark(selectedTags, this.props.bookmark)
-    this.props.resetUI()
+    this.setState({
+      searchQuery: '',
+    })
   }
 
   render() {
-    const { ui, open, tags, selectedTags, onClose } = this.props
+    const { open, tags, selectedTags, classes, onClose } = this.props
     const actions = []
-
-    const title = (
-      <span></span>
-    )
 
     let filteredTags = []
 
-    if (isEmpty(ui.searchQuery)) {
+    if (isEmpty(this.state.searchQuery)) {
       // put selected first
       filteredTags = tags.sort((a, b) => {
         const aSelected = this.isTagSelected(a)
@@ -99,74 +125,65 @@ class ChooseTagDialog extends React.Component {
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-          "description",
-          "title",
-          "name",
-          "url",
+          'description',
+          'title',
+          'name',
+          'url',
           // "websiteInfo.",
-        ]
-      };
+        ],
+      }
       const fuse = new Fuse(tags, options)
-      filteredTags = fuse.search(ui.searchQuery)
+      filteredTags = fuse.search(this.state.searchQuery)
     }
 
     return (
       <Dialog
-        title={title}
         actions={actions}
-        modal={false}
         open={open}
-        onRequestClose={onClose}
-        autoScrollBodyContent={false}
-        bodyClassName="u-minHeight400"
-        bodyStyle={{
-          height: '400px',
+        onClose={onClose}
+        onBackdropClick={onClose}
+        classes={{
+          paper: classes.dialogPaper,
         }}
       >
-        <div>
-          {/* Search bar */}
-          <SearchBar
-            onChange={this.handleSearchQueryChange}
-            value={ui.searchQuery}
-            autoFocus
-            style={{
-              width: '60%',
-            }}
-          />
+        <DialogContent>
+          <div>
+            {/* Search bar */}
+            <SearchBar
+              onChange={this.handleSearchQueryChange}
+              value={this.state.searchQuery}
+              autoFocus
+              className={classes.searchBar}
+            />
 
-          <RaisedButton
-            label="Save"
-            primary={true}
-            onClick={this.handleOnSave}
-            className="u-marginLeft15"
-            style={{
-              minWidth: '100px',
-            }}
-          />
-        </div>
+            <Button
+              variant="raised"
+              color="primary"
+              onClick={this.handleOnSave}
+              className={classes.saveBtn}
+            >
+              Save
+            </Button>
+          </div>
 
-        {/* Tag list */}
-        <div
-          className="u-marginTop20 u-flexStretch u-justifyContentCenter u-flexWrap u-minHeight300 u-overflowScrollY"
-          style={{
-            height: '300px',
-          }}
-        >
-          {filteredTags.map((tag) => {
-            const isSelected = this.isTagSelected(tag)
+          {/* Tag list */}
+          <div className={classes.tagList}>
+            {filteredTags.map(tag => {
+              const isSelected = this.isTagSelected(tag)
 
-            return (
-              <Tag
-                key={tag.id}
-                tag={tag}
-                mode={Tag.Mode.SQUARE_WITH_NAME}
-                className="u-cursorPointer u-marginBottom10"
-                isSelected={isSelected}
-                onClick={this.handleOnTagClick}
-              />
-            )
-          })}
-        </div>
+              return (
+                <Tag
+                  key={tag.id}
+                  tag={tag}
+                  mode={Tag.Mode.SQUARE_WITH_NAME}
+                  classes={{ root: classes.tagRoot }}
+                  isSelected={isSelected}
+                  onClick={this.handleOnTagClick}
+                />
+              )
+            })}
+          </div>
+        </DialogContent>
       </Dialog>
     )
   }
@@ -191,12 +208,18 @@ ChooseTagDialog.propTypes = {
   onClose: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     tags: getTagsList(state),
   }
 }
 
-export default connect(mapStateToProps, {
-  addTagsToBookmark,
-})(ChooseTagDialog)
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    {
+      addTagsToBookmark,
+    }
+  )
+)(ChooseTagDialog)
