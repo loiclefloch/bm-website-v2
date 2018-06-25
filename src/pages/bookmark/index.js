@@ -27,7 +27,7 @@ class BookmarkPage extends Component {
     const { isFetchingBookmark, bookmark } = this.props
 
     return (
-      <Page title="" isFetching={false} loadingMessage="Loading bookmark">
+      <Page title="" isFetching={false}>
         <div
           style={{
             maxWidth: '800px',

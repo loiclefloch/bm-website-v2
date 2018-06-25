@@ -223,3 +223,9 @@ export default [
   },
 ]
 ```
+
+## Advanced configurations
+
+### Code splitting
+
+See [Code splitting documentation](./code-splitting)
