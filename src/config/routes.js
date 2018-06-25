@@ -1,38 +1,46 @@
+import React from 'react'
 import RoutingEnum from './RoutingEnum'
 
-import LoginPage from '../pages/login'
-import DashboardPage from '../pages/dashboard'
-import BookmarkPage from '../pages/bookmark'
-import BookmarkNewPage from '../pages/bookmarkNew'
-import CirclesListPage from '../pages/circles/CirclesListPage'
-import CirclePage from '../pages/circle/CirclePage'
-import SettingsPage from '../pages/settings/SettingsPage'
-import TestPage from '../pages/test/TestPage'
+import { createLoadable } from 'reacticoon/view'
+
+import PageLoader from '../components/PageLoader'
+
+const createAsyncPage = loader => createLoadable(loader, () => <PageLoader />)
 
 const routes = [
   {
     definition: RoutingEnum.LOGIN,
-    handler: LoginPage,
+    handler: createAsyncPage(() => import(/*  webpackChunkName: "LoginPage" */ '../pages/login')),
   },
   {
     definition: RoutingEnum.DASHBOARD,
-    handler: DashboardPage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "DashboardPage" */ '../pages/dashboard')
+    ),
   },
   {
     definition: RoutingEnum.BOOKMARK,
-    handler: BookmarkPage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "BookmarkPage" */ '../pages/bookmark')
+    ),
   },
   {
     definition: RoutingEnum.NEW_BOOKMARK,
-    handler: BookmarkNewPage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "BookmarkNewPage" */ '../pages/bookmarkNew')
+    ),
   },
   {
     definition: RoutingEnum.CIRCLES,
-    handler: CirclesListPage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "CirclesListPage" */ '../pages/circles/CirclesListPage')
+    ),
   },
   {
     definition: RoutingEnum.CIRCLE,
-    handler: CirclePage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "CirclePage" */ '../pages/circle/CirclePage')
+    ),
   },
   // {
   //   definition: RoutingEnum.BOOKS,
@@ -41,11 +49,15 @@ const routes = [
   // },
   {
     definition: RoutingEnum.TESTS,
-    handler: TestPage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "TestPage" */ '../pages/test/TestPage')
+    ),
   },
   {
     definition: RoutingEnum.SETTINGS,
-    handler: SettingsPage,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "SettingsPage" */ '../pages/settings/SettingsPage')
+    ),
   },
 ]
 
