@@ -1,7 +1,7 @@
 /**
  * Listing of all the events used by Reacticoon.
  * All the events are public if it is not specified there are not.
- * 
+ *
  * Note: Plugins can defines there custom events via the `customEvents` config.
  */
 const ReacticoonEvents = {
@@ -37,26 +37,26 @@ const ReacticoonEvents = {
   // - detail
   //
   LOG_NOT_IMPLEMENTED: 'REACTICOON::LOG::NOT_IMPLEMENTED',
-  
+
   //
   // props:
   // - type
   // - detail
-  //  
+  //
   LOG_ERROR: 'REACTICOON::LOG::ERROR',
-  
- //
+
+  //
   // props:
   // - ex
-  // - context 
-  //  
+  // - context
+  //
   LOG_EXCEPTION: 'REACTICOON::LOG::EXCEPTION',
 
   //
   // props:
   // - error
   // - info
-  // 
+  //
   LOG_COMPONENT_DID_CATCH: 'REACTICOON::LOG::COMPONENT_DID_CATCH',
 
   //
@@ -79,7 +79,9 @@ const ReacticoonEvents = {
 
   //
   // -- form
-  // Note: those events are generic for any form plugin to allow replace the `reacticoon-form` plugin 
+  // Note: those events are generic for any form plugin to allow replace the `reacticoon-form` plugin
+  // We consider it as a ReacticoonEvent, since form handling should be used on any Reacticoon
+  // app.
   //
   REGISTER_FORM: 'REACTICOON::REGISTER_FORM',
 }

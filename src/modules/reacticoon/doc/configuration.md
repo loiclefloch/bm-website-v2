@@ -3,6 +3,8 @@
 Reacticoon configuration is made possible via the `appOption` object.
 This object is pass to the Reacticoon `Application` function to initilize it.
 
+For building configuration, see [`config-overrides`](./config-overrides).
+
 ## Introduction
 
 ```javascript
