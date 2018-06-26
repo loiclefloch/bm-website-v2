@@ -1,50 +1,51 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 import LogoIcon from 'components/Logo'
 
-import LoadingBlock from "components/loading/LoadingBlock";
+import LoadingBlock from 'components/loading/LoadingBlock'
+import { HibpPasswordRangeContainer } from 'plugins/reacticoon-hibp'
+import BlockError from 'components/BlockError'
 
 const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
-  const { username, password } = formData;
+  const { username, password } = formData
 
   const fieldProps = {
-    autoComplete: "off",
-    autoCorrect: "off",
-    autoCapitalize: "off",
-    spellCheck: "false",
+    autoComplete: 'off',
+    autoCorrect: 'off',
+    autoCapitalize: 'off',
+    spellCheck: 'false',
     style: {
-      width: "100%",
-      textAlign: "center",
-      marginBottom: "20px"
-    }
-  };
+      width: '100%',
+      textAlign: 'center',
+      marginBottom: '20px',
+    },
+  }
 
   return (
     <div
       className="Login"
       style={{
-        textAlign: "center"
+        textAlign: 'center',
       }}
     >
       <Paper
         elevation={2}
         style={{
-          maxWidth: "600px",
-          width: "380px",
-          margin: "4em auto",
-          padding: "3em 2em 2em 2em",
+          maxWidth: '600px',
+          width: '380px',
+          margin: '4em auto',
+          padding: '3em 2em 2em 2em',
 
           // LoadingBlock parent requirements
-          position: "relative"
+          position: 'relative',
         }}
       >
         <LoadingBlock show={isFetching}>
           <React.Fragment>
-
             <LogoIcon width={48} height={48} fill="#2F2F2F" />
 
             <TextField
@@ -54,24 +55,37 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
               onChange={event =>
                 onChange({
                   ...formData,
-                  username: event.target.value
+                  username: event.target.value,
                 })
               }
               {...fieldProps}
             />
 
-            <TextField
-              label="Password"
-              type="password"
-              value={password}
-              onChange={event =>
-                onChange({
-                  ...formData,
-                  password: event.target.value
-                })
-              }
-              {...fieldProps}
-            />
+            <HibpPasswordRangeContainer password={password}>
+              {({ isPwned, count }) => (
+                <React.Fragment>
+                  <TextField
+                    label="Password"
+                    type="password"
+                    value={password}
+                    onChange={event =>
+                      onChange({
+                        ...formData,
+                        password: event.target.value,
+                      })
+                    }
+                    {...fieldProps}
+                  />
+                  {isPwned && (
+                    <BlockError>
+                      Oh no — pwned! This password has been seen {count} times before. This password
+                      has previously appeared in a data breach and should never be used. If you've
+                      ever used it anywhere before, change it!
+                    </BlockError>
+                  )}
+                </React.Fragment>
+              )}
+            </HibpPasswordRangeContainer>
 
             <br />
 
@@ -79,8 +93,8 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
               color="primary"
               variant="raised"
               style={{
-                margin: "16px 0px 16px",
-                width: "200px"
+                margin: '16px 0px 16px',
+                width: '200px',
               }}
               onClick={onLogin}
             >
@@ -90,15 +104,15 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
         </LoadingBlock>
       </Paper>
     </div>
-  );
-};
+  )
+}
 
 LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired,
   userCredentials: PropTypes.shape({
     username: PropTypes.string,
-    password: PropTypes.string
-  }).isRequired
-};
+    password: PropTypes.string,
+  }).isRequired,
+}
 
-export default LoginForm;
+export default LoginForm

@@ -14,6 +14,7 @@
     "@material-ui/icons": "1.1.0",
     "classnames": "2.2.6",
     "fuse.js": "3.2.1",
+    "hibp": "7.1.1",
     "hoist-non-react-statics": "2.5.5",
     "humps": "2.0.1",
     "immutable": "3.8.2",
