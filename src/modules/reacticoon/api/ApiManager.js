@@ -217,7 +217,7 @@ class ApiManager {
    *  endpoint: the endpoint,
    *  params: the url parameters to set on the endpoint,
    *  query: the url query params,
-   *  data: the body data to be send as json,
+   *  data|body: the body data to be send as json,
    *  headers: an object of headers,
    * }
    */
@@ -304,13 +304,14 @@ class ApiManager {
   }
 
   post(options: Object) {
-    const { url, endpoint, params, data, headers, query, success, failure } = options
+    const { url, endpoint, params, data, body, headers, query, success, failure } = options
 
     request
       .post(`${this.getApiUrl(url)}${formatEndpoint(endpoint, params)}`, null, null)
       .type('json')
       .query(query)
-      .send(JSON.stringify(data))
+      // we handle body and data 
+      .send(JSON.stringify(body ? body : data))
       .set('Accept', 'application/json')
       .set(this.getHeaders(headers))
       .end((error: Object, res: Object) => {

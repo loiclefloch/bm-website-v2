@@ -33,6 +33,8 @@ const createApiCallAction = (type, request, data = null) => {
   func.REQUEST = actionType.REQUEST
   func.SUCCESS = actionType.SUCCESS
   func.FAILURE = actionType.FAILURE
+  // requried by `isActionType`
+  func.isActionType = true
 
   return func
 }

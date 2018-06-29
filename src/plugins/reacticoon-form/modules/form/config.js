@@ -93,10 +93,10 @@ export const getFormModifier = formDef => {
   const formType = getFormType(formDef)
   const form = getForm(formType)
 
-  const formatter = form.options.modifier
-  invariant(isNil(formatter) || isFunction(formatter), 'form ' + formType + ' has no formatter')
+  const modifier = form.options.modifier
+  invariant(isNil(modifier) || isFunction(modifier), 'form ' + formType + ' has no modifier')
 
-  return formatter
+  return modifier
 }
 
 

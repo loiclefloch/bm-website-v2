@@ -1,3 +1,3 @@
 
-export createReducer from './createReducer'
-export createApiReducer from './createApiReducer'
+export { default as createReducer } from './createReducer'
+export { default as createApiReducer } from './createApiReducer'

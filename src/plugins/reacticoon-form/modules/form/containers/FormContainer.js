@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import invariant from 'invariant'
+import isNil from 'lodash/isNil'
 import isNull from 'lodash/isNull'
 import isUndefined from 'lodash/isUndefined'
 import isFunction from 'lodash/isFunction'
@@ -8,14 +11,14 @@ import { bindActionCreators } from 'redux'
 
 import { getFormCustomActions } from '../config'
 
-import { initForm, updateForm, resetForm } from '../actions'
+import { initForm, updateForm, resetForm, resetFormWithDefaultData } from '../actions'
 
 import { makeGetFormData, makeGetFormErrors, makeGetFormOptions } from '../selectors'
 
-class FormContainer extends React.Component {
+class FormContainer extends React.PureComponent {
   componentWillMount() {
     if (!isNull(this.props.defaultData)) {
-      this.props.initForm(this.props.formType, {
+      this.props.initFormAction(this.props.formType, {
         ...this.props.formData, // default data defined on the form creation
         ...this.props.defaultData, // given default data from props
       })
@@ -34,11 +37,19 @@ class FormContainer extends React.Component {
       formData = { ...this.props.formData, [key]: formDataParam }
     }
 
-    this.props.updateForm(this.props.formType, formData)
+    this.props.updateFormAction(this.props.formType, formData)
   }
 
   handleReset = () => {
-    this.props.resetForm(this.props.formType, this.props.defaultData)
+    invariant(
+      !isNil(this.props.defaultData),
+      `Cannot call resetForm with defaultData prop nil. Consider using 'resetFormWithDefaultData'`
+    )
+    this.props.resetFormAction(this.props.formType, this.props.defaultData)
+  }
+
+  handleResetFormWithDefaultData = () => {
+    this.props.resetFormWithDefaultDataAction(this.props.formType)
   }
 
   render() {
@@ -48,6 +59,11 @@ class FormContainer extends React.Component {
       formOptions,
       WrappedComponent,
       children,
+      // we don't want those actions to be on otherProps and pass to the children
+      resetFormAction,
+      updateFormAction,
+      initFormAction,
+      resetFormWithDefaultDataAction,
       ...otherProps
     } = this.props
 
@@ -56,10 +72,12 @@ class FormContainer extends React.Component {
       formErrors,
       formOptions,
       formIsValid: formErrors.isValid,
-      // TODO deprecated, use formIsValid
+      // TODO: deprecated, use formIsValid
       isValid: formErrors.isValid,
+      // pass actions
       onChange: this.handleChange,
-      onReset: this.handleReset,
+      resetForm: this.handleReset,
+      resetFormWithDefaultData: this.handleResetFormWithDefaultData,
       ...otherProps,
     }
 
@@ -103,11 +121,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const formCustomActions = getFormCustomActions(ownProps.formType)
 
   return {
-    initForm: bindActionCreators(initForm, dispatch),
-    updateForm: bindActionCreators(updateForm, dispatch),
-    resetForm: bindActionCreators(resetForm, dispatch),
+    initFormAction: bindActionCreators(initForm, dispatch),
+    updateFormAction: bindActionCreators(updateForm, dispatch),
+    resetFormAction: bindActionCreators(resetForm, dispatch),
+    resetFormWithDefaultDataAction: bindActionCreators(resetFormWithDefaultData, dispatch),
     customActions: bindActionCreators(formCustomActions, dispatch),
   }
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(FormContainer)
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(FormContainer)

@@ -13,6 +13,7 @@
 import findIndex from 'lodash/findIndex'
 import isArray from 'lodash/isArray'
 import isFunction from 'lodash/isFunction'
+import isString from 'lodash/isString'
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
 import isNull from 'lodash/isNull'
@@ -40,7 +41,7 @@ const STOP_PROPAGATION = -1
  * Will be converted to a middleware on `generateMiddlewares`
  */
 const createMiddleware = (middlewareName, actionsToHandleParam, func) => {
-  invariant(!isEmpty(middlewareName), `${middlewareName} missing`)
+  invariant(!isEmpty(middlewareName) && isString(middlewareName), `${middlewareName} missing`)
   invariant(!isNil(actionsToHandleParam), `${middlewareName} nil actions`)
   invariant(isFunction(func), 'middleware must be a function')
 

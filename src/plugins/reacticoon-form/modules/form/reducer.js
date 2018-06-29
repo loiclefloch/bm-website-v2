@@ -1,5 +1,8 @@
 import Immutable from 'immutable'
 
+import invariant from 'invariant'
+import isNil from 'lodash/isNil'
+
 import { createReducer } from '../../../../modules/reacticoon/reducer'
 
 import {
@@ -54,6 +57,8 @@ const handleResetForm = (state, action) => {
       options: action.payload.options,
     })
   }
+
+  invariant(!isNil(action.payload.data), 'reset form form data cannot be nil')
 
   return state.mergeIn([action.payload.formType], {
     formData: dataModifier(action.payload.data, action.payload.formType),

@@ -8,13 +8,13 @@ import { API_CALL, TYPES, REQUEST, DATA } from '../api/constants'
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
-const callApi = (request, schema) => {
+const callApi = (request, schema = null) => {
   return new Promise(
     (resolve, reject) => {
       const success = (json) => {
         const camelizedJson = camelizeKeys(json)
 
-        const data = Object.assign({},
+        const data = !schema ? camelizedJson : Object.assign({},
           normalize(camelizedJson, schema),
         )
 
@@ -60,9 +60,9 @@ export default store => next => action => {
 
   const { schema } = request
 
-  if (!schema) {
-    throw new Error('Specify one of the exported Schemas.')
-  }
+  // if (!schema) {
+  //   throw new Error('Specify one of the exported Schemas.')
+  // }
 
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected an array of three action types.')

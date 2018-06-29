@@ -1,5 +1,6 @@
 import Immutable from 'immutable'
 import invariant from 'invariant'
+import isActionType from 'reacticoon/action/isActionType'
 import isFunction from 'lodash/isFunction'
 import isUndefined from 'lodash/isUndefined'
 
@@ -30,7 +31,8 @@ const handleSuccess = (state, action) => state.merge({
 const handleFailure = (state, action) => state.merge({
   data: null,
   isFetching: false,
-  error: action.error,
+  // TODO: does action.error exists ?
+  error: action.apiError || action.error,
 })
 
 const handleAction = (defaultReducer, additionalReducer) => {
@@ -60,6 +62,8 @@ const handleAction = (defaultReducer, additionalReducer) => {
  * default reducer function. Allows to reduce more than the default behavior for an api call actions
  */
 const createApiReducer = (actionType, reducer: Function = null, additionalReducers = {}) => {
+  invariant(isActionType(actionType), `actionType must be defined`)
+  
   //
   // define handlers
   //

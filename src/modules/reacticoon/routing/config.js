@@ -34,3 +34,5 @@ export const registerRoutingEnum = RoutingEnum => {
 }
 
 export const getRoutingEnum = () => _RoutingEnum
+
+export const getRoute = route => getRoutingEnum()[route]

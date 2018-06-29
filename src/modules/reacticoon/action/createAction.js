@@ -38,6 +38,8 @@ const createAction = (type, data, callback = null) => {
   //
 
   actionCreator.TYPE = type
+  // requried by `isActionType`
+  actionCreator.isActionType = true
   actionCreator.toString = () => type
 
   return actionCreator

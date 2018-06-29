@@ -6,7 +6,7 @@ import isNil from 'lodash/isNil'
 import { Link as ReactRouterLink } from 'react-router'
 
 import Route from './Route'
-import { getRoutingEnum } from './config'
+import { getRoutingEnum, getRoute } from './config'
 
 /**
  * Abstract the react-router-dom Route to handle our `Route` definition.
@@ -32,6 +32,6 @@ Link.propTypes = {
 Link.getEnum = getRoutingEnum
 
 // Shortcut to retrieve a route config (to use in the `to` prop)
-Link.getRoute = route => getRoutingEnum()[route]
+Link.getRoute = getRoute
 
 export default Link
