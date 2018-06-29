@@ -37,6 +37,12 @@ const routes = [
     ),
   },
   {
+    definition: RoutingEnum.CIRCLE_NEW,
+    handler: createAsyncPage(() =>
+      import(/*  webpackChunkName: "CircleNewPage" */ '../pages/circleNew')
+    ),
+  },
+  {
     definition: RoutingEnum.CIRCLE,
     handler: createAsyncPage(() =>
       import(/*  webpackChunkName: "CirclePage" */ '../pages/circle/CirclePage')

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Page from 'components/Page'
 import View from './View'
 
-class BookmarkNewPage extends Component {
+class CircleNewPage extends Component {
   render() {
     return (
       <Page title="">
@@ -14,4 +14,4 @@ class BookmarkNewPage extends Component {
   }
 }
 
-export default BookmarkNewPage
+export default CircleNewPage

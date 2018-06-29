@@ -26,6 +26,11 @@ class ApiErrorBlock extends React.Component {
     }
   }
 
+  handleClose = () => {
+    this.props.updateUI({
+      open: false,
+    })
+  }
   render() {
     const { apiError, ui } = this.props;
     if (isNil(apiError)) {
@@ -41,7 +46,7 @@ class ApiErrorBlock extends React.Component {
         open={ui.open}
         message={message}
         autoHideDuration={4000}
-        onRequestClose={this.handleRequestClose}
+        onClose={this.handleClose}
       />
     )
   }

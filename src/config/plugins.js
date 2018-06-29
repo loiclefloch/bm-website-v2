@@ -4,6 +4,7 @@ import reacticoonSentry from '../plugins/reacticoon-plugin-sentry'
 import reacticoonForm from '../plugins/reacticoon-form'
 
 import bookmarkForm from '../modules/bookmarkForm'
+import circleForm from '../modules/circleForm'
 import loginForm from '../modules/auth/form'
 import { reacticoonValidator } from '../plugins/reacticoon-validation'
 
@@ -38,13 +39,16 @@ export default [
       forms: [
         {
           form: bookmarkForm,
-          options: {}
+          options: {},
         },
         {
           form: loginForm,
-          options: {}
-        }
-      ]
+          options: {},
+        },
+        {
+          form: circleForm,
+        },
+      ],
     },
   },
 ]

@@ -17,6 +17,8 @@ const RoutingEnum =  {
 
   CIRCLES: new Route('CIRCLES', '/circles'),
 
+  CIRCLE_NEW: new Route('CIRCLE_NEW', '/circles/new'),
+
   CIRCLE: new Route('CIRCLE', '/circles/:circleId'),
 
   BOOKS: new Route('BOOKS', '/books'),

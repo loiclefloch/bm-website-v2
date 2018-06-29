@@ -1,0 +1,18 @@
+import { createModule } from 'reacticoon/module'
+
+import * as actions from './actions'
+import * as selectors from './selectors'
+import * as middlewares from './middlewares'
+import reducer from './reducer'
+
+export * from './actions'
+export * from './selectors'
+
+const CircleNewModule = createModule('App::CircleNewModule', {
+  actions,
+  reducer,
+  selectors,
+  middlewares,
+})
+
+export default CircleNewModule

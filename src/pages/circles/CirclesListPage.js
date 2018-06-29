@@ -13,7 +13,7 @@ import {
  } from './selectors'
 
 import Page from 'components/Page'
-import CirclesList from './components/CirclesList'
+import View from './View'
 
 class DashboardPage extends Component {
   static propTypes = {
@@ -35,7 +35,7 @@ class DashboardPage extends Component {
         title='Circles'
         isFetching={isFetchingCircles}
       >
-        <CirclesList
+        <View
           circles={circles}
           isFetching={isFetchingCircles}
           actions={{

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect, compose } from 'reacticoon/view'
 
-import { postBookmark, getAddBookmarkError, isAddBookmarkFetching } from 'modules/bookmark'
+import { postCircle, getPostCircleError, isFetchingPostCircle } from 'modules/circleNew'
 
 import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
-import BookmarkForm from 'modules/bookmarkForm'
+import CircleForm from 'modules/circleForm'
 import { withForm } from 'plugins/reacticoon-form'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 })
 
-class AddBookmarkForm extends React.Component {
+class AddCircleForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -30,31 +30,22 @@ class AddBookmarkForm extends React.Component {
   }
 
   handleSubmit = () => {
-    const bookmark = this.props.formData
+    const circle = this.props.formData
 
-    this.props.postBookmark(bookmark)
+    this.props.postCircle(circle)
   }
 
   render() {
     const { formData, formErrors, isValid, classes, onChange } = this.props
 
-    const { url, name, notes } = formData
+    const { name, description } = formData
 
     return (
       <form className="u-flexColumn u-justifyContentCenter u-marginTop50 u-flexCenter">
-        <ApiErrorBlock apiError={this.props.addBookmarkError} />
+        <ApiErrorBlock apiError={this.props.postCircleError} />
 
-        <LoadingBlock show={this.props.isAddBookmarkFetching}>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="url">Url</InputLabel>
-            <TextField
-              id="url"
-              className="u-minWidth360"
-              value={url}
-              onChange={event => onChange('url', event.target.value)}
-            />
-          </FormControl>
-
+        <LoadingBlock show={this.props.isFetchingPostCircle}>
+         
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="name">Name</InputLabel>
             <TextField
@@ -66,14 +57,14 @@ class AddBookmarkForm extends React.Component {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="notes">Notes</InputLabel>
+            <InputLabel htmlFor="notes">Description</InputLabel>
             <TextField
-              id="notes"
+              id="description"
               className="u-minWidth360"
               multiline
               rows="4"
-              value={notes}
-              onChange={event => onChange('notes', event.target.value)}
+              value={description}
+              onChange={event => onChange('description', event.target.value)}
             />
           </FormControl>
 
@@ -97,8 +88,8 @@ class AddBookmarkForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    addBookmarkError: getAddBookmarkError(state),
-    isAddBookmarkFetching: isAddBookmarkFetching(state),
+    postCircleError: getPostCircleError(state),
+    isFetchingPostCircle: isFetchingPostCircle(state),
   }
 }
 
@@ -107,9 +98,9 @@ export default compose(
   connect(
     mapStateToProps,
     {
-      postBookmark,
+      postCircle,
     }
   ),
 
-  withForm(BookmarkForm)
-)(AddBookmarkForm)
+  withForm(CircleForm)
+)(AddCircleForm)
