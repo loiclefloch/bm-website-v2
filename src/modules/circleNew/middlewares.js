@@ -3,7 +3,7 @@ import { redirectTo } from 'reacticoon/routing'
 import { postCircle } from './actions'
 import { getRoute } from '../reacticoon/routing/config'
 
-const createdCircleMiddleware = createMiddleware(
+export const createdCircleMiddleware = createMiddleware(
   'createdCircleMiddleware',
   postCircle.SUCCESS,
   ({ dispatch, action }) => {
@@ -14,5 +14,3 @@ const createdCircleMiddleware = createMiddleware(
     )
   }
 )
-
-export default createdCircleMiddleware

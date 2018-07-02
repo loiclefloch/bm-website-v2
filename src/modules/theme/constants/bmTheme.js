@@ -44,6 +44,16 @@ const bmTheme = {
         color: 'white',
       },
     },
+    chip: {
+      borderColor: palette.primary.main,
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      backgroundColor: 'transparent',
+      cursor: 'pointer',
+      height: 20,
+      lineHeight: 20,
+      marginLeft: 5,
+    },
   },
 }
 

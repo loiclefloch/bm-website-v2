@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import { AvatarWithDefault } from '../../../components/avatar'
+import { AvatarWithDefault } from 'components/avatar'
 
 const styles = theme => ({
   root: {

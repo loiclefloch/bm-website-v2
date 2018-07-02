@@ -8,7 +8,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import { getValidatorEngine } from './config'
 
-import { getQueryParam } from '../../../../modules/reacticoon/routing'
+import { getQueryParam } from 'reacticoon/routing'
 
 export const DISABLE_FORM_DEV_DATA_QUERY_PARAM = 'disableFormDevData'
 

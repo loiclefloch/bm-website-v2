@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography'
 
 import { Link } from 'reacticoon/routing'
 
-import { AvatarWithDefault } from '../../../components/avatar'
+import { AvatarWithDefault } from 'components/avatar'
 import ListItemMeta from './ListItemMeta'
-import TagsList from '../../bookmark/components/TagsList'
+import TagsList from 'app/pages/bookmark/components/TagsList'
 
 const styles = theme => ({
   header: {
@@ -94,11 +94,6 @@ const BookmarksListItem = ({ bookmark, addTagsToBookmark, classes }) => (
 
 BookmarksListItem.propTypes = {
   bookmark: PropTypes.object.isRequired,
-
-  /**
-   * @param bookmark
-   */
-  showBookmark: PropTypes.func.isRequired,
 }
 
 export default withStyles(styles)(BookmarksListItem)

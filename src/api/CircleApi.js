@@ -27,6 +27,19 @@ const CircleApi = {
     params: {},
     body: { name: circle.name, description: circle.description },
   }),
+
+  postMembers: (circleId, members) => ({
+    type: 'POST',
+    endpoint: ApiEndpoints.CIRCLE_MEMBERS,
+    params: {
+      circleId,
+    },
+    body: {
+      members: members.map(member => ({
+        id: member.id,
+      })),
+    },
+  }),
 }
 
 export default CircleApi

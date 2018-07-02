@@ -1,3 +1,5 @@
+import invariant from 'invariant'
+import isNil from 'lodash/isNil'
 import find from 'lodash/find'
 
 let _routes = []
@@ -35,4 +37,11 @@ export const registerRoutingEnum = RoutingEnum => {
 
 export const getRoutingEnum = () => _RoutingEnum
 
-export const getRoute = route => getRoutingEnum()[route]
+export const getRoute = routeName => {
+  const route = getRoutingEnum()[routeName]
+  invariant(
+    !isNil(route),
+    `Not route found for ${routeName}. Verify that you defined the route on the routes`
+  )
+  return route
+}

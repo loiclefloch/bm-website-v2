@@ -1,11 +1,7 @@
 import { createSelector } from 'reselect'
 import values from 'lodash/values'
 
-import {
-  formatCircle,
-  setCircleIsFollowedByMe,
-  setCircleIsAdministrateByMe,
-} from './utils'
+import { formatCircle } from './format'
 
 import { getMe } from '../user'
 
@@ -46,9 +42,10 @@ export const getCirclesAsList = createSelector(
     //   return true
     // })
     .map(circle => {
-      circle = formatCircle(circle.toJS())
-      circle = setCircleIsFollowedByMe(circle, meCirclesIds)
-      circle = setCircleIsAdministrateByMe(circle, meAdministratedCirclesIds)
+      circle = formatCircle(circle.toJS(), {
+        meCirclesIds,
+        meAdministratedCirclesIds,
+      })
       return circle
     })
 

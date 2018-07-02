@@ -5,7 +5,7 @@ import PagingSchema from './PagingSchema'
 
 const CirclesListSchema = new schema.Values({
   paging: PagingSchema,
-  bookmarks: new schema.Array(CircleSchema),
+  circles: new schema.Array(CircleSchema),
 })
 
 export default CirclesListSchema

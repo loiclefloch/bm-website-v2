@@ -3,7 +3,7 @@ import Immutable from 'immutable'
 import invariant from 'invariant'
 import isNil from 'lodash/isNil'
 
-import { createReducer } from '../../../../modules/reacticoon/reducer'
+import { createReducer } from 'reacticoon/reducer'
 
 import {
   registerForm,

@@ -25,13 +25,15 @@ const LoadMore = ({ paging, onLoadMore, classes }) => {
         page {paging.page} on {paging.lastPage} ({paging.total} results)
       </Typography>
 
-      <Button
-        color="primary"
-        onClick={() => onLoadMore(paging)}
-        classes={{ root: classes.loadMoreBtn }}
-      >
-        <Typography>Load more</Typography>
-      </Button>
+      {!paging.isLastPage && (
+        <Button
+          color="primary"
+          onClick={() => onLoadMore(paging)}
+          classes={{ root: classes.loadMoreBtn }}
+        >
+          <Typography>Load more</Typography>
+        </Button>
+      )}
     </div>
   )
 }

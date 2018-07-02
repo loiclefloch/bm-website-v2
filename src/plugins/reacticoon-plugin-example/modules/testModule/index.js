@@ -8,7 +8,7 @@
 // We provide a selector to retrieve the data from the store
 //
 
-import { createModule } from '../../../../modules/reacticoon/module'
+import { createModule } from 'reacticoon/module'
 
 import * as actions from './actions'
 import * as selectors from './selectors'

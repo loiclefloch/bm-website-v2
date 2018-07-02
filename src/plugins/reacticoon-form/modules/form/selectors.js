@@ -2,7 +2,7 @@ import isNil from 'lodash/isNil'
 import isNull from 'lodash/isNull'
 import each from 'lodash/each'
 
-import { createSelector, getStateForModule } from '../../../../modules/reacticoon/selector'
+import { createSelector, getStateForModule } from 'reacticoon/selector'
 
 import { getFormValidator } from './config'
 import { getFormType } from './utils'

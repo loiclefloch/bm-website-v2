@@ -1,4 +1,4 @@
-import createMiddleware from '../../../../modules/reacticoon/middleware/createMiddleware'
+import createMiddleware from 'reacticoon/middleware/createMiddleware'
 
 import { testAction } from './actions'
 

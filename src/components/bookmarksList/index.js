@@ -48,7 +48,6 @@ const BookmarksList = ({
           <BookmarksListItem
             key={bookmark.id.toString()}
             bookmark={bookmark}
-            onShowBookmark={actions.showBookmark}
           />
         ))}
       </div>

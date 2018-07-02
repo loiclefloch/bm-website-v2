@@ -5,6 +5,7 @@ import reacticoonForm from '../plugins/reacticoon-form'
 
 import bookmarkForm from '../modules/bookmarkForm'
 import circleForm from '../modules/circleForm'
+import bookForm from '../modules/bookForm'
 import loginForm from '../modules/auth/form'
 import { reacticoonValidator } from '../plugins/reacticoon-validation'
 
@@ -47,6 +48,9 @@ export default [
         },
         {
           form: circleForm,
+        },
+        {
+          form: bookForm,
         },
       ],
     },

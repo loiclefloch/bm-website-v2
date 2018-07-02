@@ -1,4 +1,5 @@
 import Immutable from 'immutable'
+import invariant from 'invariant'
 
 /*
  * create a reducer.
@@ -12,7 +13,9 @@ import Immutable from 'immutable'
 const createReducer = (initialState, fnMap) => (state = Immutable.fromJS(initialState), action) => {
   const handler = fnMap[action.type]
 
-  return handler ? handler(state, action) : state
+  const newState = handler ? handler(state, action) : state
+  invariant(newState !== undefined, `reducer returned undefined.`)
+  return newState
 }
 
 export default createReducer

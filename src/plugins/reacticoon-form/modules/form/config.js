@@ -5,7 +5,7 @@ import isFunction from 'lodash/isFunction'
 import isObject from 'lodash/isObject'
 import invariant from 'invariant'
 
-import { getPluginConfig } from '../../../../modules/reacticoon/plugin'
+import { getPluginConfig } from 'reacticoon/plugin'
 
 import { getFormType } from './utils'
 

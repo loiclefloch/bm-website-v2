@@ -2,7 +2,7 @@
 // We define the form module, that handles the form data and form options.
 //
 
-import { createModule } from '../../../../modules/reacticoon/module'
+import { createModule } from 'reacticoon/module'
 
 import * as actions from './actions'
 import * as selectors from './selectors'

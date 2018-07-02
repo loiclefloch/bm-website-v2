@@ -1,4 +1,4 @@
-import { createReducer } from '../../../../modules/reacticoon/reducer'
+import { createReducer } from 'reacticoon/reducer'
 
 import { testAction } from './actions'
 

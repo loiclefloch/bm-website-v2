@@ -8,14 +8,7 @@ import DoneIcon from '@material-ui/icons/Done'
 
 const styles = theme => ({
   chip: {
-    borderColor: theme.palette.primary.main,
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    backgroundColor: 'transparent',
-    cursor: 'pointer',
-    height: 20,
-    lineHeight: 20,
-    marginLeft: 5,
+    ...theme.style.chip,
     ...theme.style.flexCenter,
   },
   chipLabel: {
@@ -67,42 +60,36 @@ const Following = ({ circle, classes, onClick }) => {
   return circle.isFollowedByMe ? <IsFollowedByMe {...props} /> : <NotFollowedByMe {...props} />
 }
 
-const IsFollowedByMe = ({ classes, onClick }) => {
-  return (
-    <Chip
-      onClik={onClick}
-      clickable
-      classes={{ root: classNames(classes.chip, classes.following), label: classes.chipLabel }}
-      label={
-        <span className={classes.followingText}>
-          <span>following &nbsp;</span>
-          <DoneIcon className={classes.icon} />
-        </span>
-      }
-    />
-  )
-}
+const IsFollowedByMe = ({ classes, onClick }) => (
+  <Chip
+    onClik={onClick}
+    clickable
+    classes={{ root: classNames(classes.chip, classes.following), label: classes.chipLabel }}
+    label={
+      <span className={classes.followingText}>
+        <span>following &nbsp;</span>
+        <DoneIcon className={classes.icon} />
+      </span>
+    }
+  />
+)
 
-const NotFollowedByMe = ({ classes, onClick }) => {
-  return (
-    <Chip
-      onClick={onClick}
-      clickable
-      classes={{ root: classNames(classes.chip, classes.notFollowings), label: classes.chipLabel }}
-      label="follow"
-    />
-  )
-}
+const NotFollowedByMe = ({ classes, onClick }) => (
+  <Chip
+    onClick={onClick}
+    clickable
+    classes={{ root: classNames(classes.chip, classes.notFollowings), label: classes.chipLabel }}
+    label="follow"
+  />
+)
 
-const IsAdministrateByMe = ({ classes, onClick }) => {
-  return (
-    <Chip
-      onClick={onClick}
-      clickable
-      classes={{ root: classNames(classes.chip, classes.administrate), label: classes.chipLabel }}
-      label="admin"
-    />
-  )
-}
+const IsAdministrateByMe = ({ classes, onClick }) => (
+  <Chip
+    onClick={onClick}
+    clickable
+    classes={{ root: classNames(classes.chip, classes.administrate), label: classes.chipLabel }}
+    label="admin"
+  />
+)
 
 export default withStyles(styles)(Following)

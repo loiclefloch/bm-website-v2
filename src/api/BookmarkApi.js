@@ -5,7 +5,6 @@ import BookmarkSchema from './schemas/BookmarkSchema'
 import BookmarkAddSchema from './schemas/BookmarkAddSchema'
 
 const BookmarkApi = {
-
   // TODO: Constants
   getBookmarks: (page = 1, limit = 30) => {
     return {
@@ -19,18 +18,32 @@ const BookmarkApi = {
     }
   },
 
+  getBookBookmarks: (circleId, bookId, page = 1, limit = 30) => ({
+    type: 'GET',
+    schema: BookmarksListSchema,
+    params: {
+      circleId,
+      bookId,
+    },
+    query: {
+      page,
+      limit,
+    },
+    endpoint: ApiEndpoints.BOOK_BOOKMARKS,
+  }),
+
   getBookmark: (bookmarkId: string) => {
     return {
       type: 'GET',
       schema: BookmarkSchema,
       endpoint: ApiEndpoints.BOOKMARK,
       params: {
-        bookmarkId
-      }
+        bookmarkId,
+      },
     }
   },
 
-  postBookmark: (bookmark) => {
+  postBookmark: bookmark => {
     return {
       type: 'POST',
       schema: BookmarkAddSchema,
@@ -46,7 +59,7 @@ const BookmarkApi = {
     params: {
       bookmarkId: bookmark.id,
     },
-    data: bookmark, 
+    data: bookmark,
   }),
 
   putBookmarkTags: (bookmark, tags) => {
@@ -62,7 +75,6 @@ const BookmarkApi = {
       },
     }
   },
-
 }
 
 export default BookmarkApi

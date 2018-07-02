@@ -1,4 +1,4 @@
-import createAction from '../../../../modules/reacticoon/action/createAction'
+import createAction from 'reacticoon/action/createAction'
 
 import { getFormDefaultData, getFormDefaultOptions } from './config'
 

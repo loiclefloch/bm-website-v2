@@ -48,6 +48,18 @@ const routes = [
       import(/*  webpackChunkName: "CirclePage" */ '../pages/circle/CirclePage')
     ),
   },
+  {
+    definition: RoutingEnum.BOOK_NEW,
+    handler: createAsyncPage(() => (
+      import(/*  webpackChunkName: "BookNewPage" */ '../pages/bookNew')
+    ))
+  },
+  {
+    definition: RoutingEnum.BOOK,
+    handler: createAsyncPage(() => (
+      import(/*  webpackChunkName: "BookPage" */ '../pages/book')
+    ))
+  },
   // {
   //   definition: RoutingEnum.BOOKS,
   //   disabled: true,
