@@ -20,6 +20,10 @@ export const bookmarksListReducer = (state = DEFAULT, action) => {
     case loadBookmarks.REQUEST:
       return state.merge({
         isFetching: true,
+        data: {
+          bookmarks: {},
+          pagination: {},
+        },
         error: null,
       })
 

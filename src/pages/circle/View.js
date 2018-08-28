@@ -27,13 +27,15 @@ const View = ({ circle, classes }) => (
     </div>
 
     <Grid container>
-      <Grid item sm={9}>
+      <Grid item sm={circle.isDefaultCircle ? 12 : 9}>
         <Books circle={circle} />
       </Grid>
 
-      <Grid item sm={3}>
-        <Members circle={circle} />
-      </Grid>
+      {!circle.isDefaultCircle && (
+        <Grid item sm={3}>
+          <Members circle={circle} />
+        </Grid>
+      )}
     </Grid>
   </div>
 )

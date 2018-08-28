@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 
+import CircleContainer from 'modules/circle/circle/views/CircleContainer'
 import Page from 'components/Page'
 import View from './View'
 
 class CircleNewPage extends Component {
   render() {
-
-    const circleId = this.props.params.circleId
-
     return (
-      <Page title="">
-        <View circleId={circleId} />
-      </Page>
+      <CircleContainer circleId={this.props.params.circleId}>
+        {({ circle, isFetchingCircle }) => (
+          <Page title="New book" isFetching={isFetchingCircle || !circle}>
+            <View circle={circle} />
+          </Page>
+        )}
+      </CircleContainer>
     )
   }
 }

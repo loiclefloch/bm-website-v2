@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 
+import ButtonLink from 'components/ButtonLink'
 import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
@@ -20,6 +21,13 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
   },
+  btnArea: {
+    marginTop: theme.spacing.unit * 6,
+  },
+  btn: {
+    minWidth: '200px',
+    margin: theme.spacing.unit,
+  }
 })
 
 class AddBookForm extends React.Component {
@@ -69,18 +77,27 @@ class AddBookForm extends React.Component {
             />
           </FormControl>
 
+        <div className={classes.btnArea}>
+          <ButtonLink
+            to={ButtonLink.getRoute('CIRCLE')}
+            params={{
+              circleId: this.props.circleId,
+            }}
+            className={classes.btn}
+          >
+            Cancel
+          </ButtonLink>
+
           <Button
             color="primary"
             variant="raised"
             disabled={!isValid}
             onClick={this.handleSubmit}
-            style={{
-              marginTop: '50px',
-              minWidth: '200px',
-            }}
+            className={classes.btn}
           >
             Submit
           </Button>
+          </div>
         </LoadingBlock>
       </form>
     )

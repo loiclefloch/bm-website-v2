@@ -15,11 +15,11 @@ const styles = theme => ({
   },
 })
 
-const View = ({ circleId, classes }) => (
+const View = ({ circle, classes }) => (
   <div className={classes.root}>
-    <h1>Add book</h1>
+    <h1>Add book to circle "{circle.name}"</h1>
 
-    <AddBookForm circleId={circleId} />
+    <AddBookForm circleId={circle.id} />
   </div>
 )
 
