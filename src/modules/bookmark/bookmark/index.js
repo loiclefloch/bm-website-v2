@@ -1,4 +1,4 @@
-import { createModule } from '../../reacticoon/module'
+import { createModule } from 'reacticoon/module'
 
 import * as actions from './actions'
 import * as selectors from './selectors'

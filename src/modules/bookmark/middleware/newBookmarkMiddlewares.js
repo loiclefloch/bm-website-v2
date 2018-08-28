@@ -2,9 +2,9 @@
 
 import { postBookmark } from '../newBookmark'
 import RoutingEnum from '../../../config/RoutingEnum'
-import { redirectTo } from '../../../modules/reacticoon/routing'
+import { redirectTo } from 'reacticoon/routing'
 import { hideAddBookmarkDialog } from '../'
-import { createMiddleware } from '../../../modules/reacticoon/middleware'
+import { createMiddleware } from 'reacticoon/middleware'
 
 /**
  * Intercepts a new created bookmark:

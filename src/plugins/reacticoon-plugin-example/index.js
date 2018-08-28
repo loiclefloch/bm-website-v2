@@ -1,5 +1,5 @@
-import { createPlugin } from '../../modules/reacticoon/plugin'
-import { ReacticoonEvents } from '../../modules/reacticoon/event'
+import { createPlugin } from 'reacticoon/plugin'
+import { ReacticoonEvents } from 'reacticoon/event'
 
 import testModule from './modules/testModule'
 

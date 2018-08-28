@@ -1,11 +1,11 @@
-import { getPluginConfig } from '../../../modules/reacticoon/plugin'
-import { EventManager } from '../../../modules/reacticoon/event'
+import { getPluginConfig } from 'reacticoon/plugin'
+import { EventManager } from 'reacticoon/event'
 import invariant from 'invariant'
 import isNil from 'lodash/isNil'
 import isFunction from 'lodash/isFunction'
 
-import { __DEV__ } from '../../../modules/reacticoon/environment'
-import { getStore } from '../../../modules/reacticoon/store'
+import { __DEV__ } from 'reacticoon/environment'
+import { getStore } from 'reacticoon/store'
 import { registerForm } from '../modules/form/actions'
 
 const onAppInit = () => {

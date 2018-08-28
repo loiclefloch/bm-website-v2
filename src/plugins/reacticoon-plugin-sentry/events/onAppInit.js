@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty'
-import { getPluginConfig } from '../../../modules/reacticoon/plugin'
+import { getPluginConfig } from 'reacticoon/plugin'
 
 import Logger from '../logger'
 

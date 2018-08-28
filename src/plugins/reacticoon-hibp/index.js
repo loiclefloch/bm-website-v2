@@ -1,4 +1,4 @@
-import { createPlugin } from '../../modules/reacticoon/plugin'
+import { createPlugin } from 'reacticoon/plugin'
 
 export { default as HibpPasswordRangeContainer } from './components/HibpPasswordRangeContainer'
 

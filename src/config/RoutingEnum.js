@@ -1,4 +1,4 @@
-import Route from '../modules/reacticoon/routing/Route'
+import Route from 'reacticoon/routing/Route'
 
 /**
  * Note: we do not define the handler page here since RoutingEnum is import and use before they are

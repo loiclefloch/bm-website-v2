@@ -1,5 +1,5 @@
 import isNil from 'lodash/isNil'
-import { createSelector } from '../../reacticoon/selector'
+import { createSelector } from 'reacticoon/selector'
 import { formatBookmark } from '../utils'
 
 const getBookmarkIsFetching = state => state.entities.Bookmark.get('isFetching')

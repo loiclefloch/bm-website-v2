@@ -1,4 +1,4 @@
-import Application from './modules/reacticoon/archi/Application'
+import Application from './reacticoon/archi/Application'
 
 //
 // options

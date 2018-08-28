@@ -1,5 +1,5 @@
-import { EventManager } from '../../../modules/reacticoon/event'
-import { getPluginConfig } from '../../../modules/reacticoon/plugin'
+import { EventManager } from 'reacticoon/event'
+import { getPluginConfig } from 'reacticoon/plugin'
 import onCustomEvent from './onCustomEvent'
 
 const onAppInit = () => {

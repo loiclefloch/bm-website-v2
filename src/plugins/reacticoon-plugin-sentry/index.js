@@ -1,5 +1,5 @@
-import { ReacticoonEvents } from '../../modules/reacticoon/event'
-import { createPlugin } from '../../modules/reacticoon/plugin'
+import { ReacticoonEvents } from 'reacticoon/event'
+import { createPlugin } from 'reacticoon/plugin'
 
 import Logger from './logger'
 import onAppInit from './events/onAppInit'

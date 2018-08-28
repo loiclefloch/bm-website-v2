@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { reacticoonConnect } from 'modules/reacticoon/view'
+import { reacticoonConnect } from 'reacticoon/view'
 import { isFetchingTags } from 'modules/tag'
 
 import Page from 'components/Page'
