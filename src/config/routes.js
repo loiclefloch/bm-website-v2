@@ -77,6 +77,12 @@ const routes = [
       import(/*  webpackChunkName: "SettingsPage" */ '../pages/settings/SettingsPage')
     ),
   },
+  {
+    definition: RoutingEnum.PAGE_NOT_FOUND,
+    handler: createAsyncPage(() => 
+      import(/*  webpackChunkName: "PageNotFoundPage" */ '../pages/error/PageNotFoundPage')
+    )
+  }
 ]
 
 export default routes

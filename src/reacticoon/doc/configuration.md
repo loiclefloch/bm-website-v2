@@ -192,14 +192,21 @@ export default routes
 
 ### RoutingEnum
 
-A route definition is an instance of a `Route` object (`reacticoon/routing/Route`)
+A route definition is an instance of a `Route` object (`reacticoon/routing/Route`).
+The RoutingEnum is an object that contains multiple definition of routes.
+It must be created using `createRoutingEnum`, that will:
+
+- add default routes used by Reacticoon (e.g PAGE_NOT_FOUND)
+- verify the routes configuration
 
 ex:
 
 ```javascript
-RoutingEnum = {
+import { Route, createRoutingEnum } from 'reacticoon/routing'
+
+const RoutingEnum = createRoutingEnum({
  LOGIN: new Route('LOGIN', '/login')
-}
+})
 ```
 
 ### Plugins

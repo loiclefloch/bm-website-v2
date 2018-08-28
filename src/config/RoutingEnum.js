@@ -1,4 +1,4 @@
-import Route from 'reacticoon/routing/Route'
+import { Route, createRoutingEnum } from 'reacticoon/routing'
 
 /**
  * Note: we do not define the handler page here since RoutingEnum is import and use before they are
@@ -6,7 +6,7 @@ import Route from 'reacticoon/routing/Route'
  * @type {Route}
  */
 
-const RoutingEnum =  {
+const RoutingEnum = createRoutingEnum({
   LOGIN: new Route('LOGIN', '/login'),
 
   DASHBOARD: new Route('DASHBOARD', '/dashboard'),
@@ -30,6 +30,6 @@ const RoutingEnum =  {
   TESTS: new Route('TESTS', '/tests'),
 
   SETTINGS: new Route('SETTINGS', '/settings'),
-}
+})
 
 export default RoutingEnum
