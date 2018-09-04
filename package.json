@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node /Volumes/DATA/dev/reacticoon/create-reacticoon-app/bin/reacticoon-scripts.js start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "test": "react-scripts test",
     "flow": "flow"
   },
   "dependencies": {

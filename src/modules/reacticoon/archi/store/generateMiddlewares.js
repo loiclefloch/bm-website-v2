@@ -16,6 +16,11 @@ const reduxLogger = createLogger({
 
 const generateMiddlewares = (isDev, appMiddlewares) =>
   [
+    // middleware that ensure the actions dispatched are valid actions.
+    // TODO: debug actionStandardMiddleware
+    process.env.__DEV__
+      ? require('../middleware/actionStandardMiddleware').default()
+      : null,
     // Redux middleware that spits an error when we try to mutate the state either inside 
     // a dispatch or between dispatches.
     // For development use only

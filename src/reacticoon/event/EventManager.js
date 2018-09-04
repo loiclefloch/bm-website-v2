@@ -53,4 +53,11 @@ class EventManager {
 }
 
 // EventManager is a Singleton
-export default new EventManager()
+const eventManager = new EventManager()
+
+if (window) {
+  // allows non reacticoon app to interact with Reacticoon
+  window.reacticoonEventManager = eventManager
+}
+
+export default eventManager

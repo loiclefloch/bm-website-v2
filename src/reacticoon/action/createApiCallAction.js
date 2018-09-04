@@ -14,6 +14,15 @@ const getData = (data, params) => (isFunction(data) ? data.apply(null, params) :
 const createApiCallAction = (type, request, data = null) => {
   const actionType = createApiEnumAction(type)
   const func = (...params) => {
+    // TODO: refactor createApiCallAction to follow flux-standard-action
+    // const action = {
+    //   type: API_CALL,
+    //   payload: getData(request, params),
+    //   meta: {
+    //     [TYPES]: [actionType.REQUEST, actionType.SUCCESS, actionType.FAILURE],
+    //     [REQUEST]: getData(request, params),
+    //   }
+    // }
     const action = {
       [API_CALL]: {
         [TYPES]: [actionType.REQUEST, actionType.SUCCESS, actionType.FAILURE],
@@ -35,6 +44,8 @@ const createApiCallAction = (type, request, data = null) => {
   func.FAILURE = actionType.FAILURE
   // requried by `isActionType`
   func.isActionType = true
+  func.TYPE = API_CALL
+  func.toString = () => `${API_CALL} ${type}`
 
   return func
 }
