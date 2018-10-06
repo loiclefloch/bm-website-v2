@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import LogoIcon from 'components/Logo'
 
-import Link from 'reacticoon/routing/Link'
+import { Link } from 'reacticoon/routing'
 import Typography from '@material-ui/core/Typography'
 
 const Item = ({ route, classes, text }) => (

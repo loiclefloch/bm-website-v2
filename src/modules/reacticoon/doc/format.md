@@ -1,6 +1,0 @@
-# Format
-
-
-## Reserved props
-
-- formattedItem

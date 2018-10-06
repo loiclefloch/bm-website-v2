@@ -11,7 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import Link from 'reacticoon/routing/Link'
+import { Link } from 'reacticoon/routing'
 
 
 const styles = theme => ({

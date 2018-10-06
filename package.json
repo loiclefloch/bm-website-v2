@@ -13,6 +13,7 @@
     "@material-ui/core": "1.2.3",
     "@material-ui/icons": "1.1.0",
     "classnames": "2.2.6",
+    "create-reacticoon-app": "0.0.2",
     "fuse.js": "3.2.1",
     "hibp": "7.1.1",
     "hoist-non-react-statics": "2.5.5",

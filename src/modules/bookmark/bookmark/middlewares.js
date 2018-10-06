@@ -1,4 +1,4 @@
-import createMiddleware from 'reacticoon/middleware/createMiddleware'
+import { createMiddleware } from 'reacticoon/middleware'
 import { redirectToBookmark } from './actions'
 import { redirectTo } from 'reacticoon/routing'
 

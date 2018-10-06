@@ -1,4 +1,4 @@
-import createApiCallAction from 'reacticoon/action/createApiCallAction'
+import { createApiCallAction } from 'reacticoon/action'
 
 import BookmarkApi from 'app/api/BookmarkApi'
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 // import LoadingPage from '../../components/loading/LoadingPage'
 // import { generateToc } from '../../modules/bookmark/utils'
-import Link from 'reacticoon/routing/Link'
+import { Link } from 'reacticoon/routing'
 
 class TestPage extends Component {
   static propTypes = {

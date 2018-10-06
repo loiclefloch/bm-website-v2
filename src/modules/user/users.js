@@ -1,6 +1,6 @@
 import Immutable from "immutable"
 
-import createApiCallAction from 'reacticoon/action/createApiCallAction'
+import { createApiCallAction } from 'reacticoon/action'
 
 import UserApi from '../../api/UserApi'
 

@@ -1,4 +1,4 @@
-import createApiCallAction from 'reacticoon/action/createApiCallAction'
+import { createApiCallAction } from 'reacticoon/action'
 
 import CircleApi from 'app/api/CircleApi'
 

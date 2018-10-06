@@ -1,7 +1,7 @@
 import { createMiddleware } from 'reacticoon/middleware'
 import { redirectTo } from 'reacticoon/routing'
 import { postBook } from './actions'
-import { getRoute } from 'reacticoon/routing/config'
+import { getRoute } from 'reacticoon/routing'
 
 const createdBookMiddleware = createMiddleware(
   'createdBookMiddleware',
