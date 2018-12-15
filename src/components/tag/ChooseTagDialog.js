@@ -14,6 +14,7 @@ import { getTagsList } from 'modules/tag'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import Button from '@material-ui/core/Button'
+import { ColorsList } from 'app/components/colorpicker'
 import SearchBar from '../search/SearchBar'
 import Tag from './Tag'
 
@@ -46,6 +47,11 @@ const styles = theme => ({
   },
 })
 
+const View = {
+  CHOOSE_TAG: 'CHOOSE_TAG',
+  CREATE_TAG: 'CREATE_TAG',
+}
+
 class ChooseTagDialog extends React.Component {
 
   constructor(props) {
@@ -54,6 +60,12 @@ class ChooseTagDialog extends React.Component {
     this.state = {
       searchQuery: '',
       selectedTags: props.selectedTags,
+      view: View.CHOOSE_TAG,
+
+      //
+      // View.CREATE_TAG state
+      //
+      chosenColor: null,
     }
   }
 
@@ -79,6 +91,12 @@ class ChooseTagDialog extends React.Component {
     this.setState({ searchQuery: event.target.value })
   }
 
+  handleDisplayCreateTagView = () => {
+    this.setState({
+      view: View.CREATE_TAG,
+    })
+  }
+
   handleOnSave = () => {
     const selectedTags = this.state.selectedTags
     this.props.onSave(selectedTags)
@@ -86,6 +104,27 @@ class ChooseTagDialog extends React.Component {
     this.setState({
       searchQuery: '',
     })
+    this.props.onClose();
+  }
+
+  handleColorChosen = chosenColor => {
+    this.setState({
+      chosenColor,
+    })
+  }
+
+  handleCreateTag = () => {
+    const selectedTags = this.state.selectedTags
+    // create the new tag corresponding to the search
+    selectedTags.push({ name: this.state.searchQuery, color: this.state.chosenColor })
+    // save tags and update bookmark
+    this.props.onSave(selectedTags)
+    this.props.addTagsToBookmark(selectedTags, this.props.bookmark)
+    this.setState({
+      searchQuery: '',
+      view: View.CHOOSE_TAG,
+    })
+    this.props.onClose();
   }
 
   render() {
@@ -147,42 +186,63 @@ class ChooseTagDialog extends React.Component {
         }}
       >
         <DialogContent>
+        {this.state.view === View.CHOOSE_TAG && (
+          <React.Fragment>
+            <div>
+              {/* Search bar */}
+              <SearchBar
+                onChange={this.handleSearchQueryChange}
+                value={this.state.searchQuery}
+                autoFocus
+                className={classes.searchBar}
+              />
+
+              <Button
+                variant="raised"
+                color="primary"
+                onClick={this.handleOnSave}
+                className={classes.saveBtn}
+              >
+                Save
+              </Button>
+            </div>
+
+            <div>
+              <Button onClick={this.handleDisplayCreateTagView}>Create tag</Button>
+            </div>
+
+            {/* Tag list */}
+            <div className={classes.tagList}>
+              {filteredTags.map(tag => {
+                const isSelected = this.isTagSelected(tag)
+
+                return (
+                  <Tag
+                    key={tag.id}
+                    tag={tag}
+                    mode={Tag.Mode.SQUARE_WITH_NAME}
+                    classes={{ root: classes.tagRoot }}
+                    isSelected={isSelected}
+                    onClick={this.handleOnTagClick}
+                  />
+                )
+              })}
+            </div>
+          </React.Fragment>
+        )}
+
+        {this.state.view === View.CREATE_TAG && (
           <div>
-            {/* Search bar */}
-            <SearchBar
-              onChange={this.handleSearchQueryChange}
-              value={this.state.searchQuery}
-              autoFocus
-              className={classes.searchBar}
+            <ColorsList 
+              onColorChosen={this.handleColorChosen}
+              defaultSelection={this.state.chosenColor}
             />
 
-            <Button
-              variant="raised"
-              color="primary"
-              onClick={this.handleOnSave}
-              className={classes.saveBtn}
-            >
-              Save
+            <Button onClick={this.handleCreateTag}>
+              Add tag
             </Button>
           </div>
-
-          {/* Tag list */}
-          <div className={classes.tagList}>
-            {filteredTags.map(tag => {
-              const isSelected = this.isTagSelected(tag)
-
-              return (
-                <Tag
-                  key={tag.id}
-                  tag={tag}
-                  mode={Tag.Mode.SQUARE_WITH_NAME}
-                  classes={{ root: classes.tagRoot }}
-                  isSelected={isSelected}
-                  onClick={this.handleOnTagClick}
-                />
-              )
-            })}
-          </div>
+        )}
         </DialogContent>
       </Dialog>
     )

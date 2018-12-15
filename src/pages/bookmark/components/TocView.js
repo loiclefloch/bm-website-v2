@@ -1,5 +1,4 @@
 import React from 'react'
-import isEmpty from 'lodash/isEmpty'
 
 const styles = {
   H1: {

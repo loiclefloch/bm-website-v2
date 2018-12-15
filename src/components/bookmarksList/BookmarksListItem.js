@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
@@ -52,7 +53,7 @@ const Icon = ({ bookmark }) => {
 }
 
 const BookmarksListItem = ({ bookmark, addTagsToBookmark, classes }) => (
-  <Card className="pointer" className={classes.card}>
+  <Card className={classNames("pointer", classes.card)}>
     <CardContent>
       {/* TODO: Use link */}
       <Link to={Link.getRoute('BOOKMARK')} params={{ bookmarkId: bookmark.id }}>

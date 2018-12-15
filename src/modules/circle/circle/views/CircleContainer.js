@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isNull from 'lodash/isNull'
 import { connect } from 'reacticoon/view'
 
 import { isFetchingCircle, makeGetCircle } from '../selectors'

@@ -1,6 +1,5 @@
 import React from 'react'
 import isEmpty from 'lodash/isEmpty'
-import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import { AvatarWithDefault } from '../../../components/avatar'
 

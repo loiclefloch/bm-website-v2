@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isNull from 'lodash/isNull'
 import isEmpty from 'lodash/isEmpty'
 import { connect } from 'reacticoon/view'
 

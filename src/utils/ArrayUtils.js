@@ -139,7 +139,7 @@ export default class ArrayUtils {
 
   static getObjectKeys(obj) {
     const keys = [];
-    Object.keys(obj).map((key) => {
+    Object.keys(obj).forEach((key) => {
       keys.push(key);
     });
 

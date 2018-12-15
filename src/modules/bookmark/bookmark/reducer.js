@@ -49,6 +49,7 @@ const bookmarkReducer = (state = DEFAULT, action) => {
     case addTagsToBookmark.REQUEST:
       return state.merge({
         isFetchingTags: true,
+
         list: {
           ...state.get('list').toJS(),
           // update the bookmark so the modification is see before the api call end.

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import TextField from '@material-ui/core/TextField'
 
-import debounce from 'lodash/debounce'
+//import debounce from 'lodash/debounce'
 
 const SearchBar = ({ onChange, classes, className = '', style = {}, autoFocus }) => (
   <TextField

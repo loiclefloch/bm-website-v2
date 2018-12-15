@@ -6,7 +6,7 @@ import { withTheme, withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 
 import { fetchMe, isFetchingMe, isLoggedIn, getMe } from '../../modules/user'
 

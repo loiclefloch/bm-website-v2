@@ -1,8 +1,7 @@
 import ApiEndpoints from './ApiEndpoints'
-import Config from '../config/Config'
 
 import BooksListSchema from './schemas/BooksListSchema'
-import BookSchema from './schemas/BookSchema'
+// import BookSchema from './schemas/BookSchema'
 
 const BookApi = {
   // TODO: Constants

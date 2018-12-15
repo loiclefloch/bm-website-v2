@@ -1,6 +1,5 @@
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
-import map from 'lodash/map'
 
 import { generateToc } from './toc'
 import { generateSlides } from './slides'

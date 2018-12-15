@@ -29,7 +29,7 @@ import SmoothScroll from 'smooth-scroll'
 import 'typeface-roboto'
 
 // see https://cferdinandi.github.io/smooth-scroll/setup.html
-var scroll = new SmoothScroll('a[href*="#"]', {
+new SmoothScroll('a[href*="#"]', {
   selector: '', // for all anchor
   offset: 100, // let a top padding
 })
