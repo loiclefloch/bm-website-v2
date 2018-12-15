@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { compose } from 'reacticoon/view'
-import { withForm } from 'plugins/reacticoon-form'
+import { withForm } from 'app/reacticoon-plugins/reacticoon-form/src'
 import { withStyles } from '@material-ui/core/styles'
 
 import CircleForm from 'modules/circleForm'

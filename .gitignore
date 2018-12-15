@@ -1,5 +1,9 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# Remove reacticoon testing directories
+/src/reacticoon
+/src/reacticoon-plugins
+
 # dependencies
 /node_modules
 

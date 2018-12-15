@@ -1,13 +1,13 @@
-import reacticoonPluginExample from '../plugins/reacticoon-plugin-example'
-import reacticoonLogger from '../plugins/reacticoon-plugin-logger'
-import reacticoonSentry from '../plugins/reacticoon-plugin-sentry'
-import reacticoonForm from '../plugins/reacticoon-form'
+import reacticoonPluginExample from 'app/reacticoon-plugins/reacticoon-plugin-example/src'
+import reacticoonLogger from 'app/reacticoon-plugins/reacticoon-plugin-logger/src'
+import reacticoonSentry from 'app/reacticoon-plugins/reacticoon-plugin-sentry/src'
+import reacticoonForm from 'app/reacticoon-plugins/reacticoon-form/src'
+import { reacticoonValidator } from 'app/reacticoon-plugins/reacticoon-validation/src'
 
 import bookmarkForm from '../modules/bookmarkForm'
 import circleForm from '../modules/circleForm'
 import bookForm from '../modules/bookForm'
 import loginForm from '../modules/auth/form'
-import { reacticoonValidator } from '../plugins/reacticoon-validation'
 
 export default [
   {

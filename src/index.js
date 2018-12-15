@@ -1,4 +1,4 @@
-import { Application } from './reacticoon/archi'
+import { Application } from 'reacticoon/archi'
 
 //
 // options

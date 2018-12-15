@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { compose, connect } from "reacticoon/view";
-import { withForm } from "plugins/reacticoon-form";
+import { withForm } from "app/reacticoon-plugins/reacticoon-form/src";
 
 import LoginForm from "modules/auth/form";
 import { login } from "modules/auth";

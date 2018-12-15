@@ -1,6 +1,6 @@
-import { createForm } from '../../plugins/reacticoon-form'
+import { createForm } from 'app/reacticoon-plugins/reacticoon-form/src'
 
-import { notEmpty } from '../../plugins/reacticoon-validation'
+import { notEmpty } from 'app/reacticoon-plugins/reacticoon-validation/src'
 
 const defaultData = {
   url: null,

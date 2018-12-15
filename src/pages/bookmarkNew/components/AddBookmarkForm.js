@@ -13,7 +13,7 @@ import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
 import BookmarkForm from 'modules/bookmarkForm'
-import { withForm } from 'plugins/reacticoon-form'
+import { withForm } from 'app/reacticoon-plugins/reacticoon-form/src'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
