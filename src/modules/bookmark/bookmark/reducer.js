@@ -1,5 +1,6 @@
 import Immutable from 'immutable'
 
+import { createReducer } from 'reacticoon/reducer'
 import { postBookmark } from '../newBookmark'
 
 import {
@@ -21,76 +22,76 @@ const DEFAULT = Immutable.fromJS({
   error: null,
 })
 
-const bookmarkReducer = (state = DEFAULT, action) => {
-  switch (action.type) {
-    case fetchBookmark.REQUEST:
-    case updateBookmark.REQUEST:
-      return state.merge({
-        isFetching: true,
-        error: null,
-      })
 
-    case fetchBookmark.SUCCESS:
-    case updateBookmark.SUCCESS:
-      return state.merge({
-        isFetching: false,
-        error: null,
-        list: {
-          ...state.get('list').toJS(),
-          ...action.response.entities.bookmarks,
-        },
-        lastUpdated: Date.now(),
-      })
+const onRequest = state => state.merge({
+  isFetching: true,
+  error: null,
+})
 
-    /*
-     * update the bookmark's tags on the request to display the new selected tags directly,
-     * without waiting for the request to end.
-     */
-    case addTagsToBookmark.REQUEST:
-      return state.merge({
-        isFetchingTags: true,
+const onSuccess = (state, action) => state.merge({
+  isFetching: false,
+  error: null,
+  list: {
+    ...state.get('list').toJS(),
+    ...action.response.entities.bookmarks,
+  },
+  lastUpdated: Date.now(),
+})
 
-        list: {
-          ...state.get('list').toJS(),
-          // update the bookmark so the modification is see before the api call end.
-          [action.data.bookmark.id]: action.data.bookmark,
-        },
-      })
+/*
+ * update the bookmark's tags on the request to display the new selected tags directly,
+ * without waiting for the request to end.
+ */
+const onAddTagsRequest = (state, action) => state.merge({
+  isFetchingTags: true,
 
-    case addTagsToBookmark.SUCCESS:
-      return state.merge({
-        isFetchingTags: false,
-        list: {
-          ...state.get('list').toJS(),
-          ...action.response.entities.bookmarks,
-        },
-      })
+  list: {
+    ...state.get('list').toJS(),
+    // update the bookmark so the modification is see before the api call end.
+    [action.data.bookmark.id]: action.data.bookmark,
+  },
+})
 
-    case addTagsToBookmark.FAILURE:
-      // TODO
-      return state.merge({
-        isFetchingTags: false,
-      })
+const onAddTagsSuccess = (state, action) => state.merge({
+  isFetchingTags: false,
+  list: {
+    ...state.get('list').toJS(),
+    ...action.response.entities.bookmarks,
+  },
+})
 
-    case postBookmark.SUCCESS:
-      const postedNewBookmark = action.response.result
-      return state.merge({
-        list: {
-          ...state.get('list').toJS(),
-          [postedNewBookmark.id]: postedNewBookmark,
-        },
-      })
+// TODO
+const onAddTagsFailure = (state, action) => state.merge({
+  isFetchingTags: false,
+})
 
-    case fetchBookmark.FAILURE:
-    case updateBookmark.FAILURE:
-      return state.merge({
-        isFetching: false,
-        error: action.apiError,
-      })
-
-    default:
-      return state
-  }
+const onCreateBookmarkSuccess = (state, action) => {
+  const postedNewBookmark = action.response.result
+  return state.merge({
+    list: {
+      ...state.get('list').toJS(),
+      [postedNewBookmark.id]: postedNewBookmark,
+    },
+  })
 }
+
+const onError = (state, action) => state.merge({
+  isFetching: false,
+  error: action.apiError,
+})
+
+const bookmarkReducer = createReducer(DEFAULT, {
+  [fetchBookmark.REQUEST]: onRequest,
+  [updateBookmark.REQUEST]: onRequest,
+  [fetchBookmark.SUCCESS]: onSuccess,
+  [updateBookmark.SUCCESS]: onSuccess,
+  [addTagsToBookmark.REQUEST]: onAddTagsRequest,
+  [addTagsToBookmark.SUCCESS]: onAddTagsSuccess,
+  [addTagsToBookmark.FAILURE]: onAddTagsFailure,
+  [postBookmark.SUCCESS]: onCreateBookmarkSuccess,
+  [fetchBookmark.FAILURE]: onError,
+  [updateBookmark.FAILURE]: onError,
+
+})
 
 export default bookmarkReducer

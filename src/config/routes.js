@@ -1,4 +1,5 @@
 import React from 'react'
+import { ReacticoonRoutingEnum } from 'reacticoon/routing'
 import RoutingEnum from './RoutingEnum'
 
 import { createLoadable } from 'reacticoon/view'
@@ -78,7 +79,7 @@ const routes = [
     ),
   },
   {
-    definition: RoutingEnum.PAGE_NOT_FOUND,
+    definition: ReacticoonRoutingEnum.PAGE_NOT_FOUND,
     handler: createAsyncPage(() => 
       import(/*  webpackChunkName: "PageNotFoundPage" */ '../pages/error/PageNotFoundPage')
     )

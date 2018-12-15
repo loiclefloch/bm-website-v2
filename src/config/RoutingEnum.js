@@ -7,7 +7,7 @@ import { Route, createRoutingEnum } from 'reacticoon/routing'
  */
 
 const RoutingEnum = createRoutingEnum({
-  LOGIN: new Route('LOGIN', '/login'),
+  LOGIN: new Route('LOGIN', '/login', false),
 
   DASHBOARD: new Route('DASHBOARD', '/dashboard'),
 
