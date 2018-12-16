@@ -3,7 +3,7 @@ module.exports = {
     enableSass: true,
     debugMode: false,
     env: {
-      'APP_ENV': 'TEST'
+      'REACTICOON_CLI_PLUGIN_TEST_VERSION': 'TEST',
     },
   },
 }

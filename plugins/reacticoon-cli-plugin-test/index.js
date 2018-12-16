@@ -10,7 +10,8 @@ const testPlugin = createReacticoonPlugin({
   ],
   generators: [
     "./generators/rootGenerator.js"
-  ]
+  ],
+  overrides: "./overrides",
 })
 
 module.exports = testPlugin
