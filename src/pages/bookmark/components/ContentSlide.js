@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import ui from 'redux-ui'
 import classNames from 'classnames'
 
 import './slide_content.scss'
@@ -9,26 +8,28 @@ import { withTheme } from '@material-ui/core/styles'
 import HtmlBlock from '../../../components/html/HtmlBlock'
 import SlideNavigation from './SlideNavigation'
 
-@ui({
-  persist: false,
-  state: {
-    currentPage: 0, // TODO: use url query
-    isFullScreen: true,
-  },
-})
 class SlideContent extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentPage: 0, // TODO: use url query
+      isFullScreen: true,
+    }
+  }
+
   handleCurrentPageChange = (newPage) => {
-    this.props.updateUI({ currentPage: newPage })
+    this.setState({ currentPage: newPage })
     // TODO: update url query
   }
 
   handleToggleFullScreenMode = () => {
-    this.props.updateUI({ isFullScreen: !this.props.ui.isFullScreen })
+    this.setState({ isFullScreen: !this.state.isFullScreen })
   }
 
   handleNext = () => {
-    const newPageNb = this.props.ui.currentPage + 1
+    const newPageNb = this.state.currentPage + 1
 
     if (newPageNb < this.props.bookmark.nbSlides) {
       this.handleCurrentPageChange(newPageNb)
@@ -36,9 +37,9 @@ class SlideContent extends Component {
   }
 
   render() {
-    const { bookmark, ui } = this.props;
+    const { bookmark } = this.props;
 
-    const isFullScreen = ui.isFullScreen
+    const isFullScreen = this.state.isFullScreen
 
     let style = {}
     let contentStyle = {}
@@ -76,13 +77,13 @@ class SlideContent extends Component {
             onClick={this.handleNext}
           >
             <HtmlBlock
-              content={bookmark.slides[ui.currentPage]}
+              content={bookmark.slides[this.state.currentPage]}
             />
           </div>
         </div>
 
         <SlideNavigation
-          currentPage={ui.currentPage}
+          currentPage={this.state.currentPage}
           firstPage={0}
           lastPage={bookmark.nbSlides}
           isFullScreen={isFullScreen}

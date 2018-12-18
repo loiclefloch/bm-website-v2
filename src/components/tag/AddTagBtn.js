@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ui from 'redux-ui'
 
 import AddIcon from '@material-ui/icons/Add'
 import ChooseTagDialog from './ChooseTagDialog'
 
-@ui({
-  persist: false,
-  state: {
-    openTagSelector: false,
-  },
-})
 class AddTagBtn extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      openTagSelector: false,
+    }
+  }
+
   handleOpenTagSelector = () => {
-    this.props.updateUI({ openTagSelector: true })
+    this.setState({ openTagSelector: true })
   }
 
   handleCloseTagSelector = () => {
-    this.props.updateUI({ openTagSelector: false })
+    this.setState({ openTagSelector: false })
   }
 
   handeSaveTags = (selectedTags) => {
@@ -36,7 +37,7 @@ class AddTagBtn extends Component {
         <AddIcon
         />
 
-        {this.props.ui.openTagSelector &&
+        {this.state.openTagSelector &&
           <ChooseTagDialog
             open
             bookmark={this.props.bookmark}

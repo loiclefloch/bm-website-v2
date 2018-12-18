@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-import ui from 'redux-ui'
 
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
@@ -11,27 +10,28 @@ import StyleIcon from '@material-ui/icons/Style';
 
 import Page from 'components/Page'
 
-@ui({
-  state: {
-    tabIndex: 1,
-  }
-})
 class SettingsPage extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      tabIndex: 0,
+    }
+  }
+
   handleChangeView = (tabIndex) => {
-    this.props.updateUI({ tabIndex })
+    this.setState({ tabIndex })
   }
 
   render() {
-    const { ui } = this.props
-
     return (
       <Page
         title="Settings"
       >
         <Tabs
           onChange={this.handleChangeView}
-          value={ui.tabIndex}
+          value={this.state.tabIndex}
         >
           <Tab
             icon={<AccountCircleIcon />}
