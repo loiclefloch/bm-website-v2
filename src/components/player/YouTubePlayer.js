@@ -2,9 +2,7 @@
 //
 // see https://github.com/gajus/react-youtube-player
 
-import React, {
-  PureComponent
-} from 'react'
+import React from 'react'
 import YoutubePlayer from 'youtube-player'
 
 type PlaybackStateNameType = 'playing' | 'paused' | 'unstarted'
@@ -73,7 +71,7 @@ type PropsType = {|
   onPlay: Function
 |}
 
-class ReactYoutubePlayer extends PureComponent {
+class ReactYoutubePlayer extends React.Component {
   props: PropsType
 
   // eslint-disable-next-line no-useless-constructor

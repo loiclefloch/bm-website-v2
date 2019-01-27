@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
 
@@ -22,7 +22,7 @@ const styles = theme => ({
     width: '100%',
   },
   appBar: {
-    position: 'absolute',
+    //position: 'absolute',
     height: theme.app.header.height,
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${theme.app.sidebar.width}px)`,

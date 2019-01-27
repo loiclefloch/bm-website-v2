@@ -1,7 +1,7 @@
 import blue from '@material-ui/core/colors/blue'
 
 const fontReadable = `"bm-content-serif-font", Georgia, Cambria, "Times New Roman", Times, serif`
-const fontSansSerif = `"bm-content-sans-serif-font", Georgia, Cambria, "Times New Roman", Times, serif`
+// const fontSansSerif = `"bm-content-sans-serif-font", Georgia, Cambria, "Times New Roman", Times, serif`
 
 const palette = {
   primary: { main: blue[500] },

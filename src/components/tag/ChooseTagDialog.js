@@ -128,7 +128,7 @@ class ChooseTagDialog extends React.Component {
   }
 
   render() {
-    const { open, tags, selectedTags, classes, onClose } = this.props
+    const { open, tags, classes, onClose } = this.props
     const actions = []
 
     let filteredTags = []

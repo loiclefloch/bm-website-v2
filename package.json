@@ -4,8 +4,8 @@
   "main": "src/",
   "license": "MIT",
   "scripts": {
-    "start": "node /Volumes/DATA/dev/reacticoon/create-reacticoon-app/bin/reacticoon-scripts.js start",
-    "build": "react-app-rewired build",
+    "start": "reacticoon start",
+    "build": "reacticoon build",
     "test": "react-scripts test",
     "flow": "flow"
   },
@@ -39,7 +39,7 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
     "reselect": "3.0.1",
-    "smooth-scroll": "14.2.0",
+    "smooth-scroll": "^15.0.0",
     "spected": "0.7.0",
     "superagent": "3.8.3",
     "typeface-roboto": "0.0.54",

@@ -1,11 +1,11 @@
 import isNil from 'lodash/isNil'
-import { createSelector } from 'reacticoon/selector'
+import { createSelector, getStateForModule } from 'reacticoon/selector'
 import { formatBookmark } from '../utils'
 
-const getBookmarkIsFetching = state => state.entities.Bookmark.get('isFetching')
-const getBookmarks = state => state.entities.Bookmark.get('list')
+const getState = getStateForModule('Bookmark')
 
-export const isFetchingBookmark = createSelector(getBookmarkIsFetching, isFetching => isFetching)
+export const isFetchingBookmark = createSelector(getState, state => state.get('isFetching'))
+const getBookmarks = createSelector(getState, state => state.get('list'))
 
 const getBookmarkIdOnProps = (state, props) => props.routeParams.bookmarkId
 

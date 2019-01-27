@@ -36,6 +36,10 @@ const styles = {
     fontSize: '13px',
     lineHeight: 'initial',
   },
+  topBtn: {
+    border: 'none',
+    background: 'none',
+  },
 }
 
 const TocView = ({ bookmark }) => {
@@ -54,13 +58,12 @@ const TocView = ({ bookmark }) => {
     >
       <ul>
         <li>
-          <a
-            href="#"
+          <button
             className="link hoverPrimary u-marginBottom4"
-            style={{ ...styles.H1, ...styles.link }}
+            style={{ ...styles.H1, ...styles.link, ...styles.topBtn }}
           >
             Top
-          </a>
+          </button>
         </li>
         {toc.map(elem => (
           <li key={elem.hasId ? elem.id : elem.title}>

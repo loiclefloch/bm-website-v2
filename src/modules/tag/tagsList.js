@@ -19,7 +19,7 @@ export const fetchMeTags = createApiCallAction(
 //
 //
 
-const getTagsData = (state) => state.entities.tagsList.getIn([ 'data' ])
+// const getTagsData = (state) => state.entities.tagsList.getIn([ 'data' ])
 
 // input-selectors. They are created as ordinary non-memoized selector functions because they do
 // not transform the data they select

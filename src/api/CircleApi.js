@@ -1,5 +1,4 @@
 import ApiEndpoints from './ApiEndpoints'
-import Config from '../config/Config'
 
 import CirclesListSchema from './schemas/CirclesListSchema'
 import CircleSchema from './schemas/CircleSchema'

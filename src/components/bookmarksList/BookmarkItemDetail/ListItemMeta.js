@@ -8,6 +8,10 @@ import { AvatarWithDefault } from 'components/avatar'
 const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 2,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   avatarArea: {
     verticalAlign: 'middle',

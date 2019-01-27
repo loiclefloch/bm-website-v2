@@ -1,19 +1,15 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import Typography from '@material-ui/core/Typography'
 
 import { Link } from 'reacticoon/routing'
 
-import { AvatarWithDefault } from 'components/avatar'
-import ListItemMeta from './ListItemMeta'
-import TagsList from 'app/pages/bookmark/components/TagsList'
+import BookmarkItemDetail from './BookmarkItemDetail'
 
 const styles = theme => ({
   header: {
@@ -22,16 +18,18 @@ const styles = theme => ({
   },
   title: {
     display: 'inline-block',
-    padding: '0 8px',
+    fontWeight: 500,
   },
   icon: {
     marginTop: '14px',
   },
   card: {
-    marginBottom: '30px',
+    marginBottom: theme.spacing.unit * 8,
+    maxWidth: 700,
   },
   subheadingArea: {
     display: 'flex',
+    marginTop: theme.spacing.unit,
     color: '#0000008a',
   },
   subheadingText: {
@@ -39,59 +37,68 @@ const styles = theme => ({
   },
   description: {
     ...theme.app.readable,
-    fontSize: '14pt',
-    marginTop: theme.spacing.unit * 2,
-  },
-  tagsListRoot: {
-    marginTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit,
+    fontSize: '15pt',
+    marginTop: theme.spacing.unit,
   },
 })
 
-const Icon = ({ bookmark }) => {
-  return <AvatarWithDefault src={bookmark.icon} placeholder={bookmark.domain} />
-}
 
-const BookmarksListItem = ({ bookmark, addTagsToBookmark, classes }) => (
-  <Card className={classNames("pointer", classes.card)}>
-    <CardContent>
-      {/* TODO: Use link */}
-      <Link to={Link.getRoute('BOOKMARK')} params={{ bookmarkId: bookmark.id }}>
-        <div className={classes.header}>
-          <Icon bookmark={bookmark} />
-          <Typography className={classes.title} variant="headline">
-            {bookmark.name}
-          </Typography>
+class BookmarksListItem extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showDetail: false,
+    }
+  }
+
+  handleShowDetail = () => {
+    this.setState({
+      showDetail: true,
+    })
+  }
+
+  handleHideDetail = () => {
+    this.setState({
+      showDetail: false,
+    })
+  }
+
+  render() {
+    const { bookmark, addTagsToBookmark, classes } = this.props
+    const { showDetail } = this.state
+
+    return (
+      <div className={classNames('pointer', classes.card)}>
+        <div>
+          {/* TODO: Use link */}
+          <div onMouseEnter={this.handleShowDetail} onMouseLeave={this.handleHideDetail}>
+            {showDetail && <BookmarkItemDetail bookmark={bookmark} />}
+            <Link to={Link.getRoute('BOOKMARK')} params={{ bookmarkId: bookmark.id }}>
+              <div className={classes.header}>
+                <Typography className={classes.title} variant="headline">
+                  {bookmark.name}
+                </Typography>
+              </div>
+            </Link>
+          </div>
+
+          {!isEmpty(bookmark.description) ? (
+            <Link to={Link.getRoute('BOOKMARK')} params={{ bookmarkId: bookmark.id }}>
+              <Typography className={classes.description}>{bookmark.description}</Typography>
+            </Link>
+          ) : null}
+
+          <div className={classes.subheadingArea}>
+            <Typography variant="subheading" className={classes.subheadingText}>
+              {bookmark.readingTime} min &middot; {bookmark.domain}
+            </Typography>
+          </div>
         </div>
-      </Link>
-      <div className={classes.subheadingArea}>
-        <AccessTimeIcon
-          style={{
-            height: '18px',
-            marginTop: '2px',
-            verticalAlign: 'middle',
-            // trick to use the parent color
-            color: 'currentColor',
-          }}
-        />
-        &nbsp;
-        <Typography variant="subheading" className={classes.subheadingText}>
-          {bookmark.readingTime} min &nbsp;- {bookmark.domain}
-        </Typography>
       </div>
-
-      {!isEmpty(bookmark.description) ? (
-        <Link to={Link.getRoute('BOOKMARK')} params={{ bookmarkId: bookmark.id }}>
-          <Typography className={classes.description}>{bookmark.description}</Typography>
-        </Link>
-      ) : null}
-
-      <TagsList classes={{ root: classes.tagsList }} bookmark={bookmark} />
-
-      <ListItemMeta websiteInfo={bookmark.websiteInfo} />
-    </CardContent>
-  </Card>
-)
+    )
+  }
+}
 
 BookmarksListItem.propTypes = {
   bookmark: PropTypes.object.isRequired,

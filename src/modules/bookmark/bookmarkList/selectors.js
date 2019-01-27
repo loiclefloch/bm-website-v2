@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector, getStateForModule } from 'reacticoon/selector'
 
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
@@ -11,15 +11,15 @@ import { formatBookmark } from '../utils'
 // Bookmarks
 //
 
-const getBookmarksData = state => state.entities.BookmarkList.getIn(['data'])
+const getState = getStateForModule('BookmarkList')
 
 // input-selectors. They are created as ordinary non-memoized selector functions because they do
 // not transform the data they select
-const getBookmarksMap = state => state.entities.BookmarkList.getIn(['data', 'bookmarks'])
+const getBookmarksMap = createSelector(getState, state => state.getIn(['data', 'bookmarks']))
 
 // input-selectors. They are created as ordinary non-memoized selector functions because they do
 // not transform the data they select
-const getPaginationMap = state => state.entities.BookmarkList.getIn(['data', 'pagination'])
+const getPaginationMap = createSelector(getState, state => state.getIn(['data', 'pagination']))
 
 const getBookmarksSearchQuery = (state, props) =>
   // TODO: remove legacy ui prop

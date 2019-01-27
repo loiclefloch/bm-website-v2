@@ -7,8 +7,6 @@ import View from './View'
 
 class CirclePage extends Component {
   render() {
-    const { isFetchingCircle, circle } = this.props
-
     return (
       <CircleContainer circleId={this.props.params.circleId}>
         {({ circle, isFetchingCircle }) => (

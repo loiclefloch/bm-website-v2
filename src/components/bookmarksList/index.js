@@ -12,6 +12,7 @@ const styles = theme => ({
   container: {
     marginTop: '0',
     // paddingLeft: '5vw',
+    width: '800px',
     maxWidth: '800px',
     paddingBottom: theme.spacing.unit * 10,
   },
@@ -19,7 +20,7 @@ const styles = theme => ({
     width: '60%',
   },
   bookmarksList: {
-    marginTop: '20px',
+    marginTop: theme.spacing.unit * 6,
   },
 })
 
@@ -33,8 +34,6 @@ const BookmarksList = ({
 }) => {
   return (
     <List className={classes.container}>
-      {isFetching && <LoadingList listEmpty={bookmarks} />}
-
       {paging && (
         <SearchBar
           onChange={event => actions.onSearchQueryChange(event.target.value)}
@@ -44,6 +43,8 @@ const BookmarksList = ({
       )}
 
       <div className={classes.bookmarksList}>
+
+        {isFetching && <LoadingList listEmpty={bookmarks} />}
         {bookmarks.map(bookmark => (
           <BookmarksListItem
             key={bookmark.id.toString()}

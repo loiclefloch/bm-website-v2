@@ -3,10 +3,8 @@ import Immutable from "immutable"
 import isNil from 'lodash/isNil'
 import { createApiCallAction } from 'reacticoon/action'
 import { createSelector } from 'reselect'
-import { formatBookmark } from './utils'
 
 import BookmarkApi from '../../api/BookmarkApi'
-import RoutingEnum from '../../config/RoutingEnum'
 
 export const postBookmark = createApiCallAction(
   'BOOKMARK::POST',

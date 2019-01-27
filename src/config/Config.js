@@ -22,9 +22,9 @@ const Env = {
 
     HOSTNAME: 'localhost',
 
-    SERVER_URL: 'http://localhost:90/bm-api/web/app_dev.php',
+    SERVER_URL: 'http://localhost:8282/app_dev.php',
 
-    API_URL: 'http://localhost:90/bm-api/web/app_dev.php/api',
+    API_URL: 'http://localhost:8282/app_dev.php/api',
 
     Auth: {
       client_id: '3_41usi26rwc6cs4gwcooskss8g0ww0kg44coowg0wkoc4cwwkgs',
