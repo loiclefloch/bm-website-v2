@@ -4,12 +4,20 @@ import reacticoonSentry from 'app/reacticoon-plugins/reacticoon-plugin-sentry/sr
 import reacticoonForm from 'app/reacticoon-plugins/reacticoon-form/src'
 import { reacticoonValidator } from 'app/reacticoon-plugins/reacticoon-validation/src'
 
+import reacticoonMockApiPlugin from 'reacticoon/reacticoon-mock-api-plugin'
+
 import bookmarkForm from '../modules/bookmarkForm'
 import circleForm from '../modules/circleForm'
 import bookForm from '../modules/bookForm'
 import loginForm from '../modules/auth/form'
 
 export default [
+  {
+    plugin: reacticoonMockApiPlugin,
+    config: {
+      enabled: true,
+    },
+  },
   {
     plugin: reacticoonPluginExample,
     config: {
