@@ -6,7 +6,9 @@
   "scripts": {
     "start": "reacticoon start",
     "build": "reacticoon build",
-    "test": "react-scripts test",
+    "test": "reacticoon test",
+    "test:integration": "reacticoon test:integration",
+    "test:integration:watch": "reacticoon test:integration --watch",
     "flow": "flow"
   },
   "dependencies": {
@@ -19,6 +21,7 @@
     "hoist-non-react-statics": "2.5.5",
     "humps": "2.0.1",
     "immutable": "3.8.2",
+    "jest": "^24.7.1",
     "moment": "2.22.2",
     "node-polyglot": "2.2.2",
     "normalizr": "3.2.4",

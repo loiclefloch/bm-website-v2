@@ -12,14 +12,18 @@ import Member from './Member'
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 2,
   },
   header: {
     paddingLeft: theme.spacing.unit,
   },
+  headerArea: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   addMemberBtn: {
-    margin: '0 auto',
   },
   container: {
     marginTop: theme.spacing.unit * 2,
@@ -28,29 +32,35 @@ const styles = theme => ({
 
 const Members = ({ circle, onSelectedMembersChange, classes }) => (
   <div className={classes.root}>
-    <Typography variant="headline" className={classes.header}>
-      Members
-    </Typography>
-
     <PostCircleMembersContainer circleId={circle.id}>
       {({ postCircleMembers, isFetchingPostCircleMembers, postCircleMembersError }) => (
         <LoadingBlock show={isFetchingPostCircleMembers}>
+          <div className={classes.headerArea}>
+            <Typography variant="subheading" className={classes.header}>
+              Members
+            </Typography>
+
+            <UserSelectorContainer
+              values={circle.members}
+              disableUnselect
+              onChange={selectedUsers => {
+                postCircleMembers(selectedUsers)
+              }}
+            >
+              {({ onOpen }) => (
+                <Button
+                  onClick={onOpen}
+                  className={classes.addMemberBtn}
+                  variant="outlined"
+                  size="small"
+                >
+                  Add a member
+                </Button>
+              )}
+            </UserSelectorContainer>
+          </div>
+
           <ApiErrorBlock apiError={postCircleMembersError} />
-
-          <UserSelectorContainer
-            values={circle.members}
-            disableUnselect
-            onChange={selectedUsers => {
-              postCircleMembers(selectedUsers)
-            }}
-          >
-            {({ onOpen }) => (
-              <Button onClick={onOpen} className={classes.addMemberBtn}>
-                Ajouter un utilisateur
-              </Button>
-            )}
-          </UserSelectorContainer>
-
           <Grid container className={classes.container}>
             {circle.members.map(member => (
               <Grid item key={member.id} xs={12}>

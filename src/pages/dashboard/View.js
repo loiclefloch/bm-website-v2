@@ -13,13 +13,12 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   sidebar: {
-    width: '20%',
-    marginTop: 200,
+    marginTop: 95, // TODO: magic number
     marginLeft: 60,
   },
   sticky: {
     position: 'sticky',
-    top: 200,
+    top: 160,
   },
   block: {
     marginBottom: theme.spacing.unit * 8,

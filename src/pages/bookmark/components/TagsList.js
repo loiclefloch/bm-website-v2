@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import map from 'lodash/map'
+import isEmpty from 'lodash/isEmpty'
 
 import { withStyles } from '@material-ui/core/styles'
 import AddTagBtn from '../../../components/tag/AddTagBtn'
@@ -8,8 +9,9 @@ import Tag from '../../../components/tag/Tag'
 
 const styles = theme => ({
   root: {
+  },
+  list: {
     height: 28,
-    marginLeft: theme.spacing.unit,
     ...theme.style.flexCenter,
   },
   tagRoot: {
@@ -18,13 +20,20 @@ const styles = theme => ({
   },
 })
 
-const TagsList = ({ bookmark, tags, classes }) => {
+const TagsList = ({ bookmark, tags, classes, addTagBtn }) => {
   const selectedTags = bookmark.tags
 
   return (
     <div className={classes.root}>
-      {map(selectedTags, tag => <Tag key={tag.id} tag={tag} classes={{ root: classes.tagRoot }} />)}
-      <AddTagBtn bookmark={bookmark} tags={tags} selectedTags={selectedTags} />
+      {isEmpty(selectedTags) && <em>There is no tags yet.</em>}
+
+      <div className={classes.list}>
+        {map(selectedTags, tag => (
+          <Tag key={tag.id} tag={tag} classes={{ root: classes.tagRoot }} />
+        ))}
+      </div>
+
+      <AddTagBtn bookmark={bookmark} tags={tags} selectedTags={selectedTags} children={addTagBtn} />
     </div>
   )
 }

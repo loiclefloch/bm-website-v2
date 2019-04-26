@@ -8,14 +8,19 @@ import BooksList from './BooksList'
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
     height: '100%',
   },
   rootNotDefaultCircle: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
-  headerArea: {},
+  headerArea: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: theme.spacing.unit * 4,
+  },
 })
 
 const Books = ({ circle, classes }) => (
@@ -25,10 +30,15 @@ const Books = ({ circle, classes }) => (
     })}
   >
     <div className={classes.headerArea}>
-      <Typography variant="headline">Books</Typography>
+      <Typography variant="subheading">Books</Typography>
 
-      <ButtonLink to={ButtonLink.getRoute('BOOK_NEW')} params={{ circleId: circle.id }}>
-        Nouveau
+      <ButtonLink
+        to={ButtonLink.getRoute('BOOK_NEW')}
+        params={{ circleId: circle.id }}
+        variant="outlined"
+        size="small"
+      >
+        Create a book
       </ButtonLink>
     </div>
 

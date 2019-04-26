@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import HtmlBlock from '../../../components/html/HtmlBlock'
 import BookmarkReadingPercent from './BookmarkReadingPercent'
-import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
+import WindowScrollPercentage from '../../../components/scroll/WindowScrollPercentage'
 
 // import annotator from 'annotator'
 // import AnnotatorModule from './AnnotatorModule'
@@ -23,8 +23,7 @@ import ScrollPercentage from '../../../components/scroll/ScrollPercentage'
 //
 
 const styles = theme => ({
-  root: {
-  },
+  root: {},
 })
 
 const ContentArticle = ({ bookmark, classes }) => {
@@ -54,14 +53,14 @@ const ContentArticle = ({ bookmark, classes }) => {
 
   return (
     // TODO: fix ScrollPercentage -> due to flex ?
-    <ScrollPercentage id="scroll-percentage">
+    <WindowScrollPercentage>
       {({ percentage }) => (
         <div className={classNames('bookmark_content', classes.root)}>
           <BookmarkReadingPercent percentage={percentage * 100} />
           <HtmlBlock content={bookmark.content} />
         </div>
       )}
-    </ScrollPercentage>
+    </WindowScrollPercentage>
   )
 }
 

@@ -26,8 +26,9 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
   }
 
   return (
-    <div
+    <form
       className="Login"
+      name="LoginForm"
       style={{
         textAlign: 'center',
       }}
@@ -51,6 +52,7 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
             <TextField
               autoComplete="email"
               label="Login"
+              name="login"
               value={username}
               onChange={event =>
                 onChange({
@@ -67,6 +69,7 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
                   <TextField
                     label="Password"
                     type="password"
+                    name="password"
                     value={password}
                     onChange={event =>
                       onChange({
@@ -90,6 +93,8 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
             <br />
 
             <Button
+              name="submitLoginForm"
+              type="submit"
               color="primary"
               variant="raised"
               style={{
@@ -103,7 +108,7 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
           </React.Fragment>
         </LoadingBlock>
       </Paper>
-    </div>
+    </form>
   )
 }
 

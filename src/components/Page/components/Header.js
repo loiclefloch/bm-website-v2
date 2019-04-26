@@ -1,52 +1,34 @@
 import React from 'react'
 
+import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
 // import { showAddBookmarkDialog } from "../../../modules/bookmark";
 
-import AppBar from '@material-ui/core/AppBar'
+import LogoIcon from 'components/Logo'
 import MenuIcon from '@material-ui/icons/Menu'
 import Button from '@material-ui/core/Button'
-import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import { Link } from 'reacticoon/routing'
 
-
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: theme.app.header.height,
-    position: 'relative',
-    width: '100%',
-  },
-  appBar: {
-    //position: 'absolute',
-    height: theme.app.header.height,
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${theme.app.sidebar.width}px)`,
-    },
-    marginLeft: theme.app.sidebar.width,
-    background: theme.app.background.dark,
-    position: 'fixed',
-  },
-  toolbarRoot: {
-    minHeight: theme.app.header.height,
-  },
   title: {
     flex: 1,
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+    marginLeft: 12,
+    marginRight: 24,
+  },
+  menuButtonHidden: {
+    display: 'none',
   },
   btn: {
     color: 'white',
     ...theme.style.focusPrimary,
   },
 })
-
 
 const Login = () => <Button label="Login" />
 
@@ -79,22 +61,29 @@ const Logged = ({ me, classes }) => (
 /**
  *
  */
-const Header = ({ isLoggedIn, title, classes }) => (
-  <div className={classes.root}>
-    <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar classes={{ root: classes.toolbarRoot }}>
-        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+const Header = ({ isLoggedIn, title, classes, sidebarIsOpen, handleDrawerOpen }) => (
+  <React.Fragment>
+    {!sidebarIsOpen && (
+      <React.Fragment>
+        <IconButton
+          color="inherit"
+          aria-label="Open drawer"
+          onClick={handleDrawerOpen}
+          className={classNames(classes.menuButton, sidebarIsOpen && classes.menuButtonHidden)}
+        >
           <MenuIcon />
         </IconButton>
 
-        <Typography variant="title" color="inherit" className={classes.title}>
-          {title}
-        </Typography>
+        <LogoIcon width={36} height={36} fill="white" />
+      </React.Fragment>
+    )}
 
-        {isLoggedIn ? <Logged {...this.props} classes={classes} /> : <Login />}
-      </Toolbar>
-    </AppBar>
-  </div>
+    <Typography variant="title" color="inherit" className={classes.title}>
+      {/* {title} */}
+    </Typography>
+
+    {isLoggedIn ? <Logged {...this.props} classes={classes} /> : <Login />}
+  </React.Fragment>
 )
 
 export default withStyles(styles)(Header)

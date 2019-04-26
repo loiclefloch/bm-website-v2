@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider'
 const RightNav = ({ bookmark, onUpdateBookmark }) => (
   <nav
     style={{
-      position: 'fixed',
+      position: 'sticky',
       right: '2vw',
       top: 100,
       width: '20vw',

@@ -7,7 +7,11 @@ import BookmarksListContainer from 'modules/bookmark/bookmarkList/views/Bookmark
 import BookmarksList from 'components/bookmarksList'
 import Header from './components/Header'
 
-const styles = theme => ({})
+const styles = theme => ({
+  bookmarksList__container: {
+    margin: '0 auto',
+  },
+})
 
 const View = ({ circleId, bookId, classes }) => (
   <BookContainer circleId={circleId} bookId={bookId}>
@@ -27,6 +31,9 @@ const View = ({ circleId, bookId, classes }) => (
                 onSearchQueryChange,
               }) => (
                 <BookmarksList
+                  classes={{
+                    container: classes.bookmarksList__container,
+                  }}
                   bookmarks={bookmarks}
                   paging={paging}
                   isFetching={isFetchingBookmarks}

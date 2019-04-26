@@ -11,7 +11,7 @@ import UserAvatar from 'components/UserAvatar'
 const styles = theme => ({
   root: {
     maxWidth: 400,
-    margin: 8,
+    marginBottom: theme.spacing.unit,
   },
   chip: {
     width: 75,
@@ -28,32 +28,22 @@ const styles = theme => ({
   notAdmin: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.textColor,
-  }
+  },
 })
 
 const Member = ({ member, classes }) => (
-  <Card className={classes.root}>
+  <Card className={classes.root} elevation={0}>
     <CardHeader
-      avatar={
-        <UserAvatar user={member} size={40} />
-      }
+      avatar={<UserAvatar user={member} size={40} />}
       title={member.username}
       subheader={
-        member.isCircleAdmin ? (
+        member.isCircleAdmin && (
           <Chip
             classes={{
               root: classNames(classes.chip, classes.admin),
               label: classes.chipLabel,
             }}
             label="admin"
-          />
-        ) : (
-          <Chip
-            classes={{
-              root: classNames(classes.chip, classes.notAdmin),
-              label: classes.chipLabel,
-            }}
-            label="member"
           />
         )
       }

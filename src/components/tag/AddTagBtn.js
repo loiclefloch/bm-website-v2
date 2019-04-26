@@ -5,7 +5,6 @@ import AddIcon from '@material-ui/icons/Add'
 import ChooseTagDialog from './ChooseTagDialog'
 
 class AddTagBtn extends Component {
-
   constructor(props) {
     super(props)
 
@@ -22,22 +21,21 @@ class AddTagBtn extends Component {
     this.setState({ openTagSelector: false })
   }
 
-  handeSaveTags = (selectedTags) => {
+  handeSaveTags = selectedTags => {
     this.handleCloseTagSelector()
   }
 
   render() {
-    const { style, className } = this.props
+    const { style, className, children } = this.props
     return (
       <div
         className={`u-inlineBlock u-cursorPointer u-paddingLeft5 ${className}`}
         style={style}
         onClick={this.handleOpenTagSelector}
       >
-        <AddIcon
-        />
+        {children ? children : <AddIcon />}
 
-        {this.state.openTagSelector &&
+        {this.state.openTagSelector && (
           <ChooseTagDialog
             open
             bookmark={this.props.bookmark}
@@ -45,7 +43,7 @@ class AddTagBtn extends Component {
             onClose={this.handleCloseTagSelector}
             onSave={this.handeSaveTags}
           />
-        }
+        )}
       </div>
     )
   }

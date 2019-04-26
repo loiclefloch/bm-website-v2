@@ -17,6 +17,7 @@ const styles = theme => ({
   following: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.textColor,
+    lineHeight: '18px',
   },
   notFollowing: {
     color: theme.palette.primary.main,

@@ -9,7 +9,7 @@ class BookPage extends Component {
     const bookId = this.props.params.bookId
 
     return (
-      <Page title="">
+      <Page title="" isContentFull>
         <View circleId={circleId} bookId={bookId} />
       </Page>
     )

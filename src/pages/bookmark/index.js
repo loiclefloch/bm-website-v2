@@ -30,24 +30,34 @@ class BookmarkPage extends Component {
       <Page title="" isFetching={false}>
         <div
           style={{
-            maxWidth: '800px',
+            margin: 'auto',
           }}
         >
-          {isFetchingBookmark || !bookmark ? (
-            <ContentLoaderView />
-          ) : (
-            <div
-              style={{
-                height: '100%',
-              }}
-            >
-              <Header bookmark={bookmark} />
-
-              <RightNav bookmark={bookmark} onUpdateBookmark={this.handleUpdateBookmark} />
-
-              <Content bookmark={bookmark} />
+          <div
+            style={{
+              height: '100%',
+            }}
+          >
+            <div style={{ display: 'flex' }}>
+              <div style={{ flex: '70%' }}>
+                <div style={{ maxWidth: 900, margin: 'auto' }}>
+                  {isFetchingBookmark || !bookmark ? (
+                    <ContentLoaderView />
+                  ) : (
+                    <React.Fragment>
+                      <Header bookmark={bookmark} />
+                      <Content bookmark={bookmark} />
+                    </React.Fragment>
+                  )}
+                </div>
+              </div>
+              <div style={{ flex: '30%' }}>
+                {isFetchingBookmark || !bookmark ? null : (
+                  <RightNav bookmark={bookmark} onUpdateBookmark={this.handleUpdateBookmark} />
+                )}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </Page>
     )

@@ -26,9 +26,8 @@ const styles = theme => ({
   },
   title: {
     display: 'inline-block',
-    padding: '0 8px',
-    cursor: 'poiner',
-    marginLeft: theme.spacing.unit,
+    padding: '16px 0',
+    cursor: 'pointer',
     fontSize: 20,
   },
   avatar: {
@@ -49,7 +48,7 @@ const BooksListItem = ({ circleId, book, classes }) => (
   <Card>
     <div className={classes.header}>
       <Link to={Link.getRoute('BOOK')} params={{ circleId, bookId: book.id }}>
-        <Typography component="headline" className={classes.title}>
+        <Typography component="h4" className={classes.title}>
           {book.name}
         </Typography>
       </Link>

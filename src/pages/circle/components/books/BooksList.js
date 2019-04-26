@@ -8,7 +8,7 @@ import BooksListItem from './BooksListItem'
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4,
+    // marginTop: theme.spacing.unit * 4,
     // marginLeft: theme.app.sidebar.width / 2,
   },
 })
@@ -17,7 +17,7 @@ const ItemOnCol = ({ circleId, book }) => (
   <Grid
     ite
     xs={6}
-    md={6}
+    md={3}
     style={{
       padding: '10px',
     }}

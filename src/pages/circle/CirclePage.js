@@ -14,6 +14,7 @@ class CirclePage extends Component {
             title={circle && circle.name}
             isFetching={isFetchingCircle || !circle}
             loadingMessage="Loading circle"
+            isContentFull
           >
             <View circle={circle} />
           </Page>

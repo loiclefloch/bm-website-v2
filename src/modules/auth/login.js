@@ -1,6 +1,7 @@
 import { createApiCallAction } from 'reacticoon/action'
-import UserApi from '../../api/UserApi'
 import Immutable from "immutable"
+import { getCookie } from 'reacticoon/storage'
+import UserApi from '../../api/UserApi'
 
 //
 // actions
@@ -17,6 +18,7 @@ export const login = createApiCallAction(
 
 const DEFAULT_OAUTH = Immutable.fromJS({
   isFetching: false,
+  accessToken: getCookie('token'),
 })
 
 export const oauth = (state = DEFAULT_OAUTH, action) => {

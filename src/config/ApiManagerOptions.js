@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import Config from './Config'
+import { getCookie } from 'reacticoon/storage'
 
 function getAuthorizationHeader(state) {
   let entities = state.entities
@@ -9,7 +10,7 @@ function getAuthorizationHeader(state) {
     if (!_.isEmpty(accessToken)) {
       return 'Bearer ' + accessToken
     } else {
-      return 'Bearer MjhhMzQzZDMyNmM4ZmVmYzliNTM5NDEzM2YwYjg2YWIwYmE0OTcyZDFlYzExM2NiZWVhODlhNjhjYjM2NzI5ZQ'
+      return `Bearer ${getCookie('token')}`
     }
   }
 

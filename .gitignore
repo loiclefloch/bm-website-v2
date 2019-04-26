@@ -4,6 +4,8 @@
 /src/reacticoon
 /src/reacticoon-plugins
 
+/test/results
+
 # dependencies
 /node_modules
 

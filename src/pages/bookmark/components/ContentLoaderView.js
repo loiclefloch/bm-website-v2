@@ -1,7 +1,7 @@
 import React from 'react'
 // https://github.com/danilowoz/react-content-loader
 // http://danilowoz.com/create-content-loader/
-import ContentLoader from "react-content-loader"
+import ContentLoader from 'react-content-loader'
 
 const ContentLoaderView = () => {
   return (
@@ -10,6 +10,8 @@ const ContentLoaderView = () => {
         margin: '0 auto',
         paddingTop: 50,
         textAlign: 'center',
+        width: '100%',
+        maxWidth: '750px',
       }}
     >
       <ContentLoader
