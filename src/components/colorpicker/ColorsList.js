@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { colorsList } from 'modules/theme/constants'
+import colorsList from 'modules/theme/constants/colorsList'
 
 import ColorRow from './ColorRow'
 
 export default class ColorsList extends Component {
-
   static defaultProps = {
     colors: colorsList,
     defaultSelection: colorsList[0],
@@ -19,10 +18,10 @@ export default class ColorsList extends Component {
   }
 
   render() {
-    const colorListView = [];
+    const colorListView = []
 
-    this.props.colors.forEach((color) => {
-      const isSelected = color === this.props.defaultSelection;
+    this.props.colors.forEach(color => {
+      const isSelected = color === this.props.defaultSelection
 
       colorListView.push(
         <ColorRow
@@ -34,11 +33,6 @@ export default class ColorsList extends Component {
       )
     })
 
-    return (
-      <div>
-        {colorListView}
-      </div>
-    )
+    return <div>{colorListView}</div>
   }
-
 }

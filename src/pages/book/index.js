@@ -8,11 +8,15 @@ class BookPage extends Component {
     const circleId = this.props.params.circleId
     const bookId = this.props.params.bookId
 
-    return (
-      <Page title="" isContentFull>
-        <View circleId={circleId} bookId={bookId} />
-      </Page>
-    )
+    try {
+      return (
+        <Page title="" isContentFull>
+          <View circleId={circleId} bookId={bookId} />
+        </Page>
+      )
+    } catch (e) {
+      debugger
+    }
   }
 }
 

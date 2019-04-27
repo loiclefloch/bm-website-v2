@@ -2,10 +2,11 @@ import React from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
 import LoadingBlock from 'components/loading/LoadingBlock'
-import BookContainer from 'modules/book/views/BookContainer'
 import BookmarksListContainer from 'modules/bookmark/bookmarkList/views/BookmarksListContainer'
 import BookmarksList from 'components/bookmarksList'
 import Header from './components/Header'
+
+import BookContainer from 'modules/book/container'
 
 const styles = theme => ({
   bookmarksList__container: {
@@ -14,8 +15,8 @@ const styles = theme => ({
 })
 
 const View = ({ circleId, bookId, classes }) => (
-  <BookContainer circleId={circleId} bookId={bookId}>
-    {({ book, isFetchingBook, bookError }) => (
+  <BookContainer apiCallParameters={[circleId, bookId]}>
+    {({ data: book, isFetching: isFetchingBook, error: bookError }) => (
       <LoadingBlock show={isFetchingBook || !book}>
         {() => (
           <React.Fragment>

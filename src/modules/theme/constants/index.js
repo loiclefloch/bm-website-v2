@@ -1,1 +1,0 @@
-export colorsList from './colorsList'
