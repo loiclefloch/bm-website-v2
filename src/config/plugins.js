@@ -1,12 +1,10 @@
 import { __DEV__ } from 'reacticoon/environment'
-import reacticoonPluginExample from 'app/reacticoon-plugins/reacticoon-plugin-example/src'
 import reacticoonLogger from 'app/reacticoon-plugins/reacticoon-plugin-logger/src'
 import reacticoonSentry from 'app/reacticoon-plugins/reacticoon-plugin-sentry/src'
 import reacticoonMaterialUI from 'app/reacticoon-plugins/reacticoon-material-ui/src'
 import reacticoonForm from 'app/reacticoon-plugins/reacticoon-form/src'
 import { reacticoonValidator } from 'app/reacticoon-plugins/reacticoon-validation/src'
-
-import reacticoonMockApiPlugin from 'reacticoon/reacticoon-mock-api-plugin'
+import reacticoonFlashMessages from 'app/reacticoon-plugins/reacticoon-flash-messages/src'
 
 import bookmarkForm from '../modules/bookmarkForm'
 import circleForm from '../modules/circleForm'
@@ -17,13 +15,13 @@ import bmTheme from './bmTheme'
 
 export default [
   __DEV__ && {
-    plugin: reacticoonMockApiPlugin,
+    plugin: require('reacticoon/reacticoon-mock-api-plugin').default,
     config: {
       enabled: true,
     },
   },
   __DEV__ && {
-    plugin: reacticoonPluginExample,
+    plugin: require('app/reacticoon-plugins/reacticoon-plugin-example/src').default,
     config: {
       toto: 42,
     },
@@ -32,6 +30,12 @@ export default [
     plugin: reacticoonMaterialUI,
     config: {
       theme: bmTheme,
+    },
+  },
+  {
+    plugin: reacticoonFlashMessages,
+    config: {
+      types: ['TEST'],
     },
   },
   {

@@ -2,6 +2,7 @@
 
 import { postBookmark } from '../newBookmark'
 import RoutingEnum from '../../../config/RoutingEnum'
+import { addInfoFlashMessage } from 'app/reacticoon-plugins/reacticoon-flash-messages/src/service'
 import { redirectTo } from 'reacticoon/routing'
 import { hideAddBookmarkDialog } from '../'
 import { createMiddleware } from 'reacticoon/middleware'
@@ -19,6 +20,10 @@ const newBookmarkSuccessMiddleware = createMiddleware(
     dispatch(hideAddBookmarkDialog())
 
     const newBookmark = action.response.result
+
+    addInfoFlashMessage({
+      text: 'Bookmark created',
+    })
 
     // for testing purpose
     // const route = RoutingEnum.BOOKMARK.generatePathWithParams({ bookmarkId: '723' })

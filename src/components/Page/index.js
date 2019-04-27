@@ -11,6 +11,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import FlashMessagesContainer from 'app/reacticoon-plugins/reacticoon-flash-messages/src/container'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import LoadingPage from '../../components/loading/LoadingPage'
@@ -56,7 +57,6 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     backgroundColor: theme.app.background.dark,
-    width: theme.app.sidebar.width,
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -165,6 +165,12 @@ class Page extends React.Component {
               })}
             />
           )}
+
+          <FlashMessagesContainer>
+            {({ flashMessages }) =>
+              flashMessages.map(flashMessage => <div>{flashMessage.text}</div>)
+            }
+          </FlashMessagesContainer>
 
           {isFetching ? <LoadingPage show message={loadingMessage} /> : children}
         </main>
