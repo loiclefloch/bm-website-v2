@@ -14,7 +14,7 @@ const DEFAULT = Immutable.fromJS({
 })
 
 export const bookmarksListReducer = (state = DEFAULT, action) => {
-  const oldData = state.get('data').toJS()
+  const oldData = state.get('data') //.toJS()
 
   switch (action.type) {
     case loadBookmarks.REQUEST:
