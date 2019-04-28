@@ -6,15 +6,11 @@ import { circlesList, circle } from '../modules/circle'
 
 import { oauth } from '../modules/auth'
 
-import { users, me } from '../modules/user'
-
 const entities = {
   newBookmark,
   circlesList,
   circle,
   oauth,
-  me,
-  users,
   tagsList,
 }
 

@@ -6,6 +6,7 @@ import circlePostMembers from 'modules/circleMembers/postMembers'
 import bookNew from 'modules/bookNew'
 import book from 'modules/book'
 import userList from 'modules/userList'
+import userMe from 'modules/userMe'
 
 export default [
   bookmark,
@@ -16,4 +17,5 @@ export default [
   bookNew,
   book,
   userList,
+  userMe,
 ]

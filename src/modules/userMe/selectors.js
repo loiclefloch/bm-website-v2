@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { getStateForModule, createSelector } from 'reacticoon/selector'
 
 import isEmpty from 'lodash/isEmpty'
 
@@ -6,7 +6,8 @@ import isEmpty from 'lodash/isEmpty'
 // entities / me / data /
 //
 
-const getMeOnState = state => state.entities.me
+const getMeOnState = getStateForModule('UserMe')
+
 const getMeObjectOnState = state => getMeOnState(state).get('data')
 
 export const isFetchingMe = createSelector(
@@ -23,3 +24,9 @@ export const getMe = createSelector(
   getMeObjectOnState,
   me => me.toJS()
 )
+
+export const fetchUserSelectors = {
+  isFetchin: isFetchingMe,
+  getData: getMe,
+  getError: () => null,
+}

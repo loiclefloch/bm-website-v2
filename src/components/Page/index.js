@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { compose, connect } from 'reacticoon/view'
-import { fetchMe, isFetchingMe, isLoggedIn, getMe } from '../../modules/user'
+import { fetchMe, isFetchingMe, isLoggedIn, getMe } from '../../modules/userMe'
 import { fetchMeTags } from '../../modules/tag'
 
 import classNames from 'classnames'
