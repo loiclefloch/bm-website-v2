@@ -1,4 +1,4 @@
-import Immutable from "immutable"
+import Immutable from 'immutable'
 
 import isNil from 'lodash/isNil'
 import { createApiCallAction } from 'reacticoon/action'
@@ -6,34 +6,33 @@ import { createSelector } from 'reselect'
 
 import BookmarkApi from '../../api/BookmarkApi'
 
-export const postBookmark = createApiCallAction(
-  'BOOKMARK::POST',
-  bookmark => BookmarkApi.postBookmark(bookmark)
+export const postBookmark = createApiCallAction('BOOKMARK::POST', bookmark =>
+  BookmarkApi.postBookmark(bookmark)
 )
 
 //
 // Selectors
 //
 
-const getNewBookmarkDataOnState = (state) => state.entities.newBookmark
-const getNewBookmarkOnState = (state) => state.entities.newBookmark.get('data')
+const getNewBookmarkDataOnState = state => state.newBookmark
+const getNewBookmarkOnState = state => state.newBookmark.get('data')
 
-const getApiError = (state) => state.entities.newBookmark.get('error')
+const getApiError = state => state.newBookmark.get('error')
 
 export const getAddBookmarkError = createSelector(
-    getApiError,
-    (apiError) => {
-      // TODO: remove second check
-      if (isNil(apiError) || isNil(apiError.toJS)) {
-        return null
-      }
-      return apiError.toJS()
+  getApiError,
+  apiError => {
+    // TODO: remove second check
+    if (isNil(apiError) || isNil(apiError.toJS)) {
+      return null
     }
+    return apiError.toJS()
+  }
 )
 
 export const getNewBookmark = createSelector(
   getNewBookmarkOnState,
-  (newBookmark) => {
+  newBookmark => {
     if (isNil(newBookmark)) {
       return null
     }
@@ -43,7 +42,7 @@ export const getNewBookmark = createSelector(
 
 export const isAddBookmarkFetching = createSelector(
   getNewBookmarkDataOnState,
-  (bookmarkData) => {
+  bookmarkData => {
     return bookmarkData.get('isFetching')
   }
 )

@@ -31,7 +31,8 @@ class LoginPage extends Component {
       <Page title="Login" isFullPage isContentFull darkMode>
         <div
           style={{
-            background: 'url("https://images.unsplash.com/photo-1519791883288-dc8bd696e667?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")',
+            background:
+              'url("https://images.unsplash.com/photo-1519791883288-dc8bd696e667?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             height: '100%',
@@ -57,7 +58,7 @@ class LoginPage extends Component {
 const mapStateToProps = state => {
   return {
     // TODO: selector
-    isFetching: state.entities.oauth.get('isFetching'),
+    isFetching: state.oauth.get('isFetching'),
   }
 }
 

@@ -1,4 +1,4 @@
-import Immutable from "immutable"
+import Immutable from 'immutable'
 import { createSelector } from 'reselect'
 import { formatTag } from './utils'
 import { createApiCallAction } from 'reacticoon/action'
@@ -10,31 +10,27 @@ import merge from 'lodash/merge'
 // Actions
 //
 
-export const fetchMeTags = createApiCallAction(
-  'TAGS::FETCH',
-  TagApi.getTags()
-)
+export const fetchMeTags = createApiCallAction('TAGS::FETCH', TagApi.getTags())
 
 //
 //
 //
 
-// const getTagsData = (state) => state.entities.tagsList.getIn([ 'data' ])
+// const getTagsData = (state) => state.tagsList.getIn([ 'data' ])
 
 // input-selectors. They are created as ordinary non-memoized selector functions because they do
 // not transform the data they select
-const getTagsMap = (state) => state.entities.tagsList.getIn([ 'data', 'tags' ])
+const getTagsMap = state => state.tagsList.getIn(['data', 'tags'])
 
 export const getTags = createSelector(
   getTagsMap,
-  (resultMap) => resultMap
-);
+  resultMap => resultMap
+)
 
 export const getTagsList = createSelector(
-  [ getTags ],
-  (tags) => {
-    return tags.toArray()
-    .map(tag => {
+  [getTags],
+  tags => {
+    return tags.toArray().map(tag => {
       return formatTag(tag.toJS())
     })
   }
@@ -44,11 +40,11 @@ export const getTagsList = createSelector(
 // Fetching bookmarksList
 //
 
-const getTagsIsFetching = (state) => state.entities.tagsList.get('isFetching')
+const getTagsIsFetching = state => state.tagsList.get('isFetching')
 
 export const isFetchingTags = createSelector(
-    getTagsIsFetching,
-    (isFetching) => isFetching
+  getTagsIsFetching,
+  isFetching => isFetching
 )
 
 //
@@ -61,7 +57,7 @@ const DEFAULT = Immutable.fromJS({
   },
   isFetching: false,
   lastUpdated: null,
-  error: null
+  error: null,
 })
 
 export const tagsList = (state = DEFAULT, action) => {

@@ -6,6 +6,7 @@ import { circlesList, circle } from '../modules/circle'
 
 import { oauth } from '../modules/auth'
 
+// TODO: use modules
 const entities = {
   newBookmark,
   circlesList,

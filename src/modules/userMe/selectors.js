@@ -12,7 +12,7 @@ const getMeObjectOnState = state => getMeOnState(state).get('data')
 
 export const isFetchingMe = createSelector(
   getMeOnState,
-  meData => meData.isFetching
+  meData => meData.get('isFetching')
 )
 
 export const isLoggedIn = createSelector(
@@ -22,7 +22,7 @@ export const isLoggedIn = createSelector(
 
 export const getMe = createSelector(
   getMeObjectOnState,
-  me => me.toJS()
+  me => me.toJS() || null
 )
 
 export const fetchUserSelectors = {

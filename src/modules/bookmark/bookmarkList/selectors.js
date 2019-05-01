@@ -101,7 +101,7 @@ export const makeGetFilteredBookmarks = () => {
 // Fetching bookmarksList
 //
 
-const getBookmarksIsFetching = state => state.entities.BookmarkList.get('isFetching')
+const getBookmarksIsFetching = state => state.BookmarkList.get('isFetching')
 
 export const isFetchingBookmarks = createSelector(
   getBookmarksIsFetching,

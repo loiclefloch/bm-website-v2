@@ -4,7 +4,7 @@ import Config from './Config'
 import { getCookie } from 'reacticoon/storage'
 
 function getAuthorizationHeader(state) {
-  let entities = state.entities
+  let entities = state
   if (!_.isNil(entities) && !_.isNil(entities.oauth)) {
     let accessToken = entities.oauth.getIn('accessToken'.split('.'))
     if (!_.isEmpty(accessToken)) {

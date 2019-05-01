@@ -29,7 +29,7 @@ export const getMeAdministratedCirclesIds = createSelector(
 
 // input-selectors. They are created as ordinary non-memoized selector functions because they do
 // not transform the data they select
-const getCirclesMap = state => state.entities.circlesList.getIn(['data', 'circles'])
+const getCirclesMap = state => state.circlesList.getIn(['data', 'circles'])
 
 // memoized selector. It takes getCirclesMap as input-selectors, and a transform function that
 // calculates the data
@@ -69,7 +69,7 @@ export const getFollowedCircles = createSelector(
 // Fetching circlesList
 //
 
-const getCirclesIsFetching = state => state.entities.circlesList.get('isFetching')
+const getCirclesIsFetching = state => state.circlesList.get('isFetching')
 
 export const isFetchingCircles = createSelector(
   getCirclesIsFetching,
