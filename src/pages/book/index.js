@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
+import { useModule } from 'reacticoon/module'
+import BookModule from 'modules/book'
+
 import Page from 'components/Page'
 import View from './View'
+
+useModule(BookModule)
 
 class BookPage extends Component {
   render() {

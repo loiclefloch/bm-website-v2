@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import Config from './Config'
+import { getEnvVar } from 'reacticoon/environment'
 import { getCookie } from 'reacticoon/storage'
 
 function getAuthorizationHeader(state) {
@@ -17,8 +17,8 @@ function getAuthorizationHeader(state) {
   return null
 }
 
-export default {
-  apiUrl: Config.API_URL,
+const ApiManagerOptions = () => ({
+  apiUrl: getEnvVar('API_URL'),
 
   store: null,
 
@@ -60,4 +60,6 @@ export default {
 
     return false
   },
-}
+})
+
+export default ApiManagerOptions

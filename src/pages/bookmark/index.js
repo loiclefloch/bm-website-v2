@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import BookmarkModule from 'modules/bookmark/bookmark'
+import { useModule } from 'reacticoon/module'
 import { reacticoonConnect } from 'reacticoon/view'
 import { isFetchingTags } from 'modules/tag'
 
@@ -11,6 +13,8 @@ import Content from './components/Content'
 
 import RightNav from './components/RightNav'
 import ContentLoaderView from './components/ContentLoaderView'
+
+useModule(BookmarkModule)
 
 class BookmarkPage extends Component {
   componentDidMount() {

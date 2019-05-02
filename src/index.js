@@ -7,7 +7,6 @@ import { Application } from 'reacticoon/archi'
 import uxReducer from './config/uxReducer'
 import entities from './config/entities'
 import middlewares from './config/middlewares'
-import environment from './config/Config'
 import modules from './config/modules'
 import i18n from './config/i18n'
 import routes from './config/routes'
@@ -46,7 +45,6 @@ const appOptions = {
   middlewares,
   uxReducer,
   entities,
-  environment,
   modules,
   i18n,
   plugins,

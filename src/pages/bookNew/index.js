@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 
+import { useModule } from 'reacticoon/module'
+import BookNewModule from 'modules/bookNew'
+
 import CircleContainer from 'modules/circle/circle/views/CircleContainer'
 import Page from 'components/Page'
 import View from './View'
 
-class CircleNewPage extends Component {
+try {
+  useModule(BookNewModule)
+} catch (e) {
+  debugger
+}
+
+class BookNewPage extends Component {
   render() {
     return (
       <CircleContainer circleId={this.props.params.circleId}>
@@ -18,4 +27,4 @@ class CircleNewPage extends Component {
   }
 }
 
-export default CircleNewPage
+export default BookNewPage
