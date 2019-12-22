@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
@@ -41,7 +40,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
 })
-
 
 class BookmarksListItem extends React.Component {
   constructor(props) {

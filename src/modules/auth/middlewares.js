@@ -1,29 +1,28 @@
 // auth middleware
 
+import { createMiddleware } from 'reacticoon/middleware'
 import { login } from '../auth'
-import RoutingEnum from '../../config/RoutingEnum'
-import { replace } from 'react-router-redux'
+import { setCookie } from 'reacticoon/storage'
+import { getRoute, replace } from 'reacticoon/routing'
 
 /**
-* Intercepts LOGIN action and redirects to dashboard screen if the login succeeded
-* Otherwise just sends action to next middleware
-*
-* @returns {Function}
-*/
-function authMiddleware({getState, dispatch}) {
-  return (next) => (action) => {
-    if (typeof action === 'object' && action.hasOwnProperty('type')) {
-      if (action.type === login.SUCCESS) {
-        next(action) // send it to next so identity will be set
+ * Intercepts LOGIN action and redirects to dashboard screen if the login succeeded
+ * Otherwise just sends action to next middleware
+ *
+ * @returns {Function}
+ */
+const authSuccessMiddleware = createMiddleware(
+  'authSuccessMiddleware',
+  login.SUCCESS,
+  ({ next, dispatch, action }) => {
+    setCookie('token', action.response.result.accessToken)
 
-        const path = RoutingEnum.DASHBOARD.getPath()
+    next(action) // send it to next so identity will be set
 
-        return next(replace(path))
-      }
-    }
+    const path = getRoute('DASHBOARD').getPath()
 
-    return next(action);
-  };
-}
+    return dispatch(replace(path))
+  }
+)
 
-export default [ authMiddleware ]
+export default [authSuccessMiddleware]

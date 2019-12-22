@@ -25,10 +25,10 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { formData, formErrors, onChange, isFetching } = this.props
+    const { route, formData, formErrors, onChange, isFetching } = this.props
 
     return (
-      <Page title="Login" isFullPage isContentFull darkMode>
+      <Page title="Login" route={route} isFullPage isContentFull darkMode>
         <div
           style={{
             background:

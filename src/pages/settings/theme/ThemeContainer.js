@@ -5,14 +5,14 @@ import { connect, compose } from 'reacticoon/view'
 import ThemeView from './components/ThemeView'
 import Button from '@material-ui/core/Button'
 
-import { indigo500, pink400, purple600 } from '@material-ui/core/colors'
+import { indigo, pink, purple} from '@material-ui/core/colors'
 
 import { ColorsList } from 'components/colorpicker'
 import { withTheme } from '@material-ui/core/styles'
 
 class ThemeContainer extends Component {
   handleChangeTheme = () => {
-    const colors = [indigo500, pink400, purple600]
+    const colors = [indigo['500'], pink['400'], purple['600']]
 
     // get random color
     const color = colors[Math.floor(Math.random() * colors.length)]
@@ -57,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default compose(
-  withTheme(),
+  withTheme,
   connect(
     mapStateToProps,
     {

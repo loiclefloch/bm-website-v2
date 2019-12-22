@@ -16,6 +16,10 @@ module.exports = createReacticoonPlugin({
       name: 'devtools:git-info',
       path: './commands/',
     },
+    {
+      name: 'devtools:server',
+      path: './commands/',
+    },
   ],
   serverCommands: [getGitInformationServerCommand],
 })

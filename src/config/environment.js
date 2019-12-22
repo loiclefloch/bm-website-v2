@@ -1,5 +1,3 @@
-import merge from 'lodash/merge'
-
 export default {
   IS_DEV: false,
 

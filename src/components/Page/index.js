@@ -91,8 +91,12 @@ class Page extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMe()
-    this.props.fetchMeTags()
+    const { route } = this.props
+
+    if (route && route.authRequired) {
+      this.props.fetchMe()
+      this.props.fetchMeTags()
+    }
   }
 
   handleDrawerOpen = () => {
@@ -191,7 +195,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default compose(
   withStyles(styles),
-  withTheme(),
+  withTheme,
   connect(
     mapStateToProps,
     {

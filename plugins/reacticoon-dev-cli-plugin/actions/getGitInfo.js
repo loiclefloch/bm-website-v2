@@ -1,5 +1,4 @@
 const trim = require('lodash/trim')
-const Filesystem = require('create-reacticoon-app/utils/Filesystem')
 const Command = require('create-reacticoon-app/cli-utils/cmd')
 
 function getCurrentBranch() {

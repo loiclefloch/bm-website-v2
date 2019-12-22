@@ -1,26 +1,10 @@
 import isEmpty from 'lodash/isEmpty'
-import isNil from 'lodash/isNil'
 
+import { createFormatter } from 'reacticoon/format'
 import { generateToc } from './toc'
 import { generateSlides } from './slides'
 import { formatVideo } from './formatVideo'
 import { formatTags } from './formatTags'
-
-export const formatBookmark = (bookmark) => {
-  if (isNil(bookmark)) {
-    return null
-  }
-  bookmark = setBookmarkDomain(bookmark)
-  bookmark = setBookmarkPrettyUrl(bookmark)
-  bookmark = setBookmarkDefaultName(bookmark)
-  bookmark = setType(bookmark)
-  bookmark = pretifytContent(bookmark)
-  bookmark = addToc(bookmark)
-  bookmark = setSlides(bookmark)
-  bookmark = formatVideo(bookmark)
-  bookmark = formatTags(bookmark)
-  return bookmark
-}
 
 const BookmarkType = {
   WEBSITE: 0, // default
@@ -29,14 +13,14 @@ const BookmarkType = {
   MUSIC: 3,
   CODE: 4, // for example: github code page or project
   GAME: 5,
-  SLIDE: 6
-};
+  SLIDE: 6,
+}
 
 //
 // Private
 //
 
-const getDomainUrl = (url) => {
+const getDomainUrl = url => {
   if (isEmpty(url)) {
     return ''
   }
@@ -56,11 +40,11 @@ const getDomainUrl = (url) => {
 }
 
 /**
-   * Return an url without the http(s)://
-   * @param url
-   * @returns {*}
-   */
-const getPrettyUrl = (url) => {
+ * Return an url without the http(s)://
+ * @param url
+ * @returns {*}
+ */
+const getPrettyUrl = url => {
   if (isEmpty(url)) {
     return ''
   }
@@ -73,18 +57,16 @@ const getPrettyUrl = (url) => {
   return url
 }
 
-const setBookmarkDomain = (bookmark) => {
+const setBookmarkDomain = bookmark => {
   bookmark.domain = getDomainUrl(bookmark.url)
-  return bookmark
 }
 
-const setBookmarkPrettyUrl = (bookmark) => {
+const setBookmarkPrettyUrl = bookmark => {
   bookmark.prettyUrl = getPrettyUrl(bookmark.url)
-  return bookmark
 }
 
-const setBookmarkDefaultName = (bookmark) => {
-  let name = bookmark.name;
+const setBookmarkDefaultName = bookmark => {
+  let name = bookmark.name
   if (isEmpty(name)) {
     if (!isEmpty(bookmark.title)) {
       name = bookmark.title
@@ -93,11 +75,9 @@ const setBookmarkDefaultName = (bookmark) => {
     }
   }
   bookmark.name = name
-
-  return bookmark
 }
 
-const setType = (bookmark) => {
+const setType = bookmark => {
   bookmark.isTypeVideo = bookmark.type === BookmarkType.VIDEO
   bookmark.isTypeWebsite = bookmark.type === BookmarkType.WEBSITE
   bookmark.isTypeArticle = bookmark.type === BookmarkType.ARTICLE
@@ -105,33 +85,27 @@ const setType = (bookmark) => {
   bookmark.isTypeCode = bookmark.type === BookmarkType.CODE
   bookmark.isTypeGame = bookmark.type === BookmarkType.GAME
   bookmark.isTypeSlide = bookmark.type === BookmarkType.SLIDE
-
-  return bookmark
 }
 
-const setSlides = (bookmark) => {
+const setSlides = bookmark => {
   if (!bookmark.isTypeSlide) {
     return bookmark
   }
 
   bookmark.slides = generateSlides(bookmark.content)
   bookmark.nbSlides = bookmark.slides.length
-
-  return bookmark
 }
 
-const addToc = (bookmark) => {
+const addToc = bookmark => {
   bookmark.toc = []
   if (isEmpty(bookmark.content)) {
     return bookmark
   }
 
   bookmark.toc = generateToc(bookmark.content)
-
-  return bookmark
 }
 
-const pretifytContent = (bookmark) => {
+const pretifytContent = bookmark => {
   // source: https://stackoverflow.com/questions/12412388/regex-to-remove-all-styles-but-leave-color-and-background-color-if-they-exist
   //
   // (<[^>]+\s+)                           Capture start tag to style attr ($1).
@@ -183,11 +157,21 @@ const pretifytContent = (bookmark) => {
   const contentWithoutStyle = bookmark.content.replace(
     regex,
     (match, $1, $2, $3, $4, $5, $6, offset, string) => {
-      return $1 + ($2 ? $2       : '') + ($3 ? $3 + ';' : '')
-      + ($5 ? $5 + ';' : '') + ($2 ? $6       : '')
+      return $1 + ($2 ? $2 : '') + ($3 ? $3 + ';' : '') + ($5 ? $5 + ';' : '') + ($2 ? $6 : '')
     }
   )
 
   bookmark.content = contentWithoutStyle
-  return bookmark
 }
+
+export const formatBookmark = createFormatter(
+  setBookmarkDomain,
+  setBookmarkPrettyUrl,
+  setBookmarkDefaultName,
+  setType,
+  pretifytContent,
+  addToc,
+  setSlides,
+  formatVideo,
+  formatTags
+)
