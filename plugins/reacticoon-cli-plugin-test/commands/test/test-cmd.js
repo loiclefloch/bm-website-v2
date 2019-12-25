@@ -1,1 +1,0 @@
-console.log('test-cmd: SUCCESS !');
