@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ArrayUtils from 'app/utils/ArrayUtils'
+import { existsOnArray, toggleArrayObject } from 'reacticoon/utils/array'
 import UserListContainer from 'modules/userList/views/UserListContainer'
 import UserSelectorDialog from './UserSelectorDialog'
 
@@ -40,10 +40,10 @@ class UserSelectorContainer extends React.PureComponent {
     if (
       // can unselect or is not selected on props
       !this.props.disableUnselect ||
-      !ArrayUtils.exists(this.props.values, user, u => u.id === user.id)
+      !existsOnArray(this.props.values, user, u => u.id === user.id)
     ) {
       this.setState({
-        values: ArrayUtils.toggleObject(this.state.values, user, u => u.id === user.id),
+        values: toggleArrayObject(this.state.values, user, u => u.id === user.id),
       })
     }
   }

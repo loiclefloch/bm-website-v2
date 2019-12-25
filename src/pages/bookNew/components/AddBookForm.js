@@ -14,7 +14,7 @@ import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
 import BookForm from 'modules/bookForm'
-import { withForm } from 'app/reacticoon-plugins/reacticoon-form/src'
+import { withForm } from 'reacticoon-plugins/reacticoon-form/src'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({

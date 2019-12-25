@@ -78,9 +78,9 @@ const Header = ({ isLoggedIn, title, classes, sidebarIsOpen, handleDrawerOpen })
       </React.Fragment>
     )}
 
-    <Typography variant="title" color="inherit" className={classes.title}>
-      {/* {title} */}
-    </Typography>
+    {/* <Typography variant="title" color="inherit" className={classes.title}>
+      {title} 
+    </Typography> */}
 
     {isLoggedIn ? <Logged {...this.props} classes={classes} /> : <Login />}
   </React.Fragment>

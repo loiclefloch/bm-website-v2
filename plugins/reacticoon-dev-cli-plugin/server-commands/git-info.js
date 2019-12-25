@@ -1,7 +1,7 @@
 const getGitInfo = require('../actions/getGitInfo')
 
-function CommandCheckup(req, res) {
+function CommandGitInfo(req, res) {
   res.json(getGitInfo())
 }
 
-module.exports = CommandCheckup
+module.exports = CommandGitInfo

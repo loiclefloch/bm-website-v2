@@ -1,6 +1,6 @@
-import { createForm } from 'app/reacticoon-plugins/reacticoon-form/src'
+import { createForm } from 'reacticoon-plugins/reacticoon-form/src'
 
-import { notEmpty } from 'app/reacticoon-plugins/reacticoon-validation/src'
+import { notEmpty } from 'reacticoon-plugins/reacticoon-validation/src'
 
 const defaultData = {
   username: null,

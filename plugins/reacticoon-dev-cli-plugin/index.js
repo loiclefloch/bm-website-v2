@@ -8,6 +8,13 @@ const getGitInformationServerCommand = createServerCommand(
   {}
 )
 
+const LaunchEditorServerCommand = createServerCommand(
+  'DEV_TOOLS::LAUNCH_EDITOR',
+  'Launch code on code editor',
+  './server-commands/launch-editor',
+  {}
+)
+
 module.exports = createReacticoonPlugin({
   checkup: [],
   generators: [],
@@ -21,5 +28,5 @@ module.exports = createReacticoonPlugin({
       path: './commands/',
     },
   ],
-  serverCommands: [getGitInformationServerCommand],
+  serverCommands: [getGitInformationServerCommand, LaunchEditorServerCommand],
 })

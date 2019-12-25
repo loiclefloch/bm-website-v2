@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-import ArrayUtils from 'app/utils/ArrayUtils'
+import { existsOnArray } from 'reacticoon/utils/array'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Dialog from '@material-ui/core/Dialog'
 import { withStyles } from '@material-ui/core/styles'
@@ -38,7 +37,7 @@ const UserSelectorDialog = ({
                 <UserCard
                   key={user.id}
                   user={user}
-                  isSelected={ArrayUtils.exists(values, u => u.id === user.id)}
+                  isSelected={existsOnArray(values, u => u.id === user.id)}
                   onToggle={() => {
                     onToggleUser(user)
                   }}

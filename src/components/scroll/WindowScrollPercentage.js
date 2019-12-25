@@ -3,7 +3,6 @@
 // https://github.com/thebuilder/react-scroll-percentage
 //
 import React from 'react' // eslint-disable-line no-unused-vars
-import debounce from 'lodash/debounce'
 
 /**
  * Monitors scroll, and triggers the children function with updated props

@@ -1,20 +1,19 @@
 import { createFormatter, createSubObjectFormatter, createListFormatter } from 'reacticoon/format'
-import ArrayUtils from '../../utils/ArrayUtils'
-
+import { existsOnArray } from 'reacticoon/utils/array'
 //
 //
 //
 
 const setCircleIsFollowedByMe = (circle, { meCirclesIds }) => {
   if (meCirclesIds) {
-    circle.isFollowedByMe = ArrayUtils.exists(meCirclesIds, id => id === circle.id)
+    circle.isFollowedByMe = existsOnArray(meCirclesIds, id => id === circle.id)
   }
   return circle
 }
 
 const setCircleIsAdministrateByMe = (circle, { meAdministredCirclesIds }) => {
   if (meAdministredCirclesIds) {
-    circle.isAdministrateByMe = ArrayUtils.exists(meAdministredCirclesIds, id => id === circle.id)
+    circle.isAdministrateByMe = existsOnArray(meAdministredCirclesIds, id => id === circle.id)
   }
   return circle
 }
@@ -25,10 +24,7 @@ const setNumberOfPeople = circle => {
 }
 
 const formatMemberAdmin = (member, props) => {
-  const isCircleAdmin = ArrayUtils.exists(
-    props.formattedItem.admins,
-    admin => admin.id === member.id
-  )
+  const isCircleAdmin = existsOnArray(props.formattedItem.admins, admin => admin.id === member.id)
   member.isCircleAdmin = isCircleAdmin
   return member
 }

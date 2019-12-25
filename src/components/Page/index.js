@@ -9,9 +9,9 @@ import classNames from 'classnames'
 import { withStyles, withTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Drawer from '@material-ui/core/Drawer'
-import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import FlashMessagesContainer from 'app/reacticoon-plugins/reacticoon-flash-messages/src/container'
+import AppBar from '@material-ui/core/AppBar'
+import FlashMessagesContainer from 'reacticoon-plugins/reacticoon-flash-messages/src/container'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import LoadingPage from '../../components/loading/LoadingPage'
@@ -196,11 +196,8 @@ const mapStateToProps = (state, ownProps) => ({
 export default compose(
   withStyles(styles),
   withTheme,
-  connect(
-    mapStateToProps,
-    {
-      fetchMe,
-      fetchMeTags,
-    }
-  )
+  connect(mapStateToProps, {
+    fetchMe,
+    fetchMeTags,
+  })
 )(Page)

@@ -1,6 +1,6 @@
 import { createMiddleware } from 'reacticoon/middleware'
 import { redirectTo } from 'reacticoon/routing'
-import { addInfoFlashMessage } from 'app/reacticoon-plugins/reacticoon-flash-messages/src/service'
+import { addInfoFlashMessage } from 'reacticoon-plugins/reacticoon-flash-messages/src/service'
 import { postBook } from './actions'
 import { getRoute } from 'reacticoon/routing'
 

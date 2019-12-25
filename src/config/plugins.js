@@ -1,10 +1,10 @@
 import { __DEV__ } from 'reacticoon/environment'
-import reacticoonLogger from 'app/reacticoon-plugins/reacticoon-plugin-logger/src'
-import reacticoonSentry from 'app/reacticoon-plugins/reacticoon-plugin-sentry/src'
-import reacticoonMaterialUI from 'app/reacticoon-plugins/reacticoon-material-ui/src'
-import reacticoonForm from 'app/reacticoon-plugins/reacticoon-form/src'
-import { reacticoonValidator } from 'app/reacticoon-plugins/reacticoon-validation/src'
-import reacticoonFlashMessages from 'app/reacticoon-plugins/reacticoon-flash-messages/src'
+import reacticoonLogger from 'reacticoon-plugins/reacticoon-plugin-logger/src'
+import reacticoonSentry from 'reacticoon-plugins/reacticoon-plugin-sentry/src'
+import reacticoonMaterialUI from 'reacticoon-plugins/reacticoon-material-ui/src'
+import reacticoonForm from 'reacticoon-plugins/reacticoon-form/src'
+import { reacticoonValidator } from 'reacticoon-plugins/reacticoon-validation/src'
+import reacticoonFlashMessages from 'reacticoon-plugins/reacticoon-flash-messages/src'
 
 import bookmarkForm from '../modules/bookmarkForm'
 import circleForm from '../modules/circleForm'
@@ -21,7 +21,7 @@ export default [
     },
   },
   __DEV__ && {
-    plugin: require('app/reacticoon-plugins/reacticoon-plugin-example/src').default,
+    plugin: require('reacticoon-plugins/reacticoon-plugin-example/src').default,
     config: {
       toto: 42,
     },

@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import LogoIcon from 'components/Logo'
 
 import LoadingBlock from 'components/loading/LoadingBlock'
-import { HibpPasswordRangeContainer } from 'app/reacticoon-plugins/reacticoon-hibp/src'
+import { HibpPasswordRangeContainer } from 'reacticoon-plugins/reacticoon-hibp/src'
 import BlockError from 'components/BlockError'
 
 const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
