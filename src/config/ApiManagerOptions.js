@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 import { getEnvVar } from 'reacticoon/environment'
 import { getCookie } from 'reacticoon/storage'
+import { getStore } from 'reacticoon/store'
 
 function getAuthorizationHeader(state) {
   let entities = state
@@ -27,13 +28,9 @@ const ApiManagerOptions = () => ({
       Accept: 'application/json',
     }
 
-    // TODO: why this.a ?
-    const store = this.a.store
-    if (!_.isNil(store)) {
-      const authorization = getAuthorizationHeader(store.getState())
-      if (!_.isEmpty(authorization)) {
-        headers['Authorization'] = authorization
-      }
+    const authorization = getAuthorizationHeader(getStore().getState())
+    if (!_.isEmpty(authorization)) {
+      headers['Authorization'] = authorization
     }
 
     return headers

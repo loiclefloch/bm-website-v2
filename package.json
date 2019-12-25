@@ -4,6 +4,7 @@
   "main": "src/",
   "license": "MIT",
   "scripts": {
+    "reacticoon": "reacticoon",
     "start": "reacticoon start",
     "build": "reacticoon build",
     "test": "reacticoon test",

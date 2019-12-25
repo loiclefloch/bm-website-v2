@@ -15,7 +15,7 @@ import bmTheme from './bmTheme'
 
 export default [
   __DEV__ && {
-    plugin: require('reacticoon/reacticoon-mock-api-plugin').default,
+    plugin: require('reacticoon-plugins/reacticoon-mock-api-plugin/src').default,
     config: {
       enabled: true,
     },
