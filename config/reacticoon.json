@@ -3,6 +3,14 @@
     {
       "resolve": "reacticoon-cli-plugin-dev",
       "options": {}
+    },
+    {
+      "resolve": "reacticoon-cli-plugin-mock-api",
+      "options": {}
+    },
+    {
+      "resolve": "reacticoon-cli-plugin-test",
+      "options": {}
     }
   ]
 }
