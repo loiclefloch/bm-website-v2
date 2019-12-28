@@ -1,4 +1,5 @@
 {
+  "projectName": "bm-website-v2",
   "plugins": [
     {
       "resolve": "reacticoon-cli-plugin-dev",
@@ -11,6 +12,21 @@
     {
       "resolve": "reacticoon-cli-plugin-test",
       "options": {}
+    },
+    {
+      "resolve": "reacticoon-cli-plugin-ci",
+      "options": {}
+    },
+    {
+      "resolve": "reacticoon-cli-plugin-git",
+      "options": {
+        "//": "TODO: handle those settings",
+        "webui": {
+          "command": "git webui",
+          "url": "http://localhost:8000"
+        }
+      }
     }
-  ]
+  ],
+  "packageManager": "yarn"
 }

@@ -26,6 +26,9 @@ export default [
       toto: 42,
     },
   },
+  __DEV__ && {
+    plugin: require('reacticoon-plugins/reacticoon-plugin-ci/src').default,
+  },
   {
     plugin: reacticoonMaterialUI,
     config: {
