@@ -29,6 +29,10 @@ export default [
   __DEV__ && {
     plugin: require('reacticoon-plugins/reacticoon-plugin-ci/src').default,
   },
+  __DEV__ && {
+    plugin: require('reacticoon-plugins/reacticoon-plugin-lighthouse/src').default,
+    options: {},
+  },
   {
     plugin: reacticoonMaterialUI,
     config: {
