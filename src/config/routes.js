@@ -51,15 +51,13 @@ const routes = [
   },
   {
     definition: RoutingEnum.BOOK_NEW,
-    handler: createAsyncPage(() => (
+    handler: createAsyncPage(() =>
       import(/*  webpackChunkName: "BookNewPage" */ '../pages/bookNew')
-    ))
+    ),
   },
   {
     definition: RoutingEnum.BOOK,
-    handler: createAsyncPage(() => (
-      import(/*  webpackChunkName: "BookPage" */ '../pages/book')
-    ))
+    handler: createAsyncPage(() => import(/*  webpackChunkName: "BookPage" */ '../pages/book')),
   },
   // {
   //   definition: RoutingEnum.BOOKS,
@@ -78,12 +76,6 @@ const routes = [
       import(/*  webpackChunkName: "SettingsPage" */ '../pages/settings/SettingsPage')
     ),
   },
-  {
-    definition: ReacticoonRoutingEnum.PAGE_NOT_FOUND,
-    handler: createAsyncPage(() => 
-      import(/*  webpackChunkName: "PageNotFoundPage" */ '../pages/error/PageNotFoundPage')
-    )
-  }
 ]
 
 export default routes

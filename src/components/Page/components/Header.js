@@ -61,7 +61,7 @@ const Logged = ({ me, classes }) => (
 /**
  *
  */
-const Header = ({ isLoggedIn, title, classes, sidebarIsOpen, handleDrawerOpen }) => (
+const Header = ({ isLoggedIn, title, classes, sidebarIsOpen, handleDrawerOpen, me }) => (
   <React.Fragment>
     {!sidebarIsOpen && (
       <React.Fragment>
@@ -82,7 +82,7 @@ const Header = ({ isLoggedIn, title, classes, sidebarIsOpen, handleDrawerOpen })
       {title} 
     </Typography> */}
 
-    {isLoggedIn ? <Logged {...this.props} classes={classes} /> : <Login />}
+    {isLoggedIn ? <Logged me={me} classes={classes} /> : <Login />}
   </React.Fragment>
 )
 
