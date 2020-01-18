@@ -33,6 +33,10 @@ export default [
     plugin: require('reacticoon-plugins/reacticoon-plugin-lighthouse/src').default,
     options: {},
   },
+  __DEV__ && {
+    plugin: require('reacticoon-plugins/reacticoon-plugin-bundle-stats/src').default,
+    options: {},
+  },
   {
     plugin: reacticoonMaterialUI,
     config: {

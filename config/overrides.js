@@ -3,7 +3,7 @@ module.exports = isDev => ({
     debugMode: false,
     enableSass: true,
     env: {
-      APP_ENV: isDev ? 'TEST' : 'PRODUCTION_MODE !',
+      APP_ENV: isDev ? 'TEST !' : 'PRODUCTION_MODE !',
     },
   },
 })

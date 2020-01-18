@@ -28,6 +28,10 @@
     {
       "resolve": "reacticoon-cli-plugin-lighthouse",
       "options": {}
+    },
+    {
+      "resolve": "reacticoon-cli-plugin-bundle-stats",
+      "options": {}
     }
   ],
   "packageManager": "yarn"
