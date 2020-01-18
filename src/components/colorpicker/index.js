@@ -1,1 +1,1 @@
-export ColorsList from './ColorsList'
+export { default as ColorsList } from './ColorsList'

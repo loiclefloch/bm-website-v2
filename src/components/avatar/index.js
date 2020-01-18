@@ -1,1 +1,1 @@
-export AvatarWithDefault from './AvatarWithDefault'
+export { default as AvatarWithDefault } from './AvatarWithDefault'
