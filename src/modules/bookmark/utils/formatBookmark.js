@@ -20,7 +20,7 @@ const BookmarkType = {
 // Private
 //
 
-const getDomainUrl = url => {
+export const getDomainUrl = url => {
   if (isEmpty(url)) {
     return ''
   }
