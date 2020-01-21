@@ -1,10 +1,10 @@
 import { __DEV__ } from 'reacticoon/environment'
 import reacticoonLogger from 'reacticoon-plugins/reacticoon-plugin-logger/src'
 import reacticoonSentry from 'reacticoon-plugins/reacticoon-plugin-sentry/src'
-import reacticoonMaterialUI from 'reacticoon-plugins/reacticoon-material-ui/src'
-import reacticoonForm from 'reacticoon-plugins/reacticoon-form/src'
-import { reacticoonValidator } from 'reacticoon-plugins/reacticoon-validation/src'
-import reacticoonFlashMessages from 'reacticoon-plugins/reacticoon-flash-messages/src'
+import reacticoonMaterialUI from 'reacticoon-plugins/reacticoon-plugin-material-ui/src'
+import reacticoonForm from 'reacticoon-plugins/reacticoon-plugin-form/src'
+import { reacticoonValidator } from 'reacticoon-plugins/reacticoon-plugin-validation/src'
+import reacticoonFlashMessages from 'reacticoon-plugins/reacticoon-plugin-flash-messages/src'
 
 import bookmarkForm from '../modules/bookmarkForm'
 import circleForm from '../modules/circleForm'
@@ -15,7 +15,7 @@ import bmTheme from './bmTheme'
 
 export default [
   __DEV__ && {
-    plugin: require('reacticoon-plugins/reacticoon-mock-api-plugin/src').default,
+    plugin: require('reacticoon-plugins/reacticoon-plugin-mock-api/src').default,
     config: {
       enabled: true,
     },

@@ -1,6 +1,6 @@
-import { createForm } from 'reacticoon-plugins/reacticoon-form/src'
+import { createForm } from 'reacticoon-plugins/reacticoon-plugin-form/src'
 
-import { notEmpty } from 'reacticoon-plugins/reacticoon-validation/src'
+import { notEmpty } from 'reacticoon-plugins/reacticoon-plugin-validation/src'
 
 const defaultData = {
   url: null,
@@ -8,15 +8,9 @@ const defaultData = {
 }
 
 const validationRules = () => ({
-  url: [
-    [notEmpty, ''],
-  ],
+  url: [[notEmpty, '']],
 })
 
-const bookmarkForm = createForm(
-  'Bookmark::FORM::CREATE',
-  validationRules,
-  defaultData,
-)
+const bookmarkForm = createForm('Bookmark::FORM::CREATE', validationRules, defaultData)
 
 export default bookmarkForm

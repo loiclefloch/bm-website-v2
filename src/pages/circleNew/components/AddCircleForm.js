@@ -13,7 +13,7 @@ import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
 import CircleForm from 'modules/circleForm'
-import { withForm } from 'reacticoon-plugins/reacticoon-form/src'
+import { withForm } from 'reacticoon-plugins/reacticoon-plugin-form/src'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
@@ -45,7 +45,6 @@ class AddCircleForm extends React.Component {
         <ApiErrorBlock apiError={this.props.postCircleError} />
 
         <LoadingBlock show={this.props.isFetchingPostCircle}>
-         
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="name">Name</InputLabel>
             <TextField
@@ -95,12 +94,9 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   withStyles(styles),
-  connect(
-    mapStateToProps,
-    {
-      postCircle,
-    }
-  ),
+  connect(mapStateToProps, {
+    postCircle,
+  }),
 
   withForm(CircleForm)
 )(AddCircleForm)

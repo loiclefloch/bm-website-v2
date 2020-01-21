@@ -14,7 +14,7 @@ import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
 import BookForm from 'modules/bookForm'
-import { withForm } from 'reacticoon-plugins/reacticoon-form/src'
+import { withForm } from 'reacticoon-plugins/reacticoon-plugin-form/src'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
@@ -27,7 +27,7 @@ const styles = theme => ({
   btn: {
     minWidth: '200px',
     margin: theme.spacing.unit,
-  }
+  },
 })
 
 class AddBookForm extends React.Component {
@@ -54,7 +54,6 @@ class AddBookForm extends React.Component {
         <ApiErrorBlock apiError={this.props.postBookError} />
 
         <LoadingBlock show={this.props.isFetchingPostBook}>
-         
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="name">Name</InputLabel>
             <TextField
@@ -77,26 +76,26 @@ class AddBookForm extends React.Component {
             />
           </FormControl>
 
-        <div className={classes.btnArea}>
-          <ButtonLink
-            to={ButtonLink.getRoute('CIRCLE')}
-            params={{
-              circleId: this.props.circleId,
-            }}
-            className={classes.btn}
-          >
-            Cancel
-          </ButtonLink>
+          <div className={classes.btnArea}>
+            <ButtonLink
+              to={ButtonLink.getRoute('CIRCLE')}
+              params={{
+                circleId: this.props.circleId,
+              }}
+              className={classes.btn}
+            >
+              Cancel
+            </ButtonLink>
 
-          <Button
-            color="primary"
-            variant="raised"
-            disabled={!isValid}
-            onClick={this.handleSubmit}
-            className={classes.btn}
-          >
-            Submit
-          </Button>
+            <Button
+              color="primary"
+              variant="raised"
+              disabled={!isValid}
+              onClick={this.handleSubmit}
+              className={classes.btn}
+            >
+              Submit
+            </Button>
           </div>
         </LoadingBlock>
       </form>
@@ -113,12 +112,9 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   withStyles(styles),
-  connect(
-    mapStateToProps,
-    {
-      postBook,
-    }
-  ),
+  connect(mapStateToProps, {
+    postBook,
+  }),
 
   withForm(BookForm)
 )(AddBookForm)

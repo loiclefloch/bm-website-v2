@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { compose, connect } from 'reacticoon/view'
-import { withForm } from 'reacticoon-plugins/reacticoon-form/src'
+import { withForm } from 'reacticoon-plugins/reacticoon-plugin-form/src'
 
 import LoginForm from 'modules/auth/form'
 import { login } from 'modules/auth'
@@ -64,10 +64,7 @@ const mapStateToProps = state => {
 
 export default compose(
   withForm(LoginForm),
-  connect(
-    mapStateToProps,
-    {
-      login,
-    }
-  )
+  connect(mapStateToProps, {
+    login,
+  })
 )(LoginPage)

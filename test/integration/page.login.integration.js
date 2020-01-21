@@ -117,7 +117,9 @@ wrap.register(global.withDescribeRoute)
 
 let data
 wrap()
-  .withDescribeRoute('Login', '/login', global, d => (data = d))
+  .withDescribeRoute('Login', '/login', global, d => {
+    data = d
+  })
   .describe('Login form', () => {
     it('Testing interract with reacticoon', async () => {
       const testReacticoon = data.testReacticoon

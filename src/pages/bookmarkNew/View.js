@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { compose } from 'reacticoon/view'
-import { withForm } from 'reacticoon-plugins/reacticoon-form/src'
+import { withForm } from 'reacticoon-plugins/reacticoon-plugin-form/src'
 import { withStyles } from '@material-ui/core/styles'
 import BookmarkForm from 'modules/bookmarkForm'
 import AddBookmarkForm from './components/AddBookmarkForm'
@@ -23,7 +23,4 @@ const View = ({ classes }) => (
   </div>
 )
 
-export default compose(
-  withForm(BookmarkForm),
-  withStyles(styles)
-)(View)
+export default compose(withForm(BookmarkForm), withStyles(styles))(View)

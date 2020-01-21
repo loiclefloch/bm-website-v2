@@ -2,7 +2,7 @@
 
 import { postBookmark } from '../newBookmark'
 import RoutingEnum from '../../../config/RoutingEnum'
-import { addInfoFlashMessage } from 'reacticoon-plugins/reacticoon-flash-messages/src/service'
+import { addInfoFlashMessage } from 'reacticoon-plugins/reacticoon-plugin-flash-messages/src/service'
 import { redirectTo } from 'reacticoon/routing'
 import { hideAddBookmarkDialog } from '../'
 import { createMiddleware } from 'reacticoon/middleware'

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'reacticoon/view'
 import { isFetchingI18nPhrases } from 'reacticoon/i18n'
 
-import ReacticoonMaterialUIContent from 'reacticoon-plugins/reacticoon-material-ui/src/views/Content'
+import ReacticoonMaterialUIContent from 'reacticoon-plugins/reacticoon-plugin-material-ui/src/views/Content'
 
 /**
  * The content of the app will have the `router` as children.
@@ -33,7 +33,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  {}
-)(Content)
+export default connect(mapStateToProps, {})(Content)

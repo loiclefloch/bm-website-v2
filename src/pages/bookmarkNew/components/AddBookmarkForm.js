@@ -13,7 +13,7 @@ import ApiErrorBlock from 'components/error/ApiErrorBlock'
 import LoadingBlock from 'components/loading/LoadingBlock'
 
 import BookmarkForm from 'modules/bookmarkForm'
-import { withForm } from 'reacticoon-plugins/reacticoon-form/src'
+import { withForm } from 'reacticoon-plugins/reacticoon-plugin-form/src'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
@@ -104,12 +104,9 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   withStyles(styles),
-  connect(
-    mapStateToProps,
-    {
-      postBookmark,
-    }
-  ),
+  connect(mapStateToProps, {
+    postBookmark,
+  }),
 
   withForm(BookmarkForm)
 )(AddBookmarkForm)
