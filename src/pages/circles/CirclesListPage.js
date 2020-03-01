@@ -1,21 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
-import {
-  showCircle,
-  loadCircles,
-  isFetchingCircles,
-} from 'modules/circle'
+import withModule from 'reacticoon/module/withModule'
 
-import {
-  getCirclesSortedByDate,
- } from './selectors'
-
+import PageLoader from 'app/components/PageLoader'
 import Page from 'components/Page'
 import View from './View'
 
-class DashboardPage extends Component {
+class CircleListPage extends Component {
   static propTypes = {
     circles: PropTypes.array.isRequired,
     isFetchingCircles: PropTypes.bool.isRequired,
@@ -31,15 +23,12 @@ class DashboardPage extends Component {
     const { isFetchingCircles, circles } = this.props
 
     return (
-      <Page
-        title='Circles'
-        isFetching={isFetchingCircles}
-      >
+      <Page title="Circles" isFetching={isFetchingCircles}>
         <View
           circles={circles}
           isFetching={isFetchingCircles}
           actions={{
-            showCircle: this.props.showCircle
+            showCircle: this.props.showCircle,
           }}
         />
       </Page>
@@ -47,14 +36,22 @@ class DashboardPage extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isFetchingCircles: isFetchingCircles(state),
-    circles: getCirclesSortedByDate(state),
-   }
-}
-
-export default connect(mapStateToProps, {
-  showCircle,
-  loadCircles,
-})(DashboardPage)
+export default withModule(
+  'CircleListModule',
+  // equivalent of CircleListModule.connect(
+  //   {
+  //     isFetchingCircles: 'isFetchingCircles',
+  //     circles: 'getCirclesSortedByDate',
+  //   },
+  //   ['showCircle', 'loadCircles']
+  // )(CircleListPage)
+  [
+    {
+      isFetchingCircles: 'isFetchingCircles',
+      circles: 'getCirclesSortedByDate',
+    },
+    ['showCircle', 'loadCircles'],
+  ],
+  () => import(/*  webpackChunkName: "CircleListModule" */ 'modules/circle/list'),
+  <PageLoader />
+)(CircleListPage)

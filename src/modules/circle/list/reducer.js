@@ -1,21 +1,6 @@
-import Immutable from "immutable"
+import Immutable from 'immutable'
 
-import { createApiCallAction } from 'reacticoon/action'
-
-import CircleApi from '../../api/CircleApi'
-
-//
-// Actions
-//
-
-export const loadCircles = createApiCallAction(
-  'CIRCLES::GET',
-  CircleApi.getCircles()
-)
-
-//
-// Reducer
-//
+import { loadCircles } from './actions'
 
 const DEFAULT = Immutable.fromJS({
   data: {
@@ -24,15 +9,15 @@ const DEFAULT = Immutable.fromJS({
   },
   isFetching: false,
   lastUpdated: null,
-  error: null
+  error: null,
 })
 
-export const circlesList = (state = DEFAULT, action) => {
+const circlesListReducer = (state = DEFAULT, action) => {
   switch (action.type) {
     case loadCircles.REQUEST:
       return state.merge({
         isFetching: true,
-        error: null
+        error: null,
       })
 
     case loadCircles.SUCCESS:
@@ -53,3 +38,5 @@ export const circlesList = (state = DEFAULT, action) => {
       return state
   }
 }
+
+export default circlesListReducer

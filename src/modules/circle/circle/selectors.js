@@ -1,7 +1,7 @@
 import isNil from 'lodash/isNil'
 import { createSelector, getStateForModule } from 'reacticoon/selector'
 import { formatCircle } from '../format'
-import { getMeCirclesIds, getMeAdministratedCirclesIds } from '../selectors'
+import { getMeCirclesIds, getMeAdministratedCirclesIds } from '../list/selectors'
 
 const getState = getStateForModule('App::CircleModule')
 

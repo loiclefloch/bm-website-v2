@@ -1,5 +1,5 @@
 import { createMiddleware } from 'reacticoon/middleware'
-import { updatedCircle } from 'modules/circle'
+import { updatedCircle } from 'modules/circle/circle'
 import { postCircleMembers } from './actions'
 
 export const postCircleMembersSuccess = createMiddleware(
