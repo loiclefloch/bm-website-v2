@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import isEmpty from 'lodash/isEmpty'
+import isNil from 'lodash/isNil'
 
 import { getEnvVar } from 'reacticoon/environment'
 import { getCookie } from 'reacticoon/storage'
@@ -6,9 +7,9 @@ import { getStore } from 'reacticoon/store'
 
 function getAuthorizationHeader(state) {
   let entities = state
-  if (!_.isNil(entities) && !_.isNil(entities.oauth)) {
+  if (!isNil(entities) && !isNil(entities.oauth)) {
     let accessToken = entities.oauth.getIn('accessToken'.split('.'))
-    if (!_.isEmpty(accessToken)) {
+    if (!isEmpty(accessToken)) {
       return 'Bearer ' + accessToken
     } else {
       return `Bearer ${getCookie('token')}`
@@ -29,7 +30,7 @@ const ApiManagerOptions = () => ({
     }
 
     const authorization = getAuthorizationHeader(getStore().getState())
-    if (!_.isEmpty(authorization)) {
+    if (!isEmpty(authorization)) {
       headers['Authorization'] = authorization
     }
 
@@ -37,7 +38,7 @@ const ApiManagerOptions = () => ({
   },
 
   errorMiddleware: (error, res) => {
-    if (_.isNil(res)) {
+    if (isNil(res)) {
       return false
     }
 

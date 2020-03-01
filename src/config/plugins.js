@@ -1,4 +1,4 @@
-import { __DEV__ } from 'reacticoon/environment'
+import { __DEV__ } from 'reacticoon/environment' // TODO: remove
 import reacticoonLogger from 'reacticoon-plugins/reacticoon-plugin-logger/src'
 import reacticoonSentry from 'reacticoon-plugins/reacticoon-plugin-sentry/src'
 import reacticoonMaterialUI from 'reacticoon-plugins/reacticoon-plugin-material-ui/src'

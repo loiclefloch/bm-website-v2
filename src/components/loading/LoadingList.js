@@ -1,36 +1,35 @@
-import React from "react";
+import React from 'react'
 
-import _ from "lodash";
+import isEmpty from 'lodash/isEmpty'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-import "./loading_list.css";
+import './loading_list.css'
 
 const style = {
   listEmpty: {
-    position: "relative",
-    textAlign: "center",
-    marginTop: "10%",
+    position: 'relative',
+    textAlign: 'center',
+    marginTop: '10%',
     marginBottom: 0,
-    zIndex: 100
+    zIndex: 100,
   },
   listNotEmpty: {
-    position: "fixed",
-    top: "8%",
-    left: "50%",
-    textAlign: "center",
-    marginBottom: "40px",
-    zIndex: 100
+    position: 'fixed',
+    top: '8%',
+    left: '50%',
+    textAlign: 'center',
+    marginBottom: '40px',
+    zIndex: 100,
   },
   refresh: {
-    display: "inline-block",
-    position: "relative"
-  }
-};
+    display: 'inline-block',
+    position: 'relative',
+  },
+}
 
 const emptyList = ({ size, thickness }) => {
-  return <CircularProgress size={size} thickness={thickness} />;
-};
+  return <CircularProgress size={size} thickness={thickness} />
+}
 
 const notEmptyList = ({ size, thickness }) => {
   return (
@@ -42,8 +41,8 @@ const notEmptyList = ({ size, thickness }) => {
       thickness={thickness}
       style={style.refresh}
     />
-  );
-};
+  )
+}
 
 /**
  * A loading for a list.
@@ -54,15 +53,15 @@ const notEmptyList = ({ size, thickness }) => {
  * @param listEmpty a bool are an array to test emptiness.
  */
 const LoadingList = ({ size = 50, listEmpty = false, thickness = 4 }) => {
-  listEmpty = listEmpty instanceof Boolean ? listEmpty : _.isEmpty(listEmpty);
+  listEmpty = listEmpty instanceof Boolean ? listEmpty : isEmpty(listEmpty)
 
-  const loaderProps = { size, thickness };
+  const loaderProps = { size, thickness }
 
   return (
     <div style={listEmpty ? style.listEmpty : style.listNotEmpty}>
       {listEmpty ? emptyList(loaderProps) : notEmptyList(loaderProps)}
     </div>
-  );
-};
+  )
+}
 
-export default LoadingList;
+export default LoadingList

@@ -2,7 +2,9 @@
   "plugins": [
     {
       "resolve": "reacticoon-cli-plugin-dev",
-      "options": {}
+      "options": {
+        "test": 42
+      }
     },
     {
       "resolve": "reacticoon-cli-plugin-mock-api",
