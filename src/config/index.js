@@ -1,1 +1,0 @@
-export RoutingEnum from './RoutingEnum'

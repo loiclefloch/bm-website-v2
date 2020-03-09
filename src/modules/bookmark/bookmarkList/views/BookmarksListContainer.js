@@ -11,11 +11,11 @@ import {
 
 import {
   makeGetFilteredBookmarks,
-  isFetchingBookmarks,
+  isPendingBookmarks,
   getBookmarksPaging,
 } from 'modules/bookmark/bookmarkList/selectors'
 
-import { isFetchingTags } from 'modules/tag'
+import { isPendingTags } from 'modules/tag'
 
 /**
  * Requirements:
@@ -36,13 +36,13 @@ class BookmarksListContainer extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const props = this.props
-    if (nextProps.bookId !== props.bookId && ((!props.book || props.book.id) && nextProps.bookId)) {
+    if (nextProps.bookId !== props.bookId && (!props.book || props.book.id) && nextProps.bookId) {
       this.loadBookmarks(nextProps)
     }
   }
 
   loadBookmarks(props) {
-    if (!props.isFetchingBook) {
+    if (!props.isPendingBook) {
       if (isEmpty(props.bookId)) {
         props.loadBookmarks()
       } else {
@@ -61,19 +61,19 @@ class BookmarksListContainer extends React.PureComponent {
 
   handleSearchQueryChange = searchQuery => {
     this.setState({
-      searchQuery
+      searchQuery,
     })
   }
 
   render() {
-    const { isFetchingBookmarks, isFetchingTags, bookmarks, paging } = this.props
+    const { isPendingBookmarks, isPendingTags, bookmarks, paging } = this.props
 
     return this.props.children({
-      isFetchingBookmarks,
-      isFetchingTags,
+      isPendingBookmarks,
+      isPendingTags,
       bookmarks,
       paging,
-      onLoadMore: this.handleLoadMore, 
+      onLoadMore: this.handleLoadMore,
       onSearchQueryChange: this.handleSearchQueryChange,
     })
   }
@@ -95,8 +95,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => {
     return {
-      isFetchingBookmarks: isFetchingBookmarks(state),
-      isFetchingTags: isFetchingTags(state),
+      isPendingBookmarks: isPendingBookmarks(state),
+      isPendingTags: isPendingTags(state),
       bookmarks: getFilteredBookmarks(state, {
         searchQuery: state.searchQuery,
       }),
@@ -106,11 +106,8 @@ const makeMapStateToProps = () => {
   return mapStateToProps
 }
 
-export default connect(
-  makeMapStateToProps,
-  {
-    loadBookmarks,
-    loadBookmarksForBook,
-    onLoadMoreBookmarks,
-  }
-)(BookmarksListContainer)
+export default connect(makeMapStateToProps, {
+  loadBookmarks,
+  loadBookmarksForBook,
+  onLoadMoreBookmarks,
+})(BookmarksListContainer)

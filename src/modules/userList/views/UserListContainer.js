@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'reacticoon/view'
 
-import { getFetchUserListData, getFetchUserListError, isFetchingUserList } from '../selectors'
+import { getFetchUserListData, getFetchUserListError, isPendingUserList } from '../selectors'
 import { fetchUserList } from '../actions'
 
 /**
@@ -37,23 +37,18 @@ class UserListContainer extends React.PureComponent {
   }
 }
 
-UserListContainer.defaultProps = {
-}
+UserListContainer.defaultProps = {}
 
-UserListContainer.propTypes = {
-}
+UserListContainer.propTypes = {}
 
 const mapStateToProps = (state, props) => {
   return {
     userList: getFetchUserListData(state),
-    isFecthingUserList: isFetchingUserList(state),
+    isFecthingUserList: isPendingUserList(state),
     fetchUserListError: getFetchUserListError(state),
   }
 }
 
-export default connect(
-  mapStateToProps,
-  {
-    fetchUserList,
-  }
-)(UserListContainer)
+export default connect(mapStateToProps, {
+  fetchUserList,
+})(UserListContainer)

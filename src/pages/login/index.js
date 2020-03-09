@@ -25,7 +25,7 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { route, formData, formErrors, onChange, isFetching } = this.props
+    const { route, formData, formErrors, onChange, isPending } = this.props
 
     return (
       <Page title="Login" route={route} isFullPage isContentFull darkMode>
@@ -44,7 +44,7 @@ class LoginPage extends Component {
         >
           <LoginFormView
             onLogin={this.onLogin}
-            isFetching={isFetching}
+            isPending={isPending}
             formData={formData}
             formErrors={formErrors}
             onChange={onChange}
@@ -58,7 +58,7 @@ class LoginPage extends Component {
 const mapStateToProps = state => {
   return {
     // TODO: selector
-    isFetching: state.oauth.get('isFetching'),
+    isPending: state.oauth.get('isPending'),
   }
 }
 

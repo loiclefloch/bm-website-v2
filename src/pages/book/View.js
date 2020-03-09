@@ -16,16 +16,16 @@ const styles = theme => ({
 
 const View = ({ circleId, bookId, classes }) => (
   <BookContainer apiCallParameters={[circleId, bookId]}>
-    {({ data: book, isFetching: isFetchingBook, error: bookError }) => (
-      <LoadingBlock show={isFetchingBook || !book}>
+    {({ data: book, isPending: isPendingBook, error: bookError }) => (
+      <LoadingBlock show={isPendingBook || !book}>
         {() => (
           <React.Fragment>
             <Header book={book} />
 
             <BookmarksListContainer circleId={circleId} bookId={bookId}>
               {({
-                isFetchingBookmarks,
-                isFetchingTags,
+                isPendingBookmarks,
+                isPendingTags,
                 bookmarks,
                 paging,
                 onLoadMore,
@@ -37,7 +37,7 @@ const View = ({ circleId, bookId, classes }) => (
                   }}
                   bookmarks={bookmarks}
                   paging={paging}
-                  isFetching={isFetchingBookmarks}
+                  isPending={isPendingBookmarks}
                   actions={{
                     onLoadMore,
                     onSearchQueryChange,

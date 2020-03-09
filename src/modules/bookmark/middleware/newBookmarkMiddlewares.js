@@ -1,9 +1,8 @@
 // auth middleware
 
 import { postBookmark } from '../newBookmark'
-import RoutingEnum from '../../../config/RoutingEnum'
 import { addInfoFlashMessage } from 'reacticoon-plugins/reacticoon-plugin-flash-messages/src/service'
-import { redirectTo } from 'reacticoon/routing'
+import { redirectTo, getRoute } from 'reacticoon/routing'
 import { hideAddBookmarkDialog } from '../'
 import { createMiddleware } from 'reacticoon/middleware'
 
@@ -30,7 +29,7 @@ const newBookmarkSuccessMiddleware = createMiddleware(
 
     // redirect to the bookmark page.
     dispatch(
-      redirectTo(RoutingEnum.BOOKMARK, {
+      redirectTo(getRoute('BOOKMARK'), {
         bookmarkId: newBookmark.id,
       })
     )
@@ -48,7 +47,7 @@ const newBookmarkFailureMiddleware = createMiddleware(
 
       // redirect to the bookmark page.
       dispatch(
-        redirectTo(RoutingEnum.BOOKMARK, {
+        redirectTo(getRoute('BOOKMARK'), {
           bookmarkId: action.apiError.detail.id,
         })
       )

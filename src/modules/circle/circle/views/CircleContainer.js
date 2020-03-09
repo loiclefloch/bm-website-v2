@@ -19,7 +19,8 @@ class CircleContainer extends React.PureComponent {
 
     if (
       nextProps.circleId !== props.circleId &&
-      (!props.book || props.book.id) && nextProps.circleId
+      (!props.book || props.book.id) &&
+      nextProps.circleId
     ) {
       this.loadCircle(nextProps)
     }
@@ -30,11 +31,11 @@ class CircleContainer extends React.PureComponent {
   }
 
   render() {
-    const { circle, isFetchingCircle, fetchCircleError } = this.props
+    const { circle, isPendingCircle, fetchCircleError } = this.props
 
     return this.props.children({
       circle,
-      isFetchingCircle,
+      isPendingCircle,
       fetchCircleError,
     })
   }
@@ -47,7 +48,7 @@ CircleContainer.propTypes = {
 export default CircleModule.connect(
   {
     circle: 'makeGetCircle',
-    isFetchingCircle: 'isFetchingCircle',
+    isPendingCircle: 'isPendingCircle',
   },
   'fetchCircle',
   {

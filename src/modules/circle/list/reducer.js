@@ -7,7 +7,7 @@ const DEFAULT = Immutable.fromJS({
     circles: {},
     paging: null,
   },
-  isFetching: false,
+  isPending: false,
   lastUpdated: null,
   error: null,
 })
@@ -16,13 +16,13 @@ const circlesListReducer = (state = DEFAULT, action) => {
   switch (action.type) {
     case loadCircles.REQUEST:
       return state.merge({
-        isFetching: true,
+        isPending: true,
         error: null,
       })
 
     case loadCircles.SUCCESS:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         error: null,
         data: action.response.result,
         lastUpdated: Date.now(),
@@ -30,7 +30,7 @@ const circlesListReducer = (state = DEFAULT, action) => {
 
     case loadCircles.FAILURE:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         error: action.apiError,
       })
 

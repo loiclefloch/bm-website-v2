@@ -16,7 +16,7 @@ export const login = createApiCallAction('LOGIN', (username, password) =>
 //
 
 const DEFAULT_OAUTH = Immutable.fromJS({
-  isFetching: false,
+  isPending: false,
   accessToken: getCookie('token'),
 })
 
@@ -24,18 +24,18 @@ export const oauth = (state = DEFAULT_OAUTH, action) => {
   switch (action.type) {
     case login.REQUEST:
       return state.merge({
-        isFetching: true,
+        isPending: true,
       })
 
     case login.SUCCESS:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         accessToken: action.response.result.accessToken,
       })
 
     case login.FAILURE:
       return state.merge({
-        isFetching: false,
+        isPending: false,
       })
 
     default:

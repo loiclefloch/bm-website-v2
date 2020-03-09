@@ -2,11 +2,10 @@ import { createAction, createApiCallAction } from 'reacticoon/action'
 import isNil from 'lodash/isNil'
 
 import CircleApi from 'app/api/CircleApi'
-import { redirectTo } from 'reacticoon/routing'
-import RoutingEnum from 'app/config/RoutingEnum'
+import { redirectTo, getRoute } from 'reacticoon/routing'
 
 export const redirectToCircle = createAction('CIRCLE::REDIRECT_TO', (circleId, { dispatch }) =>
-  dispatch(redirectTo(RoutingEnum.CIRCLE.generatePathWithParams({ circleId })))
+  dispatch(redirectTo(getRoute('CIRCLE').generatePathWithParams({ circleId })))
 )
 
 export const loadCircles = createApiCallAction('CIRCLES::GET', CircleApi.getCircles())

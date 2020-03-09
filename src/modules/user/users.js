@@ -1,4 +1,4 @@
-import Immutable from "immutable"
+import Immutable from 'immutable'
 
 import { createApiCallAction } from 'reacticoon/action'
 
@@ -8,10 +8,7 @@ import UserApi from '../../api/UserApi'
 // Actions
 //
 
-const fetchUser = createApiCallAction(
-  'USER::FETCH',
-  user => UserApi.getUser(user.id)
-)
+const fetchUser = createApiCallAction('USER::FETCH', user => UserApi.getUser(user.id))
 
 export const showUser = user => (dispatch, getState) => {
   return dispatch(fetchUser(user))
@@ -22,25 +19,24 @@ export const showUser = user => (dispatch, getState) => {
 //
 
 const DEFAULT = Immutable.fromJS({
-  data: {
-  },
-  isFetching: false,
+  data: {},
+  isPending: false,
   lastUpdated: null,
-  error: null
+  error: null,
 })
 
 export const users = (state = DEFAULT, action) => {
   switch (action.type) {
     case fetchUser.REQUEST:
       return state.merge({
-        isFetching: true,
+        isPending: true,
         error: null,
         data: action.user,
       })
 
     case fetchUser.SUCCESS:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         error: null,
         data: action.response.result,
         lastUpdated: Date.now(),
@@ -48,7 +44,7 @@ export const users = (state = DEFAULT, action) => {
 
     case fetchUser.FAILURE:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         error: action.apiError,
       })
 

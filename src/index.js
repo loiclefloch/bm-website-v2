@@ -9,8 +9,7 @@ import entities from './config/entities'
 import middlewares from './config/middlewares'
 import modules from './config/modules'
 import i18n from './config/i18n'
-import routes from './config/routes'
-import RoutingEnum from './config/RoutingEnum'
+import routing from './config/routing'
 import Content from './config/Content'
 import ApiManagerOptions from './config/ApiManagerOptions'
 import plugins from './config/plugins'
@@ -48,8 +47,7 @@ const appOptions = {
   modules,
   i18n,
   plugins,
-  routes,
-  RoutingEnum,
+  routing,
   Content,
   ApiManagerOptions,
 }

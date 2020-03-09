@@ -19,33 +19,24 @@ const getNewBookmarkOnState = state => state.newBookmark.get('data')
 
 const getApiError = state => state.newBookmark.get('error')
 
-export const getAddBookmarkError = createSelector(
-  getApiError,
-  apiError => {
-    // TODO: remove second check
-    if (isNil(apiError) || isNil(apiError.toJS)) {
-      return null
-    }
-    return apiError.toJS()
+export const getAddBookmarkError = createSelector(getApiError, apiError => {
+  // TODO: remove second check
+  if (isNil(apiError) || isNil(apiError.toJS)) {
+    return null
   }
-)
+  return apiError.toJS()
+})
 
-export const getNewBookmark = createSelector(
-  getNewBookmarkOnState,
-  newBookmark => {
-    if (isNil(newBookmark)) {
-      return null
-    }
-    return newBookmark.toJS()
+export const getNewBookmark = createSelector(getNewBookmarkOnState, newBookmark => {
+  if (isNil(newBookmark)) {
+    return null
   }
-)
+  return newBookmark.toJS()
+})
 
-export const isAddBookmarkFetching = createSelector(
-  getNewBookmarkDataOnState,
-  bookmarkData => {
-    return bookmarkData.get('isFetching')
-  }
-)
+export const isAddBookmarkFetching = createSelector(getNewBookmarkDataOnState, bookmarkData => {
+  return bookmarkData.get('isPending')
+})
 
 //
 // Reducer
@@ -53,7 +44,7 @@ export const isAddBookmarkFetching = createSelector(
 
 const DEFAULT = Immutable.fromJS({
   data: null,
-  isFetching: false,
+  isPending: false,
   lastUpdated: null,
   error: null,
   isCreated: false,
@@ -64,7 +55,7 @@ export const newBookmark = (state = DEFAULT, action) => {
     case postBookmark.REQUEST:
       return state.merge({
         data: action.request.data,
-        isFetching: true,
+        isPending: true,
         isCreated: false,
         error: null,
       })
@@ -73,7 +64,7 @@ export const newBookmark = (state = DEFAULT, action) => {
       const newBookmark = action.response.result
 
       return state.merge({
-        isFetching: false,
+        isPending: false,
         error: null,
         data: newBookmark,
         lastUpdated: Date.now(),
@@ -82,7 +73,7 @@ export const newBookmark = (state = DEFAULT, action) => {
 
     case postBookmark.FAILURE:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         isCreated: true,
         error: action.apiError,
       })

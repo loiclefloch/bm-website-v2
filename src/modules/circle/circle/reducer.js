@@ -5,21 +5,21 @@ import { fetchCircle, updatedCircle } from './actions'
 
 const DEFAULT = Immutable.fromJS({
   list: {},
-  isFetching: false,
+  isPending: false,
   lastUpdated: null,
   error: null,
 })
 
 const handleFetchRequest = (state, action) =>
   state.merge({
-    isFetching: true,
+    isPending: true,
     error: null,
     data: action.circle,
   })
 
 const handleFetchSuccess = (state, action) =>
   state.merge({
-    isFetching: false,
+    isPending: false,
     error: null,
     list: state.get('list').merge(action.response.entities.circles),
     lastUpdated: Date.now(),
@@ -27,7 +27,7 @@ const handleFetchSuccess = (state, action) =>
 
 const handleFetchFailure = (state, action) =>
   state.merge({
-    isFetching: false,
+    isPending: false,
     error: action.apiError,
   })
 

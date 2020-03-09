@@ -2,15 +2,15 @@ import { createAction, createApiCallAction } from 'reacticoon/action'
 
 import isNil from 'lodash/isNil'
 
+import { getRoute } from 'reacticoon/routing'
 import BookmarkApi from '../../../api/BookmarkApi'
-import RoutingEnum from '../../../config/RoutingEnum'
 
 //
 // Actions
 //
 
 export const redirectToBookmark = createAction('redirectToBookmark', bookmarkId => ({
-  route: RoutingEnum.BOOKMARK,
+  route: getRoute('BOOKMARK'),
   params: { bookmarkId },
 }))
 

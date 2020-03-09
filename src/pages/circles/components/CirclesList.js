@@ -10,7 +10,7 @@ import LoadingList from 'components/loading/LoadingList'
 const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 4,
-    marginLeft: theme.app.sidebar.width / 2, 
+    marginLeft: theme.app.sidebar.width / 2,
   },
 })
 
@@ -27,12 +27,14 @@ const ItemOnCol = ({ circle, actions }) => (
   </Grid>
 )
 
-const CirclesList = ({ circles, isFetching, actions, classes }) => (
+const CirclesList = ({ circles, isPending, actions, classes }) => (
   <List className={classes.root}>
-    {isFetching && <LoadingList listEmpty={circles} />}
+    {isPending && <LoadingList listEmpty={circles} />}
 
     <Grid container>
-      {circles.map(circle => <ItemOnCol key={circle.id} circle={circle} actions={actions} />)}
+      {circles.map(circle => (
+        <ItemOnCol key={circle.id} circle={circle} actions={actions} />
+      ))}
     </Grid>
   </List>
 )

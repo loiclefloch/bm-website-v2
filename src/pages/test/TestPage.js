@@ -52,7 +52,7 @@ const TestPage = () => {
       </WorkerContainer> */}
         {/* AAA
       <BookContainer apiCallParameters={[2, 10]}>
-        {({ isFetching, data, error }) => (
+        {({ isPending, data, error }) => (
           <div>
             <h1>TEST</h1>
             <pre>{JSON.stringify(data)}</pre>

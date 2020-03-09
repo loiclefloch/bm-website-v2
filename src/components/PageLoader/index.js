@@ -5,8 +5,6 @@ import Page from 'components/Page'
 /**
  * Empty page displayed while loading the real page.
  */
-const PageLoader = () => (
-  <Page title="" isFetching={false} />
-)
+const PageLoader = () => <Page title="" isPending={false} />
 
 export default PageLoader

@@ -36,8 +36,8 @@ const View = ({ circleId, bookId, classes }) => (
     <div className={classes.root}>
       <BookmarksListContainer circleId={circleId} bookId={bookId}>
         {({
-          isFetchingBookmarks,
-          isFetchingTags,
+          isPendingBookmarks,
+          isPendingTags,
           bookmarks,
           paging,
           onLoadMore,
@@ -46,7 +46,7 @@ const View = ({ circleId, bookId, classes }) => (
           <BookmarksList
             bookmarks={bookmarks}
             paging={paging}
-            isFetching={isFetchingBookmarks}
+            isPending={isPendingBookmarks}
             actions={{
               onLoadMore,
               onSearchQueryChange,

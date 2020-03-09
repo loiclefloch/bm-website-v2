@@ -17,8 +17,8 @@ class BookNewPage extends Component {
   render() {
     return (
       <CircleContainer circleId={this.props.params.circleId}>
-        {({ circle, isFetchingCircle }) => (
-          <Page title="New book" isFetching={isFetchingCircle || !circle}>
+        {({ circle, isPendingCircle }) => (
+          <Page title="New book" isPending={isPendingCircle || !circle}>
             <View circle={circle} />
           </Page>
         )}

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import BookmarkModule from 'modules/bookmark/bookmark'
 import { useModule } from 'reacticoon/module'
 import { reacticoonConnect } from 'reacticoon/view'
-import { isFetchingTags } from 'modules/tag'
+import { isPendingTags } from 'modules/tag'
 
 import Page from 'components/Page'
 
@@ -28,10 +28,10 @@ class BookmarkPage extends Component {
   }
 
   render() {
-    const { isFetchingBookmark, bookmark } = this.props
+    const { isPendingBookmark, bookmark } = this.props
 
     return (
-      <Page title="" isFetching={false}>
+      <Page title="" isPending={false}>
         <div
           style={{
             margin: 'auto',
@@ -45,7 +45,7 @@ class BookmarkPage extends Component {
             <div style={{ display: 'flex' }}>
               <div style={{ flex: '70%' }}>
                 <div style={{ maxWidth: 900, margin: 'auto' }}>
-                  {isFetchingBookmark || !bookmark ? (
+                  {isPendingBookmark || !bookmark ? (
                     <ContentLoaderView />
                   ) : (
                     <React.Fragment>
@@ -56,7 +56,7 @@ class BookmarkPage extends Component {
                 </div>
               </div>
               <div style={{ flex: '30%' }}>
-                {isFetchingBookmark || !bookmark ? null : (
+                {isPendingBookmark || !bookmark ? null : (
                   <RightNav bookmark={bookmark} onUpdateBookmark={this.handleUpdateBookmark} />
                 )}
               </div>
@@ -70,7 +70,7 @@ class BookmarkPage extends Component {
 
 BookmarkPage.propTypes = {
   fetchBookmark: PropTypes.func.isRequired,
-  isFetchingBookmark: PropTypes.bool.isRequired,
+  isPendingBookmark: PropTypes.bool.isRequired,
   bookmark: PropTypes.object,
 }
 
@@ -81,9 +81,9 @@ export default reacticoonConnect(
 
     const mapStateToProps = (state, props) => {
       return {
-        isFetchingBookmark: Bookmark.isFetchingBookmark(state),
+        isPendingBookmark: Bookmark.isPendingBookmark(state),
         bookmark: getBookmark(state, props),
-        isFetchingTags: isFetchingTags(state),
+        isPendingTags: isPendingTags(state),
       }
     }
 

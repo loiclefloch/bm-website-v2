@@ -7,11 +7,11 @@ import CirclesList from './components/CirclesList'
 
 const styles = theme => ({})
 
-const View = ({ circles, isFetching, actions, classes }) => (
+const View = ({ circles, isPending, actions, classes }) => (
   <React.Fragment>
     <ButtonLink to={ButtonLink.getRoute('CIRCLE_NEW')}>Nouveau</ButtonLink>
 
-    <CirclesList circles={circles} isFetching={isFetching} actions={actions} />
+    <CirclesList circles={circles} isPending={isPending} actions={actions} />
   </React.Fragment>
 )
 

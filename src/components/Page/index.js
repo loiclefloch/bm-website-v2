@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { compose, connect } from 'reacticoon/view'
-import { fetchMe, isFetchingMe, isLoggedIn, getMe } from '../../modules/userMe'
+import { fetchMe, isPendingMe, isLoggedIn, getMe } from '../../modules/userMe'
 import { fetchMeTags } from '../../modules/tag'
 
 import classNames from 'classnames'
@@ -109,9 +109,9 @@ class Page extends React.Component {
 
   render() {
     const {
-      isFetchingMe,
+      isPendingMe,
       isLoggedIn,
-      isFetching,
+      isPending,
       isFullPage,
       // remove padding on content
       isContentFull = false,
@@ -123,7 +123,7 @@ class Page extends React.Component {
       darkMode = false,
     } = this.props
 
-    if (isFetchingMe) {
+    if (isPendingMe) {
       return <LoadingPage show message={loadingMessage} />
     }
 
@@ -176,7 +176,7 @@ class Page extends React.Component {
             }
           </FlashMessagesContainer>
 
-          {isFetching ? <LoadingPage show message={loadingMessage} /> : children}
+          {isPending ? <LoadingPage show message={loadingMessage} /> : children}
         </main>
       </div>
     )
@@ -188,7 +188,7 @@ Page.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  isFetchingMe: isFetchingMe(state),
+  isPendingMe: isPendingMe(state),
   isLoggedIn: isLoggedIn(state),
   me: getMe(state),
 })

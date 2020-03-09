@@ -83,9 +83,9 @@ export const makeGetFilteredBookmarks = () => {
 // Fetching bookmarksList
 //
 
-const getBookmarksIsFetching = state => state.BookmarkList.get('isFetching')
+const getBookmarksIsFetching = state => state.BookmarkList.get('isPending')
 
-export const isFetchingBookmarks = createSelector(getBookmarksIsFetching, isFetching => isFetching)
+export const isPendingBookmarks = createSelector(getBookmarksIsFetching, isPending => isPending)
 
 //
 //

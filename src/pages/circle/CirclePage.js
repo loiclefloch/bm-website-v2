@@ -13,10 +13,10 @@ class CirclePage extends Component {
   render() {
     return (
       <CircleContainer circleId={this.props.params.circleId}>
-        {({ circle, isFetchingCircle }) => (
+        {({ circle, isPendingCircle }) => (
           <Page
             title={circle && circle.name}
-            isFetching={isFetchingCircle || !circle}
+            isPending={isPendingCircle || !circle}
             loadingMessage="Loading circle"
             isContentFull
           >

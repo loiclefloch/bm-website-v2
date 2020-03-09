@@ -24,14 +24,7 @@ const styles = theme => ({
   },
 })
 
-const BookmarksList = ({
-  bookmarks,
-  paging,
-  isFetching,
-  actions,
-  classes,
-  onSearchQueryChange,
-}) => {
+const BookmarksList = ({ bookmarks, paging, isPending, actions, classes, onSearchQueryChange }) => {
   return (
     <List className={classes.container}>
       {paging && (
@@ -43,13 +36,9 @@ const BookmarksList = ({
       )}
 
       <div className={classes.bookmarksList}>
-
-        {isFetching && <LoadingList listEmpty={bookmarks} />}
+        {isPending && <LoadingList listEmpty={bookmarks} />}
         {bookmarks.map(bookmark => (
-          <BookmarksListItem
-            key={bookmark.id.toString()}
-            bookmark={bookmark}
-          />
+          <BookmarksListItem key={bookmark.id.toString()} bookmark={bookmark} />
         ))}
       </div>
 
@@ -61,7 +50,7 @@ const BookmarksList = ({
 BookmarksList.propTypes = {
   bookmarks: PropTypes.array.isRequired,
   paging: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool.isRequired,
+  isPending: PropTypes.bool.isRequired,
 
   /**
    * Required actions:

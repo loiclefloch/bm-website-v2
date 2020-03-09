@@ -62,9 +62,9 @@ export const getFollowedCircles = createSelector(
 // Fetching circlesList
 //
 
-const getCirclesIsFetching = createSelector([getState], state => state.get('isFetching'))
+const getCirclesIsFetching = createSelector([getState], state => state.get('isPending'))
 
-export const isFetchingCircles = createSelector(getCirclesIsFetching, isFetching => isFetching)
+export const isPendingCircles = createSelector(getCirclesIsFetching, isPending => isPending)
 
 export const getCirclesSortedByDate = createSelector([getCirclesAsList], circles => {
   return circles.sort((a, b) => {

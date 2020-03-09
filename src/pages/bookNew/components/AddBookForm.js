@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect, compose } from 'reacticoon/view'
 
-import { postBook, getPostBookError, isFetchingPostBook } from 'modules/bookNew'
+import { postBook, getPostBookError, isPendingPostBook } from 'modules/bookNew'
 
 import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
@@ -53,7 +53,7 @@ class AddBookForm extends React.Component {
       <form className="u-flexColumn u-justifyContentCenter u-marginTop50 u-flexCenter">
         <ApiErrorBlock apiError={this.props.postBookError} />
 
-        <LoadingBlock show={this.props.isFetchingPostBook}>
+        <LoadingBlock show={this.props.isPendingPostBook}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="name">Name</InputLabel>
             <TextField
@@ -106,7 +106,7 @@ class AddBookForm extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     postBookError: getPostBookError(state),
-    isFetchingPostBook: isFetchingPostBook(state),
+    isPendingPostBook: isPendingPostBook(state),
   }
 }
 

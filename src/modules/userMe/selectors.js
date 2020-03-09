@@ -10,23 +10,17 @@ const getMeOnState = getStateForModule('UserMe')
 
 const getMeObjectOnState = state => getMeOnState(state).get('data')
 
-export const isFetchingMe = createSelector(
-  getMeOnState,
-  meData => meData.get('isFetching')
-)
+export const isPendingMe = createSelector(getMeOnState, meData => meData.get('isPending'))
 
 export const isLoggedIn = createSelector(
   getMeObjectOnState,
   me => isEmpty(me.id) // TODO: search for token
 )
 
-export const getMe = createSelector(
-  getMeObjectOnState,
-  me => me.toJS() || null
-)
+export const getMe = createSelector(getMeObjectOnState, me => me.toJS() || null)
 
 export const fetchUserSelectors = {
-  isFetchin: isFetchingMe,
+  isFetchin: isPendingMe,
   getData: getMe,
   getError: () => null,
 }

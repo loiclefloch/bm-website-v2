@@ -8,7 +8,7 @@ const DEFAULT = Immutable.fromJS({
     bookmarks: {},
     pagination: {},
   },
-  isFetching: false,
+  isPending: false,
   lastUpdated: null,
   error: null,
 })
@@ -19,7 +19,7 @@ export const bookmarksListReducer = (state = DEFAULT, action) => {
   switch (action.type) {
     case loadBookmarks.REQUEST:
       return state.merge({
-        isFetching: true,
+        isPending: true,
         data: {
           bookmarks: {},
           pagination: {},
@@ -29,7 +29,7 @@ export const bookmarksListReducer = (state = DEFAULT, action) => {
 
     case loadBookmarks.SUCCESS:
       const newState = state.merge({
-        isFetching: false,
+        isPending: false,
         error: null,
         data: {
           bookmarks: { ...oldData.bookmarks, ...action.response.entities.bookmarks },
@@ -42,7 +42,7 @@ export const bookmarksListReducer = (state = DEFAULT, action) => {
 
     case loadBookmarks.FAILURE:
       return state.merge({
-        isFetching: false,
+        isPending: false,
         error: action.apiError,
       })
 

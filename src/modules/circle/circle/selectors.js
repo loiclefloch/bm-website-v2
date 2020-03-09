@@ -5,7 +5,7 @@ import { getMeCirclesIds, getMeAdministratedCirclesIds } from '../list/selectors
 
 const getState = getStateForModule('App::CircleModule')
 
-const getCircleIsFetching = createSelector([getState], state => state.get('isFetching', false))
+const getCircleIsFetching = createSelector([getState], state => state.get('isPending', false))
 const getCircles = createSelector([getState], state => state.get('list'))
 
 const getCircleIdOnProps = (state, props) => props.circleId
@@ -27,4 +27,4 @@ export const makeGetCircle = () =>
     }
   )
 
-export const isFetchingCircle = createSelector(getCircleIsFetching, isFetching => isFetching)
+export const isPendingCircle = createSelector(getCircleIsFetching, isPending => isPending)

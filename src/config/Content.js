@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { connect } from 'reacticoon/view'
-import { isFetchingI18nPhrases } from 'reacticoon/i18n'
+import { isPendingI18nPhrases } from 'reacticoon/i18n'
 
 import ReacticoonMaterialUIContent from 'reacticoon-plugins/reacticoon-plugin-material-ui/src/views/Content'
 
@@ -12,12 +12,12 @@ import ReacticoonMaterialUIContent from 'reacticoon-plugins/reacticoon-plugin-ma
  */
 class Content extends Component {
   render() {
-    const { isFetchingI18nPhrases, children } = this.props
+    const { isPendingI18nPhrases, children } = this.props
 
     return (
       <React.Fragment>
         <ReacticoonMaterialUIContent>
-          {isFetchingI18nPhrases
+          {isPendingI18nPhrases
             ? // TODO: display loading
               null
             : children}
@@ -29,7 +29,7 @@ class Content extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isFetchingI18nPhrases: isFetchingI18nPhrases(state),
+    isPendingI18nPhrases: isPendingI18nPhrases(state),
   }
 }
 

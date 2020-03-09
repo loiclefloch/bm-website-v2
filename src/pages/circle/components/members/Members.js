@@ -23,8 +23,7 @@ const styles = theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  addMemberBtn: {
-  },
+  addMemberBtn: {},
   container: {
     marginTop: theme.spacing.unit * 2,
   },
@@ -33,8 +32,8 @@ const styles = theme => ({
 const Members = ({ circle, onSelectedMembersChange, classes }) => (
   <div className={classes.root}>
     <PostCircleMembersContainer circleId={circle.id}>
-      {({ postCircleMembers, isFetchingPostCircleMembers, postCircleMembersError }) => (
-        <LoadingBlock show={isFetchingPostCircleMembers}>
+      {({ postCircleMembers, isPendingPostCircleMembers, postCircleMembersError }) => (
+        <LoadingBlock show={isPendingPostCircleMembers}>
           <div className={classes.headerArea}>
             <Typography variant="subheading" className={classes.header}>
               Members

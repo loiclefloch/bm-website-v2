@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect, compose } from 'reacticoon/view'
 
-import { postCircle, getPostCircleError, isFetchingPostCircle } from 'modules/circleNew'
+import { postCircle, getPostCircleError, isPendingPostCircle } from 'modules/circleNew'
 
 import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
@@ -44,7 +44,7 @@ class AddCircleForm extends React.Component {
       <form className="u-flexColumn u-justifyContentCenter u-marginTop50 u-flexCenter">
         <ApiErrorBlock apiError={this.props.postCircleError} />
 
-        <LoadingBlock show={this.props.isFetchingPostCircle}>
+        <LoadingBlock show={this.props.isPendingPostCircle}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="name">Name</InputLabel>
             <TextField
@@ -88,7 +88,7 @@ class AddCircleForm extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     postCircleError: getPostCircleError(state),
-    isFetchingPostCircle: isFetchingPostCircle(state),
+    isPendingPostCircle: isPendingPostCircle(state),
   }
 }
 

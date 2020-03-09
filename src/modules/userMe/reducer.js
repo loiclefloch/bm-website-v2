@@ -13,7 +13,7 @@ const DEFAULT = Immutable.fromJS({
     circles: {},
     circlesAdmin: {},
   },
-  isFetching: false,
+  isPending: false,
   lastUpdated: null,
   error: null,
 })
@@ -21,19 +21,19 @@ const DEFAULT = Immutable.fromJS({
 export default createReducer(DEFAULT, {
   [fetchMe.REQUEST]: (state, action) =>
     state.merge({
-      isFetching: true,
+      isPending: true,
       error: null,
     }),
   [fetchMe.SUCCESS]: (state, action) =>
     state.merge({
-      isFetching: false,
+      isPending: false,
       error: null,
       data: action.response.result,
       lastUpdated: Date.now(),
     }),
   [fetchMe.FAILURE]: (state, action) =>
     state.merge({
-      isFetching: false,
+      isPending: false,
       error: action.apiError,
     }),
 })

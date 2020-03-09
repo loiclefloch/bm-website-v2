@@ -10,7 +10,7 @@ import View from './View'
 class CircleListPage extends Component {
   static propTypes = {
     circles: PropTypes.array.isRequired,
-    isFetchingCircles: PropTypes.bool.isRequired,
+    isPendingCircles: PropTypes.bool.isRequired,
     showCircle: PropTypes.func.isRequired,
     loadCircles: PropTypes.func.isRequired,
   }
@@ -20,13 +20,13 @@ class CircleListPage extends Component {
   }
 
   render() {
-    const { isFetchingCircles, circles } = this.props
+    const { isPendingCircles, circles } = this.props
 
     return (
-      <Page title="Circles" isFetching={isFetchingCircles}>
+      <Page title="Circles" isPending={isPendingCircles}>
         <View
           circles={circles}
-          isFetching={isFetchingCircles}
+          isPending={isPendingCircles}
           actions={{
             showCircle: this.props.showCircle,
           }}
@@ -40,14 +40,14 @@ export default withModule(
   'CircleListModule',
   // equivalent of CircleListModule.connect(
   //   {
-  //     isFetchingCircles: 'isFetchingCircles',
+  //     isPendingCircles: 'isPendingCircles',
   //     circles: 'getCirclesSortedByDate',
   //   },
   //   ['showCircle', 'loadCircles']
   // )(CircleListPage)
   [
     {
-      isFetchingCircles: 'isFetchingCircles',
+      isPendingCircles: 'isPendingCircles',
       circles: 'getCirclesSortedByDate',
     },
     ['showCircle', 'loadCircles'],

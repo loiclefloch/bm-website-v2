@@ -4,7 +4,7 @@ import { formatBookmark } from '../utils'
 
 const getState = getStateForModule('Bookmark')
 
-export const isFetchingBookmark = createSelector(getState, state => state.get('isFetching'))
+export const isPendingBookmark = createSelector(getState, state => state.get('isPending'))
 const getBookmarks = createSelector(getState, state => state.get('list'))
 
 const getBookmarkIdOnProps = (state, props) => props.routeParams.bookmarkId

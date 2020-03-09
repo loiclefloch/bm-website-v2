@@ -10,7 +10,7 @@ import LoadingBlock from 'components/loading/LoadingBlock'
 import { HibpPasswordRangeContainer } from 'reacticoon-plugins/reacticoon-plugin-hibp/src'
 import BlockError from 'components/BlockError'
 
-const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
+const LoginForm = ({ formData, onChange, isPending, onLogin }) => {
   const { username, password } = formData
 
   const fieldProps = {
@@ -45,7 +45,7 @@ const LoginForm = ({ formData, onChange, isFetching, onLogin }) => {
           position: 'relative',
         }}
       >
-        <LoadingBlock show={isFetching}>
+        <LoadingBlock show={isPending}>
           <React.Fragment>
             <LogoIcon width={48} height={48} fill="#2F2F2F" />
 

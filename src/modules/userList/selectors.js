@@ -1,7 +1,7 @@
 import { createApiSelectors } from 'reacticoon/selector'
 
-const userListSelectors = createApiSelectors('App::UserListModule') 
+const userListSelectors = createApiSelectors('App::UserListModule')
 
-export const isFetchingUserList = userListSelectors.isFetching
+export const isPendingUserList = userListSelectors.isPending
 export const getFetchUserListData = userListSelectors.getData
 export const getFetchUserListError = userListSelectors.getError
